@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CineVerse", "CineVerse.csproj", "{2FC71E58-6E0C-4BF6-85F4-AB722CCF0BE8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2FC71E58-6E0C-4BF6-85F4-AB722CCF0BE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FC71E58-6E0C-4BF6-85F4-AB722CCF0BE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FC71E58-6E0C-4BF6-85F4-AB722CCF0BE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FC71E58-6E0C-4BF6-85F4-AB722CCF0BE8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9EF4AC98-60CF-4DD3-9F47-23658DDDD266}
+	EndGlobalSection
+EndGlobal

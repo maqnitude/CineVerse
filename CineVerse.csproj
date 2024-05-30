@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="UserControls\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 namespace CineVerse.Views.UserControls
 {
-    public partial class PasswordResetConfirmVerificationCodePage : UserControl
+    public partial class PasswordResetSendCodePage : UserControlComponent
     {
-        public PasswordResetConfirmVerificationCodePage()
+        public PasswordResetSendCodePage()
         {
             InitializeComponent();
-            inputGroup1.Label = "Verification Code";
-            inputGroup1.PlaceholderText = "Enter the verification code";
+            inputGroup1.Label = "Email address";
+            inputGroup1.PlaceholderText = "Enter your email to receive verification code";
         }
     }
 }

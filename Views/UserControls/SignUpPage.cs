@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CineVerse.Views.UserControls
 {
-    public partial class SignUpPage : UserControl
+    public partial class SignUpPage : UserControlComponent
     {
         public SignUpPage()
         {

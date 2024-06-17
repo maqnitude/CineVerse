@@ -1,9 +1,9 @@
 ﻿using CineVerse.Core.Interfaces;
 using CineVerse.Data;
+using CineVerse.Views;
 using CineVerse.Views.UserControls;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -15,15 +15,46 @@ namespace CineVerse.Forms
 {
     public partial class AuthenticationForm : Form, IMediator
     {
-        private UserControl? _currentPage;
         private readonly UnitOfWork _unitOfWork;
+        private SignInPage _signInPage;
+        private SignUpPage _signUpPage;
+        private PasswordResetPage _passwordResetPage;
+        private PasswordResetSendCodePage _passwordResetSendCodePage;
+        private PasswordResetConfirmCodePage _passwordResetConfirmCodePage;
 
         public AuthenticationForm()
         {
             InitializeComponent();
-
             this.StartPosition = FormStartPosition.CenterScreen;
-            btnSignIn_Click(btnSignIn, EventArgs.Empty);
+
+            _signInPage = new SignInPage();
+            _signUpPage = new SignUpPage();
+            _passwordResetPage = new PasswordResetPage();
+            _passwordResetSendCodePage = new PasswordResetSendCodePage();
+            _passwordResetConfirmCodePage = new PasswordResetConfirmCodePage();
+
+            _signInPage.SetMediator(this);
+            _signUpPage.SetMediator(this);
+            _passwordResetPage.SetMediator(this);
+            _passwordResetSendCodePage.SetMediator(this);
+            _passwordResetConfirmCodePage.SetMediator(this);
+
+            _signInPage.Dock = DockStyle.Fill;
+            _signUpPage.Dock = DockStyle.Fill;
+            _passwordResetPage.Dock = DockStyle.Fill;
+            _passwordResetSendCodePage.Dock = DockStyle.Fill;
+            _passwordResetConfirmCodePage.Dock = DockStyle.Fill;
+
+            ShowPage(_signInPage);
+
+            pnPageContainer.Controls.Add(_signInPage);
+            pnPageContainer.Controls.Add(_signUpPage);
+            pnPageContainer.Controls.Add(_passwordResetPage);
+            pnPageContainer.Controls.Add(_passwordResetSendCodePage);
+            pnPageContainer.Controls.Add(_passwordResetConfirmCodePage);
+
+            btnSignIn.Click += btnSignIn_Click;
+            btnSignUp.Click += btnSignUp_Click;
         }
 
         public AuthenticationForm(UnitOfWork unitOfWork)
@@ -35,7 +66,18 @@ namespace CineVerse.Forms
 
         public void Notify(object sender, string ev)
         {
-            throw new NotImplementedException();
+            switch (ev)
+            {
+                case "ShowSignInPage":
+                    ShowPage(_signInPage);
+                    break;
+                case "ShowSignUpPage":
+                    ShowPage(_signUpPage);
+                    break;
+                case "ShowPasswordResetPage":
+                    ShowPage(_passwordResetPage);
+                    break;
+            }
         }
 
         private void ResetButtonColors()
@@ -50,26 +92,24 @@ namespace CineVerse.Forms
         {
             ResetButtonColors();
             btnSignIn.BackColor = Color.FromArgb(0, 157, 26);
-            if (_currentPage != null)
-            {
-                _currentPage.Dispose();
-            }
-            _currentPage = new SignInPage();
-            _currentPage.Dock = DockStyle.Fill;
-            pnPageContainer.Controls.Add(_currentPage);
+            Notify(this, "ShowSignInPage");
         }
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
             ResetButtonColors();
             btnSignUp.BackColor = Color.FromArgb(0, 157, 26);
-            if (_currentPage != null)
-            {
-                _currentPage.Dispose();
-            }
-            _currentPage = new SignUpPage();
-            _currentPage.Dock = DockStyle.Fill;
-            pnPageContainer.Controls.Add(_currentPage);
+            Notify(this, "ShowSignUpPage");
+        }
+
+        private void ShowPage(UserControl page)
+        {
+            _signInPage.Visible = false;
+            _signUpPage.Visible = false;
+            _passwordResetPage.Visible = false;
+            _passwordResetSendCodePage.Visible = false;
+            _passwordResetConfirmCodePage.Visible = false;
+            page.Visible = true;
         }
     }
 }

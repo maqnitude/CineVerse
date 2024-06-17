@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CineVerse.Views
+namespace CineVerse.Views.UserControls
 {
-    public class Component
+    public class UserControlComponent : UserControl
     {
         protected IMediator _mediator;
 

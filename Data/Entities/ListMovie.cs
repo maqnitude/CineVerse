@@ -5,15 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CineVerse.Models
+namespace CineVerse.Data.Entities
 {
-    public class MovieCompany
+    public class ListMovie
     {
         [Required]
         public int MovieId { get; set; }
         public Movie Movie { get; set; }
         [Required]
-        public int CompanyId { get; set; }
-        public Company Company { get; set; }
+        public string ListId { get; set; }
+        public List List { get; set; }
+        public string? AuthorId { get; set; }
+        public User? Author { get; set; }
+        public DateTime AddedDate { get; set; } = DateTime.UtcNow;
     }
 }

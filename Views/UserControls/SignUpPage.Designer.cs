@@ -28,102 +28,100 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            lblPage = new Label();
             inputGroup1 = new InputGroup();
             inputGroup2 = new InputGroup();
-            inputGroup4 = new InputGroup();
-            button1 = new Button();
+            btnSignUp = new Button();
             inputGroup3 = new InputGroup();
             SuspendLayout();
             // 
-            // label1
+            // lblPage
             // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            label1.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(0, 4);
-            label1.Margin = new Padding(4);
-            label1.Name = "label1";
-            label1.Size = new Size(668, 64);
-            label1.TabIndex = 2;
-            label1.Text = "Sign Up";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
+            lblPage.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblPage.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            lblPage.ForeColor = Color.FromArgb(178, 172, 162);
+            lblPage.Location = new Point(0, 7);
+            lblPage.Margin = new Padding(6, 7, 6, 7);
+            lblPage.Name = "lblPage";
+            lblPage.Size = new Size(600, 49);
+            lblPage.TabIndex = 2;
+            lblPage.Text = "Sign Up";
+            lblPage.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // inputGroup1
             // 
-            inputGroup1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            inputGroup1.Location = new Point(32, 76);
-            inputGroup1.Margin = new Padding(32, 4, 32, 4);
+            inputGroup1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            inputGroup1.BackColor = Color.Transparent;
+            inputGroup1.Label = "Label";
+            inputGroup1.Location = new Point(45, 64);
+            inputGroup1.Margin = new Padding(46, 7, 46, 7);
             inputGroup1.Name = "inputGroup1";
-            inputGroup1.Size = new Size(604, 69);
+            inputGroup1.PlaceholderText = "";
+            inputGroup1.Size = new Size(509, 80);
             inputGroup1.TabIndex = 3;
             // 
             // inputGroup2
             // 
-            inputGroup2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            inputGroup2.Location = new Point(32, 153);
-            inputGroup2.Margin = new Padding(32, 4, 32, 4);
+            inputGroup2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            inputGroup2.BackColor = Color.Transparent;
+            inputGroup2.Label = "Label";
+            inputGroup2.Location = new Point(45, 160);
+            inputGroup2.Margin = new Padding(46, 7, 46, 7);
             inputGroup2.Name = "inputGroup2";
-            inputGroup2.Size = new Size(604, 69);
+            inputGroup2.PlaceholderText = "";
+            inputGroup2.Size = new Size(509, 80);
             inputGroup2.TabIndex = 3;
             // 
-            // inputGroup4
+            // btnSignUp
             // 
-            inputGroup4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            inputGroup4.Location = new Point(334, 230);
-            inputGroup4.Margin = new Padding(0, 4, 32, 4);
-            inputGroup4.Name = "inputGroup4";
-            inputGroup4.Size = new Size(302, 69);
-            inputGroup4.TabIndex = 3;
-            // 
-            // button1
-            // 
-            button1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            button1.BackColor = Color.FromArgb(0, 157, 26);
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(64, 335);
-            button1.Margin = new Padding(64, 32, 64, 4);
-            button1.Name = "button1";
-            button1.Size = new Size(540, 34);
-            button1.TabIndex = 4;
-            button1.Text = "Sign Up";
-            button1.UseVisualStyleBackColor = false;
+            btnSignUp.Anchor = AnchorStyles.Bottom;
+            btnSignUp.BackColor = Color.FromArgb(0, 157, 26);
+            btnSignUp.FlatAppearance.BorderSize = 0;
+            btnSignUp.FlatStyle = FlatStyle.Flat;
+            btnSignUp.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnSignUp.ForeColor = Color.White;
+            btnSignUp.Location = new Point(214, 383);
+            btnSignUp.Margin = new Padding(91, 53, 91, 7);
+            btnSignUp.Name = "btnSignUp";
+            btnSignUp.Size = new Size(173, 45);
+            btnSignUp.TabIndex = 4;
+            btnSignUp.Text = "Sign Up";
+            btnSignUp.UseVisualStyleBackColor = false;
             // 
             // inputGroup3
             // 
-            inputGroup3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            inputGroup3.Location = new Point(32, 230);
-            inputGroup3.Margin = new Padding(32, 4, 0, 4);
+            inputGroup3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            inputGroup3.BackColor = Color.Transparent;
+            inputGroup3.Label = "Label";
+            inputGroup3.Location = new Point(45, 262);
+            inputGroup3.Margin = new Padding(46, 7, 0, 7);
             inputGroup3.Name = "inputGroup3";
-            inputGroup3.Size = new Size(302, 69);
+            inputGroup3.PlaceholderText = "";
+            inputGroup3.Size = new Size(509, 80);
             inputGroup3.TabIndex = 3;
             // 
             // SignUpPage
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(20, 24, 28);
             Controls.Add(inputGroup3);
-            Controls.Add(inputGroup4);
-            Controls.Add(button1);
+            Controls.Add(btnSignUp);
             Controls.Add(inputGroup2);
             Controls.Add(inputGroup1);
-            Controls.Add(label1);
+            Controls.Add(lblPage);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "SignUpPage";
-            Size = new Size(668, 448);
+            Size = new Size(600, 460);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Label label1;
+        private Label lblPage;
         private InputGroup inputGroup1;
         private InputGroup inputGroup2;
-        private InputGroup inputGroup4;
-        private Button button1;
+        private Button btnSignUp;
         private InputGroup inputGroup3;
     }
 }

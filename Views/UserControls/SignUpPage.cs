@@ -15,6 +15,13 @@ namespace CineVerse.Views.UserControls
         public SignUpPage()
         {
             InitializeComponent();
+            inputGroup1.Label = "Email address";
+            inputGroup1.PlaceholderText = "Enter your email address";
+            inputGroup2.Label = "Username";
+            inputGroup2.PlaceholderText = "Enter your username";
+            inputGroup3.Label = "Password";
+            inputGroup3.PlaceholderText = "Enter your password";
+            inputGroup3.PasswordChar = '\u2022';
         }
     }
 }

@@ -16,5 +16,32 @@ namespace CineVerse.Views.UserControls
         {
             InitializeComponent();
         }
+
+        public InputGroup(string label, string? placeholder)
+        {
+            lblField.Text = label;
+            if (placeholder != null)
+            {
+                txtInput.PlaceholderText = placeholder;
+            }
+        }
+
+        public string Label
+        {
+            get { return lblField.Text; }
+            set { lblField.Text = value; }
+        }
+
+        public string PlaceholderText
+        {
+            get { return txtInput.PlaceholderText; }
+            set { txtInput.PlaceholderText = value; }
+        }
+
+        public char PasswordChar
+        {
+            get { return txtInput.PasswordChar; }
+            set { txtInput.PasswordChar = value; }
+        }
     }
 }

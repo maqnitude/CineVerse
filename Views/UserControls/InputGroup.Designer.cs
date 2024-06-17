@@ -28,50 +28,67 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
-            label1 = new Label();
+            txtInput = new TextBox();
+            lblField = new Label();
+            pnTextInput = new Panel();
+            pnTextInput.SuspendLayout();
             SuspendLayout();
             // 
-            // textBox1
+            // txtInput
             // 
-            textBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            textBox1.BackColor = Color.FromArgb(136, 153, 170);
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Segoe UI", 16F);
-            textBox1.Location = new Point(4, 29);
-            textBox1.Margin = new Padding(4);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(504, 29);
-            textBox1.TabIndex = 0;
+            txtInput.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtInput.BackColor = Color.FromArgb(43, 47, 49);
+            txtInput.BorderStyle = BorderStyle.None;
+            txtInput.Font = new Font("Segoe UI", 10F);
+            txtInput.ForeColor = Color.FromArgb(168, 160, 149);
+            txtInput.Location = new Point(6, 11);
+            txtInput.Margin = new Padding(6, 7, 6, 7);
+            txtInput.Name = "txtInput";
+            txtInput.PlaceholderText = "Some text here";
+            txtInput.Size = new Size(383, 27);
+            txtInput.TabIndex = 0;
             // 
-            // label1
+            // lblField
             // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label1.ForeColor = Color.FromArgb(170, 187, 204);
-            label1.Location = new Point(4, 4);
-            label1.Margin = new Padding(4, 4, 4, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(51, 21);
-            label1.TabIndex = 1;
-            label1.Text = "Label";
+            lblField.Dock = DockStyle.Top;
+            lblField.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblField.ForeColor = Color.FromArgb(232, 230, 227);
+            lblField.Location = new Point(0, 0);
+            lblField.Margin = new Padding(6, 7, 6, 0);
+            lblField.Name = "lblField";
+            lblField.Size = new Size(395, 28);
+            lblField.TabIndex = 1;
+            lblField.Text = "Label";
+            // 
+            // pnTextInput
+            // 
+            pnTextInput.BackColor = Color.FromArgb(43, 47, 49);
+            pnTextInput.Controls.Add(txtInput);
+            pnTextInput.Dock = DockStyle.Fill;
+            pnTextInput.Location = new Point(0, 28);
+            pnTextInput.Name = "pnTextInput";
+            pnTextInput.Size = new Size(395, 56);
+            pnTextInput.TabIndex = 2;
             // 
             // InputGroup
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(label1);
-            Controls.Add(textBox1);
+            BackColor = Color.Transparent;
+            Controls.Add(pnTextInput);
+            Controls.Add(lblField);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "InputGroup";
-            Size = new Size(512, 62);
+            Size = new Size(395, 84);
+            pnTextInput.ResumeLayout(false);
+            pnTextInput.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private TextBox textBox1;
-        private Label label1;
+        private TextBox txtInput;
+        private Label lblField;
+        private Panel pnTextInput;
     }
 }

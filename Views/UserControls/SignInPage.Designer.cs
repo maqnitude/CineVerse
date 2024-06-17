@@ -30,76 +30,102 @@
         {
             inputGroup1 = new InputGroup();
             inputGroup2 = new InputGroup();
-            label1 = new Label();
-            button1 = new Button();
+            lblPage = new Label();
+            btnSignIn = new Button();
+            lnkForgotPassword = new LinkLabel();
             SuspendLayout();
             // 
             // inputGroup1
             // 
-            inputGroup1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            inputGroup1.Location = new Point(32, 76);
-            inputGroup1.Margin = new Padding(32, 4, 32, 4);
+            inputGroup1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            inputGroup1.BackColor = Color.Transparent;
+            inputGroup1.Label = "Label";
+            inputGroup1.Location = new Point(47, 100);
+            inputGroup1.Margin = new Padding(46, 7, 46, 7);
             inputGroup1.Name = "inputGroup1";
-            inputGroup1.Size = new Size(474, 69);
+            inputGroup1.PasswordChar = '\0';
+            inputGroup1.PlaceholderText = "";
+            inputGroup1.Size = new Size(508, 84);
             inputGroup1.TabIndex = 0;
             // 
             // inputGroup2
             // 
-            inputGroup2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            inputGroup2.Location = new Point(32, 153);
-            inputGroup2.Margin = new Padding(32, 4, 32, 4);
+            inputGroup2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            inputGroup2.BackColor = Color.Transparent;
+            inputGroup2.Label = "Label";
+            inputGroup2.Location = new Point(47, 220);
+            inputGroup2.Margin = new Padding(46, 7, 46, 7);
             inputGroup2.Name = "inputGroup2";
-            inputGroup2.Size = new Size(474, 69);
+            inputGroup2.PasswordChar = '\0';
+            inputGroup2.PlaceholderText = "";
+            inputGroup2.Size = new Size(508, 84);
             inputGroup2.TabIndex = 0;
             // 
-            // label1
+            // lblPage
             // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            label1.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(18, 4);
-            label1.Margin = new Padding(4);
-            label1.Name = "label1";
-            label1.Size = new Size(502, 64);
-            label1.TabIndex = 1;
-            label1.Text = "Sign In";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
+            lblPage.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblPage.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            lblPage.ForeColor = Color.FromArgb(178, 172, 162);
+            lblPage.Location = new Point(0, 6);
+            lblPage.Margin = new Padding(6, 7, 6, 7);
+            lblPage.Name = "lblPage";
+            lblPage.Size = new Size(600, 59);
+            lblPage.TabIndex = 1;
+            lblPage.Text = "Sign In to CineVerse";
+            lblPage.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // button1
+            // btnSignIn
             // 
-            button1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            button1.BackColor = Color.FromArgb(0, 157, 26);
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(64, 258);
-            button1.Margin = new Padding(64, 32, 64, 4);
-            button1.Name = "button1";
-            button1.Size = new Size(410, 34);
-            button1.TabIndex = 2;
-            button1.Text = "Sign In";
-            button1.UseVisualStyleBackColor = false;
+            btnSignIn.Anchor = AnchorStyles.Bottom;
+            btnSignIn.BackColor = Color.FromArgb(0, 157, 26);
+            btnSignIn.FlatAppearance.BorderSize = 0;
+            btnSignIn.FlatStyle = FlatStyle.Flat;
+            btnSignIn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnSignIn.ForeColor = Color.White;
+            btnSignIn.Location = new Point(214, 383);
+            btnSignIn.Margin = new Padding(91, 53, 91, 7);
+            btnSignIn.Name = "btnSignIn";
+            btnSignIn.Size = new Size(173, 45);
+            btnSignIn.TabIndex = 2;
+            btnSignIn.Text = "Sign In";
+            btnSignIn.UseVisualStyleBackColor = false;
+            // 
+            // lnkForgotPassword
+            // 
+            lnkForgotPassword.Anchor = AnchorStyles.Right;
+            lnkForgotPassword.AutoSize = true;
+            lnkForgotPassword.LinkColor = Color.FromArgb(47, 255, 125);
+            lnkForgotPassword.Location = new Point(358, 311);
+            lnkForgotPassword.Name = "lnkForgotPassword";
+            lnkForgotPassword.Size = new Size(197, 25);
+            lnkForgotPassword.TabIndex = 3;
+            lnkForgotPassword.TabStop = true;
+            lnkForgotPassword.Text = "Forgot your password?";
+            lnkForgotPassword.LinkClicked += lnkForgotPassword_LinkClicked;
             // 
             // SignInPage
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(20, 24, 28);
-            Controls.Add(button1);
-            Controls.Add(label1);
+            Controls.Add(lnkForgotPassword);
+            Controls.Add(btnSignIn);
+            Controls.Add(lblPage);
             Controls.Add(inputGroup2);
             Controls.Add(inputGroup1);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "SignInPage";
-            Size = new Size(538, 380);
+            Size = new Size(600, 460);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private InputGroup inputGroup1;
         private InputGroup inputGroup2;
-        private Label label1;
-        private Button button1;
+        private Label lblPage;
+        private Button btnSignIn;
+        private LinkLabel lnkForgotPassword;
     }
 }

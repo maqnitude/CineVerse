@@ -15,6 +15,16 @@ namespace CineVerse.Views.UserControls
         public SignInPage()
         {
             InitializeComponent();
+            inputGroup1.Label = "Username";
+            inputGroup1.PlaceholderText = "Enter your username";
+            inputGroup2.Label = "Password";
+            inputGroup2.PlaceholderText = "Enter your password";
+            inputGroup2.PasswordChar = '\u2022';
+        }
+
+        private void lnkForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            
         }
     }
 }

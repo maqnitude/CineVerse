@@ -32,12 +32,12 @@ namespace CineVerse.Data.Repositories
             await _context.Set<T>().AddAsync(entity);
         }
 
-        public async Task UpdateAsync(T entity)
+        public void Update(T entity)
         {
             _context.Set<T>().Update(entity);
         }
 
-        public async Task DeleteAsync(T entity)
+        public void Delete(T entity)
         {
             _context.Set<T>().Remove(entity);
         }

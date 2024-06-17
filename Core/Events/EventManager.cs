@@ -7,13 +7,18 @@ using System.Threading.Tasks;
 
 namespace CineVerse.Core.Events
 {
-    public static class EventManager
+    public class EventManager
     {
-        private static readonly ConcurrentDictionary<EventType, List<EventHandler>>
+        private static readonly Lazy<EventManager> _instance = new Lazy<EventManager>(() => new EventManager());
+
+        public static EventManager Instance => _instance.Value;
+
+        private readonly ConcurrentDictionary<EventType, List<EventHandler>> _eventHandlers;
+
+        private EventManager()
+        {
             _eventHandlers = new ConcurrentDictionary<EventType, List<EventHandler>>();
 
-        static EventManager()
-        {
             // Initialize empty event handlers list for each event type
             foreach (EventType eventTypes in Enum.GetValues(typeof(EventType)))
             {
@@ -21,7 +26,7 @@ namespace CineVerse.Core.Events
             }
         }
 
-        public static void Subscribe(EventType eventType, EventHandler handler)
+        public void Subscribe(EventType eventType, EventHandler handler)
         {
             if (handler == null) throw new ArgumentNullException(nameof(handler));
 
@@ -31,7 +36,7 @@ namespace CineVerse.Core.Events
             }
         }
 
-        public static void Unsubscribe(EventType eventType, EventHandler handler)
+        public void Unsubscribe(EventType eventType, EventHandler handler)
         {
             if (handler == null) throw new ArgumentNullException(nameof(handler));
 
@@ -42,12 +47,11 @@ namespace CineVerse.Core.Events
         }
 
         // Publish an event, which means calling every handlers of that event
-        public static void Publish(EventType eventType, object sender, EventArgs args)
+        public void Publish(EventType eventType, object sender, EventArgs args)
         {
             if (_eventHandlers.ContainsKey(eventType))
             {
                 List<EventHandler> handlersCopy;
-                // ConcurrentDictionary is great for thread-safe operations on itself
                 // Use lock to ensure operations on handers list are performed atomically
                 lock (_eventHandlers[eventType])
                 {

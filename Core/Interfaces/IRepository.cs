@@ -12,8 +12,8 @@ namespace CineVerse.Core.Interfaces
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetByIdAsync(string id);
         Task AddAsync(T entity);
-        Task UpdateAsync(T entity);
-        Task DeleteAsync(T entity);
+        void Update(T entity);
+        void Delete(T entity);
     }
 
     public interface IUserRepository : IRepository<User>

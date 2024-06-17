@@ -41,10 +41,10 @@
             lblPage.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblPage.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblPage.ForeColor = Color.FromArgb(178, 172, 162);
-            lblPage.Location = new Point(1, 7);
-            lblPage.Margin = new Padding(6, 7, 6, 7);
+            lblPage.Location = new Point(1, 4);
+            lblPage.Margin = new Padding(4, 4, 4, 4);
             lblPage.Name = "lblPage";
-            lblPage.Size = new Size(600, 49);
+            lblPage.Size = new Size(420, 29);
             lblPage.TabIndex = 3;
             lblPage.Text = "Reset Password";
             lblPage.TextAlign = ContentAlignment.MiddleCenter;
@@ -54,11 +54,12 @@
             inputGroup1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             inputGroup1.BackColor = Color.Transparent;
             inputGroup1.Label = "Label";
-            inputGroup1.Location = new Point(46, 128);
-            inputGroup1.Margin = new Padding(46, 7, 46, 7);
+            inputGroup1.Location = new Point(32, 77);
+            inputGroup1.Margin = new Padding(32, 4, 32, 4);
             inputGroup1.Name = "inputGroup1";
+            inputGroup1.PasswordChar = '\0';
             inputGroup1.PlaceholderText = "";
-            inputGroup1.Size = new Size(508, 84);
+            inputGroup1.Size = new Size(356, 50);
             inputGroup1.TabIndex = 4;
             // 
             // inputGroup2
@@ -66,11 +67,12 @@
             inputGroup2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             inputGroup2.BackColor = Color.Transparent;
             inputGroup2.Label = "Label";
-            inputGroup2.Location = new Point(46, 233);
-            inputGroup2.Margin = new Padding(46, 7, 46, 7);
+            inputGroup2.Location = new Point(32, 140);
+            inputGroup2.Margin = new Padding(32, 4, 32, 4);
             inputGroup2.Name = "inputGroup2";
+            inputGroup2.PasswordChar = '\0';
             inputGroup2.PlaceholderText = "";
-            inputGroup2.Size = new Size(508, 84);
+            inputGroup2.Size = new Size(356, 50);
             inputGroup2.TabIndex = 5;
             // 
             // btnResetPassword
@@ -81,10 +83,10 @@
             btnResetPassword.FlatStyle = FlatStyle.Flat;
             btnResetPassword.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnResetPassword.ForeColor = Color.White;
-            btnResetPassword.Location = new Point(317, 369);
-            btnResetPassword.Margin = new Padding(91, 53, 91, 7);
+            btnResetPassword.Location = new Point(222, 221);
+            btnResetPassword.Margin = new Padding(64, 32, 64, 4);
             btnResetPassword.Name = "btnResetPassword";
-            btnResetPassword.Size = new Size(173, 45);
+            btnResetPassword.Size = new Size(121, 27);
             btnResetPassword.TabIndex = 6;
             btnResetPassword.Text = "Reset Password";
             btnResetPassword.UseVisualStyleBackColor = false;
@@ -97,27 +99,29 @@
             btnCancel.FlatStyle = FlatStyle.Flat;
             btnCancel.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnCancel.ForeColor = Color.White;
-            btnCancel.Location = new Point(91, 369);
-            btnCancel.Margin = new Padding(91, 53, 91, 7);
+            btnCancel.Location = new Point(64, 221);
+            btnCancel.Margin = new Padding(64, 32, 64, 4);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(173, 45);
+            btnCancel.Size = new Size(121, 27);
             btnCancel.TabIndex = 6;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label1.ForeColor = Color.White;
-            label1.Location = new Point(16, 54);
+            label1.Location = new Point(11, 32);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(568, 46);
+            label1.Size = new Size(398, 28);
             label1.TabIndex = 10;
             label1.Text = "Enter a new password for your account";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // PasswordResetPage
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(20, 24, 28);
             Controls.Add(label1);
@@ -126,8 +130,9 @@
             Controls.Add(inputGroup2);
             Controls.Add(inputGroup1);
             Controls.Add(lblPage);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "PasswordResetPage";
-            Size = new Size(600, 460);
+            Size = new Size(420, 276);
             ResumeLayout(false);
         }
 

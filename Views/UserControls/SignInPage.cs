@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CineVerse.Views.UserControls
 {
-    public partial class SignInPage : UserControl
+    public partial class SignInPage : UserControlComponent
     {
         public SignInPage()
         {
@@ -24,7 +24,7 @@ namespace CineVerse.Views.UserControls
 
         private void lnkForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            
+            _mediator?.Notify(this, "ShowPasswordResetPage");
         }
     }
 }

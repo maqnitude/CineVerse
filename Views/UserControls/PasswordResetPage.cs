@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CineVerse.Views.UserControls
 {
-    public partial class PasswordResetPage : UserControl
+    public partial class PasswordResetPage : UserControlComponent
     {
         public PasswordResetPage()
         {

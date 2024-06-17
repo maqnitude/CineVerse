@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace CineVerse.Core.Interfaces
 {
-    public interface IMediator
+    public interface IUnitOfWork : IDisposable
     {
-        void Notify(object sender, string ev);
+        IUserRepository Users { get; }
+        Task<int> CompleteAsync();
     }
 }

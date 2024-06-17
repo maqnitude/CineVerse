@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CineVerse.Models
+namespace CineVerse.Data.Entities
 {
     public class Movie
     {
@@ -23,7 +23,7 @@ namespace CineVerse.Models
         public string BackdropPath { get; set; }
         [Required]
         public string PosterPath { get; set; }
-        public long? Budget {  get; set; }
+        public long? Budget { get; set; }
         public long? Revenue { get; set; }
         [Required]
         public int Runtime { get; set; }
@@ -34,8 +34,8 @@ namespace CineVerse.Models
         public string OriginalLanguage { get; set; }
         public List<string> SpokenLanguages { get; set; } = new List<string>();
         public string Status { get; set; }
-        public string TagLine {  get; set; }
-        public string Homepage {  get; set; }
+        public string TagLine { get; set; }
+        public string Homepage { get; set; }
         public int? VoteCount { get; set; }
         public double? VoteAverage { get; set; }
         public ICollection<Credit> Credits { get; set; } = new List<Credit>();

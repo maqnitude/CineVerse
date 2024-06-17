@@ -6,7 +6,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CineVerse.Models
+namespace CineVerse.Data.Entities
 {
     public enum Gender
     {

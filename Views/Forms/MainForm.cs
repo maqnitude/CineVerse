@@ -1,6 +1,5 @@
 ﻿using CineVerse.Configuration;
 using CineVerse.Data;
-using CineVerse.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.IO;
@@ -17,6 +16,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CineVerse.Data.Entities;
 
 namespace CineVerse.Forms
 {

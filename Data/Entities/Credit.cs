@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CineVerse.Models
+namespace CineVerse.Data.Entities
 {
     public class Credit
     {

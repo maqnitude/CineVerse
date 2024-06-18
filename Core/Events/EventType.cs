@@ -8,6 +8,6 @@ namespace CineVerse.Core.Events
 {
     public enum EventType
     {
-        UserLoggedIn,
+        UserSignedIn,
     }
 }

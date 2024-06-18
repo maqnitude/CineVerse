@@ -11,7 +11,7 @@ namespace CineVerse.Core.Events
     {
         private readonly ConcurrentDictionary<EventType, List<EventHandler>> _eventHandlers;
 
-        private EventManager()
+        public EventManager()
         {
             _eventHandlers = new ConcurrentDictionary<EventType, List<EventHandler>>();
 
@@ -19,6 +19,26 @@ namespace CineVerse.Core.Events
             foreach (EventType eventTypes in Enum.GetValues(typeof(EventType)))
             {
                 _eventHandlers[eventTypes] = new List<EventHandler>();
+            }
+        }
+
+        // Publish an event, which means calling every handlers of that event
+        public void Publish(EventType eventType, object sender, EventArgs args)
+        {
+            if (_eventHandlers.ContainsKey(eventType))
+            {
+                List<EventHandler> handlersCopy;
+                // Use lock to ensure operations on handers list are performed atomically
+                lock (_eventHandlers[eventType])
+                {
+                    // Prevent collection modification exceptions
+                    handlersCopy = new List<EventHandler>(_eventHandlers[eventType]);
+                }
+
+                foreach (EventHandler handler in handlersCopy)
+                {
+                    handler?.Invoke(sender, args);
+                }
             }
         }
 
@@ -42,23 +62,11 @@ namespace CineVerse.Core.Events
             }
         }
 
-        // Publish an event, which means calling every handlers of that event
-        public void Publish(EventType eventType, object sender, EventArgs args)
+        public void UnsubscribeAll(EventType eventType)
         {
             if (_eventHandlers.ContainsKey(eventType))
             {
-                List<EventHandler> handlersCopy;
-                // Use lock to ensure operations on handers list are performed atomically
-                lock (_eventHandlers[eventType])
-                {
-                    // Prevent collection modification exceptions
-                    handlersCopy = new List<EventHandler>(_eventHandlers[eventType]);
-                }
-
-                foreach (EventHandler handler in _eventHandlers[eventType])
-                {
-                    handler?.Invoke(sender, args);
-                }
+                _eventHandlers[eventType].Clear();
             }
         }
     }

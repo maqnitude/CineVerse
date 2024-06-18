@@ -1,4 +1,5 @@
-﻿using CineVerse.Core.Interfaces;
+﻿using CineVerse.Core.Events;
+using CineVerse.Core.Interfaces;
 using CineVerse.Core.Services;
 using CineVerse.Data;
 using CineVerse.Views;
@@ -16,6 +17,7 @@ namespace CineVerse.Forms
 {
     public partial class AuthenticationForm : Form, IMediator
     {
+        private readonly EventManager _eventManager;
         private readonly AuthenticationService _authenticationService;
         private readonly NavigationService _navigationService;
 
@@ -25,10 +27,11 @@ namespace CineVerse.Forms
         private PasswordResetSendCodePage _passwordResetSendCodePage;
         private PasswordResetConfirmCodePage _passwordResetConfirmCodePage;
 
-        public AuthenticationForm(AuthenticationService authenticationService)
+        public AuthenticationForm(EventManager eventManager, AuthenticationService authenticationService)
         {
             InitializeComponent();
 
+            _eventManager = eventManager;
             _authenticationService = authenticationService;
             _authenticationService.SetMediator(this);
 
@@ -56,8 +59,10 @@ namespace CineVerse.Forms
 
             _navigationService.NavigateToScreen("sign in");
 
+            RegisterEventHandlers();
             btnSignIn.Click += btnSignIn_Click;
             btnSignUp.Click += btnSignUp_Click;
+            this.FormClosed += OnFormClosed;
         }
 
         public void Notify(object sender, string ev)
@@ -82,6 +87,16 @@ namespace CineVerse.Forms
             }
         }
 
+        private void RegisterEventHandlers()
+        {
+            _eventManager.Subscribe(EventType.UserSignedIn, OnUserSignedIn);
+        }
+
+        private void UnregisterEventHandlers()
+        {
+            _eventManager.Unsubscribe(EventType.UserSignedIn, OnUserSignedIn);
+        }
+
         private void ResetButtonColors()
         {
             foreach (Button btn in pnTabContainer.Controls)
@@ -102,6 +117,17 @@ namespace CineVerse.Forms
             ResetButtonColors();
             btnSignUp.BackColor = Color.FromArgb(0, 157, 26);
             Notify(this, "ShowSignUpPage");
+        }
+
+        private void OnUserSignedIn(object sender, EventArgs e)
+        {
+            this.Close();
+            this.Dispose();
+        }
+
+        private void OnFormClosed(object sender, EventArgs e)
+        {
+            UnregisterEventHandlers();
         }
     }
 }

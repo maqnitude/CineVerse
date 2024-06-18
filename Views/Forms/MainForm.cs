@@ -18,16 +18,34 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CineVerse.Data.Entities;
 using CineVerse.Core.Services;
+using CineVerse.Core.Events;
 
 namespace CineVerse.Forms
 {
     public partial class MainForm : Form
     {
-        private Dictionary<PictureBox, Movie> _moviePanels;
+        private readonly EventManager _eventManager;
         private readonly NavigationService _navigationService;
-        public MainForm()
+
+        private Dictionary<PictureBox, Movie> _moviePanels;
+
+        public MainForm(EventManager eventManager)
         {
             InitializeComponent();
+
+            _eventManager = eventManager;
+
+            RegisterEventHandlers();
+        }
+
+        private void RegisterEventHandlers()
+        {
+            _eventManager.Subscribe(EventType.UserSignedIn, OnUserSignedIn);
+        }
+
+        private void OnUserSignedIn(object sender, EventArgs e)
+        {
+            this.Show();
         }
     }
 }

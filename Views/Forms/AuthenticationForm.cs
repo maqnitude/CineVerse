@@ -1,4 +1,5 @@
 ﻿using CineVerse.Core.Interfaces;
+using CineVerse.Core.Services;
 using CineVerse.Data;
 using CineVerse.Views;
 using CineVerse.Views.UserControls;
@@ -15,23 +16,28 @@ namespace CineVerse.Forms
 {
     public partial class AuthenticationForm : Form, IMediator
     {
-        private readonly UnitOfWork _unitOfWork;
+        private readonly AuthenticationService _authenticationService;
+
         private SignInPage _signInPage;
         private SignUpPage _signUpPage;
         private PasswordResetPage _passwordResetPage;
         private PasswordResetSendCodePage _passwordResetSendCodePage;
         private PasswordResetConfirmCodePage _passwordResetConfirmCodePage;
 
-        public AuthenticationForm()
+        public AuthenticationForm(AuthenticationService authenticationService)
         {
             InitializeComponent();
+
+            _authenticationService = authenticationService;
+            _authenticationService.SetMediator(this);
+
             this.StartPosition = FormStartPosition.CenterScreen;
 
-            _signInPage = new SignInPage();
-            _signUpPage = new SignUpPage();
-            _passwordResetPage = new PasswordResetPage();
-            _passwordResetSendCodePage = new PasswordResetSendCodePage();
-            _passwordResetConfirmCodePage = new PasswordResetConfirmCodePage();
+            _signInPage = new SignInPage(_authenticationService);
+            _signUpPage = new SignUpPage(_authenticationService);
+            _passwordResetPage = new PasswordResetPage(_authenticationService);
+            _passwordResetSendCodePage = new PasswordResetSendCodePage(_authenticationService);
+            _passwordResetConfirmCodePage = new PasswordResetConfirmCodePage(_authenticationService);
 
             _signInPage.SetMediator(this);
             _signUpPage.SetMediator(this);
@@ -57,12 +63,12 @@ namespace CineVerse.Forms
             btnSignUp.Click += btnSignUp_Click;
         }
 
-        public AuthenticationForm(UnitOfWork unitOfWork)
-        {
-            InitializeComponent();
+        //public AuthenticationForm(IUnitOfWork unitOfWork)
+        //{
+        //    InitializeComponent();
 
-            _unitOfWork = unitOfWork;
-        }
+        //    _unitOfWork = unitOfWork;
+        //}
 
         public void Notify(object sender, string ev)
         {
@@ -76,6 +82,12 @@ namespace CineVerse.Forms
                     break;
                 case "ShowPasswordResetPage":
                     ShowPage(_passwordResetPage);
+                    break;
+                case "ShowPasswordResetSendCodePage":
+                    ShowPage(_passwordResetSendCodePage);
+                    break;
+                case "ShowPasswordResetConfirmCodePage":
+                    ShowPage(_passwordResetConfirmCodePage);
                     break;
             }
         }

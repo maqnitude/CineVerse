@@ -13,9 +13,14 @@ namespace CineVerse.Views.UserControls
 {
     public partial class PasswordResetPage : UserControlComponent
     {
-        public PasswordResetPage()
+        private readonly AuthenticationService _authenticationService;
+
+        public PasswordResetPage(AuthenticationService authenticationService)
         {
             InitializeComponent();
+
+            _authenticationService = authenticationService;
+
             inpGrpNewPassword.Label = "New Password";
             inpGrpNewPassword.PlaceholderText = "Enter your new password";
             inpGrpNewPassword.PasswordChar = '\u2022';
@@ -26,7 +31,7 @@ namespace CineVerse.Views.UserControls
 
         private void btnResetPassword_Click(object sender, EventArgs e)
         {
-            AuthenticationService.Instance.ResetPassword(inpGrpNewPassword.InputText);
+            _authenticationService.ResetPassword(inpGrpNewPassword.InputText);
         }
     }
 }

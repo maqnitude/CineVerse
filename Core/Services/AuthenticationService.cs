@@ -13,28 +13,29 @@ using System.Net.Mail;
 using System.Net;
 using System.Configuration;
 using System.Collections.Specialized;
+using CineVerse.Core.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics;
 
 namespace CineVerse.Core.Services
 {
     public class AuthenticationService
     {
-        private static AuthenticationService? _instance;
+        private readonly IUnitOfWork _unitOfWork;
+        private IMediator _mediator;
+
         private string _currentEmail { get; set; }
         private string _verificationCode {  get; set; }
         private DateTime _codeGenerationTime {  get; set; }
 
-        private AuthenticationService() { }
-
-        public static AuthenticationService Instance
+        public AuthenticationService(IUnitOfWork unitOfWork)
         {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new AuthenticationService();
-                }
-                return _instance;
-            }
+            _unitOfWork = unitOfWork;
+        }
+
+        public void SetMediator(IMediator mediator)
+        {
+            _mediator = mediator;
         }
 
         public Tuple<bool, string> IsEmailValid(string email)
@@ -100,7 +101,7 @@ namespace CineVerse.Core.Services
 
         public string HashPassword(string password)
         {
-            using(var sha256 = SHA256.Create())
+            using (var sha256 = SHA256.Create())
             {
                 var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
                 return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
@@ -121,22 +122,19 @@ namespace CineVerse.Core.Services
                 return passwordValidationResult;
             }
 
-            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            var user = await _unitOfWork.Users.GetUserByUsernameAsync(username);
+            if (user == null)
             {
-                var user = await unitOfWork.Users.GetUserByUsernameAsync(username);
-                if (user == null)
-                {
-                    return Tuple.Create(false, "User not found");
-                }
-                else if (user.Password == HashPassword(password))
-                {
-                    EventManager.Instance.Publish(EventType.UserLoggedIn, this, EventArgs.Empty);
-                    return Tuple.Create(true, "Sign in successful!");
-                }
-                else
-                {
-                    return Tuple.Create(false, "Incorrect password.");
-                }
+                return Tuple.Create(false, "User not found");
+            }
+            else if (user.Password == HashPassword(password))
+            {
+                //EventManager.Instance.Publish(EventType.UserLoggedIn, this, EventArgs.Empty);
+                return Tuple.Create(true, "Sign in successful!");
+            }
+            else
+            {
+                return Tuple.Create(false, "Incorrect password.");
             }
         }
 
@@ -160,19 +158,17 @@ namespace CineVerse.Core.Services
                 return passwordValidationResult;
             }
 
-            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            var newUser = new User()
             {
-                var newUser = new User()
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Email = email,
-                    Name = username,
-                    Username = username,
-                    Password = HashPassword(password),
-                };
-                await unitOfWork.Users.AddAsync(newUser);
-                await unitOfWork.CompleteAsync();
-            }
+                Id = Guid.NewGuid().ToString(),
+                Email = email,
+                Name = username,
+                Username = username,
+                Password = HashPassword(password),
+            };
+            await _unitOfWork.Users.AddAsync(newUser);
+            await _unitOfWork.CompleteAsync();
+
             return Tuple.Create(true, "Sign up successful!");
         }
 
@@ -189,18 +185,16 @@ namespace CineVerse.Core.Services
             _codeGenerationTime = DateTime.Now;
         }
 
-        public void SendVerificationCode(string receivedEmail)
+        public async void SendVerificationCode(string receivedEmail)
         {
             Tuple<bool, string> emailValidationResult = IsEmailValid(receivedEmail);
             bool doesEmailExist = false;
             
-            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            var user = await _unitOfWork.Users.GetUserByEmailAsync(receivedEmail);
+            if (user != null)
             {
-                var user =  unitOfWork.Users.GetUserByEmailAsync(receivedEmail);
-                if (user != null)
-                {
-                    doesEmailExist = true;
-                }
+                doesEmailExist = true;
+                _currentEmail = receivedEmail;
             }
             
             if (doesEmailExist && emailValidationResult.Item1)
@@ -209,6 +203,11 @@ namespace CineVerse.Core.Services
                 string email = emailSettings["Email"];
                 string appPassword = emailSettings["AppPassword"];
 
+                Debug.WriteLine(email);
+                Debug.WriteLine(appPassword);
+
+                GenerateVerificationCode();
+                
                 try
                 {
                     MailMessage mail = new MailMessage();
@@ -232,6 +231,8 @@ namespace CineVerse.Core.Services
                                 $"<p>CineVerse</p>";
 
                     smtp.Send(mail);
+
+                    _mediator?.Notify(this, "ShowPasswordResetConfirmCodePage");
                 }
                 catch (Exception ex)
                 {
@@ -240,35 +241,39 @@ namespace CineVerse.Core.Services
             }
         }
 
-        public bool IsVerificationCodeValid(string inputCode)
+        public void VerifyCode(string inputCode)
         {
             TimeSpan timeSinceGeneration = DateTime.Now - _codeGenerationTime;
             
-            if (inputCode == _verificationCode && timeSinceGeneration.TotalMinutes <= 5)
+            if (inputCode != _verificationCode)
             {
-                return true;
+                MessageBox.Show("Verification code does not match.", "Incorrect code");
+                return;
+            }
+            if (timeSinceGeneration.TotalMinutes > 10)
+            {
+                _verificationCode = "";
+                MessageBox.Show($"Verification code is expired.", "Code expired");
+                return;
+            }
+
+            Debug.WriteLine(timeSinceGeneration.TotalMinutes);
+
+            _mediator?.Notify(this, "ShowPasswordResetPage");
+        }
+
+        public async void ResetPassword(string newPassword)
+        {
+            var user = await _unitOfWork.Users.GetUserByEmailAsync(_currentEmail);
+            if (user == null)
+            {
+                MessageBox.Show("Email does not exist.");
             }
             else
             {
-                _verificationCode = "";
-                return false;
-            }
-        }
-
-        public async Task<bool> ResetPassword(string newPassword)
-        {
-            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
-            {
-                var user = await unitOfWork.Users.GetUserByEmailAsync(_currentEmail);
-                if (user == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    user.Password = HashPassword(newPassword);
-                    return true;
-                }
+                user.Password = HashPassword(newPassword);
+                MessageBox.Show("Password reset successful.", "Success");
+                _mediator?.Notify(this, "ShowSignInPage");
             }
         }
     }

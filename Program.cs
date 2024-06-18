@@ -1,8 +1,11 @@
 using CineVerse.Core.Events;
 using CineVerse.Core.Interfaces;
+using CineVerse.Core.Services;
 using CineVerse.Data;
 using CineVerse.Data.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Configuration;
 
 namespace CineVerse
 {
@@ -31,6 +34,10 @@ namespace CineVerse
 
         private static void ConfigureServices(IServiceCollection services)
         {
+            // Register AppDbContext
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
+
             // Scoped
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
@@ -40,6 +47,7 @@ namespace CineVerse
 
             // Singletons
             services.AddSingleton<EventManager>();
+            services.AddSingleton<AuthenticationService>();
         }
     }
 }

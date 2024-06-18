@@ -9,10 +9,6 @@ namespace CineVerse.Core.Events
 {
     public class EventManager
     {
-        private static readonly Lazy<EventManager> _instance = new Lazy<EventManager>(() => new EventManager());
-
-        public static EventManager Instance => _instance.Value;
-
         private readonly ConcurrentDictionary<EventType, List<EventHandler>> _eventHandlers;
 
         private EventManager()

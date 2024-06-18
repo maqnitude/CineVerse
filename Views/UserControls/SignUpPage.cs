@@ -31,14 +31,24 @@ namespace CineVerse.Views.UserControls
             inpGrpPassword.PasswordChar = '\u2022';
         }
 
+        private void ClearInputs()
+        {
+            inpGrpEmail.InputText = "";
+            inpGrpUsername.InputText = "";
+            inpGrpPassword.InputText = "";
+        }
+
         private async void btnSignUp_Click(object sender, EventArgs e)
         {
             string email = inpGrpEmail.InputText;
             string username = inpGrpUsername.InputText;
             string password = inpGrpPassword.InputText;
 
-            var signUpResult = await _authenticationService.SignUpAsync(email, username, password);
-            MessageBox.Show(signUpResult.Item2);
+            bool status = await _authenticationService.SignUpAsync(email, username, password);
+            if (status)
+            {
+                ClearInputs();
+            }
         }
     }
 }

@@ -81,6 +81,7 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label1.ForeColor = Color.White;
             label1.Location = new Point(16, 48);
             label1.Name = "label1";

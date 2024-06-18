@@ -218,15 +218,8 @@ namespace CineVerse.Data
             return movieCompanies;
         }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-        //    optionsBuilder.UseNpgsql(connectionString);
-        //}
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Debugger.Launch();
             var companies = new List<Company>();
             var companyDataPath = Path.GetFullPath(Path.Combine(AppSettings.StartupPath, "..\\..\\..\\Data\\data\\company_data"));
             foreach (var file in Directory.EnumerateFiles(companyDataPath, "*.json"))

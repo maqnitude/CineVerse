@@ -29,9 +29,21 @@ namespace CineVerse.Views.UserControls
             inpGrpConfirmNewPassword.PasswordChar = '\u2022';
         }
 
+        private void ClearInputs()
+        {
+            inpGrpNewPassword.InputText = "";
+            inpGrpConfirmNewPassword.InputText = "";
+        }
+
         private void btnResetPassword_Click(object sender, EventArgs e)
         {
+            if (inpGrpNewPassword.InputText != inpGrpConfirmNewPassword.InputText)
+            {
+                MessageBox.Show("Confirm password does not match!", "Error");
+                return;
+            }
             _authenticationService.ResetPassword(inpGrpNewPassword.InputText);
+            ClearInputs();
         }
     }
 }

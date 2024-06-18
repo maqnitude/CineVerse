@@ -33,13 +33,22 @@ namespace CineVerse.Views.UserControls
             _mediator?.Notify(this, "ShowPasswordResetSendCodePage");
         }
 
+        private void ClearInputs()
+        {
+            inpGrpUsername.InputText = "";
+            inpGrpPassword.InputText = "";
+        }
+
         private async void btnSignIn_Click(object sender, EventArgs e)
         {
             string username = inpGrpUsername.InputText;
             string password = inpGrpPassword.InputText;
 
-            var signInResult = await _authenticationService.SignInAsync(username, password);
-            MessageBox.Show(signInResult.Item2);
+            bool status = await _authenticationService.SignInAsync(username, password);
+            if (status)
+            {
+                ClearInputs();
+            }
         }
     }
 }

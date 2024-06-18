@@ -29,6 +29,7 @@ namespace CineVerse.Data
         public void Dispose()
         {
             _context.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

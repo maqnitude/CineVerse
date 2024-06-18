@@ -1,7 +1,9 @@
-﻿using System;
+﻿using CineVerse.Core.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,13 +17,23 @@ namespace CineVerse.Views.UserControls
         public SignUpPage()
         {
             InitializeComponent();
-            inputGroup1.Label = "Email address";
-            inputGroup1.PlaceholderText = "Enter your email address";
-            inputGroup2.Label = "Username";
-            inputGroup2.PlaceholderText = "Enter your username";
-            inputGroup3.Label = "Password";
-            inputGroup3.PlaceholderText = "Enter your password";
-            inputGroup3.PasswordChar = '\u2022';
+            inpGrpEmail.Label = "Email address";
+            inpGrpEmail.PlaceholderText = "Enter your email address";
+            inpGrpUsername.Label = "Username";
+            inpGrpUsername.PlaceholderText = "Enter your username";
+            inpGrpPassword.Label = "Password";
+            inpGrpPassword.PlaceholderText = "Enter your password";
+            inpGrpPassword.PasswordChar = '\u2022';
+        }
+
+        private async void btnSignUp_Click(object sender, EventArgs e)
+        {
+            string email = inpGrpEmail.InputText;
+            string username = inpGrpUsername.InputText;
+            string password = inpGrpPassword.InputText;
+
+            var signUpResult = await AuthenticationService.Instance.SignUpAsync(email, username, password);
+            MessageBox.Show(signUpResult.Item2);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineVerse.Core.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,12 +16,17 @@ namespace CineVerse.Views.UserControls
         public PasswordResetPage()
         {
             InitializeComponent();
-            inputGroup1.Label = "New Password";
-            inputGroup1.PlaceholderText = "Enter your new password";
-            inputGroup1.PasswordChar = '\u2022';
-            inputGroup2.Label = "Confirm New Password";
-            inputGroup2.PlaceholderText = "Confirm your new password";
-            inputGroup2.PasswordChar = '\u2022';
+            inpGrpNewPassword.Label = "New Password";
+            inpGrpNewPassword.PlaceholderText = "Enter your new password";
+            inpGrpNewPassword.PasswordChar = '\u2022';
+            inpGrpConfirmNewPassword.Label = "Confirm New Password";
+            inpGrpConfirmNewPassword.PlaceholderText = "Confirm your new password";
+            inpGrpConfirmNewPassword.PasswordChar = '\u2022';
+        }
+
+        private void btnResetPassword_Click(object sender, EventArgs e)
+        {
+            AuthenticationService.Instance.ResetPassword(inpGrpNewPassword.InputText);
         }
     }
 }

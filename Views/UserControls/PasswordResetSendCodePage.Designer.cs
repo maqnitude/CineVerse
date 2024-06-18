@@ -30,7 +30,7 @@
         {
             lblPage = new Label();
             btnSendRequest = new Button();
-            inputGroup1 = new InputGroup();
+            inpGrpEmail = new InputGroup();
             label1 = new Label();
             btnCancel = new Button();
             SuspendLayout();
@@ -63,18 +63,21 @@
             btnSendRequest.TabIndex = 10;
             btnSendRequest.Text = "Send Request";
             btnSendRequest.UseVisualStyleBackColor = false;
+            btnSendRequest.Click += btnSendRequest_Click;
             // 
-            // inputGroup1
+            // inpGrpEmail
             // 
-            inputGroup1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            inputGroup1.BackColor = Color.Transparent;
-            inputGroup1.Label = "Label";
-            inputGroup1.Location = new Point(49, 184);
-            inputGroup1.Margin = new Padding(46, 7, 46, 7);
-            inputGroup1.Name = "inputGroup1";
-            inputGroup1.PlaceholderText = "";
-            inputGroup1.Size = new Size(509, 80);
-            inputGroup1.TabIndex = 9;
+            inpGrpEmail.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            inpGrpEmail.BackColor = Color.Transparent;
+            inpGrpEmail.InputText = "";
+            inpGrpEmail.Label = "Label";
+            inpGrpEmail.Location = new Point(49, 184);
+            inpGrpEmail.Margin = new Padding(46, 7, 46, 7);
+            inpGrpEmail.Name = "inpGrpEmail";
+            inpGrpEmail.PasswordChar = '\0';
+            inpGrpEmail.PlaceholderText = "";
+            inpGrpEmail.Size = new Size(509, 80);
+            inpGrpEmail.TabIndex = 9;
             // 
             // label1
             // 
@@ -102,17 +105,17 @@
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = false;
             // 
-            // PasswordResetSendVerificationCodePage
+            // PasswordResetSendCodePage
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(20, 24, 28);
             Controls.Add(btnCancel);
             Controls.Add(btnSendRequest);
-            Controls.Add(inputGroup1);
+            Controls.Add(inpGrpEmail);
             Controls.Add(label1);
             Controls.Add(lblPage);
-            Name = "PasswordResetSendVerificationCodePage";
+            Name = "PasswordResetSendCodePage";
             Size = new Size(600, 460);
             ResumeLayout(false);
         }
@@ -121,7 +124,7 @@
 
         private Label lblPage;
         private Button btnSendRequest;
-        private InputGroup inputGroup1;
+        private InputGroup inpGrpEmail;
         private Label label1;
         private Button btnCancel;
     }

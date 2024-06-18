@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineVerse.Core.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,8 +16,13 @@ namespace CineVerse.Views.UserControls
         public PasswordResetConfirmCodePage()
         {
             InitializeComponent();
-            inputGroup1.Label = "Verification Code";
-            inputGroup1.PlaceholderText = "Enter the verification code";
+            inpGrpCode.Label = "Verification Code";
+            inpGrpCode.PlaceholderText = "Enter the verification code";
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            AuthenticationService.Instance.IsVerificationCodeValid(inpGrpCode.InputText);
         }
     }
 }

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             lblPage = new Label();
-            inputGroup1 = new InputGroup();
-            inputGroup2 = new InputGroup();
+            inpGrpEmail = new InputGroup();
+            inpGrpUsername = new InputGroup();
             btnSignUp = new Button();
-            inputGroup3 = new InputGroup();
+            inpGrpPassword = new InputGroup();
             SuspendLayout();
             // 
             // lblPage
@@ -48,29 +48,31 @@
             lblPage.Text = "Sign Up";
             lblPage.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // inputGroup1
+            // inpGrpEmail
             // 
-            inputGroup1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            inputGroup1.BackColor = Color.Transparent;
-            inputGroup1.Label = "Label";
-            inputGroup1.Location = new Point(45, 64);
-            inputGroup1.Margin = new Padding(46, 7, 46, 7);
-            inputGroup1.Name = "inputGroup1";
-            inputGroup1.PlaceholderText = "";
-            inputGroup1.Size = new Size(509, 80);
-            inputGroup1.TabIndex = 3;
+            inpGrpEmail.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            inpGrpEmail.BackColor = Color.Transparent;
+            inpGrpEmail.Label = "Label";
+            inpGrpEmail.Location = new Point(45, 64);
+            inpGrpEmail.Margin = new Padding(46, 7, 46, 7);
+            inpGrpEmail.Name = "inpGrpEmail";
+            inpGrpEmail.PasswordChar = '\0';
+            inpGrpEmail.PlaceholderText = "";
+            inpGrpEmail.Size = new Size(509, 80);
+            inpGrpEmail.TabIndex = 3;
             // 
-            // inputGroup2
+            // inpGrpUsername
             // 
-            inputGroup2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            inputGroup2.BackColor = Color.Transparent;
-            inputGroup2.Label = "Label";
-            inputGroup2.Location = new Point(45, 160);
-            inputGroup2.Margin = new Padding(46, 7, 46, 7);
-            inputGroup2.Name = "inputGroup2";
-            inputGroup2.PlaceholderText = "";
-            inputGroup2.Size = new Size(509, 80);
-            inputGroup2.TabIndex = 3;
+            inpGrpUsername.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            inpGrpUsername.BackColor = Color.Transparent;
+            inpGrpUsername.Label = "Label";
+            inpGrpUsername.Location = new Point(45, 163);
+            inpGrpUsername.Margin = new Padding(46, 7, 46, 7);
+            inpGrpUsername.Name = "inpGrpUsername";
+            inpGrpUsername.PasswordChar = '\0';
+            inpGrpUsername.PlaceholderText = "";
+            inpGrpUsername.Size = new Size(509, 80);
+            inpGrpUsername.TabIndex = 3;
             // 
             // btnSignUp
             // 
@@ -87,28 +89,30 @@
             btnSignUp.TabIndex = 4;
             btnSignUp.Text = "Sign Up";
             btnSignUp.UseVisualStyleBackColor = false;
+            btnSignUp.Click += btnSignUp_Click;
             // 
-            // inputGroup3
+            // inpGrpPassword
             // 
-            inputGroup3.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            inputGroup3.BackColor = Color.Transparent;
-            inputGroup3.Label = "Label";
-            inputGroup3.Location = new Point(45, 262);
-            inputGroup3.Margin = new Padding(46, 7, 0, 7);
-            inputGroup3.Name = "inputGroup3";
-            inputGroup3.PlaceholderText = "";
-            inputGroup3.Size = new Size(509, 80);
-            inputGroup3.TabIndex = 3;
+            inpGrpPassword.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            inpGrpPassword.BackColor = Color.Transparent;
+            inpGrpPassword.Label = "Label";
+            inpGrpPassword.Location = new Point(45, 262);
+            inpGrpPassword.Margin = new Padding(46, 7, 0, 7);
+            inpGrpPassword.Name = "inpGrpPassword";
+            inpGrpPassword.PasswordChar = '\0';
+            inpGrpPassword.PlaceholderText = "";
+            inpGrpPassword.Size = new Size(509, 80);
+            inpGrpPassword.TabIndex = 3;
             // 
             // SignUpPage
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(20, 24, 28);
-            Controls.Add(inputGroup3);
+            Controls.Add(inpGrpPassword);
             Controls.Add(btnSignUp);
-            Controls.Add(inputGroup2);
-            Controls.Add(inputGroup1);
+            Controls.Add(inpGrpUsername);
+            Controls.Add(inpGrpEmail);
             Controls.Add(lblPage);
             Margin = new Padding(4, 5, 4, 5);
             Name = "SignUpPage";
@@ -119,9 +123,9 @@
         #endregion
 
         private Label lblPage;
-        private InputGroup inputGroup1;
-        private InputGroup inputGroup2;
+        private InputGroup inpGrpEmail;
+        private InputGroup inpGrpUsername;
         private Button btnSignUp;
-        private InputGroup inputGroup3;
+        private InputGroup inpGrpPassword;
     }
 }

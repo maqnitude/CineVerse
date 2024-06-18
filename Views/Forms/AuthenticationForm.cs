@@ -17,6 +17,7 @@ namespace CineVerse.Forms
     public partial class AuthenticationForm : Form, IMediator
     {
         private readonly AuthenticationService _authenticationService;
+        private readonly NavigationService _navigationService;
 
         private SignInPage _signInPage;
         private SignUpPage _signUpPage;
@@ -30,6 +31,8 @@ namespace CineVerse.Forms
 
             _authenticationService = authenticationService;
             _authenticationService.SetMediator(this);
+
+            _navigationService = new NavigationService(this, pnPageContainer);
 
             this.StartPosition = FormStartPosition.CenterScreen;
 
@@ -45,49 +48,36 @@ namespace CineVerse.Forms
             _passwordResetSendCodePage.SetMediator(this);
             _passwordResetConfirmCodePage.SetMediator(this);
 
-            _signInPage.Dock = DockStyle.Fill;
-            _signUpPage.Dock = DockStyle.Fill;
-            _passwordResetPage.Dock = DockStyle.Fill;
-            _passwordResetSendCodePage.Dock = DockStyle.Fill;
-            _passwordResetConfirmCodePage.Dock = DockStyle.Fill;
+            _navigationService.RegisterScreen("sign in", _signInPage);
+            _navigationService.RegisterScreen("sign up", _signUpPage);
+            _navigationService.RegisterScreen("password reset", _passwordResetPage);
+            _navigationService.RegisterScreen("send code", _passwordResetSendCodePage);
+            _navigationService.RegisterScreen("confirm code", _passwordResetConfirmCodePage);
 
-            ShowPage(_signInPage);
-
-            pnPageContainer.Controls.Add(_signInPage);
-            pnPageContainer.Controls.Add(_signUpPage);
-            pnPageContainer.Controls.Add(_passwordResetPage);
-            pnPageContainer.Controls.Add(_passwordResetSendCodePage);
-            pnPageContainer.Controls.Add(_passwordResetConfirmCodePage);
+            _navigationService.NavigateToScreen("sign in");
 
             btnSignIn.Click += btnSignIn_Click;
             btnSignUp.Click += btnSignUp_Click;
         }
-
-        //public AuthenticationForm(IUnitOfWork unitOfWork)
-        //{
-        //    InitializeComponent();
-
-        //    _unitOfWork = unitOfWork;
-        //}
 
         public void Notify(object sender, string ev)
         {
             switch (ev)
             {
                 case "ShowSignInPage":
-                    ShowPage(_signInPage);
+                    _navigationService.NavigateToScreen("sign in");
                     break;
                 case "ShowSignUpPage":
-                    ShowPage(_signUpPage);
+                    _navigationService.NavigateToScreen("sign up");
                     break;
                 case "ShowPasswordResetPage":
-                    ShowPage(_passwordResetPage);
+                    _navigationService.NavigateToScreen("password reset");
                     break;
                 case "ShowPasswordResetSendCodePage":
-                    ShowPage(_passwordResetSendCodePage);
+                    _navigationService.NavigateToScreen("send code");
                     break;
                 case "ShowPasswordResetConfirmCodePage":
-                    ShowPage(_passwordResetConfirmCodePage);
+                    _navigationService.NavigateToScreen("confirm code");
                     break;
             }
         }
@@ -112,16 +102,6 @@ namespace CineVerse.Forms
             ResetButtonColors();
             btnSignUp.BackColor = Color.FromArgb(0, 157, 26);
             Notify(this, "ShowSignUpPage");
-        }
-
-        private void ShowPage(UserControl page)
-        {
-            _signInPage.Visible = false;
-            _signUpPage.Visible = false;
-            _passwordResetPage.Visible = false;
-            _passwordResetSendCodePage.Visible = false;
-            _passwordResetConfirmCodePage.Visible = false;
-            page.Visible = true;
         }
     }
 }

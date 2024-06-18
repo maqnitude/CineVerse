@@ -108,54 +108,61 @@ namespace CineVerse.Core.Services
             }
         }
 
-        public async Task<Tuple<bool, string>> SignInAsync(string username, string password)
+        public async Task<bool> SignInAsync(string username, string password)
         {
             Tuple<bool, string> usernameValidationResult = IsUsernameValid(username);
             if (!usernameValidationResult.Item1)
             {
-                return usernameValidationResult;
+                MessageBox.Show(usernameValidationResult.Item2, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
 
             Tuple<bool, string> passwordValidationResult = IsPasswordValid(password);
             if (!passwordValidationResult.Item1)
             {
-                return passwordValidationResult;
+                MessageBox.Show(passwordValidationResult.Item2, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
 
             var user = await _unitOfWork.Users.GetUserByUsernameAsync(username);
             if (user == null)
             {
-                return Tuple.Create(false, "User not found");
+                MessageBox.Show("User not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
             else if (user.Password == HashPassword(password))
             {
-                //EventManager.Instance.Publish(EventType.UserLoggedIn, this, EventArgs.Empty);
-                return Tuple.Create(true, "Sign in successful!");
+                MessageBox.Show("Sign in successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
             }
             else
             {
-                return Tuple.Create(false, "Incorrect password.");
+                MessageBox.Show("Incorrect password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
 
-        public async Task<Tuple<bool, string>> SignUpAsync(string email, string username, string password)
+        public async Task<bool> SignUpAsync(string email, string username, string password)
         {
             Tuple<bool, string> emailValidationResult = IsEmailValid(email);
             if (!emailValidationResult.Item1)
             {
-                return emailValidationResult;
+                MessageBox.Show(emailValidationResult.Item2, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
 
             Tuple<bool, string> usernameValidationResult = IsUsernameValid(username);
             if (!usernameValidationResult.Item1)
             {
-                return usernameValidationResult;
+                MessageBox.Show(usernameValidationResult.Item2, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
 
             Tuple<bool, string> passwordValidationResult = IsPasswordValid(password);
             if (!passwordValidationResult.Item1)
             {
-                return passwordValidationResult;
+                MessageBox.Show(passwordValidationResult.Item2, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
 
             var newUser = new User()
@@ -169,7 +176,8 @@ namespace CineVerse.Core.Services
             await _unitOfWork.Users.AddAsync(newUser);
             await _unitOfWork.CompleteAsync();
 
-            return Tuple.Create(true, "Sign up successful!");
+            MessageBox.Show("Sign up successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return true;
         }
 
         public void GenerateVerificationCode()
@@ -195,6 +203,11 @@ namespace CineVerse.Core.Services
             {
                 doesEmailExist = true;
                 _currentEmail = receivedEmail;
+            }
+            else
+            {
+                MessageBox.Show("User with this email does not exist.");
+                return;
             }
             
             if (doesEmailExist && emailValidationResult.Item1)
@@ -272,7 +285,9 @@ namespace CineVerse.Core.Services
             else
             {
                 user.Password = HashPassword(newPassword);
-                MessageBox.Show("Password reset successful.", "Success");
+                _unitOfWork.Users.Update(user);
+                await _unitOfWork.CompleteAsync();
+                MessageBox.Show("Password reset successful.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 _mediator?.Notify(this, "ShowSignInPage");
             }
         }

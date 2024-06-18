@@ -17,21 +17,17 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CineVerse.Data.Entities;
+using CineVerse.Core.Services;
 
 namespace CineVerse.Forms
 {
     public partial class MainForm : Form
     {
         private Dictionary<PictureBox, Movie> _moviePanels;
-
+        private readonly NavigationService _navigationService;
         public MainForm()
         {
             InitializeComponent();
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

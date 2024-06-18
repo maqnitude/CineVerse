@@ -19,5 +19,10 @@ namespace CineVerse.Data.Repositories
         {
             return await _context.Set<User>().FirstOrDefaultAsync(u => u.Username == username);
         }
+
+        public async Task<User> GetUserByEmailAsync(string email)
+        {
+            return await _context.Set<User>().FirstOrDefaultAsync(u => u.Email == email);
+        }
     }
 }

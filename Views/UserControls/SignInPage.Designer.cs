@@ -28,38 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            inputGroup1 = new InputGroup();
-            inputGroup2 = new InputGroup();
+            inpGrpUsername = new InputGroup();
+            inpGrpPassword = new InputGroup();
             lblPage = new Label();
             btnSignIn = new Button();
             lnkForgotPassword = new LinkLabel();
             SuspendLayout();
             // 
-            // inputGroup1
+            // inpGrpUsername
             // 
-            inputGroup1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            inputGroup1.BackColor = Color.Transparent;
-            inputGroup1.Label = "Label";
-            inputGroup1.Location = new Point(47, 100);
-            inputGroup1.Margin = new Padding(46, 7, 46, 7);
-            inputGroup1.Name = "inputGroup1";
-            inputGroup1.PasswordChar = '\0';
-            inputGroup1.PlaceholderText = "";
-            inputGroup1.Size = new Size(508, 84);
-            inputGroup1.TabIndex = 0;
+            inpGrpUsername.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            inpGrpUsername.BackColor = Color.Transparent;
+            inpGrpUsername.Label = "Label";
+            inpGrpUsername.Location = new Point(47, 100);
+            inpGrpUsername.Margin = new Padding(46, 7, 46, 7);
+            inpGrpUsername.Name = "inpGrpUsername";
+            inpGrpUsername.PasswordChar = '\0';
+            inpGrpUsername.PlaceholderText = "";
+            inpGrpUsername.Size = new Size(508, 84);
+            inpGrpUsername.TabIndex = 0;
             // 
-            // inputGroup2
+            // inpGrpPassword
             // 
-            inputGroup2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            inputGroup2.BackColor = Color.Transparent;
-            inputGroup2.Label = "Label";
-            inputGroup2.Location = new Point(47, 220);
-            inputGroup2.Margin = new Padding(46, 7, 46, 7);
-            inputGroup2.Name = "inputGroup2";
-            inputGroup2.PasswordChar = '\0';
-            inputGroup2.PlaceholderText = "";
-            inputGroup2.Size = new Size(508, 84);
-            inputGroup2.TabIndex = 0;
+            inpGrpPassword.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            inpGrpPassword.BackColor = Color.Transparent;
+            inpGrpPassword.Label = "Label";
+            inpGrpPassword.Location = new Point(47, 220);
+            inpGrpPassword.Margin = new Padding(46, 7, 46, 7);
+            inpGrpPassword.Name = "inpGrpPassword";
+            inpGrpPassword.PasswordChar = '\0';
+            inpGrpPassword.PlaceholderText = "";
+            inpGrpPassword.Size = new Size(508, 84);
+            inpGrpPassword.TabIndex = 0;
             // 
             // lblPage
             // 
@@ -89,6 +89,7 @@
             btnSignIn.TabIndex = 2;
             btnSignIn.Text = "Sign In";
             btnSignIn.UseVisualStyleBackColor = false;
+            btnSignIn.Click += btnSignIn_Click;
             // 
             // lnkForgotPassword
             // 
@@ -111,8 +112,8 @@
             Controls.Add(lnkForgotPassword);
             Controls.Add(btnSignIn);
             Controls.Add(lblPage);
-            Controls.Add(inputGroup2);
-            Controls.Add(inputGroup1);
+            Controls.Add(inpGrpPassword);
+            Controls.Add(inpGrpUsername);
             Margin = new Padding(4, 5, 4, 5);
             Name = "SignInPage";
             Size = new Size(600, 460);
@@ -122,8 +123,8 @@
 
         #endregion
 
-        private InputGroup inputGroup1;
-        private InputGroup inputGroup2;
+        private InputGroup inpGrpUsername;
+        private InputGroup inpGrpPassword;
         private Label lblPage;
         private Button btnSignIn;
         private LinkLabel lnkForgotPassword;

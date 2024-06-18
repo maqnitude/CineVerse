@@ -23,10 +23,15 @@ namespace CineVerse.Forms
     public partial class MainForm : Form
     {
         private Dictionary<PictureBox, Movie> _moviePanels;
-        
+
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

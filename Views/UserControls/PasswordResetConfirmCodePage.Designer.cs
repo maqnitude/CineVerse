@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             lblPage = new Label();
-            inputGroup1 = new InputGroup();
+            inpGrpCode = new InputGroup();
             btnConfirm = new Button();
             label1 = new Label();
             btnCancel = new Button();
@@ -48,17 +48,19 @@
             lblPage.Text = "Reset Password";
             lblPage.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // inputGroup1
+            // inpGrpCode
             // 
-            inputGroup1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            inputGroup1.BackColor = Color.Transparent;
-            inputGroup1.Label = "Label";
-            inputGroup1.Location = new Point(45, 192);
-            inputGroup1.Margin = new Padding(46, 7, 46, 7);
-            inputGroup1.Name = "inputGroup1";
-            inputGroup1.PlaceholderText = "";
-            inputGroup1.Size = new Size(509, 80);
-            inputGroup1.TabIndex = 6;
+            inpGrpCode.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            inpGrpCode.BackColor = Color.Transparent;
+            inpGrpCode.InputText = "";
+            inpGrpCode.Label = "Label";
+            inpGrpCode.Location = new Point(45, 192);
+            inpGrpCode.Margin = new Padding(46, 7, 46, 7);
+            inpGrpCode.Name = "inpGrpCode";
+            inpGrpCode.PasswordChar = '\0';
+            inpGrpCode.PlaceholderText = "";
+            inpGrpCode.Size = new Size(509, 80);
+            inpGrpCode.TabIndex = 6;
             // 
             // btnConfirm
             // 
@@ -75,6 +77,7 @@
             btnConfirm.TabIndex = 7;
             btnConfirm.Text = "Confirm";
             btnConfirm.UseVisualStyleBackColor = false;
+            btnConfirm.Click += btnConfirm_Click;
             // 
             // label1
             // 
@@ -102,7 +105,7 @@
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = false;
             // 
-            // PasswordResetConfirmVerificationCodePage
+            // PasswordResetConfirmCodePage
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -110,9 +113,9 @@
             Controls.Add(btnCancel);
             Controls.Add(label1);
             Controls.Add(btnConfirm);
-            Controls.Add(inputGroup1);
+            Controls.Add(inpGrpCode);
             Controls.Add(lblPage);
-            Name = "PasswordResetConfirmVerificationCodePage";
+            Name = "PasswordResetConfirmCodePage";
             Size = new Size(600, 460);
             ResumeLayout(false);
         }
@@ -120,7 +123,7 @@
         #endregion
 
         private Label lblPage;
-        private InputGroup inputGroup1;
+        private InputGroup inpGrpCode;
         private Button btnConfirm;
         private Label label1;
         private Button btnCancel;

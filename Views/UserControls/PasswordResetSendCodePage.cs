@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineVerse.Core.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,8 +16,14 @@ namespace CineVerse.Views.UserControls
         public PasswordResetSendCodePage()
         {
             InitializeComponent();
-            inputGroup1.Label = "Email address";
-            inputGroup1.PlaceholderText = "Enter your email to receive verification code";
+            inpGrpEmail.Label = "Email address";
+            inpGrpEmail.PlaceholderText = "Enter your email to receive verification code";
+        }
+
+        private void btnSendRequest_Click(object sender, EventArgs e)
+        {
+            AuthenticationService.Instance.GenerateVerificationCode();
+            AuthenticationService.Instance.SendVerificationCode(inpGrpEmail.InputText);
         }
     }
 }

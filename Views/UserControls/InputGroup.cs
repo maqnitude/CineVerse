@@ -43,5 +43,11 @@ namespace CineVerse.Views.UserControls
             get { return txtInput.PasswordChar; }
             set { txtInput.PasswordChar = value; }
         }
+
+        public string InputText
+        {
+            get { return txtInput.Text; }
+            set { txtInput.Text = value; }
+        }
     }
 }

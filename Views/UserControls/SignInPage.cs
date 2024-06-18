@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineVerse.Core.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,16 +16,25 @@ namespace CineVerse.Views.UserControls
         public SignInPage()
         {
             InitializeComponent();
-            inputGroup1.Label = "Username";
-            inputGroup1.PlaceholderText = "Enter your username";
-            inputGroup2.Label = "Password";
-            inputGroup2.PlaceholderText = "Enter your password";
-            inputGroup2.PasswordChar = '\u2022';
+            inpGrpUsername.Label = "Username";
+            inpGrpUsername.PlaceholderText = "Enter your username";
+            inpGrpPassword.Label = "Password";
+            inpGrpPassword.PlaceholderText = "Enter your password";
+            inpGrpPassword.PasswordChar = '\u2022';
         }
 
         private void lnkForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             _mediator?.Notify(this, "ShowPasswordResetPage");
+        }
+
+        private async void btnSignIn_Click(object sender, EventArgs e)
+        {
+            string username = inpGrpUsername.InputText;
+            string password = inpGrpPassword.InputText;
+
+            var signInResult = await AuthenticationService.Instance.SignInAsync(username, password);
+            MessageBox.Show(signInResult.Item2);
         }
     }
 }

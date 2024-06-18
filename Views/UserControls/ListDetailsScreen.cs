@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CineVerse.Views.UserControls
 {
-    public partial class DisplaySection : UserControl
+    public partial class ListDetailsScreen : UserControl
     {
-        public DisplaySection()
+        public ListDetailsScreen()
         {
             InitializeComponent();
         }

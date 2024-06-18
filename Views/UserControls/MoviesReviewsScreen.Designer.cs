@@ -1,6 +1,6 @@
 ﻿namespace CineVerse.Views.UserControls
 {
-    partial class DisplaySection
+    partial class MoviesReviewsScreen
     {
         /// <summary> 
         /// Required designer variable.

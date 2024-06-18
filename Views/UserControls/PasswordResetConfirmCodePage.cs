@@ -13,16 +13,20 @@ namespace CineVerse.Views.UserControls
 {
     public partial class PasswordResetConfirmCodePage : UserControlComponent
     {
-        public PasswordResetConfirmCodePage()
+        private readonly AuthenticationService _authenticationService;
+        public PasswordResetConfirmCodePage(AuthenticationService authenticationService)
         {
             InitializeComponent();
+
+            _authenticationService = authenticationService;
+
             inpGrpCode.Label = "Verification Code";
             inpGrpCode.PlaceholderText = "Enter the verification code";
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            AuthenticationService.Instance.IsVerificationCodeValid(inpGrpCode.InputText);
+            _authenticationService.VerifyCode(inpGrpCode.InputText);
         }
     }
 }

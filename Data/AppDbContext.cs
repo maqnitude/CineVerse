@@ -16,6 +16,8 @@ namespace CineVerse.Data
 {
     public class AppDbContext : DbContext
     {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+
         public DbSet<Movie> Movies { get; set; }
         public DbSet<List> Lists { get; set; }
         public DbSet<ListMovie> ListMovies { get; set; }
@@ -25,7 +27,6 @@ namespace CineVerse.Data
         public DbSet<Credit> Credits { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<MovieCompany> MovieCompanies { get; set; }
-
 
         private static List<string> ParseGenres(JsonElement genreElements)
         {
@@ -217,11 +218,11 @@ namespace CineVerse.Data
             return movieCompanies;
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            optionsBuilder.UseNpgsql(connectionString);
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        //    optionsBuilder.UseNpgsql(connectionString);
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

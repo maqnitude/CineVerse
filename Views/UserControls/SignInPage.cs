@@ -13,9 +13,14 @@ namespace CineVerse.Views.UserControls
 {
     public partial class SignInPage : UserControlComponent
     {
-        public SignInPage()
+        private readonly AuthenticationService _authenticationService;
+
+        public SignInPage(AuthenticationService authenticationService)
         {
             InitializeComponent();
+
+            _authenticationService = authenticationService;
+
             inpGrpUsername.Label = "Username";
             inpGrpUsername.PlaceholderText = "Enter your username";
             inpGrpPassword.Label = "Password";
@@ -25,7 +30,7 @@ namespace CineVerse.Views.UserControls
 
         private void lnkForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            _mediator?.Notify(this, "ShowPasswordResetPage");
+            _mediator?.Notify(this, "ShowPasswordResetSendCodePage");
         }
 
         private async void btnSignIn_Click(object sender, EventArgs e)
@@ -33,7 +38,7 @@ namespace CineVerse.Views.UserControls
             string username = inpGrpUsername.InputText;
             string password = inpGrpPassword.InputText;
 
-            var signInResult = await AuthenticationService.Instance.SignInAsync(username, password);
+            var signInResult = await _authenticationService.SignInAsync(username, password);
             MessageBox.Show(signInResult.Item2);
         }
     }

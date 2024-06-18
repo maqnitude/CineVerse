@@ -26,9 +26,24 @@ namespace CineVerse.Data
             return await _context.SaveChangesAsync();
         }
 
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    _context.Dispose();
+                }
+            }
+            disposed = true;
+        }
+
         public void Dispose()
         {
-            _context.Dispose();
+            //_context.Dispose();
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
     }

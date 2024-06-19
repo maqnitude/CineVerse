@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CineVerse.Core.Interfaces;
+using CineVerse.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,15 @@ namespace CineVerse.Views.UserControls
         public MoviesScreen()
         {
             InitializeComponent();
+        }
+
+        public void LoadMovies(List<Movie> movies)
+        {
+            foreach (Movie movie in movies)
+            {
+                MovieCard card = new(movie);
+                flpMovieCardsContainer.Controls.Add(card);
+            }
         }
     }
 }

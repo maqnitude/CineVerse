@@ -367,3 +367,4 @@ App.config
 
 # Folders to ignore
 Migrations/
+/Views/Forms/TestForm.*

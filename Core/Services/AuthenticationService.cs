@@ -22,15 +22,17 @@ namespace CineVerse.Core.Services
     public class AuthenticationService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly EventManager _eventManager;
         private IMediator _mediator;
 
         private string _currentEmail { get; set; }
         private string _verificationCode {  get; set; }
         private DateTime _codeGenerationTime {  get; set; }
 
-        public AuthenticationService(IUnitOfWork unitOfWork)
+        public AuthenticationService(IUnitOfWork unitOfWork, EventManager eventManager)
         {
             _unitOfWork = unitOfWork;
+            _eventManager = eventManager;
         }
 
         public void SetMediator(IMediator mediator)
@@ -125,6 +127,7 @@ namespace CineVerse.Core.Services
             }
 
             var user = await _unitOfWork.Users.GetUserByUsernameAsync(username);
+
             if (user == null)
             {
                 MessageBox.Show("User not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -133,6 +136,9 @@ namespace CineVerse.Core.Services
             else if (user.Password == HashPassword(password))
             {
                 MessageBox.Show("Sign in successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                _eventManager.Publish(EventType.UserSignedIn, this, EventArgs.Empty);
+
                 return true;
             }
             else

@@ -15,10 +15,10 @@ using System.Windows.Forms;
 
 namespace CineVerse.Forms
 {
-    public partial class AuthenticationForm : Form, IMediator
+    public partial class AuthForm : Form, IMediator
     {
         private readonly EventManager _eventManager;
-        private readonly AuthenticationService _authenticationService;
+        private readonly AuthService _authenticationService;
         private readonly NavigationService _navigationService;
 
         private SignInPage _signInPage;
@@ -27,7 +27,9 @@ namespace CineVerse.Forms
         private PasswordResetSendCodePage _passwordResetSendCodePage;
         private PasswordResetConfirmCodePage _passwordResetConfirmCodePage;
 
-        public AuthenticationForm(EventManager eventManager, AuthenticationService authenticationService)
+        private bool _isUserSignedIn = false;
+
+        public AuthForm(EventManager eventManager, AuthService authenticationService)
         {
             InitializeComponent();
 
@@ -89,12 +91,12 @@ namespace CineVerse.Forms
 
         private void RegisterEventHandlers()
         {
-            _eventManager.Subscribe(EventType.UserSignedIn, OnUserSignedIn);
+            _eventManager.Subscribe<UserEventArgs>(EventType.UserSignedIn, OnUserSignedIn);
         }
 
         private void UnregisterEventHandlers()
         {
-            _eventManager.Unsubscribe(EventType.UserSignedIn, OnUserSignedIn);
+            _eventManager.Unsubscribe<UserEventArgs>(EventType.UserSignedIn, OnUserSignedIn);
         }
 
         private void ResetButtonColors()
@@ -119,8 +121,10 @@ namespace CineVerse.Forms
             Notify(this, "ShowSignUpPage");
         }
 
-        private void OnUserSignedIn(object sender, EventArgs e)
+        private void OnUserSignedIn(object sender, UserEventArgs e)
         {
+            _isUserSignedIn = true;
+
             this.Close();
             this.Dispose();
         }
@@ -128,6 +132,11 @@ namespace CineVerse.Forms
         private void OnFormClosed(object sender, EventArgs e)
         {
             UnregisterEventHandlers();
+
+            if (!_isUserSignedIn)
+            {
+                Application.Exit();
+            }
         }
     }
 }

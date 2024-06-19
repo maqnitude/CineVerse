@@ -35,7 +35,7 @@ namespace CineVerse
                 var mainForm = serviceProvider.GetRequiredService<Forms.MainForm>();
                 mainForm.Hide();
 
-                var authForm = serviceProvider.GetRequiredService<Forms.AuthenticationForm>();
+                var authForm = serviceProvider.GetRequiredService<Forms.AuthForm>();
                 authForm.ShowDialog();
 
                 Application.Run(mainForm);
@@ -55,12 +55,12 @@ namespace CineVerse
 
             // Transients
             services.AddTransient<Views.Forms.TestForm>();
-            services.AddTransient<Forms.AuthenticationForm>();
+            services.AddTransient<Forms.AuthForm>();
             services.AddTransient<Forms.MainForm>();
 
             // Singletons
             services.AddSingleton<EventManager>();
-            services.AddSingleton<AuthenticationService>();
+            services.AddSingleton<AuthService>();
             services.AddSingleton<MovieBrowsingService>();
         }
     }

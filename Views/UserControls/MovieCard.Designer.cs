@@ -43,10 +43,10 @@
             lblMovieTitle.Dock = DockStyle.Bottom;
             lblMovieTitle.Font = new Font("Segoe UI Black", 10F, FontStyle.Bold);
             lblMovieTitle.ForeColor = Color.White;
-            lblMovieTitle.Location = new Point(0, 197);
+            lblMovieTitle.Location = new Point(0, 159);
             lblMovieTitle.Margin = new Padding(2, 0, 2, 0);
             lblMovieTitle.Name = "lblMovieTitle";
-            lblMovieTitle.Size = new Size(150, 28);
+            lblMovieTitle.Size = new Size(160, 28);
             lblMovieTitle.TabIndex = 1;
             lblMovieTitle.Text = "Furiosa";
             lblMovieTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -57,23 +57,24 @@
             pnMoviePoster.Controls.Add(pnActions);
             pnMoviePoster.Dock = DockStyle.Fill;
             pnMoviePoster.Location = new Point(0, 0);
-            pnMoviePoster.Margin = new Padding(2, 2, 2, 2);
+            pnMoviePoster.Margin = new Padding(2);
             pnMoviePoster.Name = "pnMoviePoster";
-            pnMoviePoster.Size = new Size(150, 197);
+            pnMoviePoster.Size = new Size(160, 159);
             pnMoviePoster.TabIndex = 2;
             // 
             // pnActions
             // 
             pnActions.Anchor = AnchorStyles.Bottom;
-            pnActions.BackColor = Color.FromArgb(20, 20, 20);
+            pnActions.BackColor = Color.Transparent;
             pnActions.Controls.Add(btnLike);
             pnActions.Controls.Add(btnMore);
             pnActions.Controls.Add(btnWatch);
-            pnActions.Location = new Point(33, 174);
-            pnActions.Margin = new Padding(2, 2, 2, 2);
+            pnActions.Location = new Point(44, 136);
+            pnActions.Margin = new Padding(2);
             pnActions.Name = "pnActions";
-            pnActions.Size = new Size(83, 20);
+            pnActions.Size = new Size(70, 20);
             pnActions.TabIndex = 0;
+            pnActions.Visible = false;
             // 
             // btnLike
             // 
@@ -81,11 +82,11 @@
             btnLike.Dock = DockStyle.Fill;
             btnLike.FlatAppearance.BorderSize = 0;
             btnLike.FlatStyle = FlatStyle.Flat;
-            btnLike.Image = Properties.Resources.love;
+            btnLike.Image = Properties.Resources.like;
             btnLike.Location = new Point(27, 0);
-            btnLike.Margin = new Padding(2, 2, 2, 2);
+            btnLike.Margin = new Padding(2);
             btnLike.Name = "btnLike";
-            btnLike.Size = new Size(29, 20);
+            btnLike.Size = new Size(16, 20);
             btnLike.TabIndex = 3;
             btnLike.UseVisualStyleBackColor = false;
             // 
@@ -95,9 +96,9 @@
             btnMore.Dock = DockStyle.Right;
             btnMore.FlatAppearance.BorderSize = 0;
             btnMore.FlatStyle = FlatStyle.Flat;
-            btnMore.Image = Properties.Resources.more;
-            btnMore.Location = new Point(56, 0);
-            btnMore.Margin = new Padding(2, 2, 2, 2);
+            btnMore.Image = Properties.Resources.menu;
+            btnMore.Location = new Point(43, 0);
+            btnMore.Margin = new Padding(2);
             btnMore.Name = "btnMore";
             btnMore.Size = new Size(27, 20);
             btnMore.TabIndex = 2;
@@ -109,9 +110,9 @@
             btnWatch.Dock = DockStyle.Left;
             btnWatch.FlatAppearance.BorderSize = 0;
             btnWatch.FlatStyle = FlatStyle.Flat;
-            btnWatch.Image = Properties.Resources.watch;
+            btnWatch.Image = Properties.Resources.eye_fill;
             btnWatch.Location = new Point(0, 0);
-            btnWatch.Margin = new Padding(2, 2, 2, 2);
+            btnWatch.Margin = new Padding(2);
             btnWatch.Name = "btnWatch";
             btnWatch.Size = new Size(27, 20);
             btnWatch.TabIndex = 0;
@@ -124,9 +125,9 @@
             BackColor = Color.FromArgb(19, 20, 26);
             Controls.Add(pnMoviePoster);
             Controls.Add(lblMovieTitle);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "MovieCard";
-            Size = new Size(150, 225);
+            Size = new Size(160, 187);
             pnMoviePoster.ResumeLayout(false);
             pnActions.ResumeLayout(false);
             ResumeLayout(false);

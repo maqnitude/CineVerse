@@ -54,22 +54,23 @@
             pnNavBar.Dock = DockStyle.Top;
             pnNavBar.Location = new Point(0, 0);
             pnNavBar.Name = "pnNavBar";
-            pnNavBar.Size = new Size(1138, 42);
+            pnNavBar.Size = new Size(1354, 58);
             pnNavBar.TabIndex = 0;
             // 
             // btnUser
             // 
+            btnUser.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnUser.BackColor = Color.FromArgb(0, 157, 26);
             btnUser.FlatAppearance.BorderSize = 0;
             btnUser.FlatStyle = FlatStyle.Flat;
             btnUser.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnUser.ForeColor = Color.White;
             btnUser.Image = Properties.Resources.user;
-            btnUser.ImageAlign = ContentAlignment.TopLeft;
-            btnUser.Location = new Point(1029, 9);
+            btnUser.ImageAlign = ContentAlignment.MiddleLeft;
+            btnUser.Location = new Point(1237, 13);
             btnUser.Margin = new Padding(8);
             btnUser.Name = "btnUser";
-            btnUser.Size = new Size(95, 24);
+            btnUser.Size = new Size(102, 32);
             btnUser.TabIndex = 0;
             btnUser.Text = "User123";
             btnUser.TextAlign = ContentAlignment.MiddleRight;
@@ -79,20 +80,21 @@
             // picLogo
             // 
             picLogo.Image = Properties.Resources.cineverse_logo;
-            picLogo.Location = new Point(6, 4);
+            picLogo.Location = new Point(12, 5);
             picLogo.Name = "picLogo";
-            picLogo.Size = new Size(98, 36);
+            picLogo.Size = new Size(120, 50);
             picLogo.SizeMode = PictureBoxSizeMode.StretchImage;
             picLogo.TabIndex = 1;
             picLogo.TabStop = false;
             // 
             // ucSearchBar
             // 
+            ucSearchBar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             ucSearchBar.BackColor = Color.FromArgb(35, 42, 51);
-            ucSearchBar.Location = new Point(819, 10);
+            ucSearchBar.Location = new Point(1031, 15);
             ucSearchBar.Margin = new Padding(1);
             ucSearchBar.Name = "ucSearchBar";
-            ucSearchBar.Size = new Size(187, 22);
+            ucSearchBar.Size = new Size(197, 30);
             ucSearchBar.TabIndex = 0;
             // 
             // btnMembersTab
@@ -102,10 +104,10 @@
             btnMembersTab.FlatStyle = FlatStyle.Flat;
             btnMembersTab.Font = new Font("Segoe UI", 11F);
             btnMembersTab.ForeColor = Color.FromArgb(170, 187, 204);
-            btnMembersTab.Location = new Point(412, 9);
+            btnMembersTab.Location = new Point(441, 14);
             btnMembersTab.Margin = new Padding(0, 8, 4, 8);
             btnMembersTab.Name = "btnMembersTab";
-            btnMembersTab.Size = new Size(96, 24);
+            btnMembersTab.Size = new Size(90, 28);
             btnMembersTab.TabIndex = 0;
             btnMembersTab.Text = "Members";
             btnMembersTab.UseVisualStyleBackColor = false;
@@ -117,10 +119,10 @@
             btnListsTab.FlatStyle = FlatStyle.Flat;
             btnListsTab.Font = new Font("Segoe UI", 11F);
             btnListsTab.ForeColor = Color.FromArgb(170, 187, 204);
-            btnListsTab.Location = new Point(312, 9);
+            btnListsTab.Location = new Point(341, 14);
             btnListsTab.Margin = new Padding(0, 8, 4, 8);
             btnListsTab.Name = "btnListsTab";
-            btnListsTab.Size = new Size(96, 24);
+            btnListsTab.Size = new Size(90, 28);
             btnListsTab.TabIndex = 0;
             btnListsTab.Text = "Lists";
             btnListsTab.UseVisualStyleBackColor = false;
@@ -132,10 +134,10 @@
             btnMoviesTab.FlatStyle = FlatStyle.Flat;
             btnMoviesTab.Font = new Font("Segoe UI", 11F);
             btnMoviesTab.ForeColor = Color.FromArgb(170, 187, 204);
-            btnMoviesTab.Location = new Point(212, 9);
+            btnMoviesTab.Location = new Point(241, 14);
             btnMoviesTab.Margin = new Padding(0, 8, 4, 8);
             btnMoviesTab.Name = "btnMoviesTab";
-            btnMoviesTab.Size = new Size(96, 24);
+            btnMoviesTab.Size = new Size(90, 28);
             btnMoviesTab.TabIndex = 0;
             btnMoviesTab.Text = "Movies";
             btnMoviesTab.UseVisualStyleBackColor = false;
@@ -148,10 +150,10 @@
             btnHomeTab.FlatStyle = FlatStyle.Flat;
             btnHomeTab.Font = new Font("Segoe UI", 11F);
             btnHomeTab.ForeColor = Color.FromArgb(170, 187, 204);
-            btnHomeTab.Location = new Point(112, 9);
+            btnHomeTab.Location = new Point(141, 14);
             btnHomeTab.Margin = new Padding(8, 8, 4, 8);
             btnHomeTab.Name = "btnHomeTab";
-            btnHomeTab.Size = new Size(96, 24);
+            btnHomeTab.Size = new Size(90, 28);
             btnHomeTab.TabIndex = 0;
             btnHomeTab.Text = "Home";
             btnHomeTab.UseVisualStyleBackColor = false;
@@ -160,16 +162,16 @@
             // 
             pnMain.BackColor = Color.FromArgb(31, 40, 47);
             pnMain.Dock = DockStyle.Fill;
-            pnMain.Location = new Point(0, 42);
+            pnMain.Location = new Point(0, 58);
             pnMain.Name = "pnMain";
-            pnMain.Size = new Size(1138, 595);
+            pnMain.Size = new Size(1354, 884);
             pnMain.TabIndex = 1;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1138, 637);
+            ClientSize = new Size(1354, 942);
             Controls.Add(pnMain);
             Controls.Add(pnNavBar);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;

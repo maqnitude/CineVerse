@@ -16,5 +16,10 @@ namespace CineVerse.Views.UserControls
         {
             InitializeComponent();
         }
+
+        private void MovieDetailsScreen_Load(object sender, EventArgs e)
+        {
+            pnHeader.BackColor = Color.FromArgb(150, 0, 0, 0);
+        }
     }
 }

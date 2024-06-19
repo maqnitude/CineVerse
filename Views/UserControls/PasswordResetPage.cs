@@ -13,15 +13,13 @@ namespace CineVerse.Views.UserControls
 {
     public partial class PasswordResetPage : UserControlComponent
     {
-        private readonly AuthService _authenticationService;
-        private readonly NavigationService _navigationService;
+        private readonly AuthService _authService;
 
-        public PasswordResetPage(AuthService authenticationService, NavigationService navigationService)
+        public PasswordResetPage(AuthService authService)
         {
             InitializeComponent();
 
-            _authenticationService = authenticationService;
-            _navigationService = navigationService;
+            _authService = authService;
 
             inpGrpNewPassword.Label = "New Password";
             inpGrpNewPassword.PlaceholderText = "Enter your new password";
@@ -44,14 +42,14 @@ namespace CineVerse.Views.UserControls
                 MessageBox.Show("Confirm password does not match!", "Error");
                 return;
             }
-            _authenticationService.ResetPassword(inpGrpNewPassword.InputText);
+            _authService.ResetPassword(inpGrpNewPassword.InputText);
             ClearInputs();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             ClearInputs();
-            _navigationService.NavigateToScreen("signIn");
+            _mediator?.Notify(this, "ShowSignInPage");
         }
     }
 }

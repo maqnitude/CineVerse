@@ -13,9 +13,9 @@ namespace CineVerse.Views.UserControls
 {
     public partial class PasswordResetConfirmCodePage : UserControlComponent
     {
-        private readonly AuthenticationService _authenticationService;
+        private readonly AuthService _authenticationService;
         private readonly NavigationService _navigationService;
-        public PasswordResetConfirmCodePage(AuthenticationService authenticationService, NavigationService navigationService)
+        public PasswordResetConfirmCodePage(AuthService authenticationService, NavigationService navigationService)
         {
             InitializeComponent();
 

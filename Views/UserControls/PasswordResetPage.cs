@@ -13,10 +13,10 @@ namespace CineVerse.Views.UserControls
 {
     public partial class PasswordResetPage : UserControlComponent
     {
-        private readonly AuthenticationService _authenticationService;
+        private readonly AuthService _authenticationService;
         private readonly NavigationService _navigationService;
 
-        public PasswordResetPage(AuthenticationService authenticationService, NavigationService navigationService)
+        public PasswordResetPage(AuthService authenticationService, NavigationService navigationService)
         {
             InitializeComponent();
 

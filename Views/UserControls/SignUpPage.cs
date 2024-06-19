@@ -14,9 +14,9 @@ namespace CineVerse.Views.UserControls
 {
     public partial class SignUpPage : UserControlComponent
     {
-        private readonly AuthenticationService _authenticationService;
+        private readonly AuthService _authenticationService;
 
-        public SignUpPage(AuthenticationService authenticationService)
+        public SignUpPage(AuthService authenticationService)
         {
             InitializeComponent();
 

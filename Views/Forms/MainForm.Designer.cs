@@ -141,6 +141,7 @@
             btnMoviesTab.TabIndex = 0;
             btnMoviesTab.Text = "Movies";
             btnMoviesTab.UseVisualStyleBackColor = false;
+            btnMoviesTab.Click += btnMoviesTab_Click;
             // 
             // btnHomeTab
             // 

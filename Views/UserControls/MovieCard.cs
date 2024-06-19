@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineVerse.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,13 +14,31 @@ namespace CineVerse.Views.UserControls
 {
     public partial class MovieCard : UserControl
     {
+        private PictureBox _poster;
+
         public MovieCard()
         {
             InitializeComponent();
-            SetupEventListeners(this);
+
+            _poster = new PictureBox
+            {
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Dock = DockStyle.Fill,
+            };
+            pnMoviePoster.Controls.Add(_poster);
+            _poster.SendToBack();
+
+            SetupEvents(this);
         }
         
-        private void SetupEventListeners(Control container)
+        public void SetMovieData(Movie movie)
+        {
+            _poster.Image?.Dispose();
+            _poster.Image = new Bitmap(movie.PosterPath);
+            lblMovieTitle.Text = movie.Title;
+        }
+
+        private void SetupEvents(Control container)
         {
             foreach (Control control in container.Controls)
             {
@@ -28,7 +47,7 @@ namespace CineVerse.Views.UserControls
                     Debug.WriteLine(control);
                     control.MouseEnter += MovieCard_MouseEnter;
                     control.MouseLeave += MovieCard_MouseLeave;
-                    SetupEventListeners(control);
+                    SetupEvents(control);
                 }
             }
         }

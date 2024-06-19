@@ -57,7 +57,7 @@
             pnMoviePoster.Controls.Add(pnActions);
             pnMoviePoster.Dock = DockStyle.Fill;
             pnMoviePoster.Location = new Point(0, 0);
-            pnMoviePoster.Margin = new Padding(2, 2, 2, 2);
+            pnMoviePoster.Margin = new Padding(2);
             pnMoviePoster.Name = "pnMoviePoster";
             pnMoviePoster.Size = new Size(160, 159);
             pnMoviePoster.TabIndex = 2;
@@ -70,10 +70,11 @@
             pnActions.Controls.Add(btnMore);
             pnActions.Controls.Add(btnWatch);
             pnActions.Location = new Point(44, 136);
-            pnActions.Margin = new Padding(2, 2, 2, 2);
+            pnActions.Margin = new Padding(2);
             pnActions.Name = "pnActions";
             pnActions.Size = new Size(70, 20);
             pnActions.TabIndex = 0;
+            pnActions.Visible = false;
             // 
             // btnLike
             // 
@@ -83,7 +84,7 @@
             btnLike.FlatStyle = FlatStyle.Flat;
             btnLike.Image = Properties.Resources.like;
             btnLike.Location = new Point(27, 0);
-            btnLike.Margin = new Padding(2, 2, 2, 2);
+            btnLike.Margin = new Padding(2);
             btnLike.Name = "btnLike";
             btnLike.Size = new Size(16, 20);
             btnLike.TabIndex = 3;
@@ -97,7 +98,7 @@
             btnMore.FlatStyle = FlatStyle.Flat;
             btnMore.Image = Properties.Resources.menu;
             btnMore.Location = new Point(43, 0);
-            btnMore.Margin = new Padding(2, 2, 2, 2);
+            btnMore.Margin = new Padding(2);
             btnMore.Name = "btnMore";
             btnMore.Size = new Size(27, 20);
             btnMore.TabIndex = 2;
@@ -111,7 +112,7 @@
             btnWatch.FlatStyle = FlatStyle.Flat;
             btnWatch.Image = Properties.Resources.eye_fill;
             btnWatch.Location = new Point(0, 0);
-            btnWatch.Margin = new Padding(2, 2, 2, 2);
+            btnWatch.Margin = new Padding(2);
             btnWatch.Name = "btnWatch";
             btnWatch.Size = new Size(27, 20);
             btnWatch.TabIndex = 0;
@@ -124,7 +125,7 @@
             BackColor = Color.FromArgb(19, 20, 26);
             Controls.Add(pnMoviePoster);
             Controls.Add(lblMovieTitle);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "MovieCard";
             Size = new Size(160, 187);
             pnMoviePoster.ResumeLayout(false);

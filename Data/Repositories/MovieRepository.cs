@@ -13,6 +13,11 @@ namespace CineVerse.Data.Repositories
     {
         public MovieRepository(AppDbContext context) : base(context) { }
 
+        public async Task<int> CountMoviesAsync()
+        {
+            return await _context.Set<Movie>().CountAsync();
+        }
+
         public async Task<IEnumerable<Movie>> FindMoviesByTitleAsync(string title)
         {
             return await _context.Set<Movie>().Where(m => m.Title.Contains(title)).ToListAsync();

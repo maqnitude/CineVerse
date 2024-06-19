@@ -14,24 +14,30 @@ namespace CineVerse.Views.UserControls
 {
     public partial class MovieCard : UserControl
     {
-        public MovieCard(Movie movie)
+        private PictureBox _poster;
+
+        public MovieCard()
         {
             InitializeComponent();
 
-            PictureBox poster = new()
+            _poster = new PictureBox
             {
-                Image = new Bitmap(movie.PosterPath),
-                SizeMode = PictureBoxSizeMode.StretchImage
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Dock = DockStyle.Fill,
             };
-            poster.Dock = DockStyle.Fill;
-            pnMoviePoster.Controls.Add(poster);
-            poster.SendToBack();
-
-            lblMovieTitle.Text = movie.Title;
+            pnMoviePoster.Controls.Add(_poster);
+            _poster.SendToBack();
 
             SetupEvents(this);
         }
         
+        public void SetMovieData(Movie movie)
+        {
+            _poster.Image?.Dispose();
+            _poster.Image = new Bitmap(movie.PosterPath);
+            lblMovieTitle.Text = movie.Title;
+        }
+
         private void SetupEvents(Control container)
         {
             foreach (Control control in container.Controls)

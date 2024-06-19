@@ -19,23 +19,44 @@ using System.Windows.Forms;
 using CineVerse.Data.Entities;
 using CineVerse.Core.Services;
 using CineVerse.Core.Events;
+using CineVerse.Core.Interfaces;
+using CineVerse.Views.UserControls;
+using Accessibility;
 
 namespace CineVerse.Forms
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, IMediator
     {
         private readonly EventManager _eventManager;
+        private readonly MovieBrowsingService _movieBrowsingService;
         private readonly NavigationService _navigationService;
 
-        private Dictionary<PictureBox, Movie> _moviePanels;
+        private readonly MoviesScreen _moviesScreen;
 
-        public MainForm(EventManager eventManager)
+        public MainForm(EventManager eventManager, MovieBrowsingService movieBrowsingService)
         {
             InitializeComponent();
 
             _eventManager = eventManager;
+            _movieBrowsingService = movieBrowsingService;
+            _navigationService = new NavigationService(this, pnMain);
+
+            _moviesScreen = new MoviesScreen(_movieBrowsingService, 12);
+            _moviesScreen.SetMediator(this);
+
+            _navigationService.RegisterScreen("moviesScreen", _moviesScreen);
 
             RegisterEventHandlers();
+        }
+
+        public void Notify(object sender, string ev)
+        {
+            switch (ev)
+            {
+                case "ShowMoviesScreen":
+                    _navigationService.NavigateToScreen("moviesScreen");
+                    break;
+            }
         }
 
         private void RegisterEventHandlers()
@@ -43,9 +64,29 @@ namespace CineVerse.Forms
             _eventManager.Subscribe(EventType.UserSignedIn, OnUserSignedIn);
         }
 
+        private void ResetButtonColors()
+        {
+            foreach (Control control in pnNavBar.Controls)
+            {
+                if (control is Button btn)
+                {
+                    btn.BackColor = Color.FromArgb(150, 150, 150);
+                }
+            }
+        }
+
         private void OnUserSignedIn(object sender, EventArgs e)
         {
             this.Show();
+        }
+
+        private async void btnMoviesTab_Click(object sender, EventArgs e)
+        {
+            ResetButtonColors();
+            btnMoviesTab.BackColor = Color.FromArgb(0, 157, 26);
+            Notify(this, "ShowMoviesScreen");
+
+            await _moviesScreen.LoadMoviesInPageAsync(_moviesScreen.CurrentPage);
         }
     }
 }

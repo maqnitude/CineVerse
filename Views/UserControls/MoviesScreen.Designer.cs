@@ -247,6 +247,7 @@
             btnNextPage.TabIndex = 2;
             btnNextPage.Text = "Next";
             btnNextPage.UseVisualStyleBackColor = true;
+            btnNextPage.Click += btnNextPage_Click;
             // 
             // btnPrevPage
             // 
@@ -259,6 +260,7 @@
             btnPrevPage.TabIndex = 2;
             btnPrevPage.Text = "Previous";
             btnPrevPage.UseVisualStyleBackColor = true;
+            btnPrevPage.Click += btnPrevPage_Click;
             // 
             // flpMovieCardsContainer
             // 

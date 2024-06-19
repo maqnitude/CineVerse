@@ -28,17 +28,17 @@ namespace CineVerse
 
             using (var serviceProvider = services.BuildServiceProvider())
             {
-                var testForm = serviceProvider.GetRequiredService<Views.Forms.TestForm>();
+                //var testForm = serviceProvider.GetRequiredService<Views.Forms.TestForm>();
 
-                Application.Run(testForm);
+                //Application.Run(testForm);
 
-                //var mainForm = serviceProvider.GetRequiredService<Forms.MainForm>();
-                //mainForm.Hide();
+                var mainForm = serviceProvider.GetRequiredService<Forms.MainForm>();
+                mainForm.Hide();
 
-                //var authForm = serviceProvider.GetRequiredService<Forms.AuthenticationForm>();
-                //authForm.ShowDialog();
+                var authForm = serviceProvider.GetRequiredService<Forms.AuthenticationForm>();
+                authForm.ShowDialog();
 
-                //Application.Run(mainForm);
+                Application.Run(mainForm);
             }
         }
 
@@ -61,6 +61,7 @@ namespace CineVerse
             // Singletons
             services.AddSingleton<EventManager>();
             services.AddSingleton<AuthenticationService>();
+            services.AddSingleton<MovieBrowsingService>();
         }
     }
 }

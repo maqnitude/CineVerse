@@ -21,20 +21,24 @@ namespace CineVerse
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            //Application.Run(new Forms.AuthenticationForm());
+            //Application.Run(new Views.Forms.TestForm());
 
             var services = new ServiceCollection();
             ConfigureServices(services);
 
             using (var serviceProvider = services.BuildServiceProvider())
             {
-                var mainForm = serviceProvider.GetRequiredService<Forms.MainForm>();
-                mainForm.Hide();
+                var testForm = serviceProvider.GetRequiredService<Views.Forms.TestForm>();
 
-                var authForm = serviceProvider.GetRequiredService<Forms.AuthenticationForm>();
-                authForm.ShowDialog();
+                Application.Run(testForm);
 
-                Application.Run(mainForm);
+                //var mainForm = serviceProvider.GetRequiredService<Forms.MainForm>();
+                //mainForm.Hide();
+
+                //var authForm = serviceProvider.GetRequiredService<Forms.AuthenticationForm>();
+                //authForm.ShowDialog();
+
+                //Application.Run(mainForm);
             }
         }
 
@@ -47,8 +51,10 @@ namespace CineVerse
             // Scoped
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IMovieRepository, MovieRepository>();
 
             // Transients
+            services.AddTransient<Views.Forms.TestForm>();
             services.AddTransient<Forms.AuthenticationForm>();
             services.AddTransient<Forms.MainForm>();
 

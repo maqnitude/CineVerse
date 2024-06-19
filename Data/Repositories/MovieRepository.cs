@@ -17,5 +17,10 @@ namespace CineVerse.Data.Repositories
         {
             return await _context.Set<Movie>().Where(m => m.Title.Contains(title)).ToListAsync();
         }
+
+        public async Task<IEnumerable<Movie>> GetMoviesAsync(int pageNumber, int pageSize)
+        {
+            return await _context.Set<Movie>().Skip((pageNumber - 1) *  pageSize).Take(pageSize).ToListAsync();
+        }
     }
 }

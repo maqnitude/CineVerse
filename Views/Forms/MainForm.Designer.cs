@@ -56,7 +56,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1138, 48);
             panel1.TabIndex = 0;
-            panel1.Paint += panel1_Paint;
             // 
             // panel2
             // 
@@ -81,7 +80,6 @@
             button1.TabIndex = 0;
             button1.Text = "Home";
             button1.UseVisualStyleBackColor = false;
-            button1.Click += this.button1_Click;
             // 
             // button5
             // 
@@ -97,7 +95,6 @@
             button5.TabIndex = 0;
             button5.Text = "Profile";
             button5.UseVisualStyleBackColor = false;
-            button5.Click += this.button1_Click;
             // 
             // pictureBox1
             // 
@@ -132,7 +129,6 @@
             button2.TabIndex = 0;
             button2.Text = "Movies";
             button2.UseVisualStyleBackColor = false;
-            button2.Click += this.button1_Click;
             // 
             // button3
             // 
@@ -148,7 +144,6 @@
             button3.TabIndex = 0;
             button3.Text = "Lists";
             button3.UseVisualStyleBackColor = false;
-            button3.Click += this.button1_Click;
             // 
             // button4
             // 
@@ -164,7 +159,6 @@
             button4.TabIndex = 0;
             button4.Text = "Members";
             button4.UseVisualStyleBackColor = false;
-            button4.Click += this.button1_Click;
             // 
             // MainForm
             // 

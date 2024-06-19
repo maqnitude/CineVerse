@@ -38,9 +38,9 @@ namespace CineVerse.Forms
 
             _signInPage = new SignInPage(_authenticationService);
             _signUpPage = new SignUpPage(_authenticationService);
-            _passwordResetPage = new PasswordResetPage(_authenticationService);
-            _passwordResetSendCodePage = new PasswordResetSendCodePage(_authenticationService);
-            _passwordResetConfirmCodePage = new PasswordResetConfirmCodePage(_authenticationService);
+            _passwordResetPage = new PasswordResetPage(_authenticationService, _navigationService);
+            _passwordResetSendCodePage = new PasswordResetSendCodePage(_authenticationService, _navigationService);
+            _passwordResetConfirmCodePage = new PasswordResetConfirmCodePage(_authenticationService, _navigationService);
 
             _signInPage.SetMediator(this);
             _signUpPage.SetMediator(this);
@@ -48,13 +48,13 @@ namespace CineVerse.Forms
             _passwordResetSendCodePage.SetMediator(this);
             _passwordResetConfirmCodePage.SetMediator(this);
 
-            _navigationService.RegisterScreen("sign in", _signInPage);
-            _navigationService.RegisterScreen("sign up", _signUpPage);
-            _navigationService.RegisterScreen("password reset", _passwordResetPage);
-            _navigationService.RegisterScreen("send code", _passwordResetSendCodePage);
-            _navigationService.RegisterScreen("confirm code", _passwordResetConfirmCodePage);
+            _navigationService.RegisterScreen("signIn", _signInPage);
+            _navigationService.RegisterScreen("signUp", _signUpPage);
+            _navigationService.RegisterScreen("passwordReset", _passwordResetPage);
+            _navigationService.RegisterScreen("sendCode", _passwordResetSendCodePage);
+            _navigationService.RegisterScreen("confirmCode", _passwordResetConfirmCodePage);
 
-            _navigationService.NavigateToScreen("sign in");
+            _navigationService.NavigateToScreen("signIn");
 
             btnSignIn.Click += btnSignIn_Click;
             btnSignUp.Click += btnSignUp_Click;
@@ -65,19 +65,19 @@ namespace CineVerse.Forms
             switch (ev)
             {
                 case "ShowSignInPage":
-                    _navigationService.NavigateToScreen("sign in");
+                    _navigationService.NavigateToScreen("signIn");
                     break;
                 case "ShowSignUpPage":
-                    _navigationService.NavigateToScreen("sign up");
+                    _navigationService.NavigateToScreen("signUp");
                     break;
                 case "ShowPasswordResetPage":
-                    _navigationService.NavigateToScreen("password reset");
+                    _navigationService.NavigateToScreen("passwordReset");
                     break;
                 case "ShowPasswordResetSendCodePage":
-                    _navigationService.NavigateToScreen("send code");
+                    _navigationService.NavigateToScreen("sendCode");
                     break;
                 case "ShowPasswordResetConfirmCodePage":
-                    _navigationService.NavigateToScreen("confirm code");
+                    _navigationService.NavigateToScreen("confirmCode");
                     break;
             }
         }

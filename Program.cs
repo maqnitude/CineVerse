@@ -28,13 +28,14 @@ namespace CineVerse
 
             using (var serviceProvider = services.BuildServiceProvider())
             {
-                var mainForm = serviceProvider.GetRequiredService<Forms.MainForm>();
-                mainForm.Hide();
+                //var mainForm = serviceProvider.GetRequiredService<Forms.MainForm>();
+                //mainForm.Hide();
 
-                var authForm = serviceProvider.GetRequiredService<Forms.AuthenticationForm>();
-                authForm.ShowDialog();
+                //var authForm = serviceProvider.GetRequiredService<Forms.AuthenticationForm>();
+                //authForm.ShowDialog();
 
-                Application.Run(mainForm);
+                //Application.Run(mainForm);
+                Application.Run(new Views.Forms.TestForm());
             }
         }
 

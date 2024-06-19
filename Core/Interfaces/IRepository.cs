@@ -21,4 +21,29 @@ namespace CineVerse.Core.Interfaces
         Task<User> GetUserByUsernameAsync(string username);
         Task<User> GetUserByEmailAsync(string email);
     }
+
+    public interface IMovieRepository : IRepository<Movie>
+    {
+        Task<IEnumerable<Movie>> FindMoviesByTitleAsync(string title);
+    }
+
+    public interface IListRepository : IRepository<List>
+    {
+        Task<List> GetListWithMoviesAsync(string listId);
+    }
+
+    public interface ICompanyRepository : IRepository<Company>
+    {
+        Task<Company> GetCompanyWithMoviesAsync(int companyId);
+    }
+
+    public interface IPersonRepository : IRepository<Person>
+    {
+        Task<Person> GetPersonWithMoviesAsync(int personId);
+    }
+
+    public interface IReviewRepository : IRepository<Review>
+    {
+        Task<IEnumerable<Review>> GetReviewsForMovieAsync(int movieId);
+    }
 }

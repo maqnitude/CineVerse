@@ -9,6 +9,11 @@ namespace CineVerse.Core.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         IUserRepository Users { get; }
+        IReviewRepository Reviews { get; }
+        IPersonRepository People { get; }
+        IMovieRepository Movies { get; }
+        IListRepository Lists { get; }
+        ICompanyRepository Companies { get; }
         Task<int> CompleteAsync();
     }
 }

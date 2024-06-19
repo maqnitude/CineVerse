@@ -35,10 +35,11 @@ namespace CineVerse
                 var mainForm = serviceProvider.GetRequiredService<Forms.MainForm>();
                 mainForm.Hide();
 
-                var authForm = serviceProvider.GetRequiredService<Forms.AuthenticationForm>();
-                authForm.ShowDialog();
+                //var authForm = serviceProvider.GetRequiredService<Forms.AuthenticationForm>();
+                //authForm.ShowDialog();
 
-                Application.Run(mainForm);
+                //Application.Run(mainForm);
+                Application.Run(new Views.Forms.TestForm());
             }
         }
 

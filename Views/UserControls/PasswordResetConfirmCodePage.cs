@@ -13,13 +13,9 @@ namespace CineVerse.Views.UserControls
 {
     public partial class PasswordResetConfirmCodePage : UserControlComponent
     {
-        private readonly AuthService _authService;
-
-        public PasswordResetConfirmCodePage(AuthService authService)
+        public PasswordResetConfirmCodePage()
         {
             InitializeComponent();
-
-            _authService = authService;
 
             inpGrpCode.Label = "Verification Code";
             inpGrpCode.PlaceholderText = "Enter the verification code";
@@ -32,7 +28,7 @@ namespace CineVerse.Views.UserControls
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            _authService.VerifyCode(inpGrpCode.InputText);
+            AuthService.Instance.VerifyCode(inpGrpCode.InputText);
             ClearInputs();
         }
 

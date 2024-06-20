@@ -16,8 +16,6 @@ namespace CineVerse.Data
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-
         public DbSet<Movie> Movies { get; set; }
         public DbSet<List> Lists { get; set; }
         public DbSet<ListMovie> ListMovies { get; set; }
@@ -216,6 +214,12 @@ namespace CineVerse.Data
             }
 
             return movieCompanies;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            optionsBuilder.UseNpgsql(connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

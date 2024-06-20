@@ -17,5 +17,7 @@ namespace CineVerse.Data.Entities
         public string Password { get; set; }
         public string? Email { get; set; }
         public string? AvatarPath { get; set; }
+        public ICollection<List> Lists { get; set; } = new List<List>();
+        public ICollection<Review> Reviews { get; set; } = new List<Review>();
     }
 }

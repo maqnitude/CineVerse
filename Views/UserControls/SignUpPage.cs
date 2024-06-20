@@ -14,13 +14,9 @@ namespace CineVerse.Views.UserControls
 {
     public partial class SignUpPage : UserControlComponent
     {
-        private readonly AuthService _authService;
-
-        public SignUpPage(AuthService authService)
+        public SignUpPage()
         {
             InitializeComponent();
-
-            _authService = authService;
 
             inpGrpEmail.Label = "Email address";
             inpGrpEmail.PlaceholderText = "Enter your email address";
@@ -44,7 +40,7 @@ namespace CineVerse.Views.UserControls
             string username = inpGrpUsername.InputText;
             string password = inpGrpPassword.InputText;
 
-            bool status = await _authService.SignUpAsync(email, username, password);
+            bool status = await AuthService.Instance.SignUpAsync(email, username, password);
             if (status)
             {
                 ClearInputs();

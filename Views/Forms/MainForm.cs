@@ -27,23 +27,19 @@ namespace CineVerse.Forms
 {
     public partial class MainForm : Form, IMediator
     {
-        private readonly EventManager _eventManager;
-        private readonly MovieBrowsingService _movieBrowsingService;
         private readonly NavigationService _navigationService;
 
         private readonly MoviesScreen _moviesScreen;
 
         private User _currentUser;
 
-        public MainForm(EventManager eventManager, MovieBrowsingService movieBrowsingService)
+        public MainForm()
         {
             InitializeComponent();
 
-            _eventManager = eventManager;
-            _movieBrowsingService = movieBrowsingService;
             _navigationService = new NavigationService(this, pnMain);
 
-            _moviesScreen = new MoviesScreen(_movieBrowsingService, 12);
+            _moviesScreen = new MoviesScreen(_navigationService, 12);
             _moviesScreen.SetMediator(this);
 
             _navigationService.RegisterScreen("moviesScreen", _moviesScreen);
@@ -63,7 +59,7 @@ namespace CineVerse.Forms
 
         private void RegisterEventHandlers()
         {
-            _eventManager.Subscribe<UserEventArgs>(EventType.UserSignedIn, OnUserSignedIn);
+            EventManager.Instance.Subscribe<UserEventArgs>(EventType.UserSignedIn, OnUserSignedIn);
         }
 
         private void ResetButtonColors()
@@ -72,7 +68,8 @@ namespace CineVerse.Forms
             {
                 if (control is Button btn)
                 {
-                    btn.BackColor = Color.FromArgb(150, 150, 150);
+                    if (btn.Name != "btnUser")
+                        btn.BackColor = Color.FromArgb(150, 150, 150);
                 }
             }
         }

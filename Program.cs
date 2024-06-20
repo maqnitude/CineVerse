@@ -3,6 +3,7 @@ using CineVerse.Core.Interfaces;
 using CineVerse.Core.Services;
 using CineVerse.Data;
 using CineVerse.Data.Repositories;
+using CineVerse.Forms;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
@@ -21,47 +22,11 @@ namespace CineVerse
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            //Application.Run(new Views.Forms.TestForm());
-
-            var services = new ServiceCollection();
-            ConfigureServices(services);
-
-            using (var serviceProvider = services.BuildServiceProvider())
-            {
-                //var testForm = serviceProvider.GetRequiredService<Views.Forms.TestForm>();
-
-                //Application.Run(testForm);
-
-                var mainForm = serviceProvider.GetRequiredService<Forms.MainForm>();
-                mainForm.Hide();
-
-                var authForm = serviceProvider.GetRequiredService<Forms.AuthForm>();
-                authForm.ShowDialog();
-
-                Application.Run(mainForm);
-            }
-        }
-
-        private static void ConfigureServices(IServiceCollection services)
-        {
-            // Register AppDbContext
-            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
-
-            // Scoped
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IMovieRepository, MovieRepository>();
-
-            // Transients
-            services.AddTransient<Views.Forms.TestForm>();
-            services.AddTransient<Forms.AuthForm>();
-            services.AddTransient<Forms.MainForm>();
-
-            // Singletons
-            services.AddSingleton<EventManager>();
-            services.AddSingleton<AuthService>();
-            services.AddSingleton<MovieBrowsingService>();
+            var mainForm = new Forms.MainForm();
+            mainForm.Hide();
+            var authForm = new Forms.AuthForm();
+            authForm.ShowDialog();
+            Application.Run(mainForm);
         }
     }
 }

@@ -13,15 +13,13 @@ namespace CineVerse.Views.UserControls
 {
     public partial class PasswordResetSendCodePage : UserControlComponent
     {
-        private readonly AuthenticationService _authenticationService;
-        private readonly NavigationService _navigationService;
+        private readonly AuthService _authService;
 
-        public PasswordResetSendCodePage(AuthenticationService authenticationService, NavigationService navigationService)
+        public PasswordResetSendCodePage(AuthService authService)
         {
             InitializeComponent();
 
-            _authenticationService = authenticationService;
-            _navigationService = navigationService;
+            _authService = authService;
 
             inpGrpEmail.Label = "Email address";
             inpGrpEmail.PlaceholderText = "Enter your email to receive verification code";
@@ -34,13 +32,13 @@ namespace CineVerse.Views.UserControls
 
         private void btnSendRequest_Click(object sender, EventArgs e)
         {
-            _authenticationService.SendVerificationCode(inpGrpEmail.InputText);
+            _authService.SendVerificationCode(inpGrpEmail.InputText);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             ClearInputs();
-            _navigationService.NavigateToScreen("signIn");
+            _mediator?.Notify(this, "ShowSignInPage");
         }
     }
 }

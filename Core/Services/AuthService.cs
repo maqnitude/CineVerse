@@ -19,7 +19,7 @@ using System.Diagnostics;
 
 namespace CineVerse.Core.Services
 {
-    public class AuthenticationService
+    public class AuthService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly EventManager _eventManager;
@@ -29,7 +29,7 @@ namespace CineVerse.Core.Services
         private string _verificationCode {  get; set; }
         private DateTime _codeGenerationTime {  get; set; }
 
-        public AuthenticationService(IUnitOfWork unitOfWork, EventManager eventManager)
+        public AuthService(IUnitOfWork unitOfWork, EventManager eventManager)
         {
             _unitOfWork = unitOfWork;
             _eventManager = eventManager;
@@ -137,7 +137,7 @@ namespace CineVerse.Core.Services
             {
                 MessageBox.Show("Sign in successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                _eventManager.Publish(EventType.UserSignedIn, this, EventArgs.Empty);
+                _eventManager.Publish(EventType.UserSignedIn, this, new UserEventArgs(user));
 
                 return true;
             }

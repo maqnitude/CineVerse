@@ -33,6 +33,8 @@ namespace CineVerse.Forms
 
         private readonly MoviesScreen _moviesScreen;
 
+        private User _currentUser;
+
         public MainForm(EventManager eventManager, MovieBrowsingService movieBrowsingService)
         {
             InitializeComponent();
@@ -61,7 +63,7 @@ namespace CineVerse.Forms
 
         private void RegisterEventHandlers()
         {
-            _eventManager.Subscribe(EventType.UserSignedIn, OnUserSignedIn);
+            _eventManager.Subscribe<UserEventArgs>(EventType.UserSignedIn, OnUserSignedIn);
         }
 
         private void ResetButtonColors()
@@ -75,9 +77,13 @@ namespace CineVerse.Forms
             }
         }
 
-        private void OnUserSignedIn(object sender, EventArgs e)
+        private void OnUserSignedIn(object sender, UserEventArgs e)
         {
             this.Show();
+
+            _currentUser = e.User;
+
+            btnUser.Text = _currentUser.Name;
         }
 
         private async void btnMoviesTab_Click(object sender, EventArgs e)

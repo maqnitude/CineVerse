@@ -16,19 +16,17 @@ namespace CineVerse.Views.UserControls
 {
     public partial class MoviesScreen : UserControlComponent
     {
-        private readonly MovieBrowsingService _movieBrowsingService;
         private readonly NavigationService _navigationService;
         private readonly List<MovieCard> _movieCards;
         private readonly int _moviesPerPage;
 
         public int CurrentPage { get; private set; } = 1;
 
-        public MoviesScreen(NavigationService navigationService, MovieBrowsingService movieBrowsingService, int moviesPerPage)
+        public MoviesScreen(NavigationService navigationService, int moviesPerPage)
         {
             InitializeComponent();
 
             _navigationService = navigationService;
-            _movieBrowsingService = movieBrowsingService;
 
             // Disable the previous and next page button by default
             btnPrevPage.Enabled = false;
@@ -68,7 +66,7 @@ namespace CineVerse.Views.UserControls
 
             RemoveMovieCards();
 
-            List<Movie> movies = await _movieBrowsingService.GetMoviesInPageAsync(pageNumber, _moviesPerPage);
+            List<Movie> movies = await MovieBrowsingService.Instance.GetMoviesInPageAsync(pageNumber, _moviesPerPage);
 
             if (movies.Count > 0)
             {
@@ -81,7 +79,7 @@ namespace CineVerse.Views.UserControls
                 }
             }
 
-            bool isLastPage = await _movieBrowsingService.IsLastPage(CurrentPage, _moviesPerPage);
+            bool isLastPage = await MovieBrowsingService.Instance.IsLastPage(CurrentPage, _moviesPerPage);
             btnNextPage.Enabled = !isLastPage;
             btnPrevPage.Enabled = CurrentPage > 1;
 

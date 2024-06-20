@@ -21,18 +21,28 @@ namespace CineVerse.Core.Services
 {
     public class AuthService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly EventManager _eventManager;
+        private static AuthService? _instance;
         private IMediator _mediator;
 
         private string _currentEmail { get; set; }
         private string _verificationCode {  get; set; }
         private DateTime _codeGenerationTime {  get; set; }
 
-        public AuthService(IUnitOfWork unitOfWork, EventManager eventManager)
+        public static AuthService Instance
         {
-            _unitOfWork = unitOfWork;
-            _eventManager = eventManager;
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new AuthService();
+                }
+                return _instance;
+            }
+        }
+
+        private AuthService()
+        {
+        
         }
 
         public void SetMediator(IMediator mediator)
@@ -126,25 +136,27 @@ namespace CineVerse.Core.Services
                 return false;
             }
 
-            var user = await _unitOfWork.Users.GetUserByUsernameAsync(username);
-
-            if (user == null)
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
             {
-                MessageBox.Show("User not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            else if (user.Password == HashPassword(password))
-            {
-                MessageBox.Show("Sign in successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var user = await unitOfWork.Users.GetUserByUsernameAsync(username);
+                if (user == null)
+                {
+                    MessageBox.Show("User not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                else if (user.Password == HashPassword(password))
+                {
+                    MessageBox.Show("Sign in successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                _eventManager.Publish(EventType.UserSignedIn, this, new UserEventArgs(user));
+                    EventManager.Instance.Publish(EventType.UserSignedIn, this, new UserEventArgs(user));
 
-                return true;
-            }
-            else
-            {
-                MessageBox.Show("Incorrect password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
         }
 
@@ -171,16 +183,19 @@ namespace CineVerse.Core.Services
                 return false;
             }
 
-            var newUser = new User()
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
             {
-                Id = Guid.NewGuid().ToString(),
-                Email = email,
-                Name = username,
-                Username = username,
-                Password = HashPassword(password),
-            };
-            await _unitOfWork.Users.AddAsync(newUser);
-            await _unitOfWork.CompleteAsync();
+                var newUser = new User()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Email = email,
+                    Name = username,
+                    Username = username,
+                    Password = HashPassword(password),
+                };
+                await unitOfWork.Users.AddAsync(newUser);
+                await unitOfWork.CompleteAsync();
+            }
 
             MessageBox.Show("Sign up successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return true;
@@ -204,16 +219,19 @@ namespace CineVerse.Core.Services
             Tuple<bool, string> emailValidationResult = IsEmailValid(receivedEmail);
             bool doesEmailExist = false;
             
-            var user = await _unitOfWork.Users.GetUserByEmailAsync(receivedEmail);
-            if (user != null)
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
             {
-                doesEmailExist = true;
-                _currentEmail = receivedEmail;
-            }
-            else
-            {
-                MessageBox.Show("User with this email does not exist.");
-                return;
+                var user = await unitOfWork.Users.GetUserByEmailAsync(receivedEmail);
+                if (user != null)
+                {
+                    doesEmailExist = true;
+                    _currentEmail = receivedEmail;
+                }
+                else
+                {
+                    MessageBox.Show("User with this email does not exist.");
+                    return;
+                }
             }
             
             if (doesEmailExist && emailValidationResult.Item1)
@@ -283,18 +301,21 @@ namespace CineVerse.Core.Services
 
         public async void ResetPassword(string newPassword)
         {
-            var user = await _unitOfWork.Users.GetUserByEmailAsync(_currentEmail);
-            if (user == null)
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
             {
-                MessageBox.Show("Email does not exist.");
-            }
-            else
-            {
-                user.Password = HashPassword(newPassword);
-                _unitOfWork.Users.Update(user);
-                await _unitOfWork.CompleteAsync();
-                MessageBox.Show("Password reset successful.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                _mediator?.Notify(this, "ShowSignInPage");
+                var user = await unitOfWork.Users.GetUserByEmailAsync(_currentEmail);
+                if (user == null)
+                {
+                    MessageBox.Show("Email does not exist.");
+                }
+                else
+                {
+                    user.Password = HashPassword(newPassword);
+                    unitOfWork.Users.Update(user);
+                    await unitOfWork.CompleteAsync();
+                    MessageBox.Show("Password reset successful.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _mediator?.Notify(this, "ShowSignInPage");
+                }
             }
         }
     }

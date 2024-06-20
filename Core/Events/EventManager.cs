@@ -9,7 +9,20 @@ namespace CineVerse.Core.Events
 {
     public class EventManager
     {
+        private static EventManager _instance;
         private readonly ConcurrentDictionary<EventType, List<Delegate>> _eventHandlers;
+
+        public static EventManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new EventManager();
+                }
+                return _instance;
+            }
+        }
 
         public EventManager()
         {

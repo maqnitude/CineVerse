@@ -13,13 +13,9 @@ namespace CineVerse.Views.UserControls
 {
     public partial class PasswordResetPage : UserControlComponent
     {
-        private readonly AuthService _authService;
-
-        public PasswordResetPage(AuthService authService)
+        public PasswordResetPage()
         {
             InitializeComponent();
-
-            _authService = authService;
 
             inpGrpNewPassword.Label = "New Password";
             inpGrpNewPassword.PlaceholderText = "Enter your new password";
@@ -42,7 +38,7 @@ namespace CineVerse.Views.UserControls
                 MessageBox.Show("Confirm password does not match!", "Error");
                 return;
             }
-            _authService.ResetPassword(inpGrpNewPassword.InputText);
+            AuthService.Instance.ResetPassword(inpGrpNewPassword.InputText);
             ClearInputs();
         }
 

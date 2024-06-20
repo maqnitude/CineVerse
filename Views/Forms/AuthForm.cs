@@ -17,8 +17,6 @@ namespace CineVerse.Forms
 {
     public partial class AuthForm : Form, IMediator
     {
-        private readonly EventManager _eventManager;
-        private readonly AuthService _authService;
         private readonly NavigationService _navService;
 
         private SignInPage _signInPage;
@@ -29,23 +27,21 @@ namespace CineVerse.Forms
 
         private bool _isUserSignedIn = false;
 
-        public AuthForm(EventManager eventManager, AuthService authService)
+        public AuthForm()
         {
             InitializeComponent();
 
-            _eventManager = eventManager;
-            _authService = authService;
-            _authService.SetMediator(this);
+            AuthService.Instance.SetMediator(this);
 
             _navService = new NavigationService(this, pnPageContainer);
 
             this.StartPosition = FormStartPosition.CenterScreen;
 
-            _signInPage = new SignInPage(_authService);
-            _signUpPage = new SignUpPage(_authService);
-            _passwordResetPage = new PasswordResetPage(_authService);
-            _passwordResetSendCodePage = new PasswordResetSendCodePage(_authService);
-            _passwordResetConfirmCodePage = new PasswordResetConfirmCodePage(_authService);
+            _signInPage = new SignInPage();
+            _signUpPage = new SignUpPage();
+            _passwordResetPage = new PasswordResetPage();
+            _passwordResetSendCodePage = new PasswordResetSendCodePage();
+            _passwordResetConfirmCodePage = new PasswordResetConfirmCodePage();
 
             _signInPage.SetMediator(this);
             _signUpPage.SetMediator(this);
@@ -91,12 +87,12 @@ namespace CineVerse.Forms
 
         private void RegisterEventHandlers()
         {
-            _eventManager.Subscribe<UserEventArgs>(EventType.UserSignedIn, OnUserSignedIn);
+            EventManager.Instance.Subscribe<UserEventArgs>(EventType.UserSignedIn, OnUserSignedIn);
         }
 
         private void UnregisterEventHandlers()
         {
-            _eventManager.Unsubscribe<UserEventArgs>(EventType.UserSignedIn, OnUserSignedIn);
+            EventManager.Instance.Unsubscribe<UserEventArgs>(EventType.UserSignedIn, OnUserSignedIn);
         }
 
         private void ResetButtonColors()

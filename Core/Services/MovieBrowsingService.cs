@@ -1,4 +1,5 @@
 ﻿using CineVerse.Core.Interfaces;
+using CineVerse.Data;
 using CineVerse.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,23 +11,41 @@ namespace CineVerse.Core.Services
 {
     public class MovieBrowsingService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private static MovieBrowsingService? _instance;
 
-        public MovieBrowsingService(IUnitOfWork unitOfWork)
+        public static MovieBrowsingService Instance
         {
-            _unitOfWork = unitOfWork;
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new MovieBrowsingService();
+                }
+                return _instance;
+            }
+        }
+
+        private MovieBrowsingService()
+        {
+
         }
 
         public async Task<bool> IsLastPage(int pageNumber, int pageSize)
         {
-            int moviesCount = await _unitOfWork.Movies.CountMoviesAsync();
-            return pageNumber * pageSize >= moviesCount;
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                int moviesCount = await unitOfWork.Movies.CountMoviesAsync();
+                return pageNumber * pageSize >= moviesCount;
+            }
         }
 
         public async Task<List<Movie>> GetMoviesInPageAsync(int pageNumber, int pageSize)
         {
-            var movies = await _unitOfWork.Movies.GetMoviesAsync(pageNumber, pageSize);
-            return movies.ToList();
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var movies = await unitOfWork.Movies.GetMoviesAsync(pageNumber, pageSize);
+                return movies.ToList();
+            }
         }
     }
 }

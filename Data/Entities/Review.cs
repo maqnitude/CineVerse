@@ -11,13 +11,13 @@ namespace CineVerse.Data.Entities
     {
         public string Id { get; set; }
         [Required]
-        public string AuthorId { get; set; }
-        public User Author { get; set; }
+        public string UserId { get; set; }
+        public User User { get; set; }
         [Required]
         public int MovieId { get; set; }
         public Movie Movie { get; set; }
         [Required]
-        [Range(0, 10)]
+        [Range(0, 5)]
         public double Rating { get; set; }
         public string? Content { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

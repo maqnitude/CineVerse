@@ -28,16 +28,11 @@ namespace CineVerse.Views.UserControls
             pnMoviePoster.Controls.Add(_poster);
             _poster.SendToBack();
 
+            SetSize("medium");
+
             SetupEvents(this);
         }
-
-        public void SetMovieData(Movie movie)
-        {
-            _poster.Image?.Dispose();
-            _poster.Image = new Bitmap(movie.PosterPath);
-            lblMovieTitle.Text = movie.Title;
-        }
-
+        
         private void SetupEvents(Control container)
         {
             foreach (Control control in container.Controls)
@@ -49,6 +44,36 @@ namespace CineVerse.Views.UserControls
                     control.MouseLeave += MovieCard_MouseLeave;
                     SetupEvents(control);
                 }
+            }
+        }
+
+        public void SetMovieData(Movie movie)
+        {
+            _poster.Image?.Dispose();
+            _poster.Image = new Bitmap(movie.PosterPath);
+            lblMovieTitle.Text = movie.Title;
+        }
+
+        /// <summary>
+        /// Set size of movie card using preset sizes: <c>"small"</c>, <c>"medium"</c>, or <c>"big"</c>
+        /// </summary>
+        /// <param name="preset"></param>
+        public void SetSize(string preset)
+        {
+            switch (preset)
+            {
+                case "small":
+                    this.Size = new Size(70, 105);
+                    pnActions.Size = new Size(63, 24);
+                    break;
+                case "medium":
+                    this.Size = new Size(150, 225);
+                    pnActions.Size = new Size(84, 28);
+                    break;
+                case "big":
+                    this.Size = new Size(230, 345);
+                    pnActions.Size = new Size(84, 28);
+                    break;
             }
         }
 
@@ -71,11 +96,6 @@ namespace CineVerse.Views.UserControls
                     pnActions.Visible = false;
                 }
             }
-        }
-
-        private void btnMore_Click(object sender, EventArgs e)
-        {
-            cmsActions.Show(btnMore, new Point(0, btnMore.Height));
         }
     }
 }

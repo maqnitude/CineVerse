@@ -9,40 +9,43 @@ namespace CineVerse.Core.Events
 {
     public class EventManager
     {
-        private readonly ConcurrentDictionary<EventType, List<EventHandler>> _eventHandlers;
+        private readonly ConcurrentDictionary<EventType, List<Delegate>> _eventHandlers;
 
         public EventManager()
         {
-            _eventHandlers = new ConcurrentDictionary<EventType, List<EventHandler>>();
+            _eventHandlers = new ConcurrentDictionary<EventType, List<Delegate>>();
 
             // Initialize empty event handlers list for each event type
             foreach (EventType eventTypes in Enum.GetValues(typeof(EventType)))
             {
-                _eventHandlers[eventTypes] = new List<EventHandler>();
+                _eventHandlers[eventTypes] = new List<Delegate>();
             }
         }
 
         // Publish an event, which means calling every handlers of that event
-        public void Publish(EventType eventType, object sender, EventArgs args)
+        public void Publish<TEventArgs>(EventType eventType, object sender, TEventArgs args) where TEventArgs : EventArgs
         {
             if (_eventHandlers.ContainsKey(eventType))
             {
-                List<EventHandler> handlersCopy;
+                List<Delegate> handlersCopy;
                 // Use lock to ensure operations on handers list are performed atomically
                 lock (_eventHandlers[eventType])
                 {
                     // Prevent collection modification exceptions
-                    handlersCopy = new List<EventHandler>(_eventHandlers[eventType]);
+                    handlersCopy = new List<Delegate>(_eventHandlers[eventType]);
                 }
 
-                foreach (EventHandler handler in handlersCopy)
+                foreach (Delegate handler in handlersCopy)
                 {
-                    handler?.Invoke(sender, args);
+                    if (handler is EventHandler<TEventArgs> eventHandler)
+                    {
+                        eventHandler?.Invoke(sender, args);
+                    }
                 }
             }
         }
 
-        public void Subscribe(EventType eventType, EventHandler handler)
+        public void Subscribe<TEventArgs>(EventType eventType, EventHandler<TEventArgs> handler) where TEventArgs : EventArgs
         {
             if (handler == null) throw new ArgumentNullException(nameof(handler));
 
@@ -52,7 +55,7 @@ namespace CineVerse.Core.Events
             }
         }
 
-        public void Unsubscribe(EventType eventType, EventHandler handler)
+        public void Unsubscribe<TEventArgs>(EventType eventType, EventHandler<TEventArgs> handler) where TEventArgs : EventArgs
         {
             if (handler == null) throw new ArgumentNullException(nameof(handler));
 

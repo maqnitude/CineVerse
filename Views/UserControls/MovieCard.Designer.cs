@@ -50,10 +50,10 @@
             lblMovieTitle.Dock = DockStyle.Bottom;
             lblMovieTitle.Font = new Font("Segoe UI Black", 10F, FontStyle.Bold);
             lblMovieTitle.ForeColor = Color.White;
-            lblMovieTitle.Location = new Point(0, 159);
+            lblMovieTitle.Location = new Point(0, 197);
             lblMovieTitle.Margin = new Padding(2, 0, 2, 0);
             lblMovieTitle.Name = "lblMovieTitle";
-            lblMovieTitle.Size = new Size(160, 28);
+            lblMovieTitle.Size = new Size(150, 28);
             lblMovieTitle.TabIndex = 1;
             lblMovieTitle.Text = "Furiosa";
             lblMovieTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -66,7 +66,7 @@
             pnMoviePoster.Location = new Point(0, 0);
             pnMoviePoster.Margin = new Padding(2);
             pnMoviePoster.Name = "pnMoviePoster";
-            pnMoviePoster.Size = new Size(160, 159);
+            pnMoviePoster.Size = new Size(150, 197);
             pnMoviePoster.TabIndex = 2;
             // 
             // pnActions
@@ -76,7 +76,7 @@
             pnActions.Controls.Add(btnLike);
             pnActions.Controls.Add(btnMore);
             pnActions.Controls.Add(btnWatch);
-            pnActions.Location = new Point(44, 136);
+            pnActions.Location = new Point(39, 174);
             pnActions.Margin = new Padding(2);
             pnActions.Name = "pnActions";
             pnActions.Size = new Size(70, 20);
@@ -165,7 +165,7 @@
             Controls.Add(lblMovieTitle);
             Margin = new Padding(2);
             Name = "MovieCard";
-            Size = new Size(160, 187);
+            Size = new Size(150, 225);
             pnMoviePoster.ResumeLayout(false);
             pnActions.ResumeLayout(false);
             cmsActions.ResumeLayout(false);

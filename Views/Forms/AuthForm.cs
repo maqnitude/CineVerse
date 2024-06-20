@@ -15,11 +15,11 @@ using System.Windows.Forms;
 
 namespace CineVerse.Forms
 {
-    public partial class AuthenticationForm : Form, IMediator
+    public partial class AuthForm : Form, IMediator
     {
         private readonly EventManager _eventManager;
-        private readonly AuthenticationService _authenticationService;
-        private readonly NavigationService _navigationService;
+        private readonly AuthService _authService;
+        private readonly NavigationService _navService;
 
         private SignInPage _signInPage;
         private SignUpPage _signUpPage;
@@ -27,23 +27,25 @@ namespace CineVerse.Forms
         private PasswordResetSendCodePage _passwordResetSendCodePage;
         private PasswordResetConfirmCodePage _passwordResetConfirmCodePage;
 
-        public AuthenticationForm(EventManager eventManager, AuthenticationService authenticationService)
+        private bool _isUserSignedIn = false;
+
+        public AuthForm(EventManager eventManager, AuthService authService)
         {
             InitializeComponent();
 
             _eventManager = eventManager;
-            _authenticationService = authenticationService;
-            _authenticationService.SetMediator(this);
+            _authService = authService;
+            _authService.SetMediator(this);
 
-            _navigationService = new NavigationService(this, pnPageContainer);
+            _navService = new NavigationService(this, pnPageContainer);
 
             this.StartPosition = FormStartPosition.CenterScreen;
 
-            _signInPage = new SignInPage(_authenticationService);
-            _signUpPage = new SignUpPage(_authenticationService);
-            _passwordResetPage = new PasswordResetPage(_authenticationService, _navigationService);
-            _passwordResetSendCodePage = new PasswordResetSendCodePage(_authenticationService, _navigationService);
-            _passwordResetConfirmCodePage = new PasswordResetConfirmCodePage(_authenticationService, _navigationService);
+            _signInPage = new SignInPage(_authService);
+            _signUpPage = new SignUpPage(_authService);
+            _passwordResetPage = new PasswordResetPage(_authService);
+            _passwordResetSendCodePage = new PasswordResetSendCodePage(_authService);
+            _passwordResetConfirmCodePage = new PasswordResetConfirmCodePage(_authService);
 
             _signInPage.SetMediator(this);
             _signUpPage.SetMediator(this);
@@ -51,13 +53,13 @@ namespace CineVerse.Forms
             _passwordResetSendCodePage.SetMediator(this);
             _passwordResetConfirmCodePage.SetMediator(this);
 
-            _navigationService.RegisterScreen("signIn", _signInPage);
-            _navigationService.RegisterScreen("signUp", _signUpPage);
-            _navigationService.RegisterScreen("passwordReset", _passwordResetPage);
-            _navigationService.RegisterScreen("sendCode", _passwordResetSendCodePage);
-            _navigationService.RegisterScreen("confirmCode", _passwordResetConfirmCodePage);
+            _navService.RegisterScreen("signIn", _signInPage);
+            _navService.RegisterScreen("signUp", _signUpPage);
+            _navService.RegisterScreen("passwordReset", _passwordResetPage);
+            _navService.RegisterScreen("sendCode", _passwordResetSendCodePage);
+            _navService.RegisterScreen("confirmCode", _passwordResetConfirmCodePage);
 
-            _navigationService.NavigateToScreen("signIn");
+            _navService.NavigateToScreen("signIn");
 
             RegisterEventHandlers();
             btnSignIn.Click += btnSignIn_Click;
@@ -70,31 +72,31 @@ namespace CineVerse.Forms
             switch (ev)
             {
                 case "ShowSignInPage":
-                    _navigationService.NavigateToScreen("signIn");
+                    _navService.NavigateToScreen("signIn");
                     break;
                 case "ShowSignUpPage":
-                    _navigationService.NavigateToScreen("signUp");
+                    _navService.NavigateToScreen("signUp");
                     break;
                 case "ShowPasswordResetPage":
-                    _navigationService.NavigateToScreen("passwordReset");
+                    _navService.NavigateToScreen("passwordReset");
                     break;
                 case "ShowPasswordResetSendCodePage":
-                    _navigationService.NavigateToScreen("sendCode");
+                    _navService.NavigateToScreen("sendCode");
                     break;
                 case "ShowPasswordResetConfirmCodePage":
-                    _navigationService.NavigateToScreen("confirmCode");
+                    _navService.NavigateToScreen("confirmCode");
                     break;
             }
         }
 
         private void RegisterEventHandlers()
         {
-            _eventManager.Subscribe(EventType.UserSignedIn, OnUserSignedIn);
+            _eventManager.Subscribe<UserEventArgs>(EventType.UserSignedIn, OnUserSignedIn);
         }
 
         private void UnregisterEventHandlers()
         {
-            _eventManager.Unsubscribe(EventType.UserSignedIn, OnUserSignedIn);
+            _eventManager.Unsubscribe<UserEventArgs>(EventType.UserSignedIn, OnUserSignedIn);
         }
 
         private void ResetButtonColors()
@@ -119,8 +121,10 @@ namespace CineVerse.Forms
             Notify(this, "ShowSignUpPage");
         }
 
-        private void OnUserSignedIn(object sender, EventArgs e)
+        private void OnUserSignedIn(object sender, UserEventArgs e)
         {
+            _isUserSignedIn = true;
+
             this.Close();
             this.Dispose();
         }
@@ -128,6 +132,11 @@ namespace CineVerse.Forms
         private void OnFormClosed(object sender, EventArgs e)
         {
             UnregisterEventHandlers();
+
+            if (!_isUserSignedIn)
+            {
+                Application.Exit();
+            }
         }
     }
 }

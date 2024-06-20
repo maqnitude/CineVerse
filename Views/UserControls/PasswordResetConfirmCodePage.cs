@@ -13,14 +13,13 @@ namespace CineVerse.Views.UserControls
 {
     public partial class PasswordResetConfirmCodePage : UserControlComponent
     {
-        private readonly AuthenticationService _authenticationService;
-        private readonly NavigationService _navigationService;
-        public PasswordResetConfirmCodePage(AuthenticationService authenticationService, NavigationService navigationService)
+        private readonly AuthService _authService;
+
+        public PasswordResetConfirmCodePage(AuthService authService)
         {
             InitializeComponent();
 
-            _authenticationService = authenticationService;
-            _navigationService = navigationService;
+            _authService = authService;
 
             inpGrpCode.Label = "Verification Code";
             inpGrpCode.PlaceholderText = "Enter the verification code";
@@ -33,14 +32,14 @@ namespace CineVerse.Views.UserControls
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            _authenticationService.VerifyCode(inpGrpCode.InputText);
+            _authService.VerifyCode(inpGrpCode.InputText);
             ClearInputs();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             ClearInputs();
-            _navigationService.NavigateToScreen("sendCode");
+            _mediator?.Notify(this, "ShowPasswordResetSendCodePage");
         }
     }
 }

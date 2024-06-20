@@ -1,6 +1,6 @@
 ﻿namespace CineVerse.Forms
 {
-    partial class AuthenticationForm
+    partial class AuthForm
     {
         /// <summary>
         /// Required designer variable.
@@ -42,8 +42,9 @@
             pnTabContainer.Controls.Add(btnSignIn);
             pnTabContainer.Dock = DockStyle.Top;
             pnTabContainer.Location = new Point(0, 0);
+            pnTabContainer.Margin = new Padding(2, 2, 2, 2);
             pnTabContainer.Name = "pnTabContainer";
-            pnTabContainer.Size = new Size(728, 44);
+            pnTabContainer.Size = new Size(510, 32);
             pnTabContainer.TabIndex = 0;
             // 
             // btnSignUp
@@ -53,9 +54,10 @@
             btnSignUp.FlatStyle = FlatStyle.Flat;
             btnSignUp.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSignUp.ForeColor = Color.White;
-            btnSignUp.Location = new Point(125, 5);
+            btnSignUp.Location = new Point(88, 3);
+            btnSignUp.Margin = new Padding(2, 2, 2, 2);
             btnSignUp.Name = "btnSignUp";
-            btnSignUp.Size = new Size(112, 34);
+            btnSignUp.Size = new Size(78, 25);
             btnSignUp.TabIndex = 2;
             btnSignUp.Text = "Sign Up";
             btnSignUp.UseVisualStyleBackColor = false;
@@ -68,9 +70,10 @@
             btnSignIn.FlatStyle = FlatStyle.Flat;
             btnSignIn.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSignIn.ForeColor = Color.White;
-            btnSignIn.Location = new Point(7, 5);
+            btnSignIn.Location = new Point(5, 3);
+            btnSignIn.Margin = new Padding(2, 2, 2, 2);
             btnSignIn.Name = "btnSignIn";
-            btnSignIn.Size = new Size(112, 34);
+            btnSignIn.Size = new Size(78, 25);
             btnSignIn.TabIndex = 0;
             btnSignIn.Text = "Sign In";
             btnSignIn.UseVisualStyleBackColor = false;
@@ -79,21 +82,23 @@
             // pnPageContainer
             // 
             pnPageContainer.Dock = DockStyle.Fill;
-            pnPageContainer.Location = new Point(0, 44);
+            pnPageContainer.Location = new Point(0, 32);
+            pnPageContainer.Margin = new Padding(2, 2, 2, 2);
             pnPageContainer.Name = "pnPageContainer";
-            pnPageContainer.Size = new Size(728, 450);
+            pnPageContainer.Size = new Size(510, 264);
             pnPageContainer.TabIndex = 1;
             // 
-            // AuthenticationForm
+            // AuthForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(20, 24, 28);
-            ClientSize = new Size(728, 494);
+            ClientSize = new Size(510, 296);
             Controls.Add(pnPageContainer);
             Controls.Add(pnTabContainer);
             FormBorderStyle = FormBorderStyle.SizableToolWindow;
-            Name = "AuthenticationForm";
+            Margin = new Padding(2, 2, 2, 2);
+            Name = "AuthForm";
             Text = "AuthenticationForm";
             pnTabContainer.ResumeLayout(false);
             ResumeLayout(false);

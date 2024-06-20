@@ -17,15 +17,17 @@ namespace CineVerse.Views.UserControls
     public partial class MoviesScreen : UserControlComponent
     {
         private readonly MovieBrowsingService _movieBrowsingService;
+        private readonly NavigationService _navigationService;
         private readonly List<MovieCard> _movieCards;
         private readonly int _moviesPerPage;
 
         public int CurrentPage { get; private set; } = 1;
 
-        public MoviesScreen(MovieBrowsingService movieBrowsingService, int moviesPerPage)
+        public MoviesScreen(NavigationService navigationService, MovieBrowsingService movieBrowsingService, int moviesPerPage)
         {
             InitializeComponent();
 
+            _navigationService = navigationService;
             _movieBrowsingService = movieBrowsingService;
 
             // Disable the previous and next page button by default
@@ -37,7 +39,7 @@ namespace CineVerse.Views.UserControls
             _movieCards = new List<MovieCard>();
             for (int i = 0; i < _moviesPerPage; i++)
             {
-                _movieCards.Add(new MovieCard());
+                _movieCards.Add(new MovieCard(_navigationService));
             }
         }
 

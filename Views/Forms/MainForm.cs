@@ -43,7 +43,7 @@ namespace CineVerse.Forms
             _movieBrowsingService = movieBrowsingService;
             _navigationService = new NavigationService(this, pnMain);
 
-            _moviesScreen = new MoviesScreen(_movieBrowsingService, 12);
+            _moviesScreen = new MoviesScreen(_navigationService, _movieBrowsingService, 12);
             _moviesScreen.SetMediator(this);
 
             _navigationService.RegisterScreen("moviesScreen", _moviesScreen);
@@ -72,7 +72,8 @@ namespace CineVerse.Forms
             {
                 if (control is Button btn)
                 {
-                    btn.BackColor = Color.FromArgb(150, 150, 150);
+                    if (btn.Name != "btnUser")
+                        btn.BackColor = Color.FromArgb(150, 150, 150);
                 }
             }
         }

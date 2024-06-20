@@ -12686,6 +12686,9 @@
         yKsCwAwPUqKdFF6Tv629b+dDw7VeH//Z
 </value>
   </data>
+  <data name="lblOverviewParagraph.Text" xml:space="preserve">
+    <value>Imprisoned in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including an older prisoner named Red -- for his integrity and unquenchable sense of hope.</value>
+  </data>
   <data name="picMoviePoster.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEAAAAAAAD/2wBDAAgICAgJCAkKCgkNDgwODRMREBARExwUFhQWFBwrGx8bGx8b
@@ -20536,8 +20539,5 @@
         9FB9+7j897j897j7IIOEPueLhDoe4/Pe4+4HhI/Zduu7j8hEHV9x9wH4b3H573H573H573H57/cPz3uP
         z3uPz3uPz3uPz3uPz3uPz3uPz3uPz3uPz3uPz3uPz3uPz3uPz3uPz3uJ/9k=
 </value>
-  </data>
-  <data name="lblOverviewParagraph.Text" xml:space="preserve">
-    <value>Imprisoned in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including an older prisoner named Red -- for his integrity and unquenchable sense of hope.</value>
   </data>
 </root>

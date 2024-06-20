@@ -9,8 +9,8 @@ namespace CineVerse.Data.Entities
 {
     public enum ListType
     {
-        Watchlist,
-        // more types here
+        Public,
+        Private,
     }
 
     public class List

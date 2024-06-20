@@ -1,4 +1,5 @@
-﻿using CineVerse.Data.Entities;
+﻿using CineVerse.Core.Services;
+using CineVerse.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,10 +16,14 @@ namespace CineVerse.Views.UserControls
     public partial class MovieCard : UserControl
     {
         private PictureBox _poster;
+        private readonly NavigationService _navigationService;
+        public Movie CurrentMovie { get; private set; }
 
-        public MovieCard()
+        public MovieCard(NavigationService navigationService)
         {
             InitializeComponent();
+
+            _navigationService = navigationService;
 
             _poster = new PictureBox
             {
@@ -32,7 +37,7 @@ namespace CineVerse.Views.UserControls
 
             SetupEvents(this);
         }
-        
+
         private void SetupEvents(Control container)
         {
             foreach (Control control in container.Controls)
@@ -42,6 +47,10 @@ namespace CineVerse.Views.UserControls
                     Debug.WriteLine(control);
                     control.MouseEnter += MovieCard_MouseEnter;
                     control.MouseLeave += MovieCard_MouseLeave;
+                    if (control.Parent != pnActions)
+                    {
+                        control.Click += MovieCard_Click;
+                    }
                     SetupEvents(control);
                 }
             }
@@ -52,6 +61,7 @@ namespace CineVerse.Views.UserControls
             _poster.Image?.Dispose();
             _poster.Image = new Bitmap(movie.PosterPath);
             lblMovieTitle.Text = movie.Title;
+            CurrentMovie = movie;
         }
 
         /// <summary>
@@ -96,6 +106,18 @@ namespace CineVerse.Views.UserControls
                     pnActions.Visible = false;
                 }
             }
+        }
+
+        private void btnMore_Click(object sender, EventArgs e)
+        {
+            cmsActions.Show(btnMore, new Point(0, btnMore.Height));
+        }
+
+        private void MovieCard_Click(object sender, EventArgs e)
+        {
+            var movieDetailsScreen = new MovieDetailsScreen(_navigationService);
+            movieDetailsScreen.SetMovieData(CurrentMovie);
+            _navigationService.NavigateToScreen(movieDetailsScreen);
         }
     }
 }

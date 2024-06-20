@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,14 +12,14 @@ namespace CineVerse.Core.Services
         private readonly Form _currentForm;
         private readonly Panel _mainPanel;
         private readonly Dictionary<string, UserControl> _screens;
-        private readonly Stack<string> _navigationStack;
+        private readonly Stack<UserControl> _navigationStack;
 
         public NavigationService(Form currentForm, Panel mainPanel)
         {
             _currentForm = currentForm ?? throw new ArgumentNullException(nameof(currentForm));
             _mainPanel = mainPanel ?? throw new ArgumentNullException(nameof(_mainPanel));
             _screens = new Dictionary<string, UserControl>();
-            _navigationStack = new Stack<string>();
+            _navigationStack = new Stack<UserControl>();
         }
 
         public void RegisterScreen(string key, UserControl screen)
@@ -51,7 +52,16 @@ namespace CineVerse.Core.Services
             _mainPanel.Controls.Add(screen);
             screen.Dock = DockStyle.Fill;
 
-            _navigationStack.Push(key);
+            _navigationStack.Push(screen);
+        }
+
+        public void NavigateToScreen(UserControl screen)
+        {
+            _mainPanel.Controls.Clear();
+            _mainPanel.Controls.Add(screen);
+            screen.Dock = DockStyle.Fill;
+
+            _navigationStack.Push(screen);
         }
 
         public void NavigateBack()

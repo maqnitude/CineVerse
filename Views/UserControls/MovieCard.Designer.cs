@@ -135,25 +135,25 @@
             // whereToWatchToolStripMenuItem
             // 
             whereToWatchToolStripMenuItem.Name = "whereToWatchToolStripMenuItem";
-            whereToWatchToolStripMenuItem.Size = new Size(180, 22);
+            whereToWatchToolStripMenuItem.Size = new Size(160, 22);
             whereToWatchToolStripMenuItem.Text = "Where to watch";
             // 
             // addToWatchlistToolStripMenuItem
             // 
             addToWatchlistToolStripMenuItem.Name = "addToWatchlistToolStripMenuItem";
-            addToWatchlistToolStripMenuItem.Size = new Size(180, 22);
+            addToWatchlistToolStripMenuItem.Size = new Size(160, 22);
             addToWatchlistToolStripMenuItem.Text = "Add to watchlist";
             // 
             // addToListsToolStripMenuItem
             // 
             addToListsToolStripMenuItem.Name = "addToListsToolStripMenuItem";
-            addToListsToolStripMenuItem.Size = new Size(180, 22);
+            addToListsToolStripMenuItem.Size = new Size(160, 22);
             addToListsToolStripMenuItem.Text = "Add to lists ...";
             // 
             // logOrReviewToolStripMenuItem
             // 
             logOrReviewToolStripMenuItem.Name = "logOrReviewToolStripMenuItem";
-            logOrReviewToolStripMenuItem.Size = new Size(180, 22);
+            logOrReviewToolStripMenuItem.Size = new Size(160, 22);
             logOrReviewToolStripMenuItem.Text = "Log or review ...";
             // 
             // MovieCard

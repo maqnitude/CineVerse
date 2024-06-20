@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MovieDetailsScreen));
             pnBackdrop = new Panel();
             pnHeader = new Panel();
-            button4 = new Button();
+            btnBack = new Button();
             pnHeaderInfo = new Panel();
             lblOverviewParagraph = new Label();
             lblOverviewHeader = new Label();
@@ -85,9 +85,9 @@
             picStar1 = new PictureBox();
             lblRate = new Label();
             pnActionsRow1 = new Panel();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
+            btnWatchlist = new Button();
+            btnLike = new Button();
+            btnWatch = new Button();
             pnBackdrop.SuspendLayout();
             pnHeader.SuspendLayout();
             pnHeaderInfo.SuspendLayout();
@@ -132,7 +132,7 @@
             // pnHeader
             // 
             pnHeader.BackColor = Color.Transparent;
-            pnHeader.Controls.Add(button4);
+            pnHeader.Controls.Add(btnBack);
             pnHeader.Controls.Add(pnHeaderInfo);
             pnHeader.Controls.Add(lblDirectedBy);
             pnHeader.Controls.Add(lblDirectorName);
@@ -145,16 +145,17 @@
             pnHeader.Size = new Size(1065, 452);
             pnHeader.TabIndex = 0;
             // 
-            // button4
+            // btnBack
             // 
-            button4.FlatAppearance.BorderSize = 0;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Image = Properties.Resources.back;
-            button4.Location = new Point(15, 14);
-            button4.Name = "button4";
-            button4.Size = new Size(30, 30);
-            button4.TabIndex = 7;
-            button4.UseVisualStyleBackColor = true;
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.Image = Properties.Resources.back;
+            btnBack.Location = new Point(15, 14);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(30, 30);
+            btnBack.TabIndex = 7;
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
             // 
             // pnHeaderInfo
             // 
@@ -732,62 +733,62 @@
             // pnActionsRow1
             // 
             pnActionsRow1.BorderStyle = BorderStyle.FixedSingle;
-            pnActionsRow1.Controls.Add(button3);
-            pnActionsRow1.Controls.Add(button2);
-            pnActionsRow1.Controls.Add(button1);
+            pnActionsRow1.Controls.Add(btnWatchlist);
+            pnActionsRow1.Controls.Add(btnLike);
+            pnActionsRow1.Controls.Add(btnWatch);
             pnActionsRow1.Dock = DockStyle.Top;
             pnActionsRow1.Location = new Point(0, 0);
             pnActionsRow1.Name = "pnActionsRow1";
             pnActionsRow1.Size = new Size(252, 90);
             pnActionsRow1.TabIndex = 0;
             // 
-            // button3
+            // btnWatchlist
             // 
-            button3.Anchor = AnchorStyles.Right;
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
-            button3.ForeColor = Color.FromArgb(178, 172, 162);
-            button3.Image = Properties.Resources.add_big;
-            button3.Location = new Point(168, 5);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 80);
-            button3.TabIndex = 0;
-            button3.Text = "Watchlist";
-            button3.TextImageRelation = TextImageRelation.ImageAboveText;
-            button3.UseVisualStyleBackColor = true;
+            btnWatchlist.Anchor = AnchorStyles.Right;
+            btnWatchlist.FlatAppearance.BorderSize = 0;
+            btnWatchlist.FlatStyle = FlatStyle.Flat;
+            btnWatchlist.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            btnWatchlist.ForeColor = Color.FromArgb(178, 172, 162);
+            btnWatchlist.Image = Properties.Resources.add_big;
+            btnWatchlist.Location = new Point(168, 5);
+            btnWatchlist.Name = "btnWatchlist";
+            btnWatchlist.Size = new Size(75, 80);
+            btnWatchlist.TabIndex = 0;
+            btnWatchlist.Text = "Watchlist";
+            btnWatchlist.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnWatchlist.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnLike
             // 
-            button2.Anchor = AnchorStyles.None;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
-            button2.ForeColor = Color.FromArgb(178, 172, 162);
-            button2.Image = Properties.Resources.like_big;
-            button2.Location = new Point(87, 5);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 80);
-            button2.TabIndex = 0;
-            button2.Text = "Like";
-            button2.TextImageRelation = TextImageRelation.ImageAboveText;
-            button2.UseVisualStyleBackColor = true;
+            btnLike.Anchor = AnchorStyles.None;
+            btnLike.FlatAppearance.BorderSize = 0;
+            btnLike.FlatStyle = FlatStyle.Flat;
+            btnLike.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            btnLike.ForeColor = Color.FromArgb(178, 172, 162);
+            btnLike.Image = Properties.Resources.like_big;
+            btnLike.Location = new Point(87, 5);
+            btnLike.Name = "btnLike";
+            btnLike.Size = new Size(75, 80);
+            btnLike.TabIndex = 0;
+            btnLike.Text = "Like";
+            btnLike.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnLike.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnWatch
             // 
-            button1.Anchor = AnchorStyles.Left;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
-            button1.ForeColor = Color.FromArgb(178, 172, 162);
-            button1.Image = Properties.Resources.eye_big;
-            button1.Location = new Point(5, 5);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 80);
-            button1.TabIndex = 0;
-            button1.Text = "Watch";
-            button1.TextImageRelation = TextImageRelation.ImageAboveText;
-            button1.UseVisualStyleBackColor = true;
+            btnWatch.Anchor = AnchorStyles.Left;
+            btnWatch.FlatAppearance.BorderSize = 0;
+            btnWatch.FlatStyle = FlatStyle.Flat;
+            btnWatch.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            btnWatch.ForeColor = Color.FromArgb(178, 172, 162);
+            btnWatch.Image = Properties.Resources.eye_big;
+            btnWatch.Location = new Point(5, 5);
+            btnWatch.Name = "btnWatch";
+            btnWatch.Size = new Size(75, 80);
+            btnWatch.TabIndex = 0;
+            btnWatch.Text = "Watch";
+            btnWatch.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnWatch.UseVisualStyleBackColor = true;
             // 
             // MovieDetailsScreen
             // 
@@ -851,9 +852,9 @@
         private Panel pnColumn2;
         private Panel pnActions;
         private Panel pnActionsRow1;
-        private Button button1;
-        private Button button3;
-        private Button button2;
+        private Button btnWatch;
+        private Button btnWatchlist;
+        private Button btnLike;
         private Panel pnActionsRow3;
         private Panel pnActionsRow2;
         private Label lblRate;
@@ -893,6 +894,6 @@
         private Label lblBudget;
         private Label lblBudgetHeader;
         private Label lblOriginalLanguage;
-        private Button button4;
+        private Button btnBack;
     }
 }

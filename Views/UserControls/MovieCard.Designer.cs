@@ -28,14 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             lblMovieTitle = new Label();
             pnMoviePoster = new Panel();
             pnActions = new Panel();
             btnLike = new Button();
             btnMore = new Button();
             btnWatch = new Button();
+            cmsActions = new ContextMenuStrip(components);
+            whereToWatchToolStripMenuItem = new ToolStripMenuItem();
+            addToWatchlistToolStripMenuItem = new ToolStripMenuItem();
+            addToListsToolStripMenuItem = new ToolStripMenuItem();
+            logOrReviewToolStripMenuItem = new ToolStripMenuItem();
             pnMoviePoster.SuspendLayout();
             pnActions.SuspendLayout();
+            cmsActions.SuspendLayout();
             SuspendLayout();
             // 
             // lblMovieTitle
@@ -103,6 +110,7 @@
             btnMore.Size = new Size(27, 20);
             btnMore.TabIndex = 2;
             btnMore.UseVisualStyleBackColor = false;
+            btnMore.Click += btnMore_Click;
             // 
             // btnWatch
             // 
@@ -118,6 +126,36 @@
             btnWatch.TabIndex = 0;
             btnWatch.UseVisualStyleBackColor = false;
             // 
+            // cmsActions
+            // 
+            cmsActions.Items.AddRange(new ToolStripItem[] { whereToWatchToolStripMenuItem, addToWatchlistToolStripMenuItem, addToListsToolStripMenuItem, logOrReviewToolStripMenuItem });
+            cmsActions.Name = "cmsActions";
+            cmsActions.Size = new Size(161, 92);
+            // 
+            // whereToWatchToolStripMenuItem
+            // 
+            whereToWatchToolStripMenuItem.Name = "whereToWatchToolStripMenuItem";
+            whereToWatchToolStripMenuItem.Size = new Size(180, 22);
+            whereToWatchToolStripMenuItem.Text = "Where to watch";
+            // 
+            // addToWatchlistToolStripMenuItem
+            // 
+            addToWatchlistToolStripMenuItem.Name = "addToWatchlistToolStripMenuItem";
+            addToWatchlistToolStripMenuItem.Size = new Size(180, 22);
+            addToWatchlistToolStripMenuItem.Text = "Add to watchlist";
+            // 
+            // addToListsToolStripMenuItem
+            // 
+            addToListsToolStripMenuItem.Name = "addToListsToolStripMenuItem";
+            addToListsToolStripMenuItem.Size = new Size(180, 22);
+            addToListsToolStripMenuItem.Text = "Add to lists ...";
+            // 
+            // logOrReviewToolStripMenuItem
+            // 
+            logOrReviewToolStripMenuItem.Name = "logOrReviewToolStripMenuItem";
+            logOrReviewToolStripMenuItem.Size = new Size(180, 22);
+            logOrReviewToolStripMenuItem.Text = "Log or review ...";
+            // 
             // MovieCard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -130,6 +168,7 @@
             Size = new Size(160, 187);
             pnMoviePoster.ResumeLayout(false);
             pnActions.ResumeLayout(false);
+            cmsActions.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -140,5 +179,10 @@
         private Button btnLike;
         private Button btnMore;
         private Button btnWatch;
+        private ContextMenuStrip cmsActions;
+        private ToolStripMenuItem whereToWatchToolStripMenuItem;
+        private ToolStripMenuItem addToWatchlistToolStripMenuItem;
+        private ToolStripMenuItem addToListsToolStripMenuItem;
+        private ToolStripMenuItem logOrReviewToolStripMenuItem;
     }
 }

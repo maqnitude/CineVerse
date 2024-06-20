@@ -30,7 +30,7 @@ namespace CineVerse.Views.UserControls
 
             SetupEvents(this);
         }
-        
+
         public void SetMovieData(Movie movie)
         {
             _poster.Image?.Dispose();
@@ -71,6 +71,11 @@ namespace CineVerse.Views.UserControls
                     pnActions.Visible = false;
                 }
             }
+        }
+
+        private void btnMore_Click(object sender, EventArgs e)
+        {
+            cmsActions.Show(btnMore, new Point(0, btnMore.Height));
         }
     }
 }

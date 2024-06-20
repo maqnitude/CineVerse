@@ -113,6 +113,16 @@ namespace CineVerse.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap close {
+            get {
+                object obj = ResourceManager.GetObject("close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap eye {
             get {
                 object obj = ResourceManager.GetObject("eye", resourceCulture);
@@ -196,6 +206,26 @@ namespace CineVerse.Properties {
         internal static System.Drawing.Bitmap like_fill_big {
             get {
                 object obj = ResourceManager.GetObject("like_fill_big", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap like_fill_dark {
+            get {
+                object obj = ResourceManager.GetObject("like_fill_dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap like_fill_orange {
+            get {
+                object obj = ResourceManager.GetObject("like_fill_orange", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -296,6 +326,36 @@ namespace CineVerse.Properties {
         internal static System.Drawing.Bitmap star_fill_big {
             get {
                 object obj = ResourceManager.GetObject("star_fill_big", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap star_fill_blue {
+            get {
+                object obj = ResourceManager.GetObject("star_fill_blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap star_fill_dark {
+            get {
+                object obj = ResourceManager.GetObject("star_fill_dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap star_fill_green {
+            get {
+                object obj = ResourceManager.GetObject("star_fill_green", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

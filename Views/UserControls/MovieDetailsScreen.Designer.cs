@@ -682,6 +682,7 @@
             lblAddToLists.TabIndex = 0;
             lblAddToLists.Text = "Add to lists ...";
             lblAddToLists.TextAlign = ContentAlignment.MiddleCenter;
+            lblAddToLists.Click += lblAddToLists_Click;
             // 
             // pnActionsRow4
             // 

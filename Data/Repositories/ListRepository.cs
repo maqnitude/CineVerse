@@ -25,7 +25,9 @@ namespace CineVerse.Data.Repositories
 
             if (includeMovies)
             {
-                query = query.Include(l => l.Movies);
+                query = query
+                    .Include(l => l.Movies) // this is just the ListMovie collection
+                        .ThenInclude(lm => lm.Movie); // include actual movies
             }
 
             return await query.ToListAsync();

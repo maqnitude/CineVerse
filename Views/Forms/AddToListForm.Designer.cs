@@ -133,6 +133,7 @@
             btnAdd.TabIndex = 2;
             btnAdd.Text = "ADD";
             btnAdd.UseVisualStyleBackColor = false;
+            btnAdd.Click += btnAdd_Click;
             // 
             // AddToListForm
             // 

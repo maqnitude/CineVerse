@@ -58,10 +58,19 @@ namespace CineVerse.Forms
             switch (ev)
             {
                 case "OpenAddToListForm":
-                    var addToListForm = new AddToListForm();
-                    addToListForm.SetUser(_currentUser);
-                    addToListForm.LoadListsAsync();
-                    addToListForm.ShowDialog();
+                    if (sender is MovieCard card)
+                    {
+                        var addToListForm = new AddToListForm(_currentUser, card.CurrentMovie);
+                        addToListForm.LoadListsAsync();
+                        addToListForm.ShowDialog();
+                    }
+                    else if (sender is MovieDetailsScreen detailsScreen)
+                    {
+                        var addToListForm = new AddToListForm(_currentUser, detailsScreen.GetCurrentMovie());
+                        addToListForm.LoadListsAsync();
+                        addToListForm.ShowDialog();
+                    }
+                    
                     break;
             }
         }
@@ -71,6 +80,7 @@ namespace CineVerse.Forms
             EventManager.Instance.Subscribe<UserEventArgs>(EventType.UserSignedIn, OnUserSignedIn);
 
             EventManager.Instance.Subscribe<ListEventArgs>(EventType.ListAdding, OnListAdding);
+            EventManager.Instance.Subscribe<ListMovieEventArgs>(EventType.ListMovieAdding, OnListMovieAdding);
 
             EventManager.Instance.Subscribe<ReviewEventArgs>(EventType.ReviewAdding, OnReviewAdding);
         }
@@ -103,6 +113,14 @@ namespace CineVerse.Forms
             await ListService.Instance.AddListAsync(_currentUser.Id, e.Name, e.Type, e.Description);
 
             EventManager.Instance.Publish(EventType.ListAdded, this, EventArgs.Empty);
+        }
+
+        private async void OnListMovieAdding(object sender, ListMovieEventArgs e)
+        {
+            //MessageBox.Show($"Adding movie with id({e.MovieId}) to {e.ListIds.Count} lists");
+            await ListService.Instance.AddMovieToLists(e.ListIds, e.MovieId);
+
+            EventManager.Instance.Publish(EventType.ListMovieAdded, this, EventArgs.Empty);
         }
 
         private async void OnReviewAdding(object sender, ReviewEventArgs e)

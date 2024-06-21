@@ -50,12 +50,12 @@ namespace CineVerse.Core.Events
 
     public class ListMovieEventArgs : EventArgs
     {
-        public string ListId { get; set; }
-        public string MovieId { get; set; }
+        public List<string> ListIds { get; set; }
+        public int MovieId { get; set; }
         
-        public ListMovieEventArgs(string listId, string movieId)
+        public ListMovieEventArgs(List<string> listIds, int movieId)
         {
-            ListId = listId;
+            ListIds = listIds;
             MovieId = movieId;
         }
     }

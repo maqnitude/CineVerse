@@ -14,8 +14,6 @@ namespace CineVerse.Views.Forms
 {
     public partial class NewListForm : Form
     {
-        private readonly ListService _listService;
-
         private class ComboBoxItem
         {
             public int Id { get; set; }
@@ -25,8 +23,6 @@ namespace CineVerse.Views.Forms
         public NewListForm(ListService listService)
         {
             InitializeComponent();
-
-            _listService = listService;
 
             List<ComboBoxItem> items = new()
             {
@@ -56,7 +52,7 @@ namespace CineVerse.Views.Forms
 
             try
             {
-                await _listService.CreateListAsync(txtName.Text, MapListType(comboListType.SelectedIndex), txtDescription.Text);
+                //await ListService.Instance.CreateListAsync(, txtName.Text, MapListType(comboListType.SelectedIndex), txtDescription.Text);
                 MessageBox.Show("New list created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)

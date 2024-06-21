@@ -1,4 +1,5 @@
 ﻿using CineVerse.Core.Interfaces;
+using CineVerse.Data;
 using CineVerse.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,25 +11,40 @@ namespace CineVerse.Core.Services
 {
     public class ListService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private static ListService _instance;
 
-        public ListService(IUnitOfWork unitOfWork)
+        public static ListService Instance
         {
-            _unitOfWork = unitOfWork;
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new ListService();
+                }
+                return _instance;
+            }
         }
 
-        public async Task CreateListAsync(string name, ListType listType, string? description)
+        private ListService()
         {
-            var list = new List()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Name = name,
-                Overview = description,
-                Type = listType,
-            };
+        }
 
-            await _unitOfWork.Lists.AddAsync(list);
-            await _unitOfWork.CompleteAsync();
+        public async Task CreateListAsync(string userId, string name, ListType listType, string? description)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var list = new List()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = name,
+                    Overview = description,
+                    Type = listType,
+                    UserId = userId
+                };
+
+                await unitOfWork.Lists.AddAsync(list);
+                await unitOfWork.CompleteAsync();
+            }
         }
     }
 }

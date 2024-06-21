@@ -46,6 +46,7 @@
             // lblTitle
             // 
             lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.White;
             lblTitle.Location = new Point(13, 13);
             lblTitle.Margin = new Padding(4);
             lblTitle.Name = "lblTitle";
@@ -66,6 +67,7 @@
             // lblName
             // 
             lblName.Font = new Font("Segoe UI", 12F);
+            lblName.ForeColor = Color.White;
             lblName.Location = new Point(13, 53);
             lblName.Margin = new Padding(4, 4, 4, 0);
             lblName.Name = "lblName";
@@ -97,6 +99,7 @@
             // label3
             // 
             label3.Font = new Font("Segoe UI", 12F);
+            label3.ForeColor = Color.White;
             label3.Location = new Point(13, 118);
             label3.Margin = new Padding(4, 4, 4, 0);
             label3.Name = "label3";
@@ -119,6 +122,7 @@
             // label4
             // 
             label4.Font = new Font("Segoe UI", 12F);
+            label4.ForeColor = Color.White;
             label4.Location = new Point(13, 183);
             label4.Margin = new Padding(4, 4, 4, 0);
             label4.Name = "label4";
@@ -131,6 +135,7 @@
             // 
             checkBox1.AutoSize = true;
             checkBox1.Font = new Font("Segoe UI", 12F);
+            checkBox1.ForeColor = Color.White;
             checkBox1.Location = new Point(13, 252);
             checkBox1.Margin = new Padding(4, 8, 4, 4);
             checkBox1.Name = "checkBox1";
@@ -154,6 +159,7 @@
             // 
             label5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label5.Font = new Font("Segoe UI", 12F);
+            label5.ForeColor = Color.White;
             label5.Location = new Point(432, 53);
             label5.Margin = new Padding(4);
             label5.Name = "label5";
@@ -187,6 +193,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(31, 40, 47);
             ClientSize = new Size(784, 361);
             Controls.Add(txtDescription);
             Controls.Add(checkBox1);

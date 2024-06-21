@@ -160,6 +160,7 @@
             // 
             // pnMain
             // 
+            pnMain.AutoScroll = true;
             pnMain.BackColor = Color.FromArgb(31, 40, 47);
             pnMain.Dock = DockStyle.Fill;
             pnMain.Location = new Point(0, 58);

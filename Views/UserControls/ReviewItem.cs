@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineVerse.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,20 @@ namespace CineVerse.Views.UserControls
 {
     public partial class ReviewItem : UserControl
     {
-        public ReviewItem()
+        public ReviewItem(Review review)
         {
             InitializeComponent();
+
+            Dock = DockStyle.Top;
+
+            SetReviewData(review);
+        }
+
+        private void SetReviewData(Review review)
+        {
+            lblUsername.Text = review.User.Name;
+            lblRating.Text = review.Rating.ToString();
+            lblContent.Text = review.Content;
         }
     }
 }

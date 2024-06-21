@@ -73,6 +73,7 @@ namespace CineVerse.Views.UserControls
                 for (int i = 0; i < movies.Count; i++)
                 {
                     MovieCard card = _movieCards[i];
+                    card.SetMediator(_mediator);
                     card.SetMovieData(movies[i]);
                     card.SetSize("big");
                     flpMovieCardsContainer.Controls.Add(card);

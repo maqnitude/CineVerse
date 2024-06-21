@@ -24,7 +24,7 @@ namespace CineVerse.Views.UserControls
         {
             InitializeComponent();
             _navigationService = navigationService;
-
+            
             EventManager.Instance.Subscribe<EventArgs>(EventType.ReviewAdded, OnReviewAdded);
         }
 
@@ -39,6 +39,20 @@ namespace CineVerse.Views.UserControls
 
             picMoviePoster.Image?.Dispose();
             picMoviePoster.Image = new Bitmap(movie.PosterPath);
+
+            lblReleaseYear.Text = movie.ReleaseDate?.Year.ToString();
+            lblReleaseDate.Text = movie.ReleaseDate.ToString();
+
+            lblGenres.Text = String.Join(", ", movie.Genres);
+            lblRuntime.Text = $"{movie.Runtime / 60}h{movie.Runtime % 60}m";
+
+            lblTagline.Text = movie.TagLine.ToUpper();
+            lblOverviewParagraph.Text = movie.Overview;
+
+            lblStatus.Text = movie.Status;
+            lblOriginalLanguage.Text = movie.OriginalLanguage;
+            lblBudget.Text = movie.Budget.ToString();
+            lblRevenue.Text = movie.Revenue.ToString();
 
             //Notify(this, "LoadReviews");
             LoadReviews();
@@ -92,7 +106,11 @@ namespace CineVerse.Views.UserControls
 
         private void MovieDetailsScreen_Load(object sender, EventArgs e)
         {
-            //pnHeader.BackColor = Color.FromArgb(150, 0, 0, 0);
+            pnHeader.BackColor = Color.FromArgb(150, 0, 0, 0);
+            pnHeaderInfo.BackColor = Color.Transparent;
+            pnMovieTitle.BackColor = Color.Transparent;
+            pnMovieFacts.BackColor = Color.Transparent;
+            pnDirector.BackColor = Color.Transparent;
         }
 
         private void btnBack_Click(object sender, EventArgs e)

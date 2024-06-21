@@ -57,7 +57,8 @@
             // 
             // picListType
             // 
-            picListType.Location = new Point(187, 6);
+            picListType.Anchor = AnchorStyles.Top;
+            picListType.Location = new Point(187, 7);
             picListType.Name = "picListType";
             picListType.Size = new Size(26, 26);
             picListType.TabIndex = 1;

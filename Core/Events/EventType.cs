@@ -17,6 +17,9 @@ namespace CineVerse.Core.Events
         ListAdding,
         ListAdded,
 
+        ListMovieAdding,
+        ListMovieAdded,
+
         ReviewAdding,
         ReviewAdded,
     }
@@ -42,6 +45,18 @@ namespace CineVerse.Core.Events
             Name = name;
             Description = description;
             Type = type;
+        }
+    }
+
+    public class ListMovieEventArgs : EventArgs
+    {
+        public string ListId { get; set; }
+        public string MovieId { get; set; }
+        
+        public ListMovieEventArgs(string listId, string movieId)
+        {
+            ListId = listId;
+            MovieId = movieId;
         }
     }
 

@@ -25,7 +25,7 @@ namespace CineVerse.Data.Entities
         public ListType Type { get; set; }
         public string? UserId { get; set; }
         public User? User { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt {  get; set; }
         public ICollection<ListMovie> Movies { get; set; } = new List<ListMovie>();
     }

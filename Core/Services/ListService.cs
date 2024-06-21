@@ -29,7 +29,7 @@ namespace CineVerse.Core.Services
         {
         }
 
-        public async Task CreateListAsync(string userId, string name, ListType listType, string? description)
+        public async Task AddListAsync(string userId, string name, ListType listType, string? description)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
             {
@@ -39,11 +39,21 @@ namespace CineVerse.Core.Services
                     Name = name,
                     Overview = description,
                     Type = listType,
-                    UserId = userId
+                    UserId = userId,
+                    CreatedAt = DateTime.UtcNow
                 };
 
                 await unitOfWork.Lists.AddAsync(list);
                 await unitOfWork.CompleteAsync();
+            }
+        }
+
+        public async Task<List<List>> GetUserListsAsync(string userId, bool includeUser = false, bool includeMovies = false)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var lists = await unitOfWork.Lists.GetListsByUserIdAsync(userId, includeUser, includeMovies);
+                return lists.ToList();
             }
         }
     }

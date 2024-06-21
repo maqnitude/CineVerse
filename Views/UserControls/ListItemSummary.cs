@@ -15,14 +15,17 @@ namespace CineVerse.Views.UserControls
     public partial class ListItemSummary : UserControl
     {
         private List? _list;
-        public ListItemSummary()
+
+        public ListItemSummary(List list)
         {
             InitializeComponent();
+
+            SetListData(list);
         }
 
         public void SetListData(List list)
         {
-            this._list = list;
+            _list = list;
             
             if (list != null)
             {
@@ -53,6 +56,11 @@ namespace CineVerse.Views.UserControls
                         }
                     }
                 }
+
+                lblListTitle.Text = list.Name;
+                lblUsername.Text = list.User.Username;
+                lblListDescription.Text = list.Overview;
+                lblNumMovies.Text = list.Movies.Count.ToString();
             }
         }
     }

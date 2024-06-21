@@ -30,6 +30,7 @@ namespace CineVerse.Forms
         private readonly NavigationService _navigationService;
 
         private readonly MoviesScreen _moviesScreen;
+        private readonly ListsScreen _listsScreen;
 
         private User _currentUser;
 
@@ -42,24 +43,24 @@ namespace CineVerse.Forms
             _moviesScreen = new MoviesScreen(_navigationService, 12);
             _moviesScreen.SetMediator(this);
 
+            _listsScreen = new ListsScreen();
+
             _navigationService.RegisterScreen("moviesScreen", _moviesScreen);
+            _navigationService.RegisterScreen("listsScreen", _listsScreen);
 
             RegisterEventHandlers();
         }
 
         public void Notify(object sender, string ev)
         {
-            switch (ev)
-            {
-                case "ShowMoviesScreen":
-                    _navigationService.NavigateToScreen("moviesScreen");
-                    break;
-            }
         }
 
         private void RegisterEventHandlers()
         {
             EventManager.Instance.Subscribe<UserEventArgs>(EventType.UserSignedIn, OnUserSignedIn);
+
+            EventManager.Instance.Subscribe<ListEventArgs>(EventType.ListAdding, OnListAdding);
+
             EventManager.Instance.Subscribe<ReviewEventArgs>(EventType.ReviewAdding, OnReviewAdding);
         }
 
@@ -82,6 +83,15 @@ namespace CineVerse.Forms
             _currentUser = e.User;
 
             btnUser.Text = _currentUser.Name;
+
+            _listsScreen.SetUser(_currentUser);
+        }
+
+        private async void OnListAdding(object sender, ListEventArgs e)
+        {
+            await ListService.Instance.AddListAsync(_currentUser.Id, e.Name, e.Type, e.Description);
+
+            EventManager.Instance.Publish(EventType.ListAdded, this, EventArgs.Empty);
         }
 
         private async void OnReviewAdding(object sender, ReviewEventArgs e)
@@ -95,9 +105,20 @@ namespace CineVerse.Forms
         {
             ResetButtonColors();
             btnMoviesTab.BackColor = Color.FromArgb(0, 157, 26);
-            Notify(this, "ShowMoviesScreen");
+
+            _navigationService.NavigateToScreen("moviesScreen");
 
             await _moviesScreen.LoadMoviesInPageAsync(_moviesScreen.CurrentPage);
+        }
+
+        private async void btnListsTab_Click(object sender, EventArgs e)
+        {
+            ResetButtonColors();
+            btnListsTab.BackColor = Color.FromArgb(0, 157, 26);
+
+            _navigationService.NavigateToScreen("listsScreen");
+
+            await _listsScreen.LoadListsAsync();
         }
     }
 }

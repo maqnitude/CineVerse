@@ -126,6 +126,7 @@
             btnListsTab.TabIndex = 0;
             btnListsTab.Text = "Lists";
             btnListsTab.UseVisualStyleBackColor = false;
+            btnListsTab.Click += btnListsTab_Click;
             // 
             // btnMoviesTab
             // 

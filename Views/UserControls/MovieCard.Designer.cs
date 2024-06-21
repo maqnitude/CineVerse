@@ -128,33 +128,47 @@
             // 
             // cmsActions
             // 
+            cmsActions.BackColor = Color.FromArgb(72, 87, 101);
             cmsActions.Items.AddRange(new ToolStripItem[] { whereToWatchToolStripMenuItem, addToWatchlistToolStripMenuItem, addToListsToolStripMenuItem, logOrReviewToolStripMenuItem });
             cmsActions.Name = "cmsActions";
-            cmsActions.Size = new Size(161, 92);
+            cmsActions.RenderMode = ToolStripRenderMode.System;
+            cmsActions.Size = new Size(182, 92);
             // 
             // whereToWatchToolStripMenuItem
             // 
+            whereToWatchToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            whereToWatchToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
+            whereToWatchToolStripMenuItem.ImageTransparentColor = Color.FromArgb(232, 230, 227);
             whereToWatchToolStripMenuItem.Name = "whereToWatchToolStripMenuItem";
-            whereToWatchToolStripMenuItem.Size = new Size(160, 22);
+            whereToWatchToolStripMenuItem.Size = new Size(181, 22);
             whereToWatchToolStripMenuItem.Text = "Where to watch";
             // 
             // addToWatchlistToolStripMenuItem
             // 
+            addToWatchlistToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            addToWatchlistToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
+            addToWatchlistToolStripMenuItem.ImageTransparentColor = Color.FromArgb(232, 230, 227);
             addToWatchlistToolStripMenuItem.Name = "addToWatchlistToolStripMenuItem";
-            addToWatchlistToolStripMenuItem.Size = new Size(160, 22);
+            addToWatchlistToolStripMenuItem.Size = new Size(181, 22);
             addToWatchlistToolStripMenuItem.Text = "Add to watchlist";
             // 
             // addToListsToolStripMenuItem
             // 
+            addToListsToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            addToListsToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
+            addToListsToolStripMenuItem.ImageTransparentColor = Color.FromArgb(232, 230, 227);
             addToListsToolStripMenuItem.Name = "addToListsToolStripMenuItem";
-            addToListsToolStripMenuItem.Size = new Size(160, 22);
+            addToListsToolStripMenuItem.Size = new Size(181, 22);
             addToListsToolStripMenuItem.Text = "Add to lists ...";
             // 
             // logOrReviewToolStripMenuItem
             // 
+            logOrReviewToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            logOrReviewToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
+            logOrReviewToolStripMenuItem.ImageTransparentColor = Color.FromArgb(232, 230, 227);
             logOrReviewToolStripMenuItem.Name = "logOrReviewToolStripMenuItem";
-            logOrReviewToolStripMenuItem.Size = new Size(160, 22);
-            logOrReviewToolStripMenuItem.Text = "Log or review ...";
+            logOrReviewToolStripMenuItem.Size = new Size(181, 22);
+            logOrReviewToolStripMenuItem.Text = "Log or review film ...";
             // 
             // MovieCard
             // 

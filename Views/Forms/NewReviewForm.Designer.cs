@@ -42,13 +42,13 @@
             picStar3 = new PictureBox();
             picStar2 = new PictureBox();
             picStar1 = new PictureBox();
+            pnRatingHeader = new Panel();
+            lblRatingStatus = new Label();
+            lblRatingHeader = new Label();
             pnLikeSection = new Panel();
             picLike = new PictureBox();
             lblLikeHeader = new Label();
             btnSave = new Button();
-            pnRatingHeader = new Panel();
-            lblRatingHeader = new Label();
-            lblRatingStatus = new Label();
             ((System.ComponentModel.ISupportInitialize)picMoviePoster).BeginInit();
             pnHeader.SuspendLayout();
             pnReviewContainer.SuspendLayout();
@@ -59,9 +59,9 @@
             ((System.ComponentModel.ISupportInitialize)picStar3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picStar2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picStar1).BeginInit();
+            pnRatingHeader.SuspendLayout();
             pnLikeSection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLike).BeginInit();
-            pnRatingHeader.SuspendLayout();
             SuspendLayout();
             // 
             // btnClose
@@ -80,7 +80,7 @@
             // 
             // picMoviePoster
             // 
-            picMoviePoster.Location = new Point(26, 59);
+            picMoviePoster.Location = new Point(31, 59);
             picMoviePoster.Name = "picMoviePoster";
             picMoviePoster.Size = new Size(150, 200);
             picMoviePoster.TabIndex = 1;
@@ -219,6 +219,40 @@
             picStar1.TabIndex = 2;
             picStar1.TabStop = false;
             // 
+            // pnRatingHeader
+            // 
+            pnRatingHeader.Controls.Add(lblRatingStatus);
+            pnRatingHeader.Controls.Add(lblRatingHeader);
+            pnRatingHeader.Dock = DockStyle.Top;
+            pnRatingHeader.Location = new Point(0, 0);
+            pnRatingHeader.Name = "pnRatingHeader";
+            pnRatingHeader.Size = new Size(160, 20);
+            pnRatingHeader.TabIndex = 0;
+            // 
+            // lblRatingStatus
+            // 
+            lblRatingStatus.Dock = DockStyle.Fill;
+            lblRatingStatus.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblRatingStatus.ForeColor = Color.FromArgb(200, 195, 188);
+            lblRatingStatus.Location = new Point(48, 0);
+            lblRatingStatus.Name = "lblRatingStatus";
+            lblRatingStatus.Size = new Size(112, 20);
+            lblRatingStatus.TabIndex = 1;
+            lblRatingStatus.Text = "3 out of 5";
+            lblRatingStatus.TextAlign = ContentAlignment.TopRight;
+            lblRatingStatus.Visible = false;
+            // 
+            // lblRatingHeader
+            // 
+            lblRatingHeader.Dock = DockStyle.Left;
+            lblRatingHeader.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblRatingHeader.ForeColor = Color.FromArgb(232, 230, 227);
+            lblRatingHeader.Location = new Point(0, 0);
+            lblRatingHeader.Name = "lblRatingHeader";
+            lblRatingHeader.Size = new Size(48, 20);
+            lblRatingHeader.TabIndex = 0;
+            lblRatingHeader.Text = "Rating";
+            // 
             // pnLikeSection
             // 
             pnLikeSection.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
@@ -267,39 +301,6 @@
             btnSave.Text = "SAVE";
             btnSave.UseVisualStyleBackColor = false;
             // 
-            // pnRatingHeader
-            // 
-            pnRatingHeader.Controls.Add(lblRatingStatus);
-            pnRatingHeader.Controls.Add(lblRatingHeader);
-            pnRatingHeader.Dock = DockStyle.Top;
-            pnRatingHeader.Location = new Point(0, 0);
-            pnRatingHeader.Name = "pnRatingHeader";
-            pnRatingHeader.Size = new Size(160, 20);
-            pnRatingHeader.TabIndex = 0;
-            // 
-            // lblRatingHeader
-            // 
-            lblRatingHeader.Dock = DockStyle.Left;
-            lblRatingHeader.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblRatingHeader.ForeColor = Color.FromArgb(232, 230, 227);
-            lblRatingHeader.Location = new Point(0, 0);
-            lblRatingHeader.Name = "lblRatingHeader";
-            lblRatingHeader.Size = new Size(48, 20);
-            lblRatingHeader.TabIndex = 0;
-            lblRatingHeader.Text = "Rating";
-            // 
-            // lblRatingStatus
-            // 
-            lblRatingStatus.Dock = DockStyle.Fill;
-            lblRatingStatus.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblRatingStatus.ForeColor = Color.FromArgb(200, 195, 188);
-            lblRatingStatus.Location = new Point(48, 0);
-            lblRatingStatus.Name = "lblRatingStatus";
-            lblRatingStatus.Size = new Size(112, 20);
-            lblRatingStatus.TabIndex = 1;
-            lblRatingStatus.Text = "3 out of 5";
-            lblRatingStatus.TextAlign = ContentAlignment.TopRight;
-            // 
             // NewReviewForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -327,9 +328,9 @@
             ((System.ComponentModel.ISupportInitialize)picStar3).EndInit();
             ((System.ComponentModel.ISupportInitialize)picStar2).EndInit();
             ((System.ComponentModel.ISupportInitialize)picStar1).EndInit();
+            pnRatingHeader.ResumeLayout(false);
             pnLikeSection.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picLike).EndInit();
-            pnRatingHeader.ResumeLayout(false);
             ResumeLayout(false);
         }
 

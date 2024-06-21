@@ -73,7 +73,7 @@ namespace CineVerse.Views.Forms
             for (int i = 1; i <= rating; i++)
             {
                 PictureBox picStar = (PictureBox)pnStars.Controls["picStar" + i];
-                if (i < rating)
+                if (i <= rating)
                 {
                     picStar.Image = greenStar;
                 }
@@ -83,6 +83,11 @@ namespace CineVerse.Views.Forms
                 }
             }
 
+            if (!lblRatingStatus.Visible)
+            {
+                lblRatingStatus.Visible = true;
+            }
+            lblRatingStatus.Text = $"{rating} out of 5";
         }
 
         private void Star_MouseLeave(object sender, EventArgs e)

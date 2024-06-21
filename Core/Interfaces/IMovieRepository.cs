@@ -9,7 +9,7 @@ namespace CineVerse.Core.Interfaces
 {
     public interface IMovieRepository : IRepository<Movie>
     {
-        Task<IEnumerable<Movie>> FindMoviesByTitleAsync(string title);
+        Task<Movie> GetMovieByTMDBIdAsync(int tmdbId);
         Task<IEnumerable<Movie>> GetMoviesAsync(int pageNumber,  int pageSize);
         Task<int> CountMoviesAsync();
     }

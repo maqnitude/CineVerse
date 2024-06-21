@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CineVerse.Core.Services;
 using CineVerse.Data.Entities;
+using CineVerse.Views.Forms;
 
 namespace CineVerse.Views.UserControls
 {
     public partial class MovieDetailsScreen : UserControl
     {
         private readonly NavigationService _navigationService;
+        private Movie _movie;
 
         public MovieDetailsScreen(NavigationService navigationService)
         {
@@ -24,11 +26,15 @@ namespace CineVerse.Views.UserControls
 
         public void SetMovieData(Movie movie)
         {
-            pnBackdrop.BackgroundImage?.Dispose();
-            picMoviePoster.Image?.Dispose();
-            pnBackdrop.BackgroundImage = new Bitmap(movie.BackdropPath);
-            picMoviePoster.Image = new Bitmap(movie.PosterPath);
+            _movie = movie;
+
             lblMovieTitle.Text = movie.Title;
+
+            pnBackdrop.BackgroundImage?.Dispose();
+            pnBackdrop.BackgroundImage = new Bitmap(movie.BackdropPath);
+
+            picMoviePoster.Image?.Dispose();
+            picMoviePoster.Image = new Bitmap(movie.PosterPath);
         }
 
         private void MovieDetailsScreen_Load(object sender, EventArgs e)
@@ -39,6 +45,12 @@ namespace CineVerse.Views.UserControls
         private void btnBack_Click(object sender, EventArgs e)
         {
             _navigationService.NavigateBack();
+        }
+
+        private void lblReviewOrLog_Click(object sender, EventArgs e)
+        {
+            var newReviewForm = new NewReviewForm(_movie);
+            newReviewForm.ShowDialog();
         }
     }
 }

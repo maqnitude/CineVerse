@@ -60,6 +60,7 @@ namespace CineVerse.Forms
         private void RegisterEventHandlers()
         {
             EventManager.Instance.Subscribe<UserEventArgs>(EventType.UserSignedIn, OnUserSignedIn);
+            EventManager.Instance.Subscribe<ReviewEventArgs>(EventType.ReviewAdding, OnReviewAdding);
         }
 
         private void ResetButtonColors()
@@ -81,6 +82,13 @@ namespace CineVerse.Forms
             _currentUser = e.User;
 
             btnUser.Text = _currentUser.Name;
+        }
+
+        private async void OnReviewAdding(object sender, ReviewEventArgs e)
+        {
+            await MovieService.Instance.AddMovieReviewAsync(_currentUser.Id, e.MovieId, e.Rating, e.Content);
+
+            EventManager.Instance.Publish(EventType.ReviewAdded, this, EventArgs.Empty);
         }
 
         private async void btnMoviesTab_Click(object sender, EventArgs e)

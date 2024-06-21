@@ -66,7 +66,7 @@ namespace CineVerse.Views.UserControls
 
             RemoveMovieCards();
 
-            List<Movie> movies = await MovieBrowsingService.Instance.GetMoviesInPageAsync(pageNumber, _moviesPerPage);
+            List<Movie> movies = await MovieService.Instance.GetMoviesInPageAsync(pageNumber, _moviesPerPage);
 
             if (movies.Count > 0)
             {
@@ -79,7 +79,7 @@ namespace CineVerse.Views.UserControls
                 }
             }
 
-            bool isLastPage = await MovieBrowsingService.Instance.IsLastPage(CurrentPage, _moviesPerPage);
+            bool isLastPage = await MovieService.Instance.IsLastPage(CurrentPage, _moviesPerPage);
             btnNextPage.Enabled = !isLastPage;
             btnPrevPage.Enabled = CurrentPage > 1;
 

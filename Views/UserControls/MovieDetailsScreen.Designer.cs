@@ -620,6 +620,7 @@
             lblReviewOrLog.TabIndex = 0;
             lblReviewOrLog.Text = "Review or log ...";
             lblReviewOrLog.TextAlign = ContentAlignment.MiddleCenter;
+            lblReviewOrLog.Click += lblReviewOrLog_Click;
             // 
             // pnActionsRow3
             // 

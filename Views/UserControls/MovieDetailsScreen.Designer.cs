@@ -31,15 +31,21 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MovieDetailsScreen));
             pnBackdrop = new Panel();
             pnHeader = new Panel();
+            pnDirector = new Panel();
+            lblDirectorName = new Label();
+            lblDirectedBy = new Label();
+            pnMovieTitle = new Panel();
+            lblReleaseYear = new Label();
+            lblMovieTitle = new Label();
+            pnMovieFacts = new Panel();
+            lblRuntime = new Label();
+            lblGenres = new Label();
+            lblReleaseDate = new Label();
             btnBack = new Button();
             pnHeaderInfo = new Panel();
             lblOverviewParagraph = new Label();
             lblOverviewHeader = new Label();
             lblTagline = new Label();
-            lblDirectedBy = new Label();
-            lblDirectorName = new Label();
-            lblReleaseYear = new Label();
-            lblMovieTitle = new Label();
             picMoviePoster = new PictureBox();
             pnContentWrapper = new Panel();
             pnColumn1 = new Panel();
@@ -90,6 +96,9 @@
             btnWatch = new Button();
             pnBackdrop.SuspendLayout();
             pnHeader.SuspendLayout();
+            pnDirector.SuspendLayout();
+            pnMovieTitle.SuspendLayout();
+            pnMovieFacts.SuspendLayout();
             pnHeaderInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picMoviePoster).BeginInit();
             pnContentWrapper.SuspendLayout();
@@ -132,18 +141,134 @@
             // pnHeader
             // 
             pnHeader.BackColor = Color.Transparent;
+            pnHeader.Controls.Add(pnDirector);
+            pnHeader.Controls.Add(pnMovieTitle);
+            pnHeader.Controls.Add(pnMovieFacts);
             pnHeader.Controls.Add(btnBack);
             pnHeader.Controls.Add(pnHeaderInfo);
-            pnHeader.Controls.Add(lblDirectedBy);
-            pnHeader.Controls.Add(lblDirectorName);
-            pnHeader.Controls.Add(lblReleaseYear);
-            pnHeader.Controls.Add(lblMovieTitle);
             pnHeader.Controls.Add(picMoviePoster);
             pnHeader.Dock = DockStyle.Fill;
             pnHeader.Location = new Point(0, 0);
             pnHeader.Name = "pnHeader";
             pnHeader.Size = new Size(1065, 452);
             pnHeader.TabIndex = 0;
+            // 
+            // pnDirector
+            // 
+            pnDirector.Controls.Add(lblDirectorName);
+            pnDirector.Controls.Add(lblDirectedBy);
+            pnDirector.Location = new Point(314, 232);
+            pnDirector.Name = "pnDirector";
+            pnDirector.Size = new Size(450, 24);
+            pnDirector.TabIndex = 11;
+            // 
+            // lblDirectorName
+            // 
+            lblDirectorName.AutoSize = true;
+            lblDirectorName.Dock = DockStyle.Left;
+            lblDirectorName.Font = new Font("Segoe UI", 14F);
+            lblDirectorName.ForeColor = Color.FromArgb(180, 221, 255);
+            lblDirectorName.Location = new Point(108, 0);
+            lblDirectorName.Name = "lblDirectorName";
+            lblDirectorName.Size = new Size(142, 25);
+            lblDirectorName.TabIndex = 5;
+            lblDirectorName.Text = "Frank Darabont";
+            // 
+            // lblDirectedBy
+            // 
+            lblDirectedBy.AutoSize = true;
+            lblDirectedBy.Dock = DockStyle.Left;
+            lblDirectedBy.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDirectedBy.ForeColor = Color.FromArgb(178, 172, 162);
+            lblDirectedBy.Location = new Point(0, 0);
+            lblDirectedBy.Name = "lblDirectedBy";
+            lblDirectedBy.Size = new Size(108, 25);
+            lblDirectedBy.TabIndex = 4;
+            lblDirectedBy.Text = "Directed by";
+            // 
+            // pnMovieTitle
+            // 
+            pnMovieTitle.AutoSize = true;
+            pnMovieTitle.Controls.Add(lblReleaseYear);
+            pnMovieTitle.Controls.Add(lblMovieTitle);
+            pnMovieTitle.Location = new Point(314, 147);
+            pnMovieTitle.Name = "pnMovieTitle";
+            pnMovieTitle.Size = new Size(440, 36);
+            pnMovieTitle.TabIndex = 10;
+            // 
+            // lblReleaseYear
+            // 
+            lblReleaseYear.AutoSize = true;
+            lblReleaseYear.Dock = DockStyle.Left;
+            lblReleaseYear.Font = new Font("Segoe UI", 16F);
+            lblReleaseYear.ForeColor = Color.FromArgb(180, 221, 255);
+            lblReleaseYear.Location = new Point(365, 0);
+            lblReleaseYear.Name = "lblReleaseYear";
+            lblReleaseYear.Size = new Size(75, 30);
+            lblReleaseYear.TabIndex = 2;
+            lblReleaseYear.Text = "(1994)";
+            // 
+            // lblMovieTitle
+            // 
+            lblMovieTitle.AutoSize = true;
+            lblMovieTitle.Dock = DockStyle.Left;
+            lblMovieTitle.Font = new Font("Georgia", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblMovieTitle.ForeColor = Color.FromArgb(232, 230, 227);
+            lblMovieTitle.Location = new Point(0, 0);
+            lblMovieTitle.Name = "lblMovieTitle";
+            lblMovieTitle.Size = new Size(365, 29);
+            lblMovieTitle.TabIndex = 1;
+            lblMovieTitle.Text = "The Shawshank Redemption";
+            // 
+            // pnMovieFacts
+            // 
+            pnMovieFacts.AutoSize = true;
+            pnMovieFacts.Controls.Add(lblRuntime);
+            pnMovieFacts.Controls.Add(lblGenres);
+            pnMovieFacts.Controls.Add(lblReleaseDate);
+            pnMovieFacts.Location = new Point(314, 186);
+            pnMovieFacts.Name = "pnMovieFacts";
+            pnMovieFacts.Size = new Size(276, 30);
+            pnMovieFacts.TabIndex = 9;
+            // 
+            // lblRuntime
+            // 
+            lblRuntime.AutoSize = true;
+            lblRuntime.Dock = DockStyle.Left;
+            lblRuntime.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            lblRuntime.ForeColor = Color.White;
+            lblRuntime.Location = new Point(210, 0);
+            lblRuntime.Name = "lblRuntime";
+            lblRuntime.Padding = new Padding(5);
+            lblRuntime.Size = new Size(59, 27);
+            lblRuntime.TabIndex = 4;
+            lblRuntime.Text = "2h22m";
+            // 
+            // lblGenres
+            // 
+            lblGenres.AutoSize = true;
+            lblGenres.Dock = DockStyle.Left;
+            lblGenres.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            lblGenres.ForeColor = Color.White;
+            lblGenres.Location = new Point(110, 0);
+            lblGenres.Name = "lblGenres";
+            lblGenres.Padding = new Padding(5);
+            lblGenres.Size = new Size(100, 27);
+            lblGenres.TabIndex = 3;
+            lblGenres.Text = "Drama, Crime";
+            // 
+            // lblReleaseDate
+            // 
+            lblReleaseDate.AutoSize = true;
+            lblReleaseDate.Dock = DockStyle.Left;
+            lblReleaseDate.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            lblReleaseDate.ForeColor = Color.White;
+            lblReleaseDate.Location = new Point(0, 0);
+            lblReleaseDate.Name = "lblReleaseDate";
+            lblReleaseDate.Padding = new Padding(5);
+            lblReleaseDate.Size = new Size(110, 27);
+            lblReleaseDate.TabIndex = 2;
+            lblReleaseDate.Text = "09/23/1994 (US)";
             // 
             // btnBack
             // 
@@ -160,12 +285,13 @@
             // pnHeaderInfo
             // 
             pnHeaderInfo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pnHeaderInfo.AutoSize = true;
             pnHeaderInfo.Controls.Add(lblOverviewParagraph);
             pnHeaderInfo.Controls.Add(lblOverviewHeader);
             pnHeaderInfo.Controls.Add(lblTagline);
-            pnHeaderInfo.Location = new Point(314, 263);
+            pnHeaderInfo.Location = new Point(314, 264);
             pnHeaderInfo.Name = "pnHeaderInfo";
-            pnHeaderInfo.Size = new Size(613, 167);
+            pnHeaderInfo.Size = new Size(613, 182);
             pnHeaderInfo.TabIndex = 6;
             // 
             // lblOverviewParagraph
@@ -173,7 +299,7 @@
             lblOverviewParagraph.Dock = DockStyle.Top;
             lblOverviewParagraph.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblOverviewParagraph.ForeColor = Color.White;
-            lblOverviewParagraph.Location = new Point(0, 46);
+            lblOverviewParagraph.Location = new Point(0, 47);
             lblOverviewParagraph.Name = "lblOverviewParagraph";
             lblOverviewParagraph.Size = new Size(613, 121);
             lblOverviewParagraph.TabIndex = 7;
@@ -181,13 +307,14 @@
             // 
             // lblOverviewHeader
             // 
+            lblOverviewHeader.AutoSize = true;
             lblOverviewHeader.Dock = DockStyle.Top;
             lblOverviewHeader.Font = new Font("Georgia", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblOverviewHeader.ForeColor = Color.FromArgb(178, 172, 162);
+            lblOverviewHeader.ForeColor = Color.FromArgb(198, 192, 182);
             lblOverviewHeader.Location = new Point(0, 23);
             lblOverviewHeader.Margin = new Padding(3, 10, 3, 0);
             lblOverviewHeader.Name = "lblOverviewHeader";
-            lblOverviewHeader.Size = new Size(613, 23);
+            lblOverviewHeader.Size = new Size(104, 24);
             lblOverviewHeader.TabIndex = 6;
             lblOverviewHeader.Text = "Overview";
             // 
@@ -200,51 +327,7 @@
             lblTagline.Name = "lblTagline";
             lblTagline.Size = new Size(613, 23);
             lblTagline.TabIndex = 5;
-            lblTagline.Text = "Fear can hold you prisoner. Hope can set you free\r\n";
-            // 
-            // lblDirectedBy
-            // 
-            lblDirectedBy.AutoSize = true;
-            lblDirectedBy.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDirectedBy.ForeColor = Color.FromArgb(178, 172, 162);
-            lblDirectedBy.Location = new Point(372, 220);
-            lblDirectedBy.Name = "lblDirectedBy";
-            lblDirectedBy.Size = new Size(108, 25);
-            lblDirectedBy.TabIndex = 4;
-            lblDirectedBy.Text = "Directed by";
-            // 
-            // lblDirectorName
-            // 
-            lblDirectorName.AutoSize = true;
-            lblDirectorName.Font = new Font("Segoe UI", 14F);
-            lblDirectorName.ForeColor = Color.FromArgb(180, 221, 255);
-            lblDirectorName.Location = new Point(483, 220);
-            lblDirectorName.Name = "lblDirectorName";
-            lblDirectorName.Size = new Size(142, 25);
-            lblDirectorName.TabIndex = 3;
-            lblDirectorName.Text = "Frank Darabont";
-            // 
-            // lblReleaseYear
-            // 
-            lblReleaseYear.AutoSize = true;
-            lblReleaseYear.Font = new Font("Segoe UI", 14F);
-            lblReleaseYear.ForeColor = Color.FromArgb(180, 221, 255);
-            lblReleaseYear.Location = new Point(314, 220);
-            lblReleaseYear.Name = "lblReleaseYear";
-            lblReleaseYear.Size = new Size(52, 25);
-            lblReleaseYear.TabIndex = 2;
-            lblReleaseYear.Text = "1994";
-            // 
-            // lblMovieTitle
-            // 
-            lblMovieTitle.AutoSize = true;
-            lblMovieTitle.Font = new Font("Georgia", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMovieTitle.ForeColor = Color.FromArgb(232, 230, 227);
-            lblMovieTitle.Location = new Point(314, 181);
-            lblMovieTitle.Name = "lblMovieTitle";
-            lblMovieTitle.Size = new Size(365, 29);
-            lblMovieTitle.TabIndex = 1;
-            lblMovieTitle.Text = "The Shawshank Redemption";
+            lblTagline.Text = "\"Fear can hold you prisoner. Hope can set you free\r\n\"";
             // 
             // picMoviePoster
             // 
@@ -543,6 +626,7 @@
             // pnActions
             // 
             pnActions.BackColor = Color.FromArgb(54, 68, 82);
+            pnActions.BorderStyle = BorderStyle.FixedSingle;
             pnActions.Controls.Add(pnActionsRow6);
             pnActions.Controls.Add(pnActionsRow5);
             pnActions.Controls.Add(pnActionsRow4);
@@ -562,7 +646,7 @@
             pnActionsRow6.Dock = DockStyle.Fill;
             pnActionsRow6.Location = new Point(0, 300);
             pnActionsRow6.Name = "pnActionsRow6";
-            pnActionsRow6.Size = new Size(252, 45);
+            pnActionsRow6.Size = new Size(250, 43);
             pnActionsRow6.TabIndex = 5;
             // 
             // lblShare
@@ -572,7 +656,7 @@
             lblShare.ForeColor = Color.FromArgb(178, 172, 162);
             lblShare.Location = new Point(0, 0);
             lblShare.Name = "lblShare";
-            lblShare.Size = new Size(250, 43);
+            lblShare.Size = new Size(248, 41);
             lblShare.TabIndex = 0;
             lblShare.Text = "Share";
             lblShare.TextAlign = ContentAlignment.MiddleCenter;
@@ -584,7 +668,7 @@
             pnActionsRow5.Dock = DockStyle.Top;
             pnActionsRow5.Location = new Point(0, 255);
             pnActionsRow5.Name = "pnActionsRow5";
-            pnActionsRow5.Size = new Size(252, 45);
+            pnActionsRow5.Size = new Size(250, 45);
             pnActionsRow5.TabIndex = 4;
             // 
             // lblAddToLists
@@ -594,7 +678,7 @@
             lblAddToLists.ForeColor = Color.FromArgb(178, 172, 162);
             lblAddToLists.Location = new Point(0, 0);
             lblAddToLists.Name = "lblAddToLists";
-            lblAddToLists.Size = new Size(250, 43);
+            lblAddToLists.Size = new Size(248, 43);
             lblAddToLists.TabIndex = 0;
             lblAddToLists.Text = "Add to lists ...";
             lblAddToLists.TextAlign = ContentAlignment.MiddleCenter;
@@ -606,7 +690,7 @@
             pnActionsRow4.Dock = DockStyle.Top;
             pnActionsRow4.Location = new Point(0, 210);
             pnActionsRow4.Name = "pnActionsRow4";
-            pnActionsRow4.Size = new Size(252, 45);
+            pnActionsRow4.Size = new Size(250, 45);
             pnActionsRow4.TabIndex = 3;
             // 
             // lblReviewOrLog
@@ -616,7 +700,7 @@
             lblReviewOrLog.ForeColor = Color.FromArgb(178, 172, 162);
             lblReviewOrLog.Location = new Point(0, 0);
             lblReviewOrLog.Name = "lblReviewOrLog";
-            lblReviewOrLog.Size = new Size(250, 43);
+            lblReviewOrLog.Size = new Size(248, 43);
             lblReviewOrLog.TabIndex = 0;
             lblReviewOrLog.Text = "Review or log ...";
             lblReviewOrLog.TextAlign = ContentAlignment.MiddleCenter;
@@ -629,7 +713,7 @@
             pnActionsRow3.Dock = DockStyle.Top;
             pnActionsRow3.Location = new Point(0, 165);
             pnActionsRow3.Name = "pnActionsRow3";
-            pnActionsRow3.Size = new Size(252, 45);
+            pnActionsRow3.Size = new Size(250, 45);
             pnActionsRow3.TabIndex = 2;
             // 
             // lblShowActivity
@@ -639,7 +723,7 @@
             lblShowActivity.ForeColor = Color.FromArgb(178, 172, 162);
             lblShowActivity.Location = new Point(0, 0);
             lblShowActivity.Name = "lblShowActivity";
-            lblShowActivity.Size = new Size(250, 43);
+            lblShowActivity.Size = new Size(248, 43);
             lblShowActivity.TabIndex = 0;
             lblShowActivity.Text = "Show your activity";
             lblShowActivity.TextAlign = ContentAlignment.MiddleCenter;
@@ -652,7 +736,7 @@
             pnActionsRow2.Dock = DockStyle.Top;
             pnActionsRow2.Location = new Point(0, 90);
             pnActionsRow2.Name = "pnActionsRow2";
-            pnActionsRow2.Size = new Size(252, 75);
+            pnActionsRow2.Size = new Size(250, 75);
             pnActionsRow2.TabIndex = 1;
             // 
             // pnRatingStars
@@ -665,7 +749,7 @@
             pnRatingStars.Dock = DockStyle.Fill;
             pnRatingStars.Location = new Point(0, 23);
             pnRatingStars.Name = "pnRatingStars";
-            pnRatingStars.Size = new Size(250, 50);
+            pnRatingStars.Size = new Size(248, 50);
             pnRatingStars.TabIndex = 1;
             // 
             // picStar5
@@ -726,7 +810,7 @@
             lblRate.ForeColor = Color.FromArgb(178, 172, 162);
             lblRate.Location = new Point(0, 0);
             lblRate.Name = "lblRate";
-            lblRate.Size = new Size(250, 23);
+            lblRate.Size = new Size(248, 23);
             lblRate.TabIndex = 0;
             lblRate.Text = "Rate";
             lblRate.TextAlign = ContentAlignment.MiddleCenter;
@@ -740,7 +824,7 @@
             pnActionsRow1.Dock = DockStyle.Top;
             pnActionsRow1.Location = new Point(0, 0);
             pnActionsRow1.Name = "pnActionsRow1";
-            pnActionsRow1.Size = new Size(252, 90);
+            pnActionsRow1.Size = new Size(250, 90);
             pnActionsRow1.TabIndex = 0;
             // 
             // btnWatchlist
@@ -751,7 +835,7 @@
             btnWatchlist.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             btnWatchlist.ForeColor = Color.FromArgb(178, 172, 162);
             btnWatchlist.Image = Properties.Resources.add_big;
-            btnWatchlist.Location = new Point(168, 5);
+            btnWatchlist.Location = new Point(166, 5);
             btnWatchlist.Name = "btnWatchlist";
             btnWatchlist.Size = new Size(75, 80);
             btnWatchlist.TabIndex = 0;
@@ -767,7 +851,7 @@
             btnLike.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             btnLike.ForeColor = Color.FromArgb(178, 172, 162);
             btnLike.Image = Properties.Resources.like_big;
-            btnLike.Location = new Point(87, 5);
+            btnLike.Location = new Point(86, 5);
             btnLike.Name = "btnLike";
             btnLike.Size = new Size(75, 80);
             btnLike.TabIndex = 0;
@@ -806,7 +890,14 @@
             pnBackdrop.ResumeLayout(false);
             pnHeader.ResumeLayout(false);
             pnHeader.PerformLayout();
+            pnDirector.ResumeLayout(false);
+            pnDirector.PerformLayout();
+            pnMovieTitle.ResumeLayout(false);
+            pnMovieTitle.PerformLayout();
+            pnMovieFacts.ResumeLayout(false);
+            pnMovieFacts.PerformLayout();
             pnHeaderInfo.ResumeLayout(false);
+            pnHeaderInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picMoviePoster).EndInit();
             pnContentWrapper.ResumeLayout(false);
             pnColumn1.ResumeLayout(false);
@@ -842,8 +933,7 @@
         private PictureBox picMoviePoster;
         private Label lblMovieTitle;
         private Label lblDirectedBy;
-        private Label lblDirectorName;
-        private Label lblReleaseYear;
+        private Label lblReleaseDate;
         private Label lblTagline;
         private Panel pnHeaderInfo;
         private Label lblOverviewParagraph;
@@ -896,5 +986,12 @@
         private Label lblBudgetHeader;
         private Label lblOriginalLanguage;
         private Button btnBack;
+        private Panel pnMovieFacts;
+        private Label lblRuntime;
+        private Label lblGenres;
+        private Panel pnMovieTitle;
+        private Label lblReleaseYear;
+        private Panel pnDirector;
+        private Label lblDirectorName;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineVerse.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,9 +14,16 @@ namespace CineVerse.Views.UserControls
     public partial class ListItemBasic : UserControl
     {
         private bool isChecked = false;
-        public ListItemBasic()
+        public ListItemBasic(List list)
         {
             InitializeComponent();
+            SetListData(list);
+        }
+
+        public void SetListData(List list)
+        {
+            lblListTitle.Text = list.Name;
+            picListType.Image = list.Type == ListType.Private ? Properties.Resources._lock : null;
         }
 
         private void ListItemBasic_Click(object sender, EventArgs e)

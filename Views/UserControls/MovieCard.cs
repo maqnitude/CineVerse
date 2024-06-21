@@ -1,4 +1,5 @@
-﻿using CineVerse.Core.Services;
+﻿using CineVerse.Core.Interfaces;
+using CineVerse.Core.Services;
 using CineVerse.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using System.Windows.Forms;
 
 namespace CineVerse.Views.UserControls
 {
-    public partial class MovieCard : UserControl
+    public partial class MovieCard : UserControlComponent
     {
         private PictureBox _poster;
         private readonly NavigationService _navigationService;
@@ -118,6 +119,12 @@ namespace CineVerse.Views.UserControls
             var movieDetailsScreen = new MovieDetailsScreen(_navigationService);
             movieDetailsScreen.SetMovieData(CurrentMovie);
             _navigationService.NavigateToScreen(movieDetailsScreen, false);
+        }
+
+        private void addToListsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine(_mediator);
+            _mediator?.Notify(this, "OpenAddToListForm");
         }
     }
 }

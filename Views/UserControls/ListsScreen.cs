@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace CineVerse.Views.UserControls
 {
-    public partial class ListsScreen : UserControl
+    public partial class ListsScreen : UserControlComponent
     {
         private User _user;
 

@@ -22,6 +22,7 @@ using CineVerse.Core.Events;
 using CineVerse.Core.Interfaces;
 using CineVerse.Views.UserControls;
 using Accessibility;
+using CineVerse.Views.Forms;
 
 namespace CineVerse.Forms
 {
@@ -41,9 +42,10 @@ namespace CineVerse.Forms
             _navigationService = new NavigationService(this, pnMain);
 
             _moviesScreen = new MoviesScreen(_navigationService, 12);
-            _moviesScreen.SetMediator(this);
-
             _listsScreen = new ListsScreen();
+
+            _moviesScreen.SetMediator(this);
+            _listsScreen.SetMediator(this);
 
             _navigationService.RegisterScreen("moviesScreen", _moviesScreen);
             _navigationService.RegisterScreen("listsScreen", _listsScreen);
@@ -53,6 +55,15 @@ namespace CineVerse.Forms
 
         public void Notify(object sender, string ev)
         {
+            switch (ev)
+            {
+                case "OpenAddToListForm":
+                    var addToListForm = new AddToListForm();
+                    addToListForm.SetUser(_currentUser);
+                    addToListForm.LoadListsAsync();
+                    addToListForm.ShowDialog();
+                    break;
+            }
         }
 
         private void RegisterEventHandlers()

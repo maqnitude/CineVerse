@@ -132,7 +132,7 @@
             cmsActions.Items.AddRange(new ToolStripItem[] { whereToWatchToolStripMenuItem, addToWatchlistToolStripMenuItem, addToListsToolStripMenuItem, logOrReviewToolStripMenuItem });
             cmsActions.Name = "cmsActions";
             cmsActions.RenderMode = ToolStripRenderMode.System;
-            cmsActions.Size = new Size(182, 92);
+            cmsActions.Size = new Size(182, 114);
             // 
             // whereToWatchToolStripMenuItem
             // 
@@ -160,6 +160,7 @@
             addToListsToolStripMenuItem.Name = "addToListsToolStripMenuItem";
             addToListsToolStripMenuItem.Size = new Size(181, 22);
             addToListsToolStripMenuItem.Text = "Add to lists ...";
+            addToListsToolStripMenuItem.Click += addToListsToolStripMenuItem_Click;
             // 
             // logOrReviewToolStripMenuItem
             // 

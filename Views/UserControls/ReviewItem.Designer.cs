@@ -141,7 +141,7 @@
             lblRating.Name = "lblRating";
             lblRating.Size = new Size(18, 20);
             lblRating.TabIndex = 7;
-            lblRating.Text = "9";
+            lblRating.Text = "4";
             // 
             // lblMaxRating
             // 
@@ -152,9 +152,9 @@
             lblMaxRating.Location = new Point(429, 4);
             lblMaxRating.Margin = new Padding(2, 0, 2, 0);
             lblMaxRating.Name = "lblMaxRating";
-            lblMaxRating.Size = new Size(23, 13);
+            lblMaxRating.Size = new Size(17, 13);
             lblMaxRating.TabIndex = 8;
-            lblMaxRating.Text = "/10";
+            lblMaxRating.Text = "/5";
             // 
             // ReviewItem
             // 

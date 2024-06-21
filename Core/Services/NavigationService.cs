@@ -55,11 +55,19 @@ namespace CineVerse.Core.Services
             _navigationStack.Push(screen);
         }
 
-        public void NavigateToScreen(UserControl screen)
+        public void NavigateToScreen(UserControl screen, bool dockFill = true)
         {
             _mainPanel.Controls.Clear();
             _mainPanel.Controls.Add(screen);
-            screen.Dock = DockStyle.Fill;
+            if (dockFill)
+            {
+                screen.Dock = DockStyle.Fill;
+            }
+            else
+            {
+                screen.Location = new Point(0, 0);
+                screen.Width = _mainPanel.ClientSize.Width;
+            }
 
             _navigationStack.Push(screen);
         }

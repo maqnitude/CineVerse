@@ -1,7 +1,10 @@
-﻿using System;
+﻿using CineVerse.Core.Events;
+using CineVerse.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Resources;
@@ -13,29 +16,48 @@ namespace CineVerse.Views.Forms
 {
     public partial class NewReviewForm : Form
     {
-        private int rating = 0;
-        private bool liked = false;
-        private Image darkStar;
-        private Image blueStar;
-        private Image greenStar;
+        private Movie _movie;
 
-        public NewReviewForm()
+        private int _rating = 0;
+        private bool _liked = false;
+
+        private Image _darkStar;
+        private Image _blueStar;
+        private Image _greenStar;
+
+        public NewReviewForm(Movie movie)
         {
             InitializeComponent();
-            InitializeStars();
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            InitializeStars();
+
+            SetMovieData(movie);
+
+            EventManager.Instance.Subscribe<EventArgs>(EventType.ReviewAdded, OnReviewAdded);
+        }
+
+        private void SetMovieData(Movie movie)
+        {
+            _movie = movie;
+
+            lblMovieTitle.Text = movie.Title;
+            lblReleaseYear.Text = movie.ReleaseDate.Value.Year.ToString();
+
+            picMoviePoster.Image?.Dispose();
+            picMoviePoster.Image = new Bitmap(movie.PosterPath);
         }
 
         private void InitializeStars()
         {
-            darkStar = Properties.Resources.star_fill_dark;
-            blueStar = Properties.Resources.star_fill_blue;
-            greenStar = Properties.Resources.star_fill_green;
+            _darkStar = Properties.Resources.star_fill_dark;
+            _blueStar = Properties.Resources.star_fill_blue;
+            _greenStar = Properties.Resources.star_fill_green;
 
             for (int i = 1; i <= 5; i++)
             {
                 PictureBox picStar = (PictureBox)pnStars.Controls["picStar" + i];
-                picStar.Image = darkStar;
+                picStar.Image = _darkStar;
                 picStar.Tag = i;
                 picStar.MouseEnter += Star_MouseEnter;
                 picStar.MouseLeave += Star_MouseLeave;
@@ -48,7 +70,7 @@ namespace CineVerse.Views.Forms
             for (int i = 1; i <= 5; i++)
             {
                 PictureBox picStar = (PictureBox)pnStars.Controls["picStar" + i];
-                picStar.Image = darkStar;
+                picStar.Image = _darkStar;
             }
         }
 
@@ -61,25 +83,25 @@ namespace CineVerse.Views.Forms
             {
                 PictureBox picStar = (PictureBox)pnStars.Controls["picStar" + i];
                 if (i <= hoverIndex)
-                    picStar.Image = blueStar;
+                    picStar.Image = _blueStar;
             }
         }
 
         private void Star_Click(object sender, EventArgs e)
         {
             PictureBox clickedStar = (PictureBox)sender;
-            rating = (int)clickedStar.Tag;
+            _rating = (int)clickedStar.Tag;
 
-            for (int i = 1; i <= rating; i++)
+            for (int i = 1; i <= _rating; i++)
             {
                 PictureBox picStar = (PictureBox)pnStars.Controls["picStar" + i];
-                if (i <= rating)
+                if (i <= _rating)
                 {
-                    picStar.Image = greenStar;
+                    picStar.Image = _greenStar;
                 }
                 else
                 {
-                    picStar.Image = darkStar;
+                    picStar.Image = _darkStar;
                 }
             }
 
@@ -87,7 +109,7 @@ namespace CineVerse.Views.Forms
             {
                 lblRatingStatus.Visible = true;
             }
-            lblRatingStatus.Text = $"{rating} out of 5";
+            lblRatingStatus.Text = $"{_rating} out of 5";
         }
 
         private void Star_MouseLeave(object sender, EventArgs e)
@@ -95,26 +117,46 @@ namespace CineVerse.Views.Forms
             for (int i = 1; i <= 5; i++)
             {
                 PictureBox picStar = (PictureBox)pnStars.Controls["picStar" + i];
-                if (i <= rating)
+                if (i <= _rating)
                 {
-                    picStar.Image = greenStar;
+                    picStar.Image = _greenStar;
                 }
                 else
                 {
-                    picStar.Image = darkStar;
+                    picStar.Image = _darkStar;
                 }
             }
         }
 
+        private void OnReviewAdded(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void picLike_Click(object sender, EventArgs e)
         {
-            liked = !liked;
-            picLike.Image = liked ? Properties.Resources.like_fill_orange : Properties.Resources.like_fill_dark;
+            _liked = !_liked;
+            picLike.Image = _liked ? Properties.Resources.like_fill_orange : Properties.Resources.like_fill_dark;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            //Debug.WriteLine(_rating);
+            //Debug.WriteLine(_liked);
+            //Debug.WriteLine(txtReview.Text);
+            if (_rating == 0)
+            {
+                MessageBox.Show("You must rate the movie");
+                return;
+            }
+
+            EventManager.Instance.Publish(EventType.ReviewAdding, this,
+                new ReviewEventArgs(_movie.Id, (double)_rating, txtReview.Text));
         }
     }
 }

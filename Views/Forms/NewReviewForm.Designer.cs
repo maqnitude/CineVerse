@@ -82,7 +82,8 @@
             // 
             picMoviePoster.Location = new Point(31, 59);
             picMoviePoster.Name = "picMoviePoster";
-            picMoviePoster.Size = new Size(150, 200);
+            picMoviePoster.Size = new Size(150, 225);
+            picMoviePoster.SizeMode = PictureBoxSizeMode.StretchImage;
             picMoviePoster.TabIndex = 1;
             picMoviePoster.TabStop = false;
             // 
@@ -300,6 +301,7 @@
             btnSave.TabIndex = 9;
             btnSave.Text = "SAVE";
             btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // NewReviewForm
             // 

@@ -117,7 +117,7 @@ namespace CineVerse.Views.UserControls
         {
             var movieDetailsScreen = new MovieDetailsScreen(_navigationService);
             movieDetailsScreen.SetMovieData(CurrentMovie);
-            _navigationService.NavigateToScreen(movieDetailsScreen);
+            _navigationService.NavigateToScreen(movieDetailsScreen, false);
         }
     }
 }

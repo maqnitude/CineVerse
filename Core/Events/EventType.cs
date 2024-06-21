@@ -13,6 +13,9 @@ namespace CineVerse.Core.Events
     public enum EventType
     {
         UserSignedIn,
+
+        ReviewAdding,
+        ReviewAdded,
     }
 
     public class UserEventArgs : EventArgs
@@ -22,6 +25,20 @@ namespace CineVerse.Core.Events
         public UserEventArgs(User user)
         {
             User = user;
+        }
+    }
+
+    public class ReviewEventArgs : EventArgs
+    {
+        public int MovieId { get; set; }
+        public double Rating { get; set; }
+        public string? Content {  get; set; }
+
+        public ReviewEventArgs(int movieId, double rating, string? content)
+        {
+            MovieId = movieId;
+            Rating = rating;
+            Content = content;
         }
     }
 }

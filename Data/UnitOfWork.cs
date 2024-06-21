@@ -16,6 +16,7 @@ namespace CineVerse.Data
         public IUserRepository Users {  get; private set; }
         public IMovieRepository Movies { get; private set; }
         public IListRepository Lists { get; private set; }
+        public IListMovieRepository ListMovies { get; private set; }
         public IPersonRepository People { get; private set; }
         public ICompanyRepository Companies { get; private set; }
         public IReviewRepository Reviews { get; private set; }
@@ -26,6 +27,7 @@ namespace CineVerse.Data
             Users = new UserRepository(_context);
             Movies = new MovieRepository(_context);
             Lists = new ListRepository(_context);
+            ListMovies = new ListMovieRepository(_context);
             People = new PersonRepository(_context);
             Companies = new CompanyRepository(_context);
             Reviews = new ReviewRepository(_context);

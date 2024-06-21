@@ -117,13 +117,13 @@ namespace CineVerse.Views.UserControls
         private void MovieCard_Click(object sender, EventArgs e)
         {
             var movieDetailsScreen = new MovieDetailsScreen(_navigationService);
+            movieDetailsScreen.SetMediator(_mediator);
             movieDetailsScreen.SetMovieData(CurrentMovie);
             _navigationService.NavigateToScreen(movieDetailsScreen, false);
         }
 
         private void addToListsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine(_mediator);
             _mediator?.Notify(this, "OpenAddToListForm");
         }
     }

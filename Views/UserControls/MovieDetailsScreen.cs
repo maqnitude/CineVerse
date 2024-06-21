@@ -15,7 +15,7 @@ using CineVerse.Views.Forms;
 
 namespace CineVerse.Views.UserControls
 {
-    public partial class MovieDetailsScreen : UserControl
+    public partial class MovieDetailsScreen : UserControlComponent
     {
         private readonly NavigationService _navigationService;
         private Movie _movie;
@@ -24,8 +24,13 @@ namespace CineVerse.Views.UserControls
         {
             InitializeComponent();
             _navigationService = navigationService;
-            
+
             EventManager.Instance.Subscribe<EventArgs>(EventType.ReviewAdded, OnReviewAdded);
+        }
+
+        public Movie GetCurrentMovie()
+        {
+            return _movie;
         }
 
         public void SetMovieData(Movie movie)
@@ -54,19 +59,8 @@ namespace CineVerse.Views.UserControls
             lblBudget.Text = movie.Budget.ToString();
             lblRevenue.Text = movie.Revenue.ToString();
 
-            //Notify(this, "LoadReviews");
             LoadReviews();
         }
-
-        //public void Notify(object sender, string ev)
-        //{
-        //    switch (ev)
-        //    {
-        //        case "LoadReviews":
-        //            LoadReviews();
-        //            break;
-        //    }
-        //}
 
         private void ClearReviews()
         {
@@ -124,5 +118,9 @@ namespace CineVerse.Views.UserControls
             newReviewForm.ShowDialog();
         }
 
+        private void lblAddToLists_Click(object sender, EventArgs e)
+        {
+            _mediator?.Notify(this, "OpenAddToListForm");
+        }
     }
 }

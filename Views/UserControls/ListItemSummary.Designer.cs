@@ -170,7 +170,7 @@
             lblListDescription.TabIndex = 4;
             lblListDescription.Text = "Movies that are so weird, weird to the point where you audibly react multiple times. It doesn’t matter if it’s…";
             // 
-            // ListItem
+            // ListItemSummary
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -181,7 +181,7 @@
             Controls.Add(pnUser);
             Controls.Add(lblListTitle);
             Controls.Add(pnPosters);
-            Name = "ListItem";
+            Name = "ListItemSummary";
             Size = new Size(885, 163);
             pnPosters.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picPoster5).EndInit();

@@ -9,5 +9,6 @@ namespace CineVerse.Core.Interfaces
 {
     public interface IListRepository : IRepository<List>
     {
+        Task<IEnumerable<List>> GetListsByUserIdAsync(string userId, bool includeUser, bool includeMovies);
     }
 }

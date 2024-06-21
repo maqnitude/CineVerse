@@ -14,6 +14,9 @@ namespace CineVerse.Core.Events
     {
         UserSignedIn,
 
+        ListAdding,
+        ListAdded,
+
         ReviewAdding,
         ReviewAdded,
     }
@@ -25,6 +28,20 @@ namespace CineVerse.Core.Events
         public UserEventArgs(User user)
         {
             User = user;
+        }
+    }
+
+    public class ListEventArgs : EventArgs
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public ListType Type { get; set; }
+
+        public ListEventArgs(string name, string description, ListType type)
+        {
+            Name = name;
+            Description = description;
+            Type = type;
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using CineVerse.Core.Services;
+﻿using CineVerse.Core.Events;
+using CineVerse.Core.Services;
 using CineVerse.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace CineVerse.Views.Forms
             public string Name { get; set; }
         }
 
-        public NewListForm(ListService listService)
+        public NewListForm()
         {
             InitializeComponent();
 
@@ -32,33 +33,8 @@ namespace CineVerse.Views.Forms
             comboListType.DataSource = items;
             comboListType.DisplayMember = "Name";
             comboListType.ValueMember = "Id";
-        }
 
-        private async void btnSave_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtName.Text))
-            {
-                MessageBox.Show("List name must not be empty.");
-                return;
-            }
-
-            if (comboListType.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please specify the visibility of your list.");
-                return;
-            }
-
-            //MessageBox.Show($"Selected item: {comboListType.SelectedItem} - Index: {comboListType.SelectedIndex}");
-
-            try
-            {
-                //await ListService.Instance.CreateListAsync(, txtName.Text, MapListType(comboListType.SelectedIndex), txtDescription.Text);
-                MessageBox.Show("New list created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred while creating the list: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            EventManager.Instance.Subscribe<EventArgs>(EventType.ListAdded, OnListAdded);
         }
 
         private ListType MapListType(int selectedIndex)
@@ -72,6 +48,29 @@ namespace CineVerse.Views.Forms
                 default:
                     throw new ArgumentOutOfRangeException(nameof(selectedIndex), "Invalid list type selected.");
             }
+        }
+
+        private void OnListAdded(object  sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                MessageBox.Show("List name must not be empty.");
+                return;
+            }
+
+            if (comboListType.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please specify the visibility of your list.");
+                return;
+            }
+
+            EventManager.Instance.Publish<ListEventArgs>(EventType.ListAdding, this,
+                new ListEventArgs(txtName.Text, txtDescription.Text, MapListType(comboListType.SelectedIndex)));
         }
     }
 }

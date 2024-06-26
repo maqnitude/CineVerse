@@ -39,11 +39,22 @@ namespace CineVerse.Core.Services
             }
         }
 
-        public async Task<List<Movie>> GetMoviesInPageAsync(int pageNumber, int pageSize)
+        public async Task<List<Movie>> GetMoviesAsync(int pageNumber, int pageSize,
+            string? filterBy = null, string? filterValue = null,
+            string? sortBy = null, string? sortValue = null)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
             {
-                var movies = await unitOfWork.Movies.GetMoviesAsync(pageNumber, pageSize);
+                var movies = await unitOfWork.Movies.GetMoviesByPageAsync(pageNumber, pageSize, filterBy, filterValue, sortBy, sortValue);
+                return movies.ToList();
+            }
+        }
+
+        public async Task<List<Movie>> GetMoviesByDecadeAsync(int pageNumber, int pageSize, string? decade)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var movies = await unitOfWork.Movies.GetMoviesByPageAsync(pageNumber, pageSize, "decade", decade);
                 return movies.ToList();
             }
         }

@@ -10,10 +10,11 @@ namespace CineVerse.Core.Interfaces
     public interface IMovieRepository : IRepository<Movie>
     {
         Task<Movie> GetMovieByTMDBIdAsync(int tmdbId);
-        Task<IEnumerable<Movie>> GetMoviesAsync(int pageNumber,  int pageSize);
+        Task<IEnumerable<Movie>> GetMoviesByPageAsync(int pageNumber, int pageSize,
+            string? filterBy = null, string? filterValue = null,
+            string? sortBy = null, string? sortValue = null);
         Task<int> CountMoviesAsync();
         Task<List<Person>> GetTopCastsByMovieIdAsync(int movieId, int n);
         Task<List<Person>> GetTopCrewsByMovieIdAsync(int movieId, int n);
     }
-
 }

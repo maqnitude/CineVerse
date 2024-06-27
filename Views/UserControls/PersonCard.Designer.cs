@@ -1,6 +1,6 @@
 ﻿namespace CineVerse.Views.UserControls
 {
-    partial class PersonInfo
+    partial class PersonCard
     {
         /// <summary> 
         /// Required designer variable.
@@ -37,10 +37,12 @@
             // 
             lblName.BackColor = Color.FromArgb(20, 20, 20);
             lblName.Dock = DockStyle.Bottom;
+            lblName.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblName.ForeColor = Color.White;
-            lblName.Location = new Point(0, 270);
+            lblName.Location = new Point(10, 142);
+            lblName.Margin = new Padding(2, 0, 2, 0);
             lblName.Name = "lblName";
-            lblName.Size = new Size(312, 44);
+            lblName.Size = new Size(98, 26);
             lblName.TabIndex = 0;
             lblName.Text = "Anya Taylor-Joy";
             lblName.TextAlign = ContentAlignment.MiddleCenter;
@@ -48,21 +50,26 @@
             // picProfileImage
             // 
             picProfileImage.Dock = DockStyle.Fill;
-            picProfileImage.Location = new Point(0, 0);
+            picProfileImage.Image = Properties.Resources.default_person;
+            picProfileImage.Location = new Point(10, 10);
+            picProfileImage.Margin = new Padding(2);
             picProfileImage.Name = "picProfileImage";
-            picProfileImage.Size = new Size(312, 270);
+            picProfileImage.Size = new Size(98, 132);
+            picProfileImage.SizeMode = PictureBoxSizeMode.Zoom;
             picProfileImage.TabIndex = 1;
             picProfileImage.TabStop = false;
             // 
-            // PersonInfo
+            // PersonCard
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(13, 15, 16);
+            BorderStyle = BorderStyle.FixedSingle;
             Controls.Add(picProfileImage);
             Controls.Add(lblName);
-            Name = "PersonInfo";
-            Size = new Size(312, 314);
+            Margin = new Padding(2);
+            Name = "PersonCard";
+            Size = new Size(118, 178);
             ((System.ComponentModel.ISupportInitialize)picProfileImage).EndInit();
             ResumeLayout(false);
         }

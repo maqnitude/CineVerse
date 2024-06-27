@@ -193,7 +193,7 @@
             pnMovieTitle.Controls.Add(lblMovieTitle);
             pnMovieTitle.Location = new Point(314, 147);
             pnMovieTitle.Name = "pnMovieTitle";
-            pnMovieTitle.Size = new Size(440, 36);
+            pnMovieTitle.Size = new Size(485, 36);
             pnMovieTitle.TabIndex = 10;
             // 
             // lblReleaseYear
@@ -202,7 +202,7 @@
             lblReleaseYear.Dock = DockStyle.Left;
             lblReleaseYear.Font = new Font("Segoe UI", 16F);
             lblReleaseYear.ForeColor = Color.FromArgb(180, 221, 255);
-            lblReleaseYear.Location = new Point(365, 0);
+            lblReleaseYear.Location = new Point(410, 0);
             lblReleaseYear.Name = "lblReleaseYear";
             lblReleaseYear.Size = new Size(75, 30);
             lblReleaseYear.TabIndex = 2;
@@ -212,11 +212,11 @@
             // 
             lblMovieTitle.AutoSize = true;
             lblMovieTitle.Dock = DockStyle.Left;
-            lblMovieTitle.Font = new Font("Georgia", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblMovieTitle.Font = new Font("Georgia", 20F, FontStyle.Bold);
             lblMovieTitle.ForeColor = Color.FromArgb(232, 230, 227);
             lblMovieTitle.Location = new Point(0, 0);
             lblMovieTitle.Name = "lblMovieTitle";
-            lblMovieTitle.Size = new Size(365, 29);
+            lblMovieTitle.Size = new Size(410, 31);
             lblMovieTitle.TabIndex = 1;
             lblMovieTitle.Text = "The Shawshank Redemption";
             // 
@@ -347,7 +347,7 @@
             pnContentWrapper.Dock = DockStyle.Fill;
             pnContentWrapper.Location = new Point(0, 452);
             pnContentWrapper.Name = "pnContentWrapper";
-            pnContentWrapper.Size = new Size(1065, 937);
+            pnContentWrapper.Size = new Size(1065, 1137);
             pnContentWrapper.TabIndex = 1;
             // 
             // pnColumn1
@@ -358,7 +358,7 @@
             pnColumn1.Dock = DockStyle.Fill;
             pnColumn1.Location = new Point(0, 0);
             pnColumn1.Name = "pnColumn1";
-            pnColumn1.Size = new Size(813, 937);
+            pnColumn1.Size = new Size(813, 1137);
             pnColumn1.TabIndex = 1;
             // 
             // pnReviewsSection
@@ -366,9 +366,9 @@
             pnReviewsSection.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pnReviewsSection.Controls.Add(pnReviews);
             pnReviewsSection.Controls.Add(pnReviewsHeader);
-            pnReviewsSection.Location = new Point(27, 429);
+            pnReviewsSection.Location = new Point(27, 538);
             pnReviewsSection.Name = "pnReviewsSection";
-            pnReviewsSection.Size = new Size(751, 490);
+            pnReviewsSection.Size = new Size(751, 531);
             pnReviewsSection.TabIndex = 2;
             // 
             // pnReviews
@@ -377,7 +377,7 @@
             pnReviews.Dock = DockStyle.Fill;
             pnReviews.Location = new Point(0, 35);
             pnReviews.Name = "pnReviews";
-            pnReviews.Size = new Size(751, 455);
+            pnReviews.Size = new Size(751, 496);
             pnReviews.TabIndex = 1;
             // 
             // pnReviewsHeader
@@ -421,9 +421,9 @@
             pnCrewSection.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pnCrewSection.Controls.Add(pnCrews);
             pnCrewSection.Controls.Add(lblCrewHeader);
-            pnCrewSection.Location = new Point(27, 229);
+            pnCrewSection.Location = new Point(27, 286);
             pnCrewSection.Name = "pnCrewSection";
-            pnCrewSection.Size = new Size(751, 165);
+            pnCrewSection.Size = new Size(751, 205);
             pnCrewSection.TabIndex = 2;
             // 
             // pnCrews
@@ -432,7 +432,7 @@
             pnCrews.Dock = DockStyle.Fill;
             pnCrews.Location = new Point(0, 24);
             pnCrews.Name = "pnCrews";
-            pnCrews.Size = new Size(751, 141);
+            pnCrews.Size = new Size(751, 181);
             pnCrews.TabIndex = 2;
             // 
             // lblCrewHeader
@@ -454,7 +454,7 @@
             pnCastSection.Controls.Add(lblCastHeader);
             pnCastSection.Location = new Point(27, 29);
             pnCastSection.Name = "pnCastSection";
-            pnCastSection.Size = new Size(751, 165);
+            pnCastSection.Size = new Size(751, 205);
             pnCastSection.TabIndex = 2;
             // 
             // pnCasts
@@ -463,7 +463,7 @@
             pnCasts.Dock = DockStyle.Fill;
             pnCasts.Location = new Point(0, 24);
             pnCasts.Name = "pnCasts";
-            pnCasts.Size = new Size(751, 141);
+            pnCasts.Size = new Size(751, 181);
             pnCasts.TabIndex = 2;
             // 
             // lblCastHeader
@@ -488,7 +488,7 @@
             pnColumn2.Dock = DockStyle.Right;
             pnColumn2.Location = new Point(813, 0);
             pnColumn2.Name = "pnColumn2";
-            pnColumn2.Size = new Size(252, 937);
+            pnColumn2.Size = new Size(252, 1137);
             pnColumn2.TabIndex = 0;
             // 
             // pnRevenueSection
@@ -886,7 +886,7 @@
             Controls.Add(pnBackdrop);
             Margin = new Padding(2);
             Name = "MovieDetailsScreen";
-            Size = new Size(1065, 1389);
+            Size = new Size(1065, 1589);
             Load += MovieDetailsScreen_Load;
             pnBackdrop.ResumeLayout(false);
             pnHeader.ResumeLayout(false);

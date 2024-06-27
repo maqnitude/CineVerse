@@ -179,7 +179,7 @@
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Margin = new Padding(2);
             Name = "MainForm";
-            Text = "k";
+            Text = "CineVerse";
             pnNavBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             ResumeLayout(false);

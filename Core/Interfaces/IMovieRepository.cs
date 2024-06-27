@@ -12,6 +12,8 @@ namespace CineVerse.Core.Interfaces
         Task<Movie> GetMovieByTMDBIdAsync(int tmdbId);
         Task<IEnumerable<Movie>> GetMoviesAsync(int pageNumber,  int pageSize);
         Task<int> CountMoviesAsync();
+        Task<List<Person>> GetTopCastsByMovieIdAsync(int movieId, int n);
+        Task<List<Person>> GetTopCrewsByMovieIdAsync(int movieId, int n);
     }
 
 }

@@ -29,50 +29,125 @@
         private void InitializeComponent()
         {
             pnlBrowseTooBar = new Panel();
+            menuStripBrowsingTools = new MenuStrip();
+            toolStripMenuDecade = new ToolStripMenuItem();
+            toolStripMenuItemAll = new ToolStripMenuItem();
+            toolStripMenuItemUpcoming = new ToolStripMenuItem();
+            toolStripMenuItem2020s = new ToolStripMenuItem();
+            toolStripMenuItem2010s = new ToolStripMenuItem();
+            toolStripMenuItem2000s = new ToolStripMenuItem();
+            toolStripMenuItem1990s = new ToolStripMenuItem();
+            toolStripMenuItem1980s = new ToolStripMenuItem();
+            toolStripMenuRating = new ToolStripMenuItem();
+            toolStripMenuItemHighest = new ToolStripMenuItem();
+            toolStripMenuItemLowest = new ToolStripMenuItem();
             lblBrowseBy = new Label();
-            menuStrip1 = new MenuStrip();
-            dECADEToolStripMenuItem = new ToolStripMenuItem();
-            allToolStripMenuItem = new ToolStripMenuItem();
-            upcomingToolStripMenuItem = new ToolStripMenuItem();
-            sToolStripMenuItem = new ToolStripMenuItem();
-            sToolStripMenuItem1 = new ToolStripMenuItem();
-            sToolStripMenuItem2 = new ToolStripMenuItem();
-            sToolStripMenuItem3 = new ToolStripMenuItem();
-            sToolStripMenuItem4 = new ToolStripMenuItem();
-            sToolStripMenuItem5 = new ToolStripMenuItem();
-            sToolStripMenuItem6 = new ToolStripMenuItem();
-            menuStrip2 = new MenuStrip();
-            rATINGToolStripMenuItem = new ToolStripMenuItem();
-            highestToolStripMenuItem = new ToolStripMenuItem();
-            lowestToolStripMenuItem = new ToolStripMenuItem();
-            menuStrip3 = new MenuStrip();
-            gENREToolStripMenuItem = new ToolStripMenuItem();
-            actionToolStripMenuItem = new ToolStripMenuItem();
-            fantasyToolStripMenuItem = new ToolStripMenuItem();
-            horrorToolStripMenuItem = new ToolStripMenuItem();
-            scienceFictionToolStripMenuItem = new ToolStripMenuItem();
             btnNextPage = new Button();
             btnPrevPage = new Button();
             flpMovieCardsContainer = new FlowLayoutPanel();
             pnlBrowseTooBar.SuspendLayout();
-            menuStrip1.SuspendLayout();
-            menuStrip2.SuspendLayout();
-            menuStrip3.SuspendLayout();
+            menuStripBrowsingTools.SuspendLayout();
             SuspendLayout();
             // 
             // pnlBrowseTooBar
             // 
             pnlBrowseTooBar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pnlBrowseTooBar.BackColor = Color.FromArgb(18, 22, 26);
+            pnlBrowseTooBar.Controls.Add(menuStripBrowsingTools);
             pnlBrowseTooBar.Controls.Add(lblBrowseBy);
-            pnlBrowseTooBar.Controls.Add(menuStrip1);
-            pnlBrowseTooBar.Controls.Add(menuStrip2);
-            pnlBrowseTooBar.Controls.Add(menuStrip3);
             pnlBrowseTooBar.Location = new Point(0, 0);
             pnlBrowseTooBar.Margin = new Padding(0);
             pnlBrowseTooBar.Name = "pnlBrowseTooBar";
             pnlBrowseTooBar.Size = new Size(992, 32);
             pnlBrowseTooBar.TabIndex = 0;
+            // 
+            // menuStripBrowsingTools
+            // 
+            menuStripBrowsingTools.AutoSize = false;
+            menuStripBrowsingTools.Dock = DockStyle.None;
+            menuStripBrowsingTools.Items.AddRange(new ToolStripItem[] { toolStripMenuDecade, toolStripMenuRating });
+            menuStripBrowsingTools.Location = new Point(104, 0);
+            menuStripBrowsingTools.Name = "menuStripBrowsingTools";
+            menuStripBrowsingTools.Size = new Size(331, 24);
+            menuStripBrowsingTools.TabIndex = 0;
+            menuStripBrowsingTools.Text = "DECADE";
+            // 
+            // toolStripMenuDecade
+            // 
+            toolStripMenuDecade.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItemAll, toolStripMenuItemUpcoming, toolStripMenuItem2020s, toolStripMenuItem2010s, toolStripMenuItem2000s, toolStripMenuItem1990s, toolStripMenuItem1980s });
+            toolStripMenuDecade.Name = "toolStripMenuDecade";
+            toolStripMenuDecade.Size = new Size(63, 20);
+            toolStripMenuDecade.Text = "DECADE";
+            // 
+            // toolStripMenuItemAll
+            // 
+            toolStripMenuItemAll.Name = "toolStripMenuItemAll";
+            toolStripMenuItemAll.Size = new Size(130, 22);
+            toolStripMenuItemAll.Text = "All";
+            toolStripMenuItemAll.Click += toolStripMenuItemAll_Click;
+            // 
+            // toolStripMenuItemUpcoming
+            // 
+            toolStripMenuItemUpcoming.Name = "toolStripMenuItemUpcoming";
+            toolStripMenuItemUpcoming.Size = new Size(130, 22);
+            toolStripMenuItemUpcoming.Text = "Upcoming";
+            toolStripMenuItemUpcoming.Click += toolStripMenuItemUpcoming_Click;
+            // 
+            // toolStripMenuItem2020s
+            // 
+            toolStripMenuItem2020s.Name = "toolStripMenuItem2020s";
+            toolStripMenuItem2020s.Size = new Size(130, 22);
+            toolStripMenuItem2020s.Text = "2020s";
+            toolStripMenuItem2020s.Click += toolStripMenuItem2020s_Click;
+            // 
+            // toolStripMenuItem2010s
+            // 
+            toolStripMenuItem2010s.Name = "toolStripMenuItem2010s";
+            toolStripMenuItem2010s.Size = new Size(130, 22);
+            toolStripMenuItem2010s.Text = "2010s";
+            toolStripMenuItem2010s.Click += toolStripMenuItem2010s_Click;
+            // 
+            // toolStripMenuItem2000s
+            // 
+            toolStripMenuItem2000s.Name = "toolStripMenuItem2000s";
+            toolStripMenuItem2000s.Size = new Size(130, 22);
+            toolStripMenuItem2000s.Text = "2000s";
+            toolStripMenuItem2000s.Click += toolStripMenuItem2000s_Click;
+            // 
+            // toolStripMenuItem1990s
+            // 
+            toolStripMenuItem1990s.Name = "toolStripMenuItem1990s";
+            toolStripMenuItem1990s.Size = new Size(130, 22);
+            toolStripMenuItem1990s.Text = "1990s";
+            toolStripMenuItem1990s.Click += toolStripMenuItem1990s_Click;
+            // 
+            // toolStripMenuItem1980s
+            // 
+            toolStripMenuItem1980s.Name = "toolStripMenuItem1980s";
+            toolStripMenuItem1980s.Size = new Size(130, 22);
+            toolStripMenuItem1980s.Text = "1980s";
+            toolStripMenuItem1980s.Click += toolStripMenuItem1980s_Click;
+            // 
+            // toolStripMenuRating
+            // 
+            toolStripMenuRating.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItemHighest, toolStripMenuItemLowest });
+            toolStripMenuRating.Name = "toolStripMenuRating";
+            toolStripMenuRating.Size = new Size(59, 20);
+            toolStripMenuRating.Text = "RATING";
+            // 
+            // toolStripMenuItemHighest
+            // 
+            toolStripMenuItemHighest.Name = "toolStripMenuItemHighest";
+            toolStripMenuItemHighest.Size = new Size(180, 22);
+            toolStripMenuItemHighest.Text = "Highest";
+            toolStripMenuItemHighest.Click += toolStripMenuItemHighest_Click;
+            // 
+            // toolStripMenuItemLowest
+            // 
+            toolStripMenuItemLowest.Name = "toolStripMenuItemLowest";
+            toolStripMenuItemLowest.Size = new Size(180, 22);
+            toolStripMenuItemLowest.Text = "Lowest";
+            toolStripMenuItemLowest.Click += toolStripMenuItemLowest_Click;
             // 
             // lblBrowseBy
             // 
@@ -85,156 +160,6 @@
             lblBrowseBy.TabIndex = 0;
             lblBrowseBy.Text = "BROWSE BY";
             lblBrowseBy.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // menuStrip1
-            // 
-            menuStrip1.AutoSize = false;
-            menuStrip1.BackColor = Color.FromArgb(120, 120, 120);
-            menuStrip1.Dock = DockStyle.None;
-            menuStrip1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { dECADEToolStripMenuItem });
-            menuStrip1.Location = new Point(104, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(56, 32);
-            menuStrip1.TabIndex = 1;
-            menuStrip1.Text = "menuStrip1";
-            // 
-            // dECADEToolStripMenuItem
-            // 
-            dECADEToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { allToolStripMenuItem, upcomingToolStripMenuItem, sToolStripMenuItem, sToolStripMenuItem1, sToolStripMenuItem2, sToolStripMenuItem3, sToolStripMenuItem4, sToolStripMenuItem5, sToolStripMenuItem6 });
-            dECADEToolStripMenuItem.Name = "dECADEToolStripMenuItem";
-            dECADEToolStripMenuItem.Size = new Size(48, 28);
-            dECADEToolStripMenuItem.Text = "YEAR";
-            // 
-            // allToolStripMenuItem
-            // 
-            allToolStripMenuItem.Name = "allToolStripMenuItem";
-            allToolStripMenuItem.Size = new Size(131, 22);
-            allToolStripMenuItem.Text = "All";
-            // 
-            // upcomingToolStripMenuItem
-            // 
-            upcomingToolStripMenuItem.Name = "upcomingToolStripMenuItem";
-            upcomingToolStripMenuItem.Size = new Size(131, 22);
-            upcomingToolStripMenuItem.Text = "Upcoming";
-            // 
-            // sToolStripMenuItem
-            // 
-            sToolStripMenuItem.Name = "sToolStripMenuItem";
-            sToolStripMenuItem.Size = new Size(131, 22);
-            sToolStripMenuItem.Text = "2020s";
-            // 
-            // sToolStripMenuItem1
-            // 
-            sToolStripMenuItem1.Name = "sToolStripMenuItem1";
-            sToolStripMenuItem1.Size = new Size(131, 22);
-            sToolStripMenuItem1.Text = "2010s";
-            // 
-            // sToolStripMenuItem2
-            // 
-            sToolStripMenuItem2.Name = "sToolStripMenuItem2";
-            sToolStripMenuItem2.Size = new Size(131, 22);
-            sToolStripMenuItem2.Text = "2000s";
-            // 
-            // sToolStripMenuItem3
-            // 
-            sToolStripMenuItem3.Name = "sToolStripMenuItem3";
-            sToolStripMenuItem3.Size = new Size(131, 22);
-            sToolStripMenuItem3.Text = "1990s";
-            // 
-            // sToolStripMenuItem4
-            // 
-            sToolStripMenuItem4.Name = "sToolStripMenuItem4";
-            sToolStripMenuItem4.Size = new Size(131, 22);
-            sToolStripMenuItem4.Text = "1980s";
-            // 
-            // sToolStripMenuItem5
-            // 
-            sToolStripMenuItem5.Name = "sToolStripMenuItem5";
-            sToolStripMenuItem5.Size = new Size(131, 22);
-            sToolStripMenuItem5.Text = "1970s";
-            // 
-            // sToolStripMenuItem6
-            // 
-            sToolStripMenuItem6.Name = "sToolStripMenuItem6";
-            sToolStripMenuItem6.Size = new Size(131, 22);
-            sToolStripMenuItem6.Text = "1960s";
-            // 
-            // menuStrip2
-            // 
-            menuStrip2.AutoSize = false;
-            menuStrip2.BackColor = Color.FromArgb(120, 120, 120);
-            menuStrip2.Dock = DockStyle.None;
-            menuStrip2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            menuStrip2.Items.AddRange(new ToolStripItem[] { rATINGToolStripMenuItem });
-            menuStrip2.Location = new Point(160, 0);
-            menuStrip2.Name = "menuStrip2";
-            menuStrip2.Size = new Size(72, 32);
-            menuStrip2.TabIndex = 2;
-            menuStrip2.Text = "menuStrip2";
-            // 
-            // rATINGToolStripMenuItem
-            // 
-            rATINGToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { highestToolStripMenuItem, lowestToolStripMenuItem });
-            rATINGToolStripMenuItem.Name = "rATINGToolStripMenuItem";
-            rATINGToolStripMenuItem.Size = new Size(63, 28);
-            rATINGToolStripMenuItem.Text = "RATING";
-            // 
-            // highestToolStripMenuItem
-            // 
-            highestToolStripMenuItem.Name = "highestToolStripMenuItem";
-            highestToolStripMenuItem.Size = new Size(117, 22);
-            highestToolStripMenuItem.Text = "Highest";
-            // 
-            // lowestToolStripMenuItem
-            // 
-            lowestToolStripMenuItem.Name = "lowestToolStripMenuItem";
-            lowestToolStripMenuItem.Size = new Size(117, 22);
-            lowestToolStripMenuItem.Text = "Lowest";
-            // 
-            // menuStrip3
-            // 
-            menuStrip3.AutoSize = false;
-            menuStrip3.BackColor = Color.FromArgb(120, 120, 120);
-            menuStrip3.Dock = DockStyle.None;
-            menuStrip3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            menuStrip3.Items.AddRange(new ToolStripItem[] { gENREToolStripMenuItem });
-            menuStrip3.Location = new Point(232, 0);
-            menuStrip3.Name = "menuStrip3";
-            menuStrip3.Size = new Size(64, 32);
-            menuStrip3.TabIndex = 3;
-            menuStrip3.Text = "menuStrip3";
-            // 
-            // gENREToolStripMenuItem
-            // 
-            gENREToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { actionToolStripMenuItem, fantasyToolStripMenuItem, horrorToolStripMenuItem, scienceFictionToolStripMenuItem });
-            gENREToolStripMenuItem.Name = "gENREToolStripMenuItem";
-            gENREToolStripMenuItem.Size = new Size(57, 28);
-            gENREToolStripMenuItem.Text = "GENRE";
-            // 
-            // actionToolStripMenuItem
-            // 
-            actionToolStripMenuItem.Name = "actionToolStripMenuItem";
-            actionToolStripMenuItem.Size = new Size(157, 22);
-            actionToolStripMenuItem.Text = "Action";
-            // 
-            // fantasyToolStripMenuItem
-            // 
-            fantasyToolStripMenuItem.Name = "fantasyToolStripMenuItem";
-            fantasyToolStripMenuItem.Size = new Size(157, 22);
-            fantasyToolStripMenuItem.Text = "Fantasy";
-            // 
-            // horrorToolStripMenuItem
-            // 
-            horrorToolStripMenuItem.Name = "horrorToolStripMenuItem";
-            horrorToolStripMenuItem.Size = new Size(157, 22);
-            horrorToolStripMenuItem.Text = "Horror";
-            // 
-            // scienceFictionToolStripMenuItem
-            // 
-            scienceFictionToolStripMenuItem.Name = "scienceFictionToolStripMenuItem";
-            scienceFictionToolStripMenuItem.Size = new Size(157, 22);
-            scienceFictionToolStripMenuItem.Text = "Science Fiction";
             // 
             // btnNextPage
             // 
@@ -285,12 +210,8 @@
             Name = "MoviesScreen";
             Size = new Size(992, 533);
             pnlBrowseTooBar.ResumeLayout(false);
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
-            menuStrip2.ResumeLayout(false);
-            menuStrip2.PerformLayout();
-            menuStrip3.ResumeLayout(false);
-            menuStrip3.PerformLayout();
+            menuStripBrowsingTools.ResumeLayout(false);
+            menuStripBrowsingTools.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -300,27 +221,18 @@
         private Label lblBrowseBy;
         private Button btnNextPage;
         private Button btnPrevPage;
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem dECADEToolStripMenuItem;
-        private ToolStripMenuItem allToolStripMenuItem;
-        private ToolStripMenuItem upcomingToolStripMenuItem;
-        private ToolStripMenuItem sToolStripMenuItem;
-        private ToolStripMenuItem sToolStripMenuItem1;
-        private ToolStripMenuItem sToolStripMenuItem2;
-        private ToolStripMenuItem sToolStripMenuItem3;
-        private ToolStripMenuItem sToolStripMenuItem4;
-        private ToolStripMenuItem sToolStripMenuItem5;
-        private ToolStripMenuItem sToolStripMenuItem6;
-        private MenuStrip menuStrip2;
-        private ToolStripMenuItem rATINGToolStripMenuItem;
-        private ToolStripMenuItem highestToolStripMenuItem;
-        private ToolStripMenuItem lowestToolStripMenuItem;
-        private MenuStrip menuStrip3;
-        private ToolStripMenuItem gENREToolStripMenuItem;
-        private ToolStripMenuItem actionToolStripMenuItem;
-        private ToolStripMenuItem fantasyToolStripMenuItem;
-        private ToolStripMenuItem horrorToolStripMenuItem;
-        private ToolStripMenuItem scienceFictionToolStripMenuItem;
         private FlowLayoutPanel flpMovieCardsContainer;
+        private MenuStrip menuStripBrowsingTools;
+        private ToolStripMenuItem toolStripMenuDecade;
+        private ToolStripMenuItem toolStripMenuItemAll;
+        private ToolStripMenuItem toolStripMenuItemUpcoming;
+        private ToolStripMenuItem toolStripMenuItem2020s;
+        private ToolStripMenuItem toolStripMenuItem2010s;
+        private ToolStripMenuItem toolStripMenuItem2000s;
+        private ToolStripMenuItem toolStripMenuItem1990s;
+        private ToolStripMenuItem toolStripMenuItem1980s;
+        private ToolStripMenuItem toolStripMenuRating;
+        private ToolStripMenuItem toolStripMenuItemHighest;
+        private ToolStripMenuItem toolStripMenuItemLowest;
     }
 }

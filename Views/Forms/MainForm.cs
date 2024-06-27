@@ -137,7 +137,7 @@ namespace CineVerse.Forms
 
             _navigationService.NavigateToScreen("moviesScreen");
 
-            await _moviesScreen.LoadMoviesInPageAsync(_moviesScreen.CurrentPage);
+            await _moviesScreen.LoadMoviesInPageAsync();
         }
 
         private async void btnListsTab_Click(object sender, EventArgs e)

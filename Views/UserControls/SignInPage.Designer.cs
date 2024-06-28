@@ -39,26 +39,28 @@
             // 
             inpGrpUsername.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             inpGrpUsername.BackColor = Color.Transparent;
+            inpGrpUsername.InputText = "";
             inpGrpUsername.Label = "Label";
-            inpGrpUsername.Location = new Point(47, 100);
-            inpGrpUsername.Margin = new Padding(46, 7, 46, 7);
+            inpGrpUsername.Location = new Point(33, 60);
+            inpGrpUsername.Margin = new Padding(32, 4, 32, 4);
             inpGrpUsername.Name = "inpGrpUsername";
             inpGrpUsername.PasswordChar = '\0';
             inpGrpUsername.PlaceholderText = "";
-            inpGrpUsername.Size = new Size(508, 84);
+            inpGrpUsername.Size = new Size(356, 50);
             inpGrpUsername.TabIndex = 0;
             // 
             // inpGrpPassword
             // 
             inpGrpPassword.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             inpGrpPassword.BackColor = Color.Transparent;
+            inpGrpPassword.InputText = "";
             inpGrpPassword.Label = "Label";
-            inpGrpPassword.Location = new Point(47, 220);
-            inpGrpPassword.Margin = new Padding(46, 7, 46, 7);
+            inpGrpPassword.Location = new Point(33, 132);
+            inpGrpPassword.Margin = new Padding(32, 4, 32, 4);
             inpGrpPassword.Name = "inpGrpPassword";
             inpGrpPassword.PasswordChar = '\0';
             inpGrpPassword.PlaceholderText = "";
-            inpGrpPassword.Size = new Size(508, 84);
+            inpGrpPassword.Size = new Size(356, 50);
             inpGrpPassword.TabIndex = 0;
             // 
             // lblPage
@@ -66,10 +68,10 @@
             lblPage.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblPage.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblPage.ForeColor = Color.FromArgb(178, 172, 162);
-            lblPage.Location = new Point(0, 6);
-            lblPage.Margin = new Padding(6, 7, 6, 7);
+            lblPage.Location = new Point(0, 4);
+            lblPage.Margin = new Padding(4, 4, 4, 4);
             lblPage.Name = "lblPage";
-            lblPage.Size = new Size(600, 59);
+            lblPage.Size = new Size(420, 35);
             lblPage.TabIndex = 1;
             lblPage.Text = "Sign In to CineVerse";
             lblPage.TextAlign = ContentAlignment.MiddleCenter;
@@ -82,10 +84,10 @@
             btnSignIn.FlatStyle = FlatStyle.Flat;
             btnSignIn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnSignIn.ForeColor = Color.White;
-            btnSignIn.Location = new Point(214, 383);
-            btnSignIn.Margin = new Padding(91, 53, 91, 7);
+            btnSignIn.Location = new Point(150, 230);
+            btnSignIn.Margin = new Padding(64, 32, 64, 4);
             btnSignIn.Name = "btnSignIn";
-            btnSignIn.Size = new Size(173, 45);
+            btnSignIn.Size = new Size(121, 27);
             btnSignIn.TabIndex = 2;
             btnSignIn.Text = "Sign In";
             btnSignIn.UseVisualStyleBackColor = false;
@@ -96,9 +98,10 @@
             lnkForgotPassword.Anchor = AnchorStyles.Right;
             lnkForgotPassword.AutoSize = true;
             lnkForgotPassword.LinkColor = Color.FromArgb(47, 255, 125);
-            lnkForgotPassword.Location = new Point(358, 311);
+            lnkForgotPassword.Location = new Point(251, 187);
+            lnkForgotPassword.Margin = new Padding(2, 0, 2, 0);
             lnkForgotPassword.Name = "lnkForgotPassword";
-            lnkForgotPassword.Size = new Size(197, 25);
+            lnkForgotPassword.Size = new Size(127, 15);
             lnkForgotPassword.TabIndex = 3;
             lnkForgotPassword.TabStop = true;
             lnkForgotPassword.Text = "Forgot your password?";
@@ -106,7 +109,7 @@
             // 
             // SignInPage
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(20, 24, 28);
             Controls.Add(lnkForgotPassword);
@@ -114,9 +117,8 @@
             Controls.Add(lblPage);
             Controls.Add(inpGrpPassword);
             Controls.Add(inpGrpUsername);
-            Margin = new Padding(4, 5, 4, 5);
             Name = "SignInPage";
-            Size = new Size(600, 460);
+            Size = new Size(420, 276);
             ResumeLayout(false);
             PerformLayout();
         }

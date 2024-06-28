@@ -47,6 +47,7 @@ namespace CineVerse.Views.UserControls
             isChecked = !isChecked;
             this.BackColor = isChecked ? Color.FromArgb(41, 54, 68) : Color.FromArgb(54, 68, 82);
             this.picCheck.Image = isChecked ? Properties.Resources.check : null;
+            this.picCheck.SizeMode = PictureBoxSizeMode.CenterImage;
         }
     }
 }

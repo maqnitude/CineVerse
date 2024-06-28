@@ -92,7 +92,7 @@ namespace CineVerse.Views.UserControls
                 }
             }
 
-            _isLastPage = CurrentPage * _moviesPerPage > movies.Count;
+            _isLastPage = (CurrentPage - 1) * _moviesPerPage > movies.Count;
 
             btnNextPage.Enabled = !_isLastPage;
             btnPrevPage.Enabled = CurrentPage > 1;
@@ -105,6 +105,7 @@ namespace CineVerse.Views.UserControls
         private async void btnNextPage_Click(object sender, EventArgs e)
         {
             CurrentPage++;
+            lblPageNumber.Text = CurrentPage.ToString();
 
             await LoadMoviesInPageAsync();
 
@@ -114,6 +115,8 @@ namespace CineVerse.Views.UserControls
         private async void btnPrevPage_Click(object sender, EventArgs e)
         {
             CurrentPage--;
+            lblPageNumber.Text = CurrentPage.ToString();
+
             await LoadMoviesInPageAsync();
 
             btnPrevPage.Enabled = CurrentPage > 1;

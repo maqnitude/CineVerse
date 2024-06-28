@@ -32,35 +32,41 @@
             picCheck = new PictureBox();
             picListType = new PictureBox();
             lblNumMovies = new Label();
+            pnListInfo = new Panel();
             ((System.ComponentModel.ISupportInitialize)picCheck).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picListType).BeginInit();
+            pnListInfo.SuspendLayout();
             SuspendLayout();
             // 
             // lblListTitle
             // 
             lblListTitle.AutoSize = true;
+            lblListTitle.Dock = DockStyle.Fill;
             lblListTitle.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblListTitle.ForeColor = Color.FromArgb(173, 196, 214);
-            lblListTitle.Location = new Point(42, 9);
+            lblListTitle.Location = new Point(20, 0);
             lblListTitle.Name = "lblListTitle";
-            lblListTitle.Size = new Size(139, 20);
+            lblListTitle.Size = new Size(13, 20);
             lblListTitle.TabIndex = 0;
-            lblListTitle.Text = "Best Revenge Films";
+            lblListTitle.Text = "I";
+            lblListTitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // picCheck
             // 
-            picCheck.Location = new Point(14, 7);
+            picCheck.Dock = DockStyle.Left;
+            picCheck.Location = new Point(0, 0);
             picCheck.Name = "picCheck";
-            picCheck.Size = new Size(25, 25);
+            picCheck.Size = new Size(20, 20);
             picCheck.TabIndex = 1;
             picCheck.TabStop = false;
             // 
             // picListType
             // 
-            picListType.Anchor = AnchorStyles.Top;
-            picListType.Location = new Point(187, 7);
+            picListType.Dock = DockStyle.Right;
+            picListType.Location = new Point(45, 0);
             picListType.Name = "picListType";
-            picListType.Size = new Size(26, 26);
+            picListType.Size = new Size(20, 20);
+            picListType.SizeMode = PictureBoxSizeMode.Zoom;
             picListType.TabIndex = 1;
             picListType.TabStop = false;
             // 
@@ -70,26 +76,40 @@
             lblNumMovies.AutoSize = true;
             lblNumMovies.Font = new Font("Segoe UI", 10.5F);
             lblNumMovies.ForeColor = Color.FromArgb(178, 172, 162);
-            lblNumMovies.Location = new Point(504, 9);
+            lblNumMovies.Location = new Point(275, 8);
             lblNumMovies.Name = "lblNumMovies";
             lblNumMovies.Size = new Size(49, 19);
             lblNumMovies.TabIndex = 2;
             lblNumMovies.Text = "0 films";
             // 
+            // pnListInfo
+            // 
+            pnListInfo.Anchor = AnchorStyles.Left;
+            pnListInfo.AutoSize = true;
+            pnListInfo.Controls.Add(lblListTitle);
+            pnListInfo.Controls.Add(picListType);
+            pnListInfo.Controls.Add(picCheck);
+            pnListInfo.Location = new Point(13, 8);
+            pnListInfo.Name = "pnListInfo";
+            pnListInfo.Size = new Size(65, 20);
+            pnListInfo.TabIndex = 3;
+            // 
             // ListItemBasic
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             BackColor = Color.FromArgb(54, 68, 82);
+            BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(pnListInfo);
             Controls.Add(lblNumMovies);
-            Controls.Add(picListType);
-            Controls.Add(picCheck);
-            Controls.Add(lblListTitle);
             Name = "ListItemBasic";
-            Size = new Size(560, 39);
+            Size = new Size(331, 37);
             Click += ListItemBasic_Click;
             ((System.ComponentModel.ISupportInitialize)picCheck).EndInit();
             ((System.ComponentModel.ISupportInitialize)picListType).EndInit();
+            pnListInfo.ResumeLayout(false);
+            pnListInfo.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -100,5 +120,6 @@
         private PictureBox picCheck;
         private PictureBox picListType;
         private Label lblNumMovies;
+        private Panel pnListInfo;
     }
 }

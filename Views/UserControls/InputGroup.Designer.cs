@@ -41,11 +41,11 @@
             txtInput.BorderStyle = BorderStyle.None;
             txtInput.Font = new Font("Segoe UI", 10F);
             txtInput.ForeColor = Color.FromArgb(168, 160, 149);
-            txtInput.Location = new Point(6, 11);
-            txtInput.Margin = new Padding(6, 7, 6, 7);
+            txtInput.Location = new Point(4, 9);
+            txtInput.Margin = new Padding(4);
             txtInput.Name = "txtInput";
             txtInput.PlaceholderText = "Some text here";
-            txtInput.Size = new Size(383, 27);
+            txtInput.Size = new Size(268, 18);
             txtInput.TabIndex = 0;
             // 
             // lblField
@@ -54,9 +54,9 @@
             lblField.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblField.ForeColor = Color.FromArgb(232, 230, 227);
             lblField.Location = new Point(0, 0);
-            lblField.Margin = new Padding(6, 7, 6, 0);
+            lblField.Margin = new Padding(4, 4, 4, 0);
             lblField.Name = "lblField";
-            lblField.Size = new Size(395, 28);
+            lblField.Size = new Size(276, 20);
             lblField.TabIndex = 1;
             lblField.Text = "Label";
             // 
@@ -65,21 +65,21 @@
             pnTextInput.BackColor = Color.FromArgb(43, 47, 49);
             pnTextInput.Controls.Add(txtInput);
             pnTextInput.Dock = DockStyle.Fill;
-            pnTextInput.Location = new Point(0, 28);
+            pnTextInput.Location = new Point(0, 20);
+            pnTextInput.Margin = new Padding(2);
             pnTextInput.Name = "pnTextInput";
-            pnTextInput.Size = new Size(395, 56);
+            pnTextInput.Size = new Size(276, 38);
             pnTextInput.TabIndex = 2;
             // 
             // InputGroup
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
             Controls.Add(pnTextInput);
             Controls.Add(lblField);
-            Margin = new Padding(4, 5, 4, 5);
             Name = "InputGroup";
-            Size = new Size(395, 84);
+            Size = new Size(276, 58);
             pnTextInput.ResumeLayout(false);
             pnTextInput.PerformLayout();
             ResumeLayout(false);

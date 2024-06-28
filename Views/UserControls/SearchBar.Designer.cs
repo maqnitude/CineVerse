@@ -37,7 +37,7 @@
             // 
             pictureBox1.Anchor = AnchorStyles.Left;
             pictureBox1.Image = Properties.Resources.search;
-            pictureBox1.Location = new Point(5, 2);
+            pictureBox1.Location = new Point(5, 3);
             pictureBox1.Margin = new Padding(2);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(21, 21);
@@ -47,28 +47,31 @@
             // 
             // txtSearchBox
             // 
-            txtSearchBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtSearchBox.BackColor = Color.FromArgb(35, 42, 51);
+            txtSearchBox.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtSearchBox.BackColor = Color.FromArgb(44, 52, 64);
             txtSearchBox.BorderStyle = BorderStyle.None;
             txtSearchBox.Font = new Font("Segoe UI", 10F);
             txtSearchBox.ForeColor = Color.FromArgb(168, 160, 149);
-            txtSearchBox.Location = new Point(34, 4);
+            txtSearchBox.Location = new Point(34, 6);
             txtSearchBox.Margin = new Padding(2);
             txtSearchBox.Name = "txtSearchBox";
-            txtSearchBox.Size = new Size(240, 18);
+            txtSearchBox.Size = new Size(238, 18);
             txtSearchBox.TabIndex = 1;
             txtSearchBox.TextChanged += txtSearchBox_TextChanged;
+            txtSearchBox.Enter += txtSearchBox_Enter;
+            txtSearchBox.Leave += txtSearchBox_Leave;
             // 
             // SearchBar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(35, 42, 51);
+            BackColor = Color.FromArgb(44, 52, 64);
+            BorderStyle = BorderStyle.FixedSingle;
             Controls.Add(txtSearchBox);
             Controls.Add(pictureBox1);
             Margin = new Padding(2);
             Name = "SearchBar";
-            Size = new Size(279, 26);
+            Size = new Size(277, 31);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

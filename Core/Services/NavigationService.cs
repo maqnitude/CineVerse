@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CineVerse.Core.Services
 {
@@ -69,6 +70,7 @@ namespace CineVerse.Core.Services
                 screen.Dock = DockStyle.None;
                 screen.Location = new Point(0, 0);
                 screen.Width = _mainPanel.ClientSize.Width;
+                screen.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
             }
 
             _navigationStack.Push((screen, dockFill));
@@ -93,6 +95,7 @@ namespace CineVerse.Core.Services
                     previousScreen.Dock = DockStyle.None;
                     previousScreen.Location = new Point(0, 0);
                     previousScreen.Width = _mainPanel.ClientSize.Width;
+                    previousScreen.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
                 }
             }
             else

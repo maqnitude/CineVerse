@@ -69,7 +69,7 @@
             // 
             // picProfile
             // 
-            picProfile.Location = new Point(7, 45);
+            picProfile.Location = new Point(18, 44);
             picProfile.Name = "picProfile";
             picProfile.Size = new Size(250, 375);
             picProfile.TabIndex = 0;
@@ -80,7 +80,7 @@
             lblName.AutoSize = true;
             lblName.Font = new Font("Segoe UI Black", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblName.ForeColor = Color.FromArgb(232, 230, 227);
-            lblName.Location = new Point(45, 49);
+            lblName.Location = new Point(24, 44);
             lblName.Name = "lblName";
             lblName.Size = new Size(236, 37);
             lblName.TabIndex = 1;
@@ -91,7 +91,7 @@
             lblBiographyHeading.AutoSize = true;
             lblBiographyHeading.Font = new Font("Segoe UI", 13.25F, FontStyle.Bold);
             lblBiographyHeading.ForeColor = Color.FromArgb(232, 230, 227);
-            lblBiographyHeading.Location = new Point(45, 97);
+            lblBiographyHeading.Location = new Point(24, 97);
             lblBiographyHeading.Name = "lblBiographyHeading";
             lblBiographyHeading.Size = new Size(100, 25);
             lblBiographyHeading.TabIndex = 2;
@@ -104,12 +104,12 @@
             txtBiography.BorderStyle = BorderStyle.None;
             txtBiography.Font = new Font("Segoe UI", 10F);
             txtBiography.ForeColor = Color.FromArgb(232, 230, 227);
-            txtBiography.Location = new Point(45, 125);
+            txtBiography.Location = new Point(24, 125);
             txtBiography.Multiline = true;
             txtBiography.Name = "txtBiography";
             txtBiography.ReadOnly = true;
             txtBiography.ScrollBars = ScrollBars.Vertical;
-            txtBiography.Size = new Size(709, 224);
+            txtBiography.Size = new Size(740, 224);
             txtBiography.TabIndex = 4;
             // 
             // pnKnownForSection
@@ -117,9 +117,9 @@
             pnKnownForSection.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pnKnownForSection.Controls.Add(pnMovieCards);
             pnKnownForSection.Controls.Add(lblKnownForHeading);
-            pnKnownForSection.Location = new Point(45, 403);
+            pnKnownForSection.Location = new Point(24, 403);
             pnKnownForSection.Name = "pnKnownForSection";
-            pnKnownForSection.Size = new Size(709, 275);
+            pnKnownForSection.Size = new Size(740, 275);
             pnKnownForSection.TabIndex = 5;
             // 
             // pnMovieCards
@@ -128,7 +128,7 @@
             pnMovieCards.Dock = DockStyle.Fill;
             pnMovieCards.Location = new Point(0, 22);
             pnMovieCards.Name = "pnMovieCards";
-            pnMovieCards.Size = new Size(709, 253);
+            pnMovieCards.Size = new Size(740, 253);
             pnMovieCards.TabIndex = 1;
             // 
             // lblKnownForHeading
@@ -138,7 +138,7 @@
             lblKnownForHeading.ForeColor = Color.FromArgb(232, 230, 227);
             lblKnownForHeading.Location = new Point(0, 0);
             lblKnownForHeading.Name = "lblKnownForHeading";
-            lblKnownForHeading.Size = new Size(709, 22);
+            lblKnownForHeading.Size = new Size(740, 22);
             lblKnownForHeading.TabIndex = 0;
             lblKnownForHeading.Text = "Known for";
             // 
@@ -150,7 +150,7 @@
             pnColumn1.Dock = DockStyle.Left;
             pnColumn1.Location = new Point(0, 0);
             pnColumn1.Name = "pnColumn1";
-            pnColumn1.Size = new Size(265, 1060);
+            pnColumn1.Size = new Size(281, 1060);
             pnColumn1.TabIndex = 6;
             // 
             // btnBack
@@ -175,7 +175,7 @@
             pnPersonalInfo.Controls.Add(lblPersonalInfoHeading);
             pnPersonalInfo.Location = new Point(10, 435);
             pnPersonalInfo.Name = "pnPersonalInfo";
-            pnPersonalInfo.Size = new Size(245, 612);
+            pnPersonalInfo.Size = new Size(261, 612);
             pnPersonalInfo.TabIndex = 1;
             // 
             // pnBirthdaySection
@@ -185,7 +185,7 @@
             pnBirthdaySection.Dock = DockStyle.Top;
             pnBirthdaySection.Location = new Point(0, 205);
             pnBirthdaySection.Name = "pnBirthdaySection";
-            pnBirthdaySection.Size = new Size(245, 77);
+            pnBirthdaySection.Size = new Size(261, 77);
             pnBirthdaySection.TabIndex = 4;
             // 
             // lblBirthday
@@ -195,7 +195,7 @@
             lblBirthday.ForeColor = Color.FromArgb(232, 230, 227);
             lblBirthday.Location = new Point(0, 25);
             lblBirthday.Name = "lblBirthday";
-            lblBirthday.Size = new Size(245, 52);
+            lblBirthday.Size = new Size(261, 52);
             lblBirthday.TabIndex = 1;
             lblBirthday.Text = "April 16, 1996 (28 years old) ";
             // 
@@ -206,7 +206,7 @@
             lblBirthdayHeading.ForeColor = Color.FromArgb(232, 230, 227);
             lblBirthdayHeading.Location = new Point(0, 0);
             lblBirthdayHeading.Name = "lblBirthdayHeading";
-            lblBirthdayHeading.Size = new Size(245, 25);
+            lblBirthdayHeading.Size = new Size(261, 25);
             lblBirthdayHeading.TabIndex = 0;
             lblBirthdayHeading.Text = "Birthday";
             // 
@@ -217,7 +217,7 @@
             pnPlaceOfBirthSection.Dock = DockStyle.Top;
             pnPlaceOfBirthSection.Location = new Point(0, 143);
             pnPlaceOfBirthSection.Name = "pnPlaceOfBirthSection";
-            pnPlaceOfBirthSection.Size = new Size(245, 62);
+            pnPlaceOfBirthSection.Size = new Size(261, 62);
             pnPlaceOfBirthSection.TabIndex = 3;
             // 
             // lblPlaceOfBirth
@@ -227,7 +227,7 @@
             lblPlaceOfBirth.ForeColor = Color.FromArgb(232, 230, 227);
             lblPlaceOfBirth.Location = new Point(0, 23);
             lblPlaceOfBirth.Name = "lblPlaceOfBirth";
-            lblPlaceOfBirth.Size = new Size(245, 39);
+            lblPlaceOfBirth.Size = new Size(261, 39);
             lblPlaceOfBirth.TabIndex = 1;
             lblPlaceOfBirth.Text = "Miami, Florida, USA";
             // 
@@ -238,7 +238,7 @@
             lblPlaceOfBirthHeading.ForeColor = Color.FromArgb(232, 230, 227);
             lblPlaceOfBirthHeading.Location = new Point(0, 0);
             lblPlaceOfBirthHeading.Name = "lblPlaceOfBirthHeading";
-            lblPlaceOfBirthHeading.Size = new Size(245, 23);
+            lblPlaceOfBirthHeading.Size = new Size(261, 23);
             lblPlaceOfBirthHeading.TabIndex = 0;
             lblPlaceOfBirthHeading.Text = "Place of birth";
             // 
@@ -249,7 +249,7 @@
             pnGenderSection.Dock = DockStyle.Top;
             pnGenderSection.Location = new Point(0, 88);
             pnGenderSection.Name = "pnGenderSection";
-            pnGenderSection.Size = new Size(245, 55);
+            pnGenderSection.Size = new Size(261, 55);
             pnGenderSection.TabIndex = 2;
             // 
             // lblGender
@@ -259,7 +259,7 @@
             lblGender.ForeColor = Color.FromArgb(232, 230, 227);
             lblGender.Location = new Point(0, 22);
             lblGender.Name = "lblGender";
-            lblGender.Size = new Size(245, 33);
+            lblGender.Size = new Size(261, 33);
             lblGender.TabIndex = 1;
             lblGender.Text = "Female";
             // 
@@ -270,7 +270,7 @@
             lblGenderHeading.ForeColor = Color.FromArgb(232, 230, 227);
             lblGenderHeading.Location = new Point(0, 0);
             lblGenderHeading.Name = "lblGenderHeading";
-            lblGenderHeading.Size = new Size(245, 22);
+            lblGenderHeading.Size = new Size(261, 22);
             lblGenderHeading.TabIndex = 0;
             lblGenderHeading.Text = "Gender";
             // 
@@ -281,7 +281,7 @@
             pnKnownForRoleSection.Dock = DockStyle.Top;
             pnKnownForRoleSection.Location = new Point(0, 25);
             pnKnownForRoleSection.Name = "pnKnownForRoleSection";
-            pnKnownForRoleSection.Size = new Size(245, 63);
+            pnKnownForRoleSection.Size = new Size(261, 63);
             pnKnownForRoleSection.TabIndex = 1;
             // 
             // lblExperise
@@ -291,7 +291,7 @@
             lblExperise.ForeColor = Color.FromArgb(232, 230, 227);
             lblExperise.Location = new Point(0, 24);
             lblExperise.Name = "lblExperise";
-            lblExperise.Size = new Size(245, 39);
+            lblExperise.Size = new Size(261, 39);
             lblExperise.TabIndex = 1;
             lblExperise.Text = "Acting";
             // 
@@ -302,7 +302,7 @@
             lblKnownForRole.ForeColor = Color.FromArgb(232, 230, 227);
             lblKnownForRole.Location = new Point(0, 0);
             lblKnownForRole.Name = "lblKnownForRole";
-            lblKnownForRole.Size = new Size(245, 24);
+            lblKnownForRole.Size = new Size(261, 24);
             lblKnownForRole.TabIndex = 0;
             lblKnownForRole.Text = "Known for";
             // 
@@ -326,9 +326,9 @@
             pnColumn2.Controls.Add(pnKnownForSection);
             pnColumn2.Controls.Add(txtBiography);
             pnColumn2.Dock = DockStyle.Fill;
-            pnColumn2.Location = new Point(265, 0);
+            pnColumn2.Location = new Point(281, 0);
             pnColumn2.Name = "pnColumn2";
-            pnColumn2.Size = new Size(837, 1060);
+            pnColumn2.Size = new Size(821, 1060);
             pnColumn2.TabIndex = 7;
             // 
             // pnCreditsListSection
@@ -337,9 +337,9 @@
             pnCreditsListSection.AutoSize = true;
             pnCreditsListSection.Controls.Add(pnCreditsListContainer);
             pnCreditsListSection.Controls.Add(lblCreditsHeading);
-            pnCreditsListSection.Location = new Point(45, 712);
+            pnCreditsListSection.Location = new Point(24, 712);
             pnCreditsListSection.Name = "pnCreditsListSection";
-            pnCreditsListSection.Size = new Size(709, 335);
+            pnCreditsListSection.Size = new Size(740, 335);
             pnCreditsListSection.TabIndex = 6;
             // 
             // pnCreditsListContainer
@@ -348,7 +348,7 @@
             pnCreditsListContainer.Dock = DockStyle.Fill;
             pnCreditsListContainer.Location = new Point(0, 23);
             pnCreditsListContainer.Name = "pnCreditsListContainer";
-            pnCreditsListContainer.Size = new Size(709, 312);
+            pnCreditsListContainer.Size = new Size(740, 312);
             pnCreditsListContainer.TabIndex = 1;
             // 
             // lblCreditsHeading
@@ -358,7 +358,7 @@
             lblCreditsHeading.ForeColor = Color.FromArgb(232, 230, 227);
             lblCreditsHeading.Location = new Point(0, 0);
             lblCreditsHeading.Name = "lblCreditsHeading";
-            lblCreditsHeading.Size = new Size(709, 23);
+            lblCreditsHeading.Size = new Size(740, 23);
             lblCreditsHeading.TabIndex = 0;
             lblCreditsHeading.Text = "Credits";
             // 

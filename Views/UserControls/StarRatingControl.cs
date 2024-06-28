@@ -13,12 +13,15 @@ namespace CineVerse.Views.UserControls
 {
     public partial class StarRatingControl : UserControl
     {
-        private int _rating = 0;
-        private Image _darkStar;
-        private Image _blueStar;
-        private Image _greenStar;
+        private double _rating = 0;
+        private readonly Image _darkLStar;
+        private readonly Image _darkRStar;
+        private readonly Image _blueLStar;
+        private readonly Image _blueRStar;
+        private readonly Image _greenLStar;
+        private readonly Image _greenRStar;
 
-        public int Rating
+        public double Rating
         {
             get { return _rating; }
             set
@@ -27,77 +30,81 @@ namespace CineVerse.Views.UserControls
                 UpdateStarImages();
             }
         }
-
+        
         public StarRatingControl()
         {
             InitializeComponent();
+            
+            _darkLStar = Properties.Resources.star_l;
+            _darkRStar = Properties.Resources.star_r;
+
+            _blueLStar = Properties.Resources.star_l_blue;
+            _blueRStar = Properties.Resources.star_r_blue;
+
+            _greenLStar = Properties.Resources.star_l_green;
+            _greenRStar = Properties.Resources.star_r_green;
+            
             InitializeStars();
         }
 
         private void InitializeStars()
         {
-            _darkStar = Properties.Resources.star_fill_dark;
-            _blueStar = Properties.Resources.star_fill_blue;
-            _greenStar = Properties.Resources.star_fill_green;
-
-            for (int i = 1; i <= 5; i++)
+            for (int i = 1; i <= 10; i++)
             {
-                PictureBox picStar = (PictureBox)Controls["picStar" + i];
-                picStar.Image = _darkStar;
-                picStar.Tag = i;
-                picStar.MouseEnter += Star_MouseEnter;
-                picStar.MouseLeave += Star_MouseLeave;
-                picStar.Click += Star_Click;
+                PictureBox picHalfStar = (PictureBox)Controls["picHalfStar" + i];
+                picHalfStar.Image = (i % 2 != 0) ? _darkLStar : _darkRStar;
+                picHalfStar.Tag = i / 2.0;
+                picHalfStar.MouseEnter += HalfStar_MouseEnter;
+                picHalfStar.MouseLeave += HalfStar_MouseLeave;
+                picHalfStar.Click += HalfStar_Click;
             }
         }
 
         private void UpdateStarImages()
         {
-            for (int i = 1; i <= 5; i++)
+            for (int i = 1; i <= 10; i++)
             {
-                PictureBox picStar = (PictureBox)Controls["picStar" + i];
-                if (i <= _rating)
+                PictureBox picHalfStar = (PictureBox)Controls["picHalfStar" + i];
+                if ((double)picHalfStar.Tag <= _rating)
                 {
-                    picStar.Image = _greenStar;
+                    picHalfStar.Image = (i % 2 != 0) ? _greenLStar : _greenRStar;
                 }
                 else
                 {
-                    picStar.Image = _darkStar;
+                    picHalfStar.Image = (i % 2 != 0) ? _darkLStar: _darkRStar;
                 }
             }
         }
 
         private void ResetStarColors()
         {
-            for (int i = 1; i <= 5; i++)
+            for (int i = 1; i <= 10; i++)
             {
-                PictureBox picStar = (PictureBox)Controls["picStar" + i];
-                picStar.Image = _darkStar;
+                PictureBox picHalfStar = (PictureBox)Controls["picHalfStar" + i];
+                picHalfStar.Image = (i % 2 != 0) ? _darkLStar : _darkRStar;
             }
         }
 
-        private void Star_MouseEnter(object sender, EventArgs e)
+        private void HalfStar_MouseEnter(object sender, EventArgs e)
         {
-            PictureBox hoveredStar = (PictureBox)sender;
-            int hoverIndex = (int)hoveredStar.Tag;
+            PictureBox hoveredHalfStar = (PictureBox)sender;
+            int hoverIndex = (int)((double)hoveredHalfStar.Tag * 2);
             ResetStarColors();
             for (int i = 1; i <= hoverIndex; i++)
             {
-                PictureBox picStar = (PictureBox)Controls["picStar" + i];
-                if (i <= hoverIndex)
-                    picStar.Image = _blueStar;
+                PictureBox picHalfStar = (PictureBox)Controls["picHalfStar" + i];
+                picHalfStar.Image = (i % 2 != 0) ? _blueLStar : _blueRStar;
             }
         }
 
-        private void Star_Click(object sender, EventArgs e)
+        private void HalfStar_Click(object sender, EventArgs e)
         {
-            PictureBox clickedStar = (PictureBox)sender;
-            Rating = (int)clickedStar.Tag;
-
+            PictureBox clickedHalfStar = (PictureBox)sender;
+            Rating = (double)clickedHalfStar.Tag;
             EventManager.Instance.Publish(EventType.RatingChanged, this, EventArgs.Empty);
         }
 
-        private void Star_MouseLeave(object sender, EventArgs e)
+        private void HalfStar_MouseLeave(object sender, EventArgs e)
         {
             UpdateStarImages();
         }

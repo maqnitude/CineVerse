@@ -23,8 +23,11 @@ namespace CineVerse.Views.Forms
         {
             InitializeComponent();
 
+            this.StartPosition = FormStartPosition.CenterParent;
+
             _user = user;
             _movie = movie;
+            lblFormTitle.Text = $"Add '{movie.Title}' to lists";
 
             EventManager.Instance.Subscribe<ListMovieEventArgs>(EventType.ListMovieAdded, OnListMovieAdded);
         }
@@ -54,6 +57,8 @@ namespace CineVerse.Views.Forms
         private void pnNewList_Click(object sender, EventArgs e)
         {
             // navigate to new list form
+            var newListForm = new NewListForm();
+            newListForm.ShowDialog();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

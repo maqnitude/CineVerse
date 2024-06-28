@@ -53,7 +53,7 @@ namespace CineVerse.Views.UserControls
                 _results = new SearchResultsList()
                 {
                     Width = this.Width,
-                    Location = new Point(this.Location.X, this.Location.Y + this.Height),
+                    Location = new Point(this.Parent.Location.X, this.Parent.Location.Y + this.Height),
                 };
                 _results.SetMediator(_mediator);
 
@@ -66,6 +66,18 @@ namespace CineVerse.Views.UserControls
             List<Movie> movies = await MovieService.Instance.SearchMoviesAsync(txtSearchBox.Text);
 
             _results.LoadResultsMovies(movies);
+        }
+
+        private void txtSearchBox_Enter(object sender, EventArgs e)
+        {
+            txtSearchBox.BackColor = Color.Black;
+            this.BackColor = Color.Black;
+        }
+
+        private void txtSearchBox_Leave(object sender, EventArgs e)
+        {
+            txtSearchBox.BackColor = Color.FromArgb(44, 52, 64);
+            this.BackColor = Color.FromArgb(44, 52, 64);
         }
     }
 }

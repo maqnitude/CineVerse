@@ -78,32 +78,35 @@
             // 
             // lblMovieTitle
             // 
-            lblMovieTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblMovieTitle.AutoSize = true;
+            lblMovieTitle.Dock = DockStyle.Fill;
             lblMovieTitle.Font = new Font("Georgia", 16F, FontStyle.Bold);
             lblMovieTitle.ForeColor = Color.FromArgb(232, 230, 227);
-            lblMovieTitle.Location = new Point(4, 4);
+            lblMovieTitle.Location = new Point(0, 0);
             lblMovieTitle.Name = "lblMovieTitle";
-            lblMovieTitle.Size = new Size(158, 23);
+            lblMovieTitle.Size = new Size(151, 27);
             lblMovieTitle.TabIndex = 2;
             lblMovieTitle.Text = "Inside Out 2";
             // 
             // pnHeader
             // 
-            pnHeader.Controls.Add(lblReleaseYear);
+            pnHeader.AutoSize = true;
             pnHeader.Controls.Add(lblMovieTitle);
+            pnHeader.Controls.Add(lblReleaseYear);
             pnHeader.Location = new Point(200, 59);
             pnHeader.Name = "pnHeader";
-            pnHeader.Size = new Size(205, 32);
+            pnHeader.Size = new Size(203, 27);
             pnHeader.TabIndex = 5;
             // 
             // lblReleaseYear
             // 
-            lblReleaseYear.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblReleaseYear.AutoSize = true;
+            lblReleaseYear.Dock = DockStyle.Right;
             lblReleaseYear.Font = new Font("Segoe UI", 14F);
             lblReleaseYear.ForeColor = Color.FromArgb(173, 196, 214);
-            lblReleaseYear.Location = new Point(155, 4);
+            lblReleaseYear.Location = new Point(151, 0);
             lblReleaseYear.Name = "lblReleaseYear";
-            lblReleaseYear.Size = new Size(53, 26);
+            lblReleaseYear.Size = new Size(52, 25);
             lblReleaseYear.TabIndex = 3;
             lblReleaseYear.Text = "2024";
             // 
@@ -147,7 +150,7 @@
             starRatingControl.Dock = DockStyle.Fill;
             starRatingControl.Location = new Point(0, 20);
             starRatingControl.Name = "starRatingControl";
-            starRatingControl.Rating = 0;
+            starRatingControl.Rating = 0D;
             starRatingControl.Size = new Size(160, 32);
             starRatingControl.TabIndex = 1;
             // 
@@ -251,6 +254,7 @@
             Text = "NewReviewForm";
             ((System.ComponentModel.ISupportInitialize)picMoviePoster).EndInit();
             pnHeader.ResumeLayout(false);
+            pnHeader.PerformLayout();
             pnReviewContainer.ResumeLayout(false);
             pnReviewContainer.PerformLayout();
             pnRatingSection.ResumeLayout(false);
@@ -258,6 +262,7 @@
             pnLikeSection.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picLike).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

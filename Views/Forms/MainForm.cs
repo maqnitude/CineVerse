@@ -33,6 +33,8 @@ namespace CineVerse.Forms
         private readonly MoviesScreen _moviesScreen;
         private readonly ListsScreen _listsScreen;
 
+        private Label _selectedTab;
+
         private User _currentUser;
 
         // TODO: Define the movie details screen, then just hide and unhide it
@@ -40,6 +42,8 @@ namespace CineVerse.Forms
         public MainForm()
         {
             InitializeComponent();
+
+            this.StartPosition = FormStartPosition.CenterScreen;
 
             _navigationService = new NavigationService(this, pnMain);
 
@@ -74,7 +78,7 @@ namespace CineVerse.Forms
                         addToListForm.LoadListsAsync();
                         addToListForm.ShowDialog();
                     }
-                    
+
                     break;
 
                 case "HideSearchResults":
@@ -109,16 +113,25 @@ namespace CineVerse.Forms
 
                 control.MouseUp += OnMouseUp;
             }
+
+            // Add hover effects for nav items
+            foreach (Control control in pnNavBar.Controls)
+            {
+                if (control is Label lbl)
+                {
+                    control.MouseEnter += OnNavItemMouseEnter;
+                    control.MouseLeave += OnNavItemMouseLeave;
+                }
+            } 
         }
 
-        private void ResetButtonColors()
+        private void ResetNavItemColors()
         {
             foreach (Control control in pnNavBar.Controls)
             {
-                if (control is Button btn)
+                if (control is Label lbl)
                 {
-                    if (btn.Name != "btnUser")
-                        btn.BackColor = Color.FromArgb(150, 150, 150);
+                    lbl.ForeColor = Color.FromArgb(178, 172, 162);
                 }
             }
         }
@@ -161,24 +174,52 @@ namespace CineVerse.Forms
             searchBar.HideResults();
         }
 
-        private async void btnMoviesTab_Click(object sender, EventArgs e)
+        private void OnNavItemMouseEnter(object? sender, EventArgs e)
         {
-            ResetButtonColors();
-            btnMoviesTab.BackColor = Color.FromArgb(0, 157, 26);
+            Label label = (Label)sender;
+            if (label != null)
+            {
+                label.ForeColor = Color.White;
+            }
+        }
 
+        private void OnNavItemMouseLeave(object? sender, EventArgs e)
+        {
+            Label label = (Label)sender;
+            if (label != null && label != _selectedTab)
+            {
+                label.ForeColor = Color.FromArgb(178, 172, 162);
+            }
+        }
+
+        private void lblHomeTab_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private async void lblMoviesTab_Click(object sender, EventArgs e)
+        {
+            ResetNavItemColors();
+            lblMoviesTab.ForeColor = Color.FromArgb(0, 157, 26);
+            _selectedTab = lblMoviesTab;
             _navigationService.NavigateToScreen("moviesScreen");
 
             await _moviesScreen.LoadMoviesInPageAsync();
         }
 
-        private async void btnListsTab_Click(object sender, EventArgs e)
+        private async void lblListsTab_Click(object sender, EventArgs e)
         {
-            ResetButtonColors();
-            btnListsTab.BackColor = Color.FromArgb(0, 157, 26);
-
+            ResetNavItemColors();
+            lblListsTab.ForeColor = Color.FromArgb(0, 157, 26);
+            _selectedTab = lblListsTab;
             _navigationService.NavigateToScreen("listsScreen");
 
             await _listsScreen.LoadListsAsync();
+        }
+
+        private void lblDiscussionsTab_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -119,7 +119,7 @@
             pnKnownForSection.Controls.Add(lblKnownForHeading);
             pnKnownForSection.Location = new Point(45, 403);
             pnKnownForSection.Name = "pnKnownForSection";
-            pnKnownForSection.Size = new Size(718, 186);
+            pnKnownForSection.Size = new Size(718, 275);
             pnKnownForSection.TabIndex = 5;
             // 
             // pnMovieCards
@@ -128,7 +128,7 @@
             pnMovieCards.Dock = DockStyle.Fill;
             pnMovieCards.Location = new Point(0, 22);
             pnMovieCards.Name = "pnMovieCards";
-            pnMovieCards.Size = new Size(718, 164);
+            pnMovieCards.Size = new Size(718, 253);
             pnMovieCards.TabIndex = 1;
             // 
             // lblKnownForHeading
@@ -150,7 +150,7 @@
             pnColumn1.Dock = DockStyle.Left;
             pnColumn1.Location = new Point(0, 0);
             pnColumn1.Name = "pnColumn1";
-            pnColumn1.Size = new Size(256, 909);
+            pnColumn1.Size = new Size(256, 1060);
             pnColumn1.TabIndex = 6;
             // 
             // btnBack
@@ -175,7 +175,7 @@
             pnPersonalInfo.Controls.Add(lblPersonalInfoHeading);
             pnPersonalInfo.Location = new Point(12, 376);
             pnPersonalInfo.Name = "pnPersonalInfo";
-            pnPersonalInfo.Size = new Size(234, 520);
+            pnPersonalInfo.Size = new Size(234, 671);
             pnPersonalInfo.TabIndex = 1;
             // 
             // pnBirthdaySection
@@ -328,7 +328,7 @@
             pnColumn2.Dock = DockStyle.Fill;
             pnColumn2.Location = new Point(256, 0);
             pnColumn2.Name = "pnColumn2";
-            pnColumn2.Size = new Size(846, 909);
+            pnColumn2.Size = new Size(846, 1060);
             pnColumn2.TabIndex = 7;
             // 
             // pnCreditsListSection
@@ -337,9 +337,9 @@
             pnCreditsListSection.AutoSize = true;
             pnCreditsListSection.Controls.Add(pnCreditsListContainer);
             pnCreditsListSection.Controls.Add(lblCreditsHeading);
-            pnCreditsListSection.Location = new Point(45, 619);
+            pnCreditsListSection.Location = new Point(45, 712);
             pnCreditsListSection.Name = "pnCreditsListSection";
-            pnCreditsListSection.Size = new Size(718, 260);
+            pnCreditsListSection.Size = new Size(718, 335);
             pnCreditsListSection.TabIndex = 6;
             // 
             // pnCreditsListContainer
@@ -348,7 +348,7 @@
             pnCreditsListContainer.Dock = DockStyle.Fill;
             pnCreditsListContainer.Location = new Point(0, 23);
             pnCreditsListContainer.Name = "pnCreditsListContainer";
-            pnCreditsListContainer.Size = new Size(718, 237);
+            pnCreditsListContainer.Size = new Size(718, 312);
             pnCreditsListContainer.TabIndex = 1;
             // 
             // lblCreditsHeading
@@ -370,7 +370,7 @@
             Controls.Add(pnColumn2);
             Controls.Add(pnColumn1);
             Name = "PersonDetailsScreen";
-            Size = new Size(1102, 909);
+            Size = new Size(1102, 1060);
             ((System.ComponentModel.ISupportInitialize)picProfile).EndInit();
             pnKnownForSection.ResumeLayout(false);
             pnColumn1.ResumeLayout(false);

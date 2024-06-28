@@ -102,5 +102,21 @@ namespace CineVerse.Data.Repositories
                 .Take(n)
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<Movie>> SearchMoviesAsync(string searchTerm, int maxItems = 100)
+        {
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                return Enumerable.Empty<Movie>();
+            }
+
+            IQueryable<Movie> query = _context.Set<Movie>();
+
+            searchTerm = searchTerm.ToLower();
+            query = query.Where(m => m.Title.ToLower().Contains(searchTerm)
+                || m.Credits.Any(c => c.Person.Name.ToLower() == searchTerm && c.Job == "Director"));
+
+            return await query.Take(maxItems).ToListAsync();
+        }
     }
 }

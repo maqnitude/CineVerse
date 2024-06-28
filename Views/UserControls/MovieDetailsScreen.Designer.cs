@@ -421,9 +421,9 @@
             pnCrewSection.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pnCrewSection.Controls.Add(pnCrews);
             pnCrewSection.Controls.Add(lblCrewHeader);
-            pnCrewSection.Location = new Point(27, 286);
+            pnCrewSection.Location = new Point(27, 279);
             pnCrewSection.Name = "pnCrewSection";
-            pnCrewSection.Size = new Size(751, 205);
+            pnCrewSection.Size = new Size(751, 210);
             pnCrewSection.TabIndex = 2;
             // 
             // pnCrews
@@ -432,7 +432,7 @@
             pnCrews.Dock = DockStyle.Fill;
             pnCrews.Location = new Point(0, 24);
             pnCrews.Name = "pnCrews";
-            pnCrews.Size = new Size(751, 181);
+            pnCrews.Size = new Size(751, 186);
             pnCrews.TabIndex = 2;
             // 
             // lblCrewHeader
@@ -454,7 +454,7 @@
             pnCastSection.Controls.Add(lblCastHeader);
             pnCastSection.Location = new Point(27, 29);
             pnCastSection.Name = "pnCastSection";
-            pnCastSection.Size = new Size(751, 205);
+            pnCastSection.Size = new Size(751, 210);
             pnCastSection.TabIndex = 2;
             // 
             // pnCasts
@@ -463,7 +463,7 @@
             pnCasts.Dock = DockStyle.Fill;
             pnCasts.Location = new Point(0, 24);
             pnCasts.Name = "pnCasts";
-            pnCasts.Size = new Size(751, 181);
+            pnCasts.Size = new Size(751, 186);
             pnCasts.TabIndex = 2;
             // 
             // lblCastHeader

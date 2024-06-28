@@ -283,9 +283,29 @@ namespace CineVerse.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap like_small {
+            get {
+                object obj = ResourceManager.GetObject("like_small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap liked {
             get {
                 object obj = ResourceManager.GetObject("liked", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap liked_small {
+            get {
+                object obj = ResourceManager.GetObject("liked_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -406,6 +426,16 @@ namespace CineVerse.Properties {
         internal static System.Drawing.Bitmap star_fill_green {
             get {
                 object obj = ResourceManager.GetObject("star_fill_green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap upvote {
+            get {
+                object obj = ResourceManager.GetObject("upvote", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

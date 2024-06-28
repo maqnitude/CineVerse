@@ -90,6 +90,7 @@
             // 
             // pnNewList
             // 
+            pnNewList.BorderStyle = BorderStyle.FixedSingle;
             pnNewList.Controls.Add(picAdd);
             pnNewList.Controls.Add(lblNewList);
             pnNewList.Dock = DockStyle.Top;

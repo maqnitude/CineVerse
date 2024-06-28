@@ -25,6 +25,8 @@ namespace CineVerse.Views.Forms
         {
             InitializeComponent();
 
+            this.StartPosition = FormStartPosition.CenterParent;
+
             List<ComboBoxItem> items = new()
             {
                 new ComboBoxItem { Id = 0, Name = "Anyone - Public list" },
@@ -50,7 +52,7 @@ namespace CineVerse.Views.Forms
             }
         }
 
-        private void OnListAdded(object  sender, EventArgs e)
+        private void OnListAdded(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -71,6 +73,11 @@ namespace CineVerse.Views.Forms
 
             EventManager.Instance.Publish<ListEventArgs>(EventType.ListAdding, this,
                 new ListEventArgs(txtName.Text, txtDescription.Text, MapListType(comboListType.SelectedIndex)));
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

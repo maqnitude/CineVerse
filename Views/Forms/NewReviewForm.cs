@@ -28,7 +28,7 @@ namespace CineVerse.Views.Forms
         public NewReviewForm(Movie movie)
         {
             InitializeComponent();
-            this.StartPosition = FormStartPosition.CenterScreen;
+            this.StartPosition = FormStartPosition.CenterParent;
 
             InitializeStars();
 

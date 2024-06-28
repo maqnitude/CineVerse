@@ -66,10 +66,10 @@ namespace CineVerse.Data.Repositories
                         if (string.IsNullOrWhiteSpace(sortValue)) { break; }
                         switch (sortValue.ToLower())
                         {
-                            case "highest":
+                            case "highest first":
                                 query = query.OrderBy(m => m.VoteAverage);
                                 break;
-                            case "lowest":
+                            case "lowest first":
                                 query = query.OrderByDescending(m => m.VoteAverage);
                                 break;
                         }

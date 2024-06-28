@@ -45,7 +45,6 @@ namespace CineVerse.Views.UserControls
             {
                 if (control != null)
                 {
-                    Debug.WriteLine(control);
                     control.MouseEnter += MovieCard_MouseEnter;
                     control.MouseLeave += MovieCard_MouseLeave;
                     if (control.Parent != pnActions)

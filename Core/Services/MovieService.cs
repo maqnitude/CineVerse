@@ -83,6 +83,24 @@ namespace CineVerse.Core.Services
             }
         }
 
+        public async Task<List<Person>> GetTopCastsByMovieIdAsync(int movieId, int n=10)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var casts = await unitOfWork.Movies.GetTopCastsByMovieIdAsync(movieId, n);
+                return casts;
+            }
+        }
+        
+        public async Task<List<Person>> GetTopCrewsByMovieIdAsync(int movieId, int n = 10)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var crews = await unitOfWork.Movies.GetTopCrewsByMovieIdAsync(movieId, n);
+                return crews;
+            }
+        }
+
         public async Task<List<Movie>> SearchMoviesAsync(string searchTerm)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))

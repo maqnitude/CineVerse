@@ -9,6 +9,7 @@ namespace CineVerse.Core.Interfaces
 {
     public interface IPersonRepository : IRepository<Person>
     {
+        Task<List<Movie>> GetTopMoviesByPersonIdAsync(int personId, int n);
         Task<Person> GetPersonWithMoviesAsync(int personId);
     }
 

@@ -14,6 +14,8 @@ namespace CineVerse.Core.Interfaces
             string? filterBy = null, string? filterValue = null,
             string? sortBy = null, string? sortValue = null);
         Task<int> CountMoviesAsync();
+        Task<List<Person>> GetTopCastsByMovieIdAsync(int movieId, int n);
+        Task<List<Person>> GetTopCrewsByMovieIdAsync(int movieId, int n);
         Task<IEnumerable<Movie>> SearchMoviesAsync(string searchTerm, int maxItems = 100);
     }
 }

@@ -80,6 +80,29 @@ namespace CineVerse.Data.Repositories
             return await query.Skip((pageNumber - 1) *  pageSize).Take(pageSize).ToListAsync();
         }
 
+        public async Task<List<Person>> GetTopCastsByMovieIdAsync(int movieId, int n)
+        {
+            return await _context.Set<Credit>()
+                .Where(c => c.MovieId == movieId && c.Type == "cast")
+                .Include(c => c.Person)
+                .OrderBy(c => c.Order ?? int.MaxValue)
+                .Select(c => c.Person)
+                .Distinct()
+                .Take(n)
+                .ToListAsync();
+        }
+
+        public async Task<List<Person>> GetTopCrewsByMovieIdAsync(int movieId, int n)
+        {
+            return await _context.Set<Credit>()
+                .Where(c => c.MovieId == movieId && c.Type == "crew")
+                .Include(c => c.Person)
+                .Select(c => c.Person)
+                .Distinct()
+                .Take(n)
+                .ToListAsync();
+        }
+
         public async Task<IEnumerable<Movie>> SearchMoviesAsync(string searchTerm, int maxItems = 100)
         {
             if (string.IsNullOrWhiteSpace(searchTerm))

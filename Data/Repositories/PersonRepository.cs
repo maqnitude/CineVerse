@@ -19,5 +19,15 @@ namespace CineVerse.Data.Repositories
                                                .ThenInclude(c => c.Movie)
                                                 .FirstOrDefaultAsync(p => p.Id == personId);
         }
+
+        public async Task<List<Movie>> GetTopMoviesByPersonIdAsync(int personId, int n)
+        {
+            return await _context.Set<Credit>().Where(c => c.PersonId == personId)
+                .Include(c => c.Movie)
+                .Select(c => c.Movie)
+                .Distinct()
+                .Take(n)
+                .ToListAsync();
+        }
     }
 }

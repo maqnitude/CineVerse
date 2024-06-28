@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,14 +13,14 @@ namespace CineVerse.Core.Services
         private readonly Form _currentForm;
         private readonly Panel _mainPanel;
         private readonly Dictionary<string, UserControl> _screens;
-        private readonly Stack<UserControl> _navigationStack;
+        private readonly Stack<(UserControl Screen, bool Docked)> _navigationStack;
 
         public NavigationService(Form currentForm, Panel mainPanel)
         {
             _currentForm = currentForm ?? throw new ArgumentNullException(nameof(currentForm));
             _mainPanel = mainPanel ?? throw new ArgumentNullException(nameof(_mainPanel));
             _screens = new Dictionary<string, UserControl>();
-            _navigationStack = new Stack<UserControl>();
+            _navigationStack = new Stack<(UserControl, bool)>();
         }
 
         public void RegisterScreen(string key, UserControl screen)
@@ -52,7 +53,7 @@ namespace CineVerse.Core.Services
             _mainPanel.Controls.Add(screen);
             screen.Dock = DockStyle.Fill;
 
-            _navigationStack.Push(screen);
+            _navigationStack.Push((screen, true));
         }
 
         public void NavigateToScreen(UserControl screen, bool dockFill = true)
@@ -65,11 +66,12 @@ namespace CineVerse.Core.Services
             }
             else
             {
+                screen.Dock = DockStyle.None;
                 screen.Location = new Point(0, 0);
                 screen.Width = _mainPanel.ClientSize.Width;
             }
 
-            _navigationStack.Push(screen);
+            _navigationStack.Push((screen, dockFill));
         }
 
         public void NavigateBack()
@@ -77,7 +79,21 @@ namespace CineVerse.Core.Services
             if (_navigationStack.Count > 1)
             {
                 _navigationStack.Pop();
-                NavigateToScreen(_navigationStack.Peek());
+                var (previousScreen, docked) = _navigationStack.Peek();
+
+                _mainPanel.Controls.Clear();
+                _mainPanel.Controls.Add(previousScreen);
+
+                if (docked)
+                {
+                    previousScreen.Dock = DockStyle.Fill;
+                }
+                else
+                {
+                    previousScreen.Dock = DockStyle.None;
+                    previousScreen.Location = new Point(0, 0);
+                    previousScreen.Width = _mainPanel.ClientSize.Width;
+                }
             }
             else
             {

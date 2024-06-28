@@ -12,6 +12,7 @@ using CineVerse.Core.Interfaces;
 using CineVerse.Core.Services;
 using CineVerse.Data.Entities;
 using CineVerse.Views.Forms;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace CineVerse.Views.UserControls
 {
@@ -59,6 +60,7 @@ namespace CineVerse.Views.UserControls
             lblBudget.Text = movie.Budget.ToString();
             lblRevenue.Text = movie.Revenue.ToString();
 
+            LoadCredits();
             LoadReviews();
         }
 
@@ -90,6 +92,30 @@ namespace CineVerse.Views.UserControls
             {
                 ReviewItem reviewItem = new(review);
                 pnReviews.Controls.Add(reviewItem);
+            }
+        }
+
+        private async void LoadCredits()
+        {
+            List<Person> casts = await MovieService.Instance.GetTopCastsByMovieIdAsync(_movie.Id, 10);
+
+            foreach (Person cast in casts)
+            {
+                PersonCard castItem = new(_navigationService);
+                castItem.SetPersonData(cast);
+                pnCasts.Controls.Add(castItem);
+                castItem.BringToFront();
+                castItem.Dock = DockStyle.Left;
+            }
+
+            List<Person> crews = await MovieService.Instance.GetTopCrewsByMovieIdAsync(_movie.Id, 10);
+            foreach (Person crew in crews)
+            {
+                PersonCard crewItem = new(_navigationService);
+                crewItem.SetPersonData(crew);
+                pnCrews.Controls.Add(crewItem);
+                crewItem.BringToFront();
+                crewItem.Dock = DockStyle.Left;
             }
         }
 

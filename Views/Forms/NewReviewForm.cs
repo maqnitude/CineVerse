@@ -18,7 +18,7 @@ namespace CineVerse.Views.Forms
     {
         private Movie _movie;
 
-        private int _rating = 0;
+        private double _rating = 0;
         private bool _liked = false;
 
         public NewReviewForm(Movie movie)

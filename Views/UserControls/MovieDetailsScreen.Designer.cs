@@ -83,7 +83,7 @@
             pnActionsRow3 = new Panel();
             lblShowActivity = new Label();
             pnActionsRow2 = new Panel();
-            starRatingControl = new StarRatingControl();
+            starRatingControlNew1 = new StarRatingControl();
             lblRate = new Label();
             pnActionsRow1 = new Panel();
             btnWatchlist = new Button();
@@ -633,9 +633,9 @@
             pnActionsRow6.BorderStyle = BorderStyle.FixedSingle;
             pnActionsRow6.Controls.Add(lblShare);
             pnActionsRow6.Dock = DockStyle.Fill;
-            pnActionsRow6.Location = new Point(0, 300);
+            pnActionsRow6.Location = new Point(0, 294);
             pnActionsRow6.Name = "pnActionsRow6";
-            pnActionsRow6.Size = new Size(250, 43);
+            pnActionsRow6.Size = new Size(250, 49);
             pnActionsRow6.TabIndex = 5;
             // 
             // lblShare
@@ -645,7 +645,7 @@
             lblShare.ForeColor = Color.FromArgb(178, 172, 162);
             lblShare.Location = new Point(0, 0);
             lblShare.Name = "lblShare";
-            lblShare.Size = new Size(248, 41);
+            lblShare.Size = new Size(248, 47);
             lblShare.TabIndex = 0;
             lblShare.Text = "Share";
             lblShare.TextAlign = ContentAlignment.MiddleCenter;
@@ -655,7 +655,7 @@
             pnActionsRow5.BorderStyle = BorderStyle.FixedSingle;
             pnActionsRow5.Controls.Add(lblAddToLists);
             pnActionsRow5.Dock = DockStyle.Top;
-            pnActionsRow5.Location = new Point(0, 255);
+            pnActionsRow5.Location = new Point(0, 249);
             pnActionsRow5.Name = "pnActionsRow5";
             pnActionsRow5.Size = new Size(250, 45);
             pnActionsRow5.TabIndex = 4;
@@ -678,7 +678,7 @@
             pnActionsRow4.BorderStyle = BorderStyle.FixedSingle;
             pnActionsRow4.Controls.Add(lblReviewOrLog);
             pnActionsRow4.Dock = DockStyle.Top;
-            pnActionsRow4.Location = new Point(0, 210);
+            pnActionsRow4.Location = new Point(0, 204);
             pnActionsRow4.Name = "pnActionsRow4";
             pnActionsRow4.Size = new Size(250, 45);
             pnActionsRow4.TabIndex = 3;
@@ -701,7 +701,7 @@
             pnActionsRow3.BorderStyle = BorderStyle.FixedSingle;
             pnActionsRow3.Controls.Add(lblShowActivity);
             pnActionsRow3.Dock = DockStyle.Top;
-            pnActionsRow3.Location = new Point(0, 165);
+            pnActionsRow3.Location = new Point(0, 159);
             pnActionsRow3.Name = "pnActionsRow3";
             pnActionsRow3.Size = new Size(250, 45);
             pnActionsRow3.TabIndex = 2;
@@ -721,23 +721,22 @@
             // pnActionsRow2
             // 
             pnActionsRow2.BorderStyle = BorderStyle.FixedSingle;
-            pnActionsRow2.Controls.Add(starRatingControl);
+            pnActionsRow2.Controls.Add(starRatingControlNew1);
             pnActionsRow2.Controls.Add(lblRate);
             pnActionsRow2.Dock = DockStyle.Top;
             pnActionsRow2.Location = new Point(0, 90);
             pnActionsRow2.Name = "pnActionsRow2";
-            pnActionsRow2.Size = new Size(250, 75);
+            pnActionsRow2.Size = new Size(250, 69);
             pnActionsRow2.TabIndex = 1;
             // 
-            // starRatingControl
+            // starRatingControlNew1
             // 
-            starRatingControl.BackColor = Color.Transparent;
-            starRatingControl.Location = new Point(45, 35);
-            starRatingControl.Margin = new Padding(4);
-            starRatingControl.Name = "starRatingControl";
-            starRatingControl.Rating = 0;
-            starRatingControl.Size = new Size(160, 32);
-            starRatingControl.TabIndex = 1;
+            starRatingControlNew1.BackColor = Color.Transparent;
+            starRatingControlNew1.Location = new Point(44, 28);
+            starRatingControlNew1.Name = "starRatingControlNew1";
+            starRatingControlNew1.Rating = 0D;
+            starRatingControlNew1.Size = new Size(160, 32);
+            starRatingControlNew1.TabIndex = 1;
             // 
             // lblRate
             // 
@@ -917,6 +916,6 @@
         private Label lblReleaseYear;
         private Panel pnDirector;
         private Label lblDirectorName;
-        private StarRatingControl starRatingControl;
+        private StarRatingControl starRatingControlNew1;
     }
 }

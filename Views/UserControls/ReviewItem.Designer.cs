@@ -37,8 +37,10 @@
             pictureBox2 = new PictureBox();
             lblRating = new Label();
             lblMaxRating = new Label();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)picUser).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // picUser
@@ -46,7 +48,7 @@
             picUser.Location = new Point(2, 2);
             picUser.Margin = new Padding(2);
             picUser.Name = "picUser";
-            picUser.Size = new Size(35, 30);
+            picUser.Size = new Size(35, 35);
             picUser.TabIndex = 0;
             picUser.TabStop = false;
             // 
@@ -77,10 +79,10 @@
             lblContent.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblContent.BackColor = Color.Transparent;
             lblContent.Font = new Font("Georgia", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblContent.Location = new Point(41, 20);
+            lblContent.Location = new Point(41, 22);
             lblContent.Margin = new Padding(2, 0, 2, 0);
             lblContent.Name = "lblContent";
-            lblContent.Size = new Size(411, 49);
+            lblContent.Size = new Size(409, 50);
             lblContent.TabIndex = 3;
             lblContent.Text = "Where's horny???";
             // 
@@ -90,11 +92,11 @@
             btnLike.FlatAppearance.BorderSize = 0;
             btnLike.FlatStyle = FlatStyle.Flat;
             btnLike.ForeColor = Color.FromArgb(157, 148, 136);
-            btnLike.Image = Properties.Resources.like;
-            btnLike.Location = new Point(41, 70);
+            btnLike.Image = Properties.Resources.like_small;
+            btnLike.Location = new Point(41, 74);
             btnLike.Margin = new Padding(2);
             btnLike.Name = "btnLike";
-            btnLike.Size = new Size(93, 25);
+            btnLike.Size = new Size(90, 25);
             btnLike.TabIndex = 4;
             btnLike.Text = "Like review";
             btnLike.TextAlign = ContentAlignment.MiddleRight;
@@ -108,10 +110,10 @@
             btnReply.FlatStyle = FlatStyle.Flat;
             btnReply.ForeColor = Color.FromArgb(157, 148, 136);
             btnReply.Image = Properties.Resources.reply;
-            btnReply.Location = new Point(127, 71);
+            btnReply.Location = new Point(123, 75);
             btnReply.Margin = new Padding(2);
             btnReply.Name = "btnReply";
-            btnReply.Size = new Size(60, 25);
+            btnReply.Size = new Size(55, 25);
             btnReply.TabIndex = 5;
             btnReply.Text = "176";
             btnReply.TextAlign = ContentAlignment.MiddleRight;
@@ -120,50 +122,62 @@
             // 
             // pictureBox2
             // 
-            pictureBox2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pictureBox2.Dock = DockStyle.Left;
             pictureBox2.Image = Properties.Resources.star;
-            pictureBox2.Location = new Point(398, 2);
+            pictureBox2.Location = new Point(0, 0);
             pictureBox2.Margin = new Padding(2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(18, 18);
+            pictureBox2.Size = new Size(20, 20);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 6;
             pictureBox2.TabStop = false;
             // 
             // lblRating
             // 
-            lblRating.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblRating.AutoSize = true;
+            lblRating.Dock = DockStyle.Fill;
             lblRating.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblRating.ForeColor = SystemColors.ScrollBar;
-            lblRating.Location = new Point(417, 1);
-            lblRating.Margin = new Padding(2, 0, 2, 0);
+            lblRating.Location = new Point(20, 0);
+            lblRating.Margin = new Padding(0);
             lblRating.Name = "lblRating";
             lblRating.Size = new Size(18, 20);
             lblRating.TabIndex = 7;
             lblRating.Text = "4";
+            lblRating.TextAlign = ContentAlignment.MiddleRight;
             // 
             // lblMaxRating
             // 
-            lblMaxRating.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            lblMaxRating.AutoSize = true;
-            lblMaxRating.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblMaxRating.Dock = DockStyle.Right;
+            lblMaxRating.Font = new Font("Segoe UI Semilight", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblMaxRating.ForeColor = SystemColors.ScrollBar;
-            lblMaxRating.Location = new Point(429, 4);
-            lblMaxRating.Margin = new Padding(2, 0, 2, 0);
+            lblMaxRating.Location = new Point(38, 0);
+            lblMaxRating.Margin = new Padding(0);
             lblMaxRating.Name = "lblMaxRating";
-            lblMaxRating.Size = new Size(17, 13);
+            lblMaxRating.Size = new Size(24, 20);
             lblMaxRating.TabIndex = 8;
             lblMaxRating.Text = "/5";
+            lblMaxRating.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            panel1.AutoSize = true;
+            panel1.Controls.Add(lblRating);
+            panel1.Controls.Add(pictureBox2);
+            panel1.Controls.Add(lblMaxRating);
+            panel1.Location = new Point(388, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(62, 20);
+            panel1.TabIndex = 9;
             // 
             // ReviewItem
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(24, 26, 27);
-            Controls.Add(lblMaxRating);
-            Controls.Add(lblRating);
-            Controls.Add(pictureBox2);
+            BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(panel1);
             Controls.Add(btnReply);
             Controls.Add(btnLike);
             Controls.Add(lblContent);
@@ -173,9 +187,11 @@
             ForeColor = Color.FromArgb(178, 172, 162);
             Margin = new Padding(2);
             Name = "ReviewItem";
-            Size = new Size(463, 97);
+            Size = new Size(461, 101);
             ((System.ComponentModel.ISupportInitialize)picUser).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -191,5 +207,6 @@
         private PictureBox pictureBox2;
         private Label lblRating;
         private Label lblMaxRating;
+        private Panel panel1;
     }
 }

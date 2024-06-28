@@ -1,6 +1,7 @@
 ﻿using CineVerse.Core.Interfaces;
 using CineVerse.Data;
 using CineVerse.Data.Entities;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -98,6 +99,15 @@ namespace CineVerse.Core.Services
             {
                 var crews = await unitOfWork.Movies.GetTopCrewsByMovieIdAsync(movieId, n);
                 return crews;
+            }
+        }
+
+        public async Task<Person> GetMovieDirector(int movieId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var director = await unitOfWork.Movies.GetDirectorByMovieIdAsync(movieId);
+                return director;
             }
         }
 

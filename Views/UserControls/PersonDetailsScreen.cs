@@ -55,7 +55,7 @@ namespace CineVerse.Views.UserControls
             List<Movie> movies = await PersonService.Instance.GetTopMoviesByPersonId(_person.Id);
             foreach (Movie movie in movies)
             {
-                MovieCard card = new MovieCard(_navigationService);
+                MovieCard card = new MovieCard();
                 card.SetMovieData(movie);
                 card.SetSize("medium");
                 pnMovieCards.Controls.Add(card);

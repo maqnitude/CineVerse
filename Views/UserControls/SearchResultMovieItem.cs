@@ -29,7 +29,16 @@ namespace CineVerse.Views.UserControls
                 lblReleaseYear.Text = movie.ReleaseDate.Value.Year.ToString();
             }
 
+            RegisterEventHandlers();
+        }
+
+        private void RegisterEventHandlers()
+        {
             this.Click += OnClick;
+            foreach (Control control in this.Controls)
+            {
+                control.Click += OnClick;
+            }
         }
 
         private void OnClick(object sender, EventArgs e)

@@ -46,8 +46,8 @@ namespace CineVerse.Views.UserControls
             picMoviePoster.Image?.Dispose();
             picMoviePoster.Image = new Bitmap(movie.PosterPath);
 
-            lblReleaseYear.Text = movie.ReleaseDate?.Year.ToString();
-            lblReleaseDate.Text = movie.ReleaseDate.ToString();
+            lblReleaseYear.Text = movie.ReleaseDate.HasValue ? movie.ReleaseDate.Value.Year.ToString() : "N/A";
+            lblReleaseDate.Text = movie.ReleaseDate.HasValue ? movie.ReleaseDate.Value.ToString("MM/dd/yyyy") : "N/A";
 
             lblGenres.Text = String.Join(", ", movie.Genres);
             lblRuntime.Text = $"{movie.Runtime / 60}h{movie.Runtime % 60}m";
@@ -60,8 +60,8 @@ namespace CineVerse.Views.UserControls
 
             lblStatus.Text = movie.Status;
             lblOriginalLanguage.Text = movie.OriginalLanguage;
-            lblBudget.Text = movie.Budget.ToString();
-            lblRevenue.Text = movie.Revenue.ToString();
+            lblBudget.Text = movie.Budget.HasValue ? movie.Budget.Value.ToString("C") : "N/A";
+            lblRevenue.Text = movie.Budget.HasValue ? movie.Budget.Value.ToString("C") : "N/A";
 
             LoadCredits();
             LoadReviews();

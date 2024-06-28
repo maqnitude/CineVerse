@@ -290,6 +290,41 @@ namespace CineVerse.Data
                 .HasOne(c => c.Person)
                 .WithMany(p => p.Credits)
                 .HasForeignKey(c => c.PersonId);
+
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.User)
+                .WithMany(u => u.Comments)
+                .HasForeignKey(c => c.UserId);
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.Post)
+                .WithMany(u => u.Comments)
+                .HasForeignKey(c => c.PostId);
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.ParentComment)
+                .WithMany(c => c.Replies)
+                .HasForeignKey(c => c.ParentCommentId)
+                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<CommentVote>()
+                .HasOne(v => v.User)
+                .WithMany(u => u.CommentVotes)
+                .HasForeignKey(v => v.UserId);
+            modelBuilder.Entity<CommentVote>()
+                .HasOne(v => v.Comment)
+                .WithMany(c => c.Votes)
+                .HasForeignKey(v => v.CommentId);
+
+            modelBuilder.Entity<Post>()
+                .HasOne(p => p.User)
+                .WithMany(u => u.Posts)
+                .HasForeignKey(p => p.UserId);
+            modelBuilder.Entity<PostVote>()
+                .HasOne(v => v.User)
+                .WithMany(u => u.PostVotes)
+                .HasForeignKey(v => v.UserId);
+            modelBuilder.Entity<PostVote>()
+                .HasOne(v => v.Post)
+                .WithMany(p => p.Votes)
+                .HasForeignKey(v => v.PostId);
         }
     }
 }

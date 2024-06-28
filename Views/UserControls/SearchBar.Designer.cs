@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             pictureBox1 = new PictureBox();
-            textBox1 = new TextBox();
+            txtSearchBox = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -45,25 +45,26 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // textBox1
+            // txtSearchBox
             // 
-            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox1.BackColor = Color.FromArgb(35, 42, 51);
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Segoe UI", 10F);
-            textBox1.ForeColor = Color.FromArgb(168, 160, 149);
-            textBox1.Location = new Point(34, 4);
-            textBox1.Margin = new Padding(2);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(240, 18);
-            textBox1.TabIndex = 1;
+            txtSearchBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtSearchBox.BackColor = Color.FromArgb(35, 42, 51);
+            txtSearchBox.BorderStyle = BorderStyle.None;
+            txtSearchBox.Font = new Font("Segoe UI", 10F);
+            txtSearchBox.ForeColor = Color.FromArgb(168, 160, 149);
+            txtSearchBox.Location = new Point(34, 4);
+            txtSearchBox.Margin = new Padding(2);
+            txtSearchBox.Name = "txtSearchBox";
+            txtSearchBox.Size = new Size(240, 18);
+            txtSearchBox.TabIndex = 1;
+            txtSearchBox.TextChanged += txtSearchBox_TextChanged;
             // 
             // SearchBar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(35, 42, 51);
-            Controls.Add(textBox1);
+            Controls.Add(txtSearchBox);
             Controls.Add(pictureBox1);
             Margin = new Padding(2);
             Name = "SearchBar";
@@ -76,6 +77,6 @@
         #endregion
 
         private PictureBox pictureBox1;
-        private TextBox textBox1;
+        private TextBox txtSearchBox;
     }
 }

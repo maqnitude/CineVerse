@@ -35,6 +35,8 @@ namespace CineVerse.Forms
 
         private User _currentUser;
 
+        // TODO: Define the movie details screen, then just hide and unhide it
+        // instead of creating a new one everytime
         public MainForm()
         {
             InitializeComponent();
@@ -46,6 +48,8 @@ namespace CineVerse.Forms
 
             _moviesScreen.SetMediator(this);
             _listsScreen.SetMediator(this);
+
+            searchBar.SetMediator(this);
 
             _navigationService.RegisterScreen("moviesScreen", _moviesScreen);
             _navigationService.RegisterScreen("listsScreen", _listsScreen);
@@ -72,7 +76,16 @@ namespace CineVerse.Forms
                     }
                     
                     break;
+
+                case "HideSearchResults":
+                    searchBar.HideResults();
+                    break;
             }
+        }
+
+        public NavigationService GetNavService()
+        {
+            return _navigationService;
         }
 
         private void RegisterEventHandlers()
@@ -83,6 +96,14 @@ namespace CineVerse.Forms
             EventManager.Instance.Subscribe<ListMovieEventArgs>(EventType.ListMovieAdding, OnListMovieAdding);
 
             EventManager.Instance.Subscribe<ReviewEventArgs>(EventType.ReviewAdding, OnReviewAdding);
+
+            // Click outside the search bar and the results list to hide the results list
+            foreach (Control control in this.Controls)
+            {
+                if (control is SearchBar || control is SearchResultMovieItem) { return; }
+
+                control.MouseUp += OnMouseUp;
+            }
         }
 
         private void ResetButtonColors()
@@ -128,6 +149,11 @@ namespace CineVerse.Forms
             await MovieService.Instance.AddMovieReviewAsync(_currentUser.Id, e.MovieId, e.Rating, e.Content);
 
             EventManager.Instance.Publish(EventType.ReviewAdded, this, EventArgs.Empty);
+        }
+
+        private void OnMouseUp(object sender, MouseEventArgs e)
+        {
+            searchBar.HideResults();
         }
 
         private async void btnMoviesTab_Click(object sender, EventArgs e)

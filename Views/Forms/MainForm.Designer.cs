@@ -31,7 +31,7 @@
             pnNavBar = new Panel();
             btnUser = new Button();
             picLogo = new PictureBox();
-            ucSearchBar = new Views.UserControls.SearchBar();
+            searchBar = new Views.UserControls.SearchBar();
             btnMembersTab = new Button();
             btnListsTab = new Button();
             btnMoviesTab = new Button();
@@ -46,7 +46,7 @@
             pnNavBar.BackColor = Color.FromArgb(18, 22, 26);
             pnNavBar.Controls.Add(btnUser);
             pnNavBar.Controls.Add(picLogo);
-            pnNavBar.Controls.Add(ucSearchBar);
+            pnNavBar.Controls.Add(searchBar);
             pnNavBar.Controls.Add(btnMembersTab);
             pnNavBar.Controls.Add(btnListsTab);
             pnNavBar.Controls.Add(btnMoviesTab);
@@ -87,15 +87,15 @@
             picLogo.TabIndex = 1;
             picLogo.TabStop = false;
             // 
-            // ucSearchBar
+            // searchBar
             // 
-            ucSearchBar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            ucSearchBar.BackColor = Color.FromArgb(35, 42, 51);
-            ucSearchBar.Location = new Point(1031, 15);
-            ucSearchBar.Margin = new Padding(1);
-            ucSearchBar.Name = "ucSearchBar";
-            ucSearchBar.Size = new Size(197, 30);
-            ucSearchBar.TabIndex = 0;
+            searchBar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            searchBar.BackColor = Color.FromArgb(35, 42, 51);
+            searchBar.Location = new Point(913, 15);
+            searchBar.Margin = new Padding(1);
+            searchBar.Name = "searchBar";
+            searchBar.Size = new Size(315, 30);
+            searchBar.TabIndex = 0;
             // 
             // btnMembersTab
             // 
@@ -195,6 +195,6 @@
         private Button btnMoviesTab;
         private Button btnListsTab;
         private Button btnMembersTab;
-        private Views.UserControls.SearchBar ucSearchBar;
+        private Views.UserControls.SearchBar searchBar;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CineVerse.Core.Services;
 using CineVerse.Data.Entities;
+using CineVerse.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -56,6 +57,7 @@ namespace CineVerse.Views.UserControls
             foreach (Movie movie in movies)
             {
                 MovieCard card = new MovieCard();
+                card.SetMainForm(this.FindForm() as MainForm);
                 card.SetMovieData(movie);
                 card.SetSize("medium");
                 pnMovieCards.Controls.Add(card);

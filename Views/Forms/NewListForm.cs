@@ -69,8 +69,8 @@ namespace CineVerse.Views.Forms
                 return;
             }
 
-            EventManager.Instance.Publish<ListEventArgs>(EventType.ListAdding, this,
-                new ListEventArgs(txtName.Text, txtDescription.Text, MapListType(comboListType.SelectedIndex)));
+            EventManager.Instance.Publish<ListAddEventArgs>(EventType.ListAdding, this,
+                new ListAddEventArgs(txtName.Text, txtDescription.Text, MapListType(comboListType.SelectedIndex)));
         }
     }
 }

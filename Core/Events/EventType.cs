@@ -19,6 +19,10 @@ namespace CineVerse.Core.Events
 
         ListMovieAdding,
         ListMovieAdded,
+        ListMovieRemoved,
+
+        WatchlistMovieAdded,
+        WatchlistMovieRemoved,
 
         ReviewAdding,
         ReviewAdded,
@@ -36,13 +40,13 @@ namespace CineVerse.Core.Events
         }
     }
 
-    public class ListEventArgs : EventArgs
+    public class ListAddEventArgs : EventArgs
     {
         public string Name { get; set; }
         public string Description { get; set; }
         public ListType Type { get; set; }
 
-        public ListEventArgs(string name, string description, ListType type)
+        public ListAddEventArgs(string name, string description, ListType type)
         {
             Name = name;
             Description = description;

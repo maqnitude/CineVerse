@@ -82,5 +82,14 @@ namespace CineVerse.Core.Services
                 await unitOfWork.CompleteAsync();
             }
         }
+
+        public async Task<List<Movie>> SearchMoviesAsync(string searchTerm)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var movies = await unitOfWork.Movies.SearchMoviesAsync(searchTerm);
+                return movies.ToList();
+            }
+        }
     }
 }

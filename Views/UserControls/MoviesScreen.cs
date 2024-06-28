@@ -44,7 +44,7 @@ namespace CineVerse.Views.UserControls
             _movieCards = new List<MovieCard>();
             for (int i = 0; i < _moviesPerPage; i++)
             {
-                _movieCards.Add(new MovieCard(_navigationService));
+                _movieCards.Add(new MovieCard());
             }
         }
 

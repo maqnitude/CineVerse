@@ -1,6 +1,7 @@
 ﻿using CineVerse.Core.Interfaces;
 using CineVerse.Core.Services;
 using CineVerse.Data.Entities;
+using CineVerse.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,14 +18,11 @@ namespace CineVerse.Views.UserControls
     public partial class MovieCard : UserControlComponent
     {
         private PictureBox _poster;
-        private readonly NavigationService _navigationService;
         public Movie CurrentMovie { get; private set; }
 
-        public MovieCard(NavigationService navigationService)
+        public MovieCard()
         {
             InitializeComponent();
-
-            _navigationService = navigationService;
 
             _poster = new PictureBox
             {
@@ -116,10 +114,14 @@ namespace CineVerse.Views.UserControls
 
         private void MovieCard_Click(object sender, EventArgs e)
         {
-            var movieDetailsScreen = new MovieDetailsScreen(_navigationService);
+            var mainForm = this.FindForm() as MainForm;
+            var navService = mainForm.GetNavService();
+
+            var movieDetailsScreen = new MovieDetailsScreen(navService);
             movieDetailsScreen.SetMediator(_mediator);
             movieDetailsScreen.SetMovieData(CurrentMovie);
-            _navigationService.NavigateToScreen(movieDetailsScreen, false);
+
+            navService.NavigateToScreen(movieDetailsScreen, false);
         }
 
         private void addToListsToolStripMenuItem_Click(object sender, EventArgs e)

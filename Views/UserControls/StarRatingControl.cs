@@ -93,7 +93,8 @@ namespace CineVerse.Views.UserControls
         {
             PictureBox clickedStar = (PictureBox)sender;
             Rating = (int)clickedStar.Tag;
-            EventManager.Instance.Publish(EventType.StarClicked, this, EventArgs.Empty);
+
+            EventManager.Instance.Publish(EventType.RatingChanged, this, EventArgs.Empty);
         }
 
         private void Star_MouseLeave(object sender, EventArgs e)

@@ -57,7 +57,7 @@ namespace CineVerse.Views.UserControls
             {
                 MovieCard card = new MovieCard(_navigationService);
                 card.SetMovieData(movie);
-                card.SetSize("small");
+                card.SetSize("medium");
                 pnMovieCards.Controls.Add(card);
                 card.BringToFront();
                 card.Dock = DockStyle.Left;

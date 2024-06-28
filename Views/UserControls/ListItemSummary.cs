@@ -55,12 +55,13 @@ namespace CineVerse.Views.UserControls
                             picPoster.Image = null;
                         }
                     }
+                    picPoster?.SendToBack();
                 }
 
                 lblListTitle.Text = list.Name;
                 lblUsername.Text = list.User.Username;
                 lblListDescription.Text = list.Overview;
-                lblNumMovies.Text = list.Movies.Count.ToString();
+                lblNumMovies.Text = $"{list.Movies.Count.ToString()} films";
             }
         }
     }

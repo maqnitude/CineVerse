@@ -60,6 +60,7 @@
             // btnUser
             // 
             btnUser.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnUser.AutoSize = true;
             btnUser.BackColor = Color.FromArgb(0, 157, 26);
             btnUser.FlatAppearance.BorderSize = 0;
             btnUser.FlatStyle = FlatStyle.Flat;
@@ -181,6 +182,7 @@
             Name = "MainForm";
             Text = "CineVerse";
             pnNavBar.ResumeLayout(false);
+            pnNavBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             ResumeLayout(false);
         }

@@ -47,9 +47,10 @@
             // 
             // lblMovieTitle
             // 
+            lblMovieTitle.BackColor = Color.FromArgb(54, 68, 82);
             lblMovieTitle.Dock = DockStyle.Bottom;
             lblMovieTitle.Font = new Font("Segoe UI Black", 10F, FontStyle.Bold);
-            lblMovieTitle.ForeColor = Color.White;
+            lblMovieTitle.ForeColor = Color.FromArgb(157, 148, 136);
             lblMovieTitle.Location = new Point(0, 197);
             lblMovieTitle.Margin = new Padding(2, 0, 2, 0);
             lblMovieTitle.Name = "lblMovieTitle";
@@ -76,10 +77,10 @@
             pnActions.Controls.Add(btnLike);
             pnActions.Controls.Add(btnMore);
             pnActions.Controls.Add(btnWatch);
-            pnActions.Location = new Point(39, 174);
+            pnActions.Location = new Point(32, 169);
             pnActions.Margin = new Padding(2);
             pnActions.Name = "pnActions";
-            pnActions.Size = new Size(70, 20);
+            pnActions.Size = new Size(84, 26);
             pnActions.TabIndex = 0;
             pnActions.Visible = false;
             // 
@@ -93,7 +94,7 @@
             btnLike.Location = new Point(27, 0);
             btnLike.Margin = new Padding(2);
             btnLike.Name = "btnLike";
-            btnLike.Size = new Size(16, 20);
+            btnLike.Size = new Size(30, 26);
             btnLike.TabIndex = 3;
             btnLike.UseVisualStyleBackColor = false;
             // 
@@ -104,10 +105,10 @@
             btnMore.FlatAppearance.BorderSize = 0;
             btnMore.FlatStyle = FlatStyle.Flat;
             btnMore.Image = Properties.Resources.menu;
-            btnMore.Location = new Point(43, 0);
+            btnMore.Location = new Point(57, 0);
             btnMore.Margin = new Padding(2);
             btnMore.Name = "btnMore";
-            btnMore.Size = new Size(27, 20);
+            btnMore.Size = new Size(27, 26);
             btnMore.TabIndex = 2;
             btnMore.UseVisualStyleBackColor = false;
             btnMore.Click += btnMore_Click;
@@ -118,11 +119,11 @@
             btnWatch.Dock = DockStyle.Left;
             btnWatch.FlatAppearance.BorderSize = 0;
             btnWatch.FlatStyle = FlatStyle.Flat;
-            btnWatch.Image = Properties.Resources.eye_fill;
+            btnWatch.Image = Properties.Resources.eye;
             btnWatch.Location = new Point(0, 0);
             btnWatch.Margin = new Padding(2);
             btnWatch.Name = "btnWatch";
-            btnWatch.Size = new Size(27, 20);
+            btnWatch.Size = new Size(27, 26);
             btnWatch.TabIndex = 0;
             btnWatch.UseVisualStyleBackColor = false;
             // 
@@ -132,7 +133,7 @@
             cmsActions.Items.AddRange(new ToolStripItem[] { whereToWatchToolStripMenuItem, addToWatchlistToolStripMenuItem, addToListsToolStripMenuItem, logOrReviewToolStripMenuItem });
             cmsActions.Name = "cmsActions";
             cmsActions.RenderMode = ToolStripRenderMode.System;
-            cmsActions.Size = new Size(182, 114);
+            cmsActions.Size = new Size(182, 92);
             // 
             // whereToWatchToolStripMenuItem
             // 

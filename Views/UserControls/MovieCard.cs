@@ -73,15 +73,16 @@ namespace CineVerse.Views.UserControls
             switch (preset)
             {
                 case "small":
-                    this.Size = new Size(70, 105);
-                    pnActions.Size = new Size(63, 24);
+                    lblMovieTitle.Visible = false;
+                    this.Size = new Size(76, 111);
+                    pnActions.Size = new Size(63, 26);
                     break;
                 case "medium":
-                    this.Size = new Size(150, 225);
+                    this.Size = new Size(150, 225 + 28);
                     pnActions.Size = new Size(84, 28);
                     break;
                 case "big":
-                    this.Size = new Size(230, 345);
+                    this.Size = new Size(230, 345 + lblMovieTitle.Height);
                     pnActions.Size = new Size(84, 28);
                     break;
             }

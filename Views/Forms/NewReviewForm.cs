@@ -21,20 +21,15 @@ namespace CineVerse.Views.Forms
         private int _rating = 0;
         private bool _liked = false;
 
-        private Image _darkStar;
-        private Image _blueStar;
-        private Image _greenStar;
-
         public NewReviewForm(Movie movie)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterParent;
 
-            InitializeStars();
-
             SetMovieData(movie);
 
             EventManager.Instance.Subscribe<EventArgs>(EventType.ReviewAdded, OnReviewAdded);
+            EventManager.Instance.Subscribe<EventArgs>(EventType.RatingChanged, OnRatingChanged);
         }
 
         private void SetMovieData(Movie movie)
@@ -48,89 +43,16 @@ namespace CineVerse.Views.Forms
             picMoviePoster.Image = new Bitmap(movie.PosterPath);
         }
 
-        private void InitializeStars()
-        {
-            _darkStar = Properties.Resources.star_fill_dark;
-            _blueStar = Properties.Resources.star_fill_blue;
-            _greenStar = Properties.Resources.star_fill_green;
-
-            for (int i = 1; i <= 5; i++)
-            {
-                PictureBox picStar = (PictureBox)pnStars.Controls["picStar" + i];
-                picStar.Image = _darkStar;
-                picStar.Tag = i;
-                picStar.MouseEnter += Star_MouseEnter;
-                picStar.MouseLeave += Star_MouseLeave;
-                picStar.Click += Star_Click;
-            }
-        }
-
-        private void ResetStarColors()
-        {
-            for (int i = 1; i <= 5; i++)
-            {
-                PictureBox picStar = (PictureBox)pnStars.Controls["picStar" + i];
-                picStar.Image = _darkStar;
-            }
-        }
-
-        private void Star_MouseEnter(object sender, EventArgs e)
-        {
-            PictureBox hoveredStar = (PictureBox)sender;
-            int hoverIndex = (int)hoveredStar.Tag;
-            ResetStarColors();
-            for (int i = 1; i <= hoverIndex; i++)
-            {
-                PictureBox picStar = (PictureBox)pnStars.Controls["picStar" + i];
-                if (i <= hoverIndex)
-                    picStar.Image = _blueStar;
-            }
-        }
-
-        private void Star_Click(object sender, EventArgs e)
-        {
-            PictureBox clickedStar = (PictureBox)sender;
-            _rating = (int)clickedStar.Tag;
-
-            for (int i = 1; i <= _rating; i++)
-            {
-                PictureBox picStar = (PictureBox)pnStars.Controls["picStar" + i];
-                if (i <= _rating)
-                {
-                    picStar.Image = _greenStar;
-                }
-                else
-                {
-                    picStar.Image = _darkStar;
-                }
-            }
-
-            if (!lblRatingStatus.Visible)
-            {
-                lblRatingStatus.Visible = true;
-            }
-            lblRatingStatus.Text = $"{_rating} out of 5";
-        }
-
-        private void Star_MouseLeave(object sender, EventArgs e)
-        {
-            for (int i = 1; i <= 5; i++)
-            {
-                PictureBox picStar = (PictureBox)pnStars.Controls["picStar" + i];
-                if (i <= _rating)
-                {
-                    picStar.Image = _greenStar;
-                }
-                else
-                {
-                    picStar.Image = _darkStar;
-                }
-            }
-        }
-
         private void OnReviewAdded(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void OnRatingChanged(object sender, EventArgs e)
+        {
+            _rating = starRatingControl.Rating;
+
+            lblRatingStatus.Text = _rating.ToString() + " out of 5";
         }
 
         private void picLike_Click(object sender, EventArgs e)

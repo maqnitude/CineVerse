@@ -103,6 +103,15 @@ namespace CineVerse.Data.Repositories
                 .ToListAsync();
         }
 
+        public async Task<Person> GetDirectorByMovieIdAsync(int movieId)
+        {
+            return await _context.Set<Credit>()
+                .Where(c => c.MovieId == movieId && c.Job == "Director")
+                .Include(c => c.Person)
+                .Select(c => c.Person)
+                .FirstOrDefaultAsync();
+        }
+
         public async Task<IEnumerable<Movie>> SearchMoviesAsync(string searchTerm, int maxItems = 100)
         {
             if (string.IsNullOrWhiteSpace(searchTerm))

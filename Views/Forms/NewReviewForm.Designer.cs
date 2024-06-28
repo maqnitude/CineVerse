@@ -36,12 +36,7 @@
             txtReview = new TextBox();
             pnReviewContainer = new Panel();
             pnRatingSection = new Panel();
-            pnStars = new Panel();
-            picStar5 = new PictureBox();
-            picStar4 = new PictureBox();
-            picStar3 = new PictureBox();
-            picStar2 = new PictureBox();
-            picStar1 = new PictureBox();
+            starRatingControl = new UserControls.StarRatingControl();
             pnRatingHeader = new Panel();
             lblRatingStatus = new Label();
             lblRatingHeader = new Label();
@@ -53,12 +48,6 @@
             pnHeader.SuspendLayout();
             pnReviewContainer.SuspendLayout();
             pnRatingSection.SuspendLayout();
-            pnStars.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picStar5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picStar4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picStar3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picStar2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picStar1).BeginInit();
             pnRatingHeader.SuspendLayout();
             pnLikeSection.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLike).BeginInit();
@@ -145,80 +134,22 @@
             // pnRatingSection
             // 
             pnRatingSection.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            pnRatingSection.Controls.Add(pnStars);
+            pnRatingSection.Controls.Add(starRatingControl);
             pnRatingSection.Controls.Add(pnRatingHeader);
             pnRatingSection.Location = new Point(200, 255);
             pnRatingSection.Name = "pnRatingSection";
             pnRatingSection.Size = new Size(160, 52);
             pnRatingSection.TabIndex = 8;
             // 
-            // pnStars
+            // starRatingControl
             // 
-            pnStars.Controls.Add(picStar5);
-            pnStars.Controls.Add(picStar4);
-            pnStars.Controls.Add(picStar3);
-            pnStars.Controls.Add(picStar2);
-            pnStars.Controls.Add(picStar1);
-            pnStars.Dock = DockStyle.Fill;
-            pnStars.Location = new Point(0, 20);
-            pnStars.Name = "pnStars";
-            pnStars.Size = new Size(160, 32);
-            pnStars.TabIndex = 3;
-            // 
-            // picStar5
-            // 
-            picStar5.Dock = DockStyle.Left;
-            picStar5.Image = Properties.Resources.star_fill_dark;
-            picStar5.Location = new Point(128, 0);
-            picStar5.Name = "picStar5";
-            picStar5.Size = new Size(32, 32);
-            picStar5.SizeMode = PictureBoxSizeMode.CenterImage;
-            picStar5.TabIndex = 6;
-            picStar5.TabStop = false;
-            // 
-            // picStar4
-            // 
-            picStar4.Dock = DockStyle.Left;
-            picStar4.Image = Properties.Resources.star_fill_dark;
-            picStar4.Location = new Point(96, 0);
-            picStar4.Name = "picStar4";
-            picStar4.Size = new Size(32, 32);
-            picStar4.SizeMode = PictureBoxSizeMode.CenterImage;
-            picStar4.TabIndex = 5;
-            picStar4.TabStop = false;
-            // 
-            // picStar3
-            // 
-            picStar3.Dock = DockStyle.Left;
-            picStar3.Image = Properties.Resources.star_fill_dark;
-            picStar3.Location = new Point(64, 0);
-            picStar3.Name = "picStar3";
-            picStar3.Size = new Size(32, 32);
-            picStar3.SizeMode = PictureBoxSizeMode.CenterImage;
-            picStar3.TabIndex = 4;
-            picStar3.TabStop = false;
-            // 
-            // picStar2
-            // 
-            picStar2.Dock = DockStyle.Left;
-            picStar2.Image = Properties.Resources.star_fill_dark;
-            picStar2.Location = new Point(32, 0);
-            picStar2.Name = "picStar2";
-            picStar2.Size = new Size(32, 32);
-            picStar2.SizeMode = PictureBoxSizeMode.CenterImage;
-            picStar2.TabIndex = 3;
-            picStar2.TabStop = false;
-            // 
-            // picStar1
-            // 
-            picStar1.Dock = DockStyle.Left;
-            picStar1.Image = Properties.Resources.star_fill_dark;
-            picStar1.Location = new Point(0, 0);
-            picStar1.Name = "picStar1";
-            picStar1.Size = new Size(32, 32);
-            picStar1.SizeMode = PictureBoxSizeMode.CenterImage;
-            picStar1.TabIndex = 2;
-            picStar1.TabStop = false;
+            starRatingControl.BackColor = Color.Transparent;
+            starRatingControl.Dock = DockStyle.Fill;
+            starRatingControl.Location = new Point(0, 20);
+            starRatingControl.Name = "starRatingControl";
+            starRatingControl.Rating = 0;
+            starRatingControl.Size = new Size(160, 32);
+            starRatingControl.TabIndex = 1;
             // 
             // pnRatingHeader
             // 
@@ -239,9 +170,8 @@
             lblRatingStatus.Name = "lblRatingStatus";
             lblRatingStatus.Size = new Size(112, 20);
             lblRatingStatus.TabIndex = 1;
-            lblRatingStatus.Text = "3 out of 5";
+            lblRatingStatus.Text = "0 out of 5";
             lblRatingStatus.TextAlign = ContentAlignment.TopRight;
-            lblRatingStatus.Visible = false;
             // 
             // lblRatingHeader
             // 
@@ -324,12 +254,6 @@
             pnReviewContainer.ResumeLayout(false);
             pnReviewContainer.PerformLayout();
             pnRatingSection.ResumeLayout(false);
-            pnStars.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)picStar5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picStar4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picStar3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picStar2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picStar1).EndInit();
             pnRatingHeader.ResumeLayout(false);
             pnLikeSection.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picLike).EndInit();
@@ -348,11 +272,6 @@
         private Panel pnRatingSection;
         private Panel pnLikeSection;
         private Label lblLikeHeader;
-        private Panel pnStars;
-        private PictureBox picStar4;
-        private PictureBox picStar3;
-        private PictureBox picStar2;
-        private PictureBox picStar1;
         private PictureBox picLike;
         private Button btnSave;
         private Panel panel2;
@@ -360,9 +279,9 @@
         private PictureBox pictureBox4;
         private PictureBox pictureBox3;
         private PictureBox pictureBox2;
-        private PictureBox picStar5;
         private Panel pnRatingHeader;
         private Label lblRatingStatus;
         private Label lblRatingHeader;
+        private UserControls.StarRatingControl starRatingControl;
     }
 }

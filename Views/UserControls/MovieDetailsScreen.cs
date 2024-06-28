@@ -34,7 +34,7 @@ namespace CineVerse.Views.UserControls
             return _movie;
         }
 
-        public void SetMovieData(Movie movie)
+        public async void SetMovieData(Movie movie)
         {
             _movie = movie;
 
@@ -51,6 +51,9 @@ namespace CineVerse.Views.UserControls
 
             lblGenres.Text = String.Join(", ", movie.Genres);
             lblRuntime.Text = $"{movie.Runtime / 60}h{movie.Runtime % 60}m";
+
+            var director = await MovieService.Instance.GetMovieDirector(movie.Id);
+            lblDirectorName.Text = director.Name;
 
             lblTagline.Text = movie.TagLine.ToUpper();
             lblOverviewParagraph.Text = movie.Overview;
@@ -84,6 +87,8 @@ namespace CineVerse.Views.UserControls
 
         private async void LoadReviews()
         {
+            pnReviews.SuspendLayout();
+
             ClearReviews();
 
             List<Review> reviews = await ReviewService.Instance.GetMovieReviewsAsync(_movie.Id);
@@ -93,30 +98,71 @@ namespace CineVerse.Views.UserControls
                 ReviewItem reviewItem = new(review);
                 pnReviews.Controls.Add(reviewItem);
             }
+
+            pnReviews.ResumeLayout();
+        }
+
+        private void ClearCredits()
+        {
+            List<PersonCard> castsToRemove = new List<PersonCard>();
+            List<PersonCard> crewMembersToRemove = new List<PersonCard>();
+
+            foreach (Control control in pnCast.Controls)
+            {
+                if (control is PersonCard personCard)
+                {
+                    castsToRemove.Add(personCard);
+                }
+            }
+            foreach (Control control in pnCrew.Controls)
+            {
+                if (control is PersonCard personCard)
+                {
+                    crewMembersToRemove.Add(personCard);
+                }
+            }
+
+            foreach (PersonCard personCard in castsToRemove)
+            {
+                pnCast.Controls.Remove(personCard);
+            }
+            foreach (PersonCard crew in crewMembersToRemove)
+            {
+                pnCrew.Controls.Remove(crew);
+            }
         }
 
         private async void LoadCredits()
         {
+            pnCast.SuspendLayout();
+            pnCrew.SuspendLayout();
+
+            ClearCredits();
+
             List<Person> casts = await MovieService.Instance.GetTopCastsByMovieIdAsync(_movie.Id, 10);
 
             foreach (Person cast in casts)
             {
                 PersonCard castItem = new(_navigationService);
                 castItem.SetPersonData(cast);
-                pnCasts.Controls.Add(castItem);
+                pnCast.Controls.Add(castItem);
                 castItem.BringToFront();
                 castItem.Dock = DockStyle.Left;
             }
 
             List<Person> crews = await MovieService.Instance.GetTopCrewsByMovieIdAsync(_movie.Id, 10);
+
             foreach (Person crew in crews)
             {
                 PersonCard crewItem = new(_navigationService);
                 crewItem.SetPersonData(crew);
-                pnCrews.Controls.Add(crewItem);
+                pnCrew.Controls.Add(crewItem);
                 crewItem.BringToFront();
                 crewItem.Dock = DockStyle.Left;
             }
+
+            pnCast.ResumeLayout();
+            pnCrew.ResumeLayout();
         }
 
         private void OnReviewAdded(object sender, EventArgs e)

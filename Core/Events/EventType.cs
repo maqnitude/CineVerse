@@ -23,7 +23,7 @@ namespace CineVerse.Core.Events
         ReviewAdding,
         ReviewAdded,
 
-        StarClicked,
+        RatingChanged,
     }
 
     public class UserEventArgs : EventArgs

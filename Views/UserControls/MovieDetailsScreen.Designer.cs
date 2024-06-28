@@ -55,10 +55,10 @@
             lblReviewsHeader = new Label();
             btnMoreReviews = new Button();
             pnCrewSection = new Panel();
-            pnCrews = new Panel();
+            pnCrew = new Panel();
             lblCrewHeader = new Label();
             pnCastSection = new Panel();
-            pnCasts = new Panel();
+            pnCast = new Panel();
             lblCastHeader = new Label();
             pnColumn2 = new Panel();
             pnRevenueSection = new Panel();
@@ -83,12 +83,7 @@
             pnActionsRow3 = new Panel();
             lblShowActivity = new Label();
             pnActionsRow2 = new Panel();
-            pnRatingStars = new Panel();
-            picStar5 = new PictureBox();
-            picStar4 = new PictureBox();
-            picStar3 = new PictureBox();
-            picStar2 = new PictureBox();
-            picStar1 = new PictureBox();
+            starRatingControl = new StarRatingControl();
             lblRate = new Label();
             pnActionsRow1 = new Panel();
             btnWatchlist = new Button();
@@ -118,12 +113,6 @@
             pnActionsRow4.SuspendLayout();
             pnActionsRow3.SuspendLayout();
             pnActionsRow2.SuspendLayout();
-            pnRatingStars.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picStar5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picStar4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picStar3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picStar2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picStar1).BeginInit();
             pnActionsRow1.SuspendLayout();
             SuspendLayout();
             // 
@@ -419,21 +408,21 @@
             // pnCrewSection
             // 
             pnCrewSection.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            pnCrewSection.Controls.Add(pnCrews);
+            pnCrewSection.Controls.Add(pnCrew);
             pnCrewSection.Controls.Add(lblCrewHeader);
-            pnCrewSection.Location = new Point(27, 279);
+            pnCrewSection.Location = new Point(27, 286);
             pnCrewSection.Name = "pnCrewSection";
-            pnCrewSection.Size = new Size(751, 210);
+            pnCrewSection.Size = new Size(751, 205);
             pnCrewSection.TabIndex = 2;
             // 
-            // pnCrews
+            // pnCrew
             // 
-            pnCrews.AutoScroll = true;
-            pnCrews.Dock = DockStyle.Fill;
-            pnCrews.Location = new Point(0, 24);
-            pnCrews.Name = "pnCrews";
-            pnCrews.Size = new Size(751, 186);
-            pnCrews.TabIndex = 2;
+            pnCrew.AutoScroll = true;
+            pnCrew.Dock = DockStyle.Fill;
+            pnCrew.Location = new Point(0, 24);
+            pnCrew.Name = "pnCrew";
+            pnCrew.Size = new Size(751, 181);
+            pnCrew.TabIndex = 2;
             // 
             // lblCrewHeader
             // 
@@ -450,21 +439,21 @@
             // pnCastSection
             // 
             pnCastSection.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            pnCastSection.Controls.Add(pnCasts);
+            pnCastSection.Controls.Add(pnCast);
             pnCastSection.Controls.Add(lblCastHeader);
             pnCastSection.Location = new Point(27, 29);
             pnCastSection.Name = "pnCastSection";
-            pnCastSection.Size = new Size(751, 210);
+            pnCastSection.Size = new Size(751, 205);
             pnCastSection.TabIndex = 2;
             // 
-            // pnCasts
+            // pnCast
             // 
-            pnCasts.AutoScroll = true;
-            pnCasts.Dock = DockStyle.Fill;
-            pnCasts.Location = new Point(0, 24);
-            pnCasts.Name = "pnCasts";
-            pnCasts.Size = new Size(751, 186);
-            pnCasts.TabIndex = 2;
+            pnCast.AutoScroll = true;
+            pnCast.Dock = DockStyle.Fill;
+            pnCast.Location = new Point(0, 24);
+            pnCast.Name = "pnCast";
+            pnCast.Size = new Size(751, 181);
+            pnCast.TabIndex = 2;
             // 
             // lblCastHeader
             // 
@@ -732,7 +721,7 @@
             // pnActionsRow2
             // 
             pnActionsRow2.BorderStyle = BorderStyle.FixedSingle;
-            pnActionsRow2.Controls.Add(pnRatingStars);
+            pnActionsRow2.Controls.Add(starRatingControl);
             pnActionsRow2.Controls.Add(lblRate);
             pnActionsRow2.Dock = DockStyle.Top;
             pnActionsRow2.Location = new Point(0, 90);
@@ -740,69 +729,15 @@
             pnActionsRow2.Size = new Size(250, 75);
             pnActionsRow2.TabIndex = 1;
             // 
-            // pnRatingStars
+            // starRatingControl
             // 
-            pnRatingStars.Controls.Add(picStar5);
-            pnRatingStars.Controls.Add(picStar4);
-            pnRatingStars.Controls.Add(picStar3);
-            pnRatingStars.Controls.Add(picStar2);
-            pnRatingStars.Controls.Add(picStar1);
-            pnRatingStars.Dock = DockStyle.Fill;
-            pnRatingStars.Location = new Point(0, 23);
-            pnRatingStars.Name = "pnRatingStars";
-            pnRatingStars.Size = new Size(248, 50);
-            pnRatingStars.TabIndex = 1;
-            // 
-            // picStar5
-            // 
-            picStar5.Dock = DockStyle.Left;
-            picStar5.Image = Properties.Resources.star_big;
-            picStar5.Location = new Point(200, 0);
-            picStar5.Name = "picStar5";
-            picStar5.Size = new Size(50, 50);
-            picStar5.TabIndex = 4;
-            picStar5.TabStop = false;
-            // 
-            // picStar4
-            // 
-            picStar4.Dock = DockStyle.Left;
-            picStar4.Image = Properties.Resources.star_big;
-            picStar4.Location = new Point(150, 0);
-            picStar4.Name = "picStar4";
-            picStar4.Size = new Size(50, 50);
-            picStar4.TabIndex = 3;
-            picStar4.TabStop = false;
-            // 
-            // picStar3
-            // 
-            picStar3.Dock = DockStyle.Left;
-            picStar3.Image = Properties.Resources.star_big;
-            picStar3.Location = new Point(100, 0);
-            picStar3.Name = "picStar3";
-            picStar3.Size = new Size(50, 50);
-            picStar3.TabIndex = 2;
-            picStar3.TabStop = false;
-            // 
-            // picStar2
-            // 
-            picStar2.Dock = DockStyle.Left;
-            picStar2.Image = Properties.Resources.star_big;
-            picStar2.Location = new Point(50, 0);
-            picStar2.Name = "picStar2";
-            picStar2.Size = new Size(50, 50);
-            picStar2.TabIndex = 1;
-            picStar2.TabStop = false;
-            // 
-            // picStar1
-            // 
-            picStar1.Dock = DockStyle.Left;
-            picStar1.Image = Properties.Resources.star_big;
-            picStar1.Location = new Point(0, 0);
-            picStar1.Name = "picStar1";
-            picStar1.Size = new Size(50, 50);
-            picStar1.SizeMode = PictureBoxSizeMode.StretchImage;
-            picStar1.TabIndex = 0;
-            picStar1.TabStop = false;
+            starRatingControl.BackColor = Color.Transparent;
+            starRatingControl.Location = new Point(45, 35);
+            starRatingControl.Margin = new Padding(4);
+            starRatingControl.Name = "starRatingControl";
+            starRatingControl.Rating = 0;
+            starRatingControl.Size = new Size(160, 32);
+            starRatingControl.TabIndex = 1;
             // 
             // lblRate
             // 
@@ -917,12 +852,6 @@
             pnActionsRow4.ResumeLayout(false);
             pnActionsRow3.ResumeLayout(false);
             pnActionsRow2.ResumeLayout(false);
-            pnRatingStars.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)picStar5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picStar4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picStar3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picStar2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picStar1).EndInit();
             pnActionsRow1.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -957,18 +886,12 @@
         private Panel pnActionsRow4;
         private Label lblReviewOrLog;
         private Label lblShowActivity;
-        private Panel pnRatingStars;
-        private PictureBox picStar1;
-        private PictureBox picStar5;
-        private PictureBox picStar4;
-        private PictureBox picStar3;
-        private PictureBox picStar2;
         private Label lblCastHeader;
         private Panel pnCrewSection;
-        private Panel pnCrews;
+        private Panel pnCrew;
         private Label lblCrewHeader;
         private Panel pnCastSection;
-        private Panel pnCasts;
+        private Panel pnCast;
         private Panel pnReviewsSection;
         private Panel pnReviewsHeader;
         private Label lblReviewsHeader;
@@ -994,5 +917,6 @@
         private Label lblReleaseYear;
         private Panel pnDirector;
         private Label lblDirectorName;
+        private StarRatingControl starRatingControl;
     }
 }

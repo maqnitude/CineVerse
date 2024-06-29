@@ -30,6 +30,7 @@ namespace CineVerse.Forms
     {
         private readonly NavigationService _navigationService;
 
+        private readonly HomeScreen _homeScreen;
         private readonly MoviesScreen _moviesScreen;
         private readonly ListsScreen _listsScreen;
 
@@ -47,6 +48,7 @@ namespace CineVerse.Forms
 
             _navigationService = new NavigationService(this, pnMain);
 
+            _homeScreen = new HomeScreen();
             _moviesScreen = new MoviesScreen(_navigationService, 12);
             _listsScreen = new ListsScreen();
 
@@ -55,6 +57,7 @@ namespace CineVerse.Forms
 
             searchBar.SetMediator(this);
 
+            _navigationService.RegisterScreen("homeScreen", _homeScreen);
             _navigationService.RegisterScreen("moviesScreen", _moviesScreen);
             _navigationService.RegisterScreen("listsScreen", _listsScreen);
 
@@ -117,7 +120,7 @@ namespace CineVerse.Forms
                     control.MouseEnter += OnNavItemMouseEnter;
                     control.MouseLeave += OnNavItemMouseLeave;
                 }
-            } 
+            }
         }
 
         private void ResetNavItemColors()
@@ -139,7 +142,9 @@ namespace CineVerse.Forms
 
             btnUser.Text = _currentUser.Name;
 
+            _homeScreen.SetUser(_currentUser);
             _listsScreen.SetUser(_currentUser);
+            _navigationService.NavigateToScreen("homeScreen");
         }
 
         private async void OnListAdding(object sender, ListEventArgs e)
@@ -189,7 +194,10 @@ namespace CineVerse.Forms
 
         private void lblHomeTab_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            ResetNavItemColors();
+            lblHomeTab.ForeColor = Color.FromArgb(0, 157, 26);
+            _selectedTab = lblHomeTab;
+            _navigationService.NavigateToScreen("homeScreen");
         }
 
         private async void lblMoviesTab_Click(object sender, EventArgs e)
@@ -215,6 +223,41 @@ namespace CineVerse.Forms
         private void lblDiscussionsTab_Click(object sender, EventArgs e)
         {
             throw new NotImplementedException();
+        }
+
+        private void picLogo_Click(object sender, EventArgs e)
+        {
+            // Navigate to homescreen here
+            throw new NotImplementedException();
+        }
+
+        private void btnUser_Click(object sender, EventArgs e)
+        {
+            Color newColor = cmsUserDropdown.BackColor;
+            btnUser.BackColor = newColor;
+            pnUserWrapper.BackColor = newColor;
+            cmsUserDropdown.Show(pnUserWrapper, new Point(0, pnUserWrapper.Height));
+        }
+
+        private void cmsUserDropdown_Closed(object sender, ToolStripDropDownClosedEventArgs e)
+        {
+            Color originalColor = Color.FromArgb(0, 138, 22);
+            btnUser.BackColor = originalColor;
+            pnUserWrapper.BackColor = originalColor;
+        }
+
+        private void profileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProfileScreen profileScreen = new ProfileScreen();
+            profileScreen.SetUserData(_currentUser);
+            _navigationService.NavigateToScreen(profileScreen);
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SettingsScreen settingsScreen = new SettingsScreen();
+            settingsScreen.SetUserData(_currentUser);
+            _navigationService.NavigateToScreen(settingsScreen);
         }
     }
 }

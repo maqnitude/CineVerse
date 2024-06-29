@@ -11,18 +11,21 @@ using System.Windows.Forms;
 
 namespace CineVerse.Views.UserControls
 {
-    public partial class HomeScreen : UserControl
+    public partial class ProfileScreen : UserControl
     {
         private User _user;
-        public HomeScreen()
+
+        public ProfileScreen()
         {
             InitializeComponent();
         }
 
-        public void SetUser(User user)
+        public void SetUserData(User user)
         {
+            lblUsername.Text = user.Username;
+            picAvatar.Image = (user.AvatarPath != null) ? new Bitmap(user.AvatarPath) : Properties.Resources.default_avatar;
+            picAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
             _user = user;
-            lblWelcomeMessage.Text = $"Welcome back, {_user.Username}. Let's see what your friends have been watching...";
         }
     }
 }

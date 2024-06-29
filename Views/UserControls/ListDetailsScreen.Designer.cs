@@ -29,34 +29,35 @@
         private void InitializeComponent()
         {
             pnUserSummary = new Panel();
-            picUser = new PictureBox();
             pnListByUser = new Panel();
-            lblListBy = new Label();
             lblUser = new Label();
+            lblListBy = new Label();
+            picUser = new PictureBox();
             picBackdrop = new PictureBox();
             pnMovieCards = new Panel();
-            tlpMovieCards = new TableLayoutPanel();
+            flpMovieCards = new FlowLayoutPanel();
             pnColumn2 = new Panel();
+            pnActions = new Panel();
+            pnShareAction = new Panel();
+            btnShare = new Button();
+            pnLikeAction = new Panel();
+            btnLike = new Button();
             pnColumn1 = new Panel();
             pnListTitleIntro = new Panel();
-            lblListTitle = new Label();
             lblListOverview = new Label();
-            pnActions = new Panel();
-            pnLikeAction = new Panel();
-            pnShareAction = new Panel();
-            btnLike = new Button();
-            btnShare = new Button();
+            lblListTitle = new Label();
+            btnBack = new Button();
             pnUserSummary.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picUser).BeginInit();
             pnListByUser.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picUser).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picBackdrop).BeginInit();
             pnMovieCards.SuspendLayout();
             pnColumn2.SuspendLayout();
+            pnActions.SuspendLayout();
+            pnShareAction.SuspendLayout();
+            pnLikeAction.SuspendLayout();
             pnColumn1.SuspendLayout();
             pnListTitleIntro.SuspendLayout();
-            pnActions.SuspendLayout();
-            pnLikeAction.SuspendLayout();
-            pnShareAction.SuspendLayout();
             SuspendLayout();
             // 
             // pnUserSummary
@@ -69,14 +70,6 @@
             pnUserSummary.Size = new Size(854, 38);
             pnUserSummary.TabIndex = 0;
             // 
-            // picUser
-            // 
-            picUser.Location = new Point(8, 7);
-            picUser.Name = "picUser";
-            picUser.Size = new Size(25, 25);
-            picUser.TabIndex = 0;
-            picUser.TabStop = false;
-            // 
             // pnListByUser
             // 
             pnListByUser.AutoSize = true;
@@ -86,17 +79,6 @@
             pnListByUser.Name = "pnListByUser";
             pnListByUser.Size = new Size(110, 25);
             pnListByUser.TabIndex = 1;
-            // 
-            // lblListBy
-            // 
-            lblListBy.AutoSize = true;
-            lblListBy.Dock = DockStyle.Left;
-            lblListBy.ForeColor = Color.FromArgb(178, 172, 162);
-            lblListBy.Location = new Point(0, 0);
-            lblListBy.Name = "lblListBy";
-            lblListBy.Size = new Size(41, 15);
-            lblListBy.TabIndex = 0;
-            lblListBy.Text = "List by";
             // 
             // lblUser
             // 
@@ -109,6 +91,25 @@
             lblUser.Size = new Size(69, 15);
             lblUser.TabIndex = 1;
             lblUser.Text = "Zanderific";
+            // 
+            // lblListBy
+            // 
+            lblListBy.AutoSize = true;
+            lblListBy.Dock = DockStyle.Left;
+            lblListBy.ForeColor = Color.FromArgb(178, 172, 162);
+            lblListBy.Location = new Point(0, 0);
+            lblListBy.Name = "lblListBy";
+            lblListBy.Size = new Size(41, 15);
+            lblListBy.TabIndex = 0;
+            lblListBy.Text = "List by";
+            // 
+            // picUser
+            // 
+            picUser.Location = new Point(8, 7);
+            picUser.Name = "picUser";
+            picUser.Size = new Size(25, 25);
+            picUser.TabIndex = 0;
+            picUser.TabStop = false;
             // 
             // picBackdrop
             // 
@@ -124,25 +125,20 @@
             // 
             pnMovieCards.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pnMovieCards.AutoSize = true;
-            pnMovieCards.Controls.Add(tlpMovieCards);
+            pnMovieCards.Controls.Add(flpMovieCards);
             pnMovieCards.Location = new Point(27, 152);
             pnMovieCards.Name = "pnMovieCards";
             pnMovieCards.Size = new Size(802, 409);
             pnMovieCards.TabIndex = 2;
             // 
-            // tlpMovieCards
+            // flpMovieCards
             // 
-            tlpMovieCards.ColumnCount = 2;
-            tlpMovieCards.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tlpMovieCards.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tlpMovieCards.Dock = DockStyle.Fill;
-            tlpMovieCards.Location = new Point(0, 0);
-            tlpMovieCards.Name = "tlpMovieCards";
-            tlpMovieCards.RowCount = 2;
-            tlpMovieCards.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpMovieCards.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpMovieCards.Size = new Size(802, 409);
-            tlpMovieCards.TabIndex = 0;
+            flpMovieCards.AutoScroll = true;
+            flpMovieCards.Dock = DockStyle.Fill;
+            flpMovieCards.Location = new Point(0, 0);
+            flpMovieCards.Name = "flpMovieCards";
+            flpMovieCards.Size = new Size(802, 409);
+            flpMovieCards.TabIndex = 0;
             // 
             // pnColumn2
             // 
@@ -152,6 +148,65 @@
             pnColumn2.Name = "pnColumn2";
             pnColumn2.Size = new Size(185, 582);
             pnColumn2.TabIndex = 3;
+            // 
+            // pnActions
+            // 
+            pnActions.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pnActions.Controls.Add(pnShareAction);
+            pnActions.Controls.Add(pnLikeAction);
+            pnActions.Location = new Point(4, 19);
+            pnActions.Name = "pnActions";
+            pnActions.Size = new Size(176, 80);
+            pnActions.TabIndex = 0;
+            // 
+            // pnShareAction
+            // 
+            pnShareAction.Controls.Add(btnShare);
+            pnShareAction.Dock = DockStyle.Top;
+            pnShareAction.Location = new Point(0, 40);
+            pnShareAction.Name = "pnShareAction";
+            pnShareAction.Size = new Size(176, 40);
+            pnShareAction.TabIndex = 1;
+            // 
+            // btnShare
+            // 
+            btnShare.BackColor = Color.FromArgb(54, 68, 82);
+            btnShare.Dock = DockStyle.Fill;
+            btnShare.FlatStyle = FlatStyle.Flat;
+            btnShare.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnShare.ForeColor = Color.FromArgb(173, 196, 214);
+            btnShare.Location = new Point(0, 0);
+            btnShare.Name = "btnShare";
+            btnShare.Size = new Size(176, 40);
+            btnShare.TabIndex = 0;
+            btnShare.Text = "Share";
+            btnShare.UseVisualStyleBackColor = false;
+            // 
+            // pnLikeAction
+            // 
+            pnLikeAction.Controls.Add(btnLike);
+            pnLikeAction.Dock = DockStyle.Top;
+            pnLikeAction.Location = new Point(0, 0);
+            pnLikeAction.Name = "pnLikeAction";
+            pnLikeAction.Size = new Size(176, 40);
+            pnLikeAction.TabIndex = 0;
+            // 
+            // btnLike
+            // 
+            btnLike.BackColor = Color.FromArgb(54, 68, 82);
+            btnLike.Dock = DockStyle.Fill;
+            btnLike.FlatStyle = FlatStyle.Flat;
+            btnLike.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLike.ForeColor = Color.FromArgb(173, 196, 214);
+            btnLike.Image = Properties.Resources.like_small;
+            btnLike.ImageAlign = ContentAlignment.MiddleRight;
+            btnLike.Location = new Point(0, 0);
+            btnLike.Name = "btnLike";
+            btnLike.Size = new Size(176, 40);
+            btnLike.TabIndex = 0;
+            btnLike.Text = " Like this list?";
+            btnLike.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnLike.UseVisualStyleBackColor = false;
             // 
             // pnColumn1
             // 
@@ -175,17 +230,6 @@
             pnListTitleIntro.Size = new Size(802, 94);
             pnListTitleIntro.TabIndex = 3;
             // 
-            // lblListTitle
-            // 
-            lblListTitle.Dock = DockStyle.Top;
-            lblListTitle.Font = new Font("Segoe UI Black", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblListTitle.ForeColor = Color.FromArgb(232, 230, 227);
-            lblListTitle.Location = new Point(0, 0);
-            lblListTitle.Name = "lblListTitle";
-            lblListTitle.Size = new Size(802, 40);
-            lblListTitle.TabIndex = 0;
-            lblListTitle.Text = "Movies That Will Make You Say “What the Fuck” At Least 3 Times\r\n\r\n";
-            // 
             // lblListOverview
             // 
             lblListOverview.Dock = DockStyle.Fill;
@@ -197,70 +241,35 @@
             lblListOverview.TabIndex = 1;
             lblListOverview.Text = "Movies that are so weird, weird to the point where you audibly react multiple times. It doesn’t matter if it’s a good weird or a bad weird, it’s just weird as fuck for a very specific reason.";
             // 
-            // pnActions
+            // lblListTitle
             // 
-            pnActions.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            pnActions.Controls.Add(pnShareAction);
-            pnActions.Controls.Add(pnLikeAction);
-            pnActions.Location = new Point(4, 19);
-            pnActions.Name = "pnActions";
-            pnActions.Size = new Size(176, 80);
-            pnActions.TabIndex = 0;
+            lblListTitle.Dock = DockStyle.Top;
+            lblListTitle.Font = new Font("Segoe UI Black", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblListTitle.ForeColor = Color.FromArgb(232, 230, 227);
+            lblListTitle.Location = new Point(0, 0);
+            lblListTitle.Name = "lblListTitle";
+            lblListTitle.Size = new Size(802, 40);
+            lblListTitle.TabIndex = 0;
+            lblListTitle.Text = "Movies That Will Make You Say “What the Fuck” At Least 3 Times\r\n\r\n";
             // 
-            // pnLikeAction
+            // btnBack
             // 
-            pnLikeAction.Controls.Add(btnLike);
-            pnLikeAction.Dock = DockStyle.Top;
-            pnLikeAction.Location = new Point(0, 0);
-            pnLikeAction.Name = "pnLikeAction";
-            pnLikeAction.Size = new Size(176, 40);
-            pnLikeAction.TabIndex = 0;
-            // 
-            // pnShareAction
-            // 
-            pnShareAction.Controls.Add(btnShare);
-            pnShareAction.Dock = DockStyle.Top;
-            pnShareAction.Location = new Point(0, 40);
-            pnShareAction.Name = "pnShareAction";
-            pnShareAction.Size = new Size(176, 40);
-            pnShareAction.TabIndex = 1;
-            // 
-            // btnLike
-            // 
-            btnLike.BackColor = Color.FromArgb(54, 68, 82);
-            btnLike.Dock = DockStyle.Fill;
-            btnLike.FlatStyle = FlatStyle.Flat;
-            btnLike.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLike.ForeColor = Color.FromArgb(173, 196, 214);
-            btnLike.Image = Properties.Resources.like_small;
-            btnLike.ImageAlign = ContentAlignment.MiddleRight;
-            btnLike.Location = new Point(0, 0);
-            btnLike.Name = "btnLike";
-            btnLike.Size = new Size(176, 40);
-            btnLike.TabIndex = 0;
-            btnLike.Text = " Like this list?";
-            btnLike.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnLike.UseVisualStyleBackColor = false;
-            // 
-            // btnShare
-            // 
-            btnShare.BackColor = Color.FromArgb(54, 68, 82);
-            btnShare.Dock = DockStyle.Fill;
-            btnShare.FlatStyle = FlatStyle.Flat;
-            btnShare.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnShare.ForeColor = Color.FromArgb(173, 196, 214);
-            btnShare.Location = new Point(0, 0);
-            btnShare.Name = "btnShare";
-            btnShare.Size = new Size(176, 40);
-            btnShare.TabIndex = 0;
-            btnShare.Text = "Share";
-            btnShare.UseVisualStyleBackColor = false;
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.Image = Properties.Resources.back;
+            btnBack.Location = new Point(3, 3);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(30, 30);
+            btnBack.TabIndex = 8;
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
             // 
             // ListDetailsScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(16, 19, 22);
+            Controls.Add(btnBack);
             Controls.Add(pnColumn1);
             Controls.Add(pnColumn2);
             Controls.Add(picBackdrop);
@@ -268,18 +277,18 @@
             Size = new Size(1039, 961);
             pnUserSummary.ResumeLayout(false);
             pnUserSummary.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picUser).EndInit();
             pnListByUser.ResumeLayout(false);
             pnListByUser.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picUser).EndInit();
             ((System.ComponentModel.ISupportInitialize)picBackdrop).EndInit();
             pnMovieCards.ResumeLayout(false);
             pnColumn2.ResumeLayout(false);
+            pnActions.ResumeLayout(false);
+            pnShareAction.ResumeLayout(false);
+            pnLikeAction.ResumeLayout(false);
             pnColumn1.ResumeLayout(false);
             pnColumn1.PerformLayout();
             pnListTitleIntro.ResumeLayout(false);
-            pnActions.ResumeLayout(false);
-            pnLikeAction.ResumeLayout(false);
-            pnShareAction.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -292,7 +301,6 @@
         private PictureBox picUser;
         private PictureBox picBackdrop;
         private Panel pnMovieCards;
-        private TableLayoutPanel tlpMovieCards;
         private Panel pnColumn2;
         private Panel pnColumn1;
         private Panel pnListTitleIntro;
@@ -303,5 +311,7 @@
         private Panel pnLikeAction;
         private Button btnLike;
         private Button btnShare;
+        private Button btnBack;
+        private FlowLayoutPanel flpMovieCards;
     }
 }

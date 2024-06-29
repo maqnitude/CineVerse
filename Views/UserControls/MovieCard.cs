@@ -1,4 +1,5 @@
-﻿using CineVerse.Core.Interfaces;
+﻿using CineVerse.Core.Events;
+using CineVerse.Core.Interfaces;
 using CineVerse.Core.Services;
 using CineVerse.Data.Entities;
 using CineVerse.Forms;
@@ -17,12 +18,29 @@ namespace CineVerse.Views.UserControls
 {
     public partial class MovieCard : UserControlComponent
     {
+        private MainForm _mainForm;
+        private Movie _movie;
+
         private PictureBox _poster;
-        public Movie CurrentMovie { get; private set; }
+
+        private bool _isMovieInWatchlist = false;
+        private bool _isMovieWatched = false;
+        private bool _isMovieLiked = false;
+
+        public Movie Movie
+        {
+            get
+            {
+                return _movie;
+            }
+        }
 
         public MovieCard()
         {
             InitializeComponent();
+
+            addToWatchlistToolStripMenuItem.Visible = true;
+            removeFromWatchlistToolStripMenuItem.Visible = false;
 
             _poster = new PictureBox
             {
@@ -35,6 +53,19 @@ namespace CineVerse.Views.UserControls
             SetSize("medium");
 
             SetupEvents(this);
+            RegisterEventHandlers();
+        }
+
+        private void RegisterEventHandlers()
+        {
+            EventManager.Instance.Subscribe<EventArgs>(EventType.WatchlistMovieAdded, OnWatchlistMovieAdded);
+            EventManager.Instance.Subscribe<EventArgs>(EventType.WatchlistMovieRemoved, OnWatchlistMovieRemoved);
+
+            EventManager.Instance.Subscribe<EventArgs>(EventType.WatchedListMovieAdded, OnWatchedListMovieAdded);
+            EventManager.Instance.Subscribe<EventArgs>(EventType.WatchedListMovieRemoved, OnWatchedListMovieRemoved);
+
+            EventManager.Instance.Subscribe<EventArgs>(EventType.LikedListMovieAdded, OnLikedListMovieAdded);
+            EventManager.Instance.Subscribe<EventArgs>(EventType.LikedListMovieRemoved, OnLikedListMovieRemoved);
         }
 
         private void SetupEvents(Control container)
@@ -54,12 +85,27 @@ namespace CineVerse.Views.UserControls
             }
         }
 
-        public void SetMovieData(Movie movie)
+        public async Task Initialize(MainForm mainForm, Movie movie, IMediator mediator)
         {
+            SetMainForm(mainForm);
+            await SetMovieData(movie);
+            SetMediator(mediator);
+        }
+
+        public void SetMainForm(MainForm mainForm)
+        {
+            _mainForm = mainForm;
+        }
+
+        public async Task SetMovieData(Movie movie)
+        {
+            _movie = movie;
+
             _poster.Image?.Dispose();
-            _poster.Image = new Bitmap(movie.PosterPath);
-            lblMovieTitle.Text = movie.Title;
-            CurrentMovie = movie;
+            _poster.Image = new Bitmap(_movie.PosterPath);
+            lblMovieTitle.Text = _movie.Title;
+
+            await UpdateState();
         }
 
         /// <summary>
@@ -84,6 +130,88 @@ namespace CineVerse.Views.UserControls
                     pnActions.Size = new Size(84, 28);
                     break;
             }
+        }
+
+        private async Task UpdateContextMenu()
+        {
+            var user = _mainForm.GetCurrentUser();
+            _isMovieInWatchlist = await MovieService.Instance.IsMovieInListAsync(user.WatchlistId, _movie.Id);
+
+            if (_isMovieInWatchlist)
+            {
+                addToWatchlistToolStripMenuItem.Visible = false;
+                removeFromWatchlistToolStripMenuItem.Visible = true;
+            }
+            else
+            {
+                addToWatchlistToolStripMenuItem.Visible = true;
+                removeFromWatchlistToolStripMenuItem.Visible = false;
+            }
+        }
+
+        private async Task UpdateActionIcons()
+        {
+            var user = _mainForm.GetCurrentUser();
+            _isMovieWatched = await MovieService.Instance.IsMovieInListAsync(user.WatchedListId, _movie.Id);
+            _isMovieLiked = await MovieService.Instance.IsMovieInListAsync(user.LikedListId, _movie.Id);
+
+            if (_isMovieLiked)
+            {
+                btnLike.Image?.Dispose();
+                btnLike.Image = Properties.Resources.liked;
+            }
+            else
+            {
+                btnLike.Image?.Dispose();
+                btnLike.Image = Properties.Resources.like;
+            }
+
+            if (_isMovieWatched)
+            {
+                btnWatch.Image?.Dispose();
+                btnWatch.Image = Properties.Resources.eye_green;
+            }
+            else
+            {
+                btnWatch.Image?.Dispose();
+                btnWatch.Image = Properties.Resources.eye;
+            }
+        }
+
+        private async Task UpdateState()
+        {
+            await UpdateContextMenu();
+            await UpdateActionIcons();
+        }
+
+        private async void OnWatchlistMovieAdded(object sender, EventArgs e)
+        {
+            await UpdateState();
+        }
+
+        private async void OnWatchlistMovieRemoved(object sender, EventArgs e)
+        {
+            await UpdateState();
+        }
+
+        private async void OnWatchedListMovieAdded(object sender, EventArgs e)
+        {
+            await UpdateState();
+        }
+
+        private async void OnWatchedListMovieRemoved(object sender, EventArgs e)
+        {
+            await UpdateState();
+        }
+
+        private async void OnLikedListMovieAdded(object sender, EventArgs e)
+        {
+            await UpdateState();
+        }
+
+        private async void OnLikedListMovieRemoved(object sender, EventArgs e)
+        {
+            await UpdateState();
         }
 
         private void MovieCard_MouseEnter(object sender, EventArgs e)
@@ -112,14 +240,12 @@ namespace CineVerse.Views.UserControls
             cmsActions.Show(btnMore, new Point(0, btnMore.Height));
         }
 
-        private void MovieCard_Click(object sender, EventArgs e)
+        private async void MovieCard_Click(object sender, EventArgs e)
         {
-            var mainForm = this.FindForm() as MainForm;
-            var navService = mainForm.GetNavService();
+            var navService = _mainForm.GetNavService();
 
-            var movieDetailsScreen = new MovieDetailsScreen(navService);
-            movieDetailsScreen.SetMediator(_mediator);
-            movieDetailsScreen.SetMovieData(CurrentMovie);
+            var movieDetailsScreen = new MovieDetailsScreen();
+            await movieDetailsScreen.Initialize(_mainForm, Movie, _mediator);
 
             navService.NavigateToScreen(movieDetailsScreen, false);
         }
@@ -128,5 +254,48 @@ namespace CineVerse.Views.UserControls
         {
             _mediator?.Notify(this, "OpenAddToListForm");
         }
+
+        private async void btnWatch_Click(object sender, EventArgs e)
+        {
+            var user = _mainForm.GetCurrentUser();
+
+            if (_isMovieWatched)
+            {
+                await ListService.Instance.RemoveMovieFromWatchedListAsync(user.WatchedListId, user.LikedListId, _movie.Id);
+            }
+            else
+            {
+                await ListService.Instance.AddMovieToWatchedListAsync(user.WatchedListId, user.WatchlistId, user.LikedListId, _movie.Id);
+            }
+        }
+
+        private async void btnLike_Click(object sender, EventArgs e)
+        {
+            var user = _mainForm.GetCurrentUser();
+
+            if (_isMovieLiked)
+            {
+                await ListService.Instance.RemoveMovieFromLikedListAsync(user.LikedListId, _movie.Id);
+            }
+            else
+            {
+                await ListService.Instance.AddMovieToLikedListAsync(user.LikedListId, user.WatchlistId, user.WatchedListId, _movie.Id);
+            }
+        }
+
+        private async void addToWatchlistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var user = _mainForm.GetCurrentUser();
+
+            await ListService.Instance.AddMovieToWatchlistAsync(user.WatchlistId, user.WatchedListId, user.LikedListId, _movie.Id);
+        }
+
+        private async void removeFromWatchlistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var user = _mainForm.GetCurrentUser();
+
+            await ListService.Instance.RemoveMovieFromWatchlistAsync(user.WatchlistId, _movie.Id);
+        }
+
     }
 }

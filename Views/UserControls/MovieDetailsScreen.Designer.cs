@@ -777,6 +777,7 @@
             btnWatchlist.Text = "Watchlist";
             btnWatchlist.TextImageRelation = TextImageRelation.ImageAboveText;
             btnWatchlist.UseVisualStyleBackColor = true;
+            btnWatchlist.Click += btnWatchlist_Click;
             // 
             // btnLike
             // 
@@ -793,6 +794,7 @@
             btnLike.Text = "Like";
             btnLike.TextImageRelation = TextImageRelation.ImageAboveText;
             btnLike.UseVisualStyleBackColor = true;
+            btnLike.Click += btnLike_Click;
             // 
             // btnWatch
             // 
@@ -809,6 +811,7 @@
             btnWatch.Text = "Watch";
             btnWatch.TextImageRelation = TextImageRelation.ImageAboveText;
             btnWatch.UseVisualStyleBackColor = true;
+            btnWatch.Click += btnWatch_Click;
             // 
             // MovieDetailsScreen
             // 

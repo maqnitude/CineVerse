@@ -261,6 +261,17 @@ namespace CineVerse.Data
             modelBuilder.Entity<MovieCompany>().HasData(movieCompanies);
             modelBuilder.Entity<Credit>().HasData(credits);
 
+            modelBuilder.Entity<User>()
+                .Ignore(u => u.Watchlist)
+                .Ignore(u => u.WatchedList)
+                .Ignore(u => u.LikedList);
+
+            modelBuilder.Entity<List>()
+                .HasOne(l => l.User)
+                .WithMany(u => u.Lists)
+                .HasForeignKey(l => l.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<ListMovie>().HasKey(pt => new { pt.ListId, pt.MovieId });
             modelBuilder.Entity<ListMovie>()
                 .HasOne(lm => lm.List)

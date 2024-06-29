@@ -38,6 +38,7 @@
             cmsActions = new ContextMenuStrip(components);
             whereToWatchToolStripMenuItem = new ToolStripMenuItem();
             addToWatchlistToolStripMenuItem = new ToolStripMenuItem();
+            removeFromWatchlistToolStripMenuItem = new ToolStripMenuItem();
             addToListsToolStripMenuItem = new ToolStripMenuItem();
             logOrReviewToolStripMenuItem = new ToolStripMenuItem();
             pnMoviePoster.SuspendLayout();
@@ -97,6 +98,7 @@
             btnLike.Size = new Size(30, 26);
             btnLike.TabIndex = 3;
             btnLike.UseVisualStyleBackColor = false;
+            btnLike.Click += btnLike_Click;
             // 
             // btnMore
             // 
@@ -126,14 +128,15 @@
             btnWatch.Size = new Size(27, 26);
             btnWatch.TabIndex = 0;
             btnWatch.UseVisualStyleBackColor = false;
+            btnWatch.Click += btnWatch_Click;
             // 
             // cmsActions
             // 
             cmsActions.BackColor = Color.FromArgb(72, 87, 101);
-            cmsActions.Items.AddRange(new ToolStripItem[] { whereToWatchToolStripMenuItem, addToWatchlistToolStripMenuItem, addToListsToolStripMenuItem, logOrReviewToolStripMenuItem });
+            cmsActions.Items.AddRange(new ToolStripItem[] { whereToWatchToolStripMenuItem, addToWatchlistToolStripMenuItem, removeFromWatchlistToolStripMenuItem, addToListsToolStripMenuItem, logOrReviewToolStripMenuItem });
             cmsActions.Name = "cmsActions";
             cmsActions.RenderMode = ToolStripRenderMode.System;
-            cmsActions.Size = new Size(182, 92);
+            cmsActions.Size = new Size(199, 114);
             // 
             // whereToWatchToolStripMenuItem
             // 
@@ -141,7 +144,7 @@
             whereToWatchToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
             whereToWatchToolStripMenuItem.ImageTransparentColor = Color.FromArgb(232, 230, 227);
             whereToWatchToolStripMenuItem.Name = "whereToWatchToolStripMenuItem";
-            whereToWatchToolStripMenuItem.Size = new Size(181, 22);
+            whereToWatchToolStripMenuItem.Size = new Size(198, 22);
             whereToWatchToolStripMenuItem.Text = "Where to watch";
             // 
             // addToWatchlistToolStripMenuItem
@@ -150,8 +153,18 @@
             addToWatchlistToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
             addToWatchlistToolStripMenuItem.ImageTransparentColor = Color.FromArgb(232, 230, 227);
             addToWatchlistToolStripMenuItem.Name = "addToWatchlistToolStripMenuItem";
-            addToWatchlistToolStripMenuItem.Size = new Size(181, 22);
+            addToWatchlistToolStripMenuItem.Size = new Size(198, 22);
             addToWatchlistToolStripMenuItem.Text = "Add to watchlist";
+            addToWatchlistToolStripMenuItem.Click += addToWatchlistToolStripMenuItem_Click;
+            // 
+            // removeFromWatchlistToolStripMenuItem
+            // 
+            removeFromWatchlistToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
+            removeFromWatchlistToolStripMenuItem.Name = "removeFromWatchlistToolStripMenuItem";
+            removeFromWatchlistToolStripMenuItem.Size = new Size(198, 22);
+            removeFromWatchlistToolStripMenuItem.Text = "Remove from Watchlist";
+            removeFromWatchlistToolStripMenuItem.Visible = false;
+            removeFromWatchlistToolStripMenuItem.Click += removeFromWatchlistToolStripMenuItem_Click;
             // 
             // addToListsToolStripMenuItem
             // 
@@ -159,7 +172,7 @@
             addToListsToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
             addToListsToolStripMenuItem.ImageTransparentColor = Color.FromArgb(232, 230, 227);
             addToListsToolStripMenuItem.Name = "addToListsToolStripMenuItem";
-            addToListsToolStripMenuItem.Size = new Size(181, 22);
+            addToListsToolStripMenuItem.Size = new Size(198, 22);
             addToListsToolStripMenuItem.Text = "Add to lists ...";
             addToListsToolStripMenuItem.Click += addToListsToolStripMenuItem_Click;
             // 
@@ -169,7 +182,7 @@
             logOrReviewToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
             logOrReviewToolStripMenuItem.ImageTransparentColor = Color.FromArgb(232, 230, 227);
             logOrReviewToolStripMenuItem.Name = "logOrReviewToolStripMenuItem";
-            logOrReviewToolStripMenuItem.Size = new Size(181, 22);
+            logOrReviewToolStripMenuItem.Size = new Size(198, 22);
             logOrReviewToolStripMenuItem.Text = "Log or review film ...";
             // 
             // MovieCard
@@ -200,5 +213,6 @@
         private ToolStripMenuItem addToWatchlistToolStripMenuItem;
         private ToolStripMenuItem addToListsToolStripMenuItem;
         private ToolStripMenuItem logOrReviewToolStripMenuItem;
+        private ToolStripMenuItem removeFromWatchlistToolStripMenuItem;
     }
 }

@@ -23,6 +23,8 @@ namespace CineVerse.Views.UserControls
             InitializeComponent();
 
             EventManager.Instance.Subscribe<EventArgs>(EventType.ListAdded, OnListAdded);
+            EventManager.Instance.Subscribe<ListMovieEventArgs>(EventType.ListMovieAdded, OnListMovieAddedRemoved);
+            EventManager.Instance.Subscribe<ListMovieEventArgs>(EventType.ListMovieRemoved, OnListMovieAddedRemoved);
         }
 
         public void SetUser(User user)
@@ -32,24 +34,27 @@ namespace CineVerse.Views.UserControls
 
         private void ClearLists()
         {
-            List<ListItemSummary> items = new List<ListItemSummary>();
+            List<ListItemSummary> itemsToRemove = new List<ListItemSummary>();
 
             foreach (Control control in pnlListsContainer.Controls)
             {
                 if (control is ListItemSummary item)
                 {
-                    items.Add(item); 
+                    itemsToRemove.Add(item); 
                 }
             }
 
-            foreach (ListItemSummary item in items)
+            foreach (ListItemSummary item in itemsToRemove)
             {
                 pnlListsContainer.Controls.Remove(item);
+                item.DisposeImages();
             }
         }
 
         public async Task LoadListsAsync()
         {
+            pnlListsContainer.SuspendLayout();
+
             ClearLists();
 
             List<List> lists = await ListService.Instance.GetUserListsAsync(_user.Id, true, true);
@@ -63,9 +68,16 @@ namespace CineVerse.Views.UserControls
 
                 pnlListsContainer.Controls.Add(item);
             }
+
+            pnlListsContainer.ResumeLayout();
         }
 
         private async void OnListAdded(object sender, EventArgs e)
+        {
+            await LoadListsAsync();
+        }
+
+        private async void OnListMovieAddedRemoved(object sender, ListMovieEventArgs e)
         {
             await LoadListsAsync();
         }

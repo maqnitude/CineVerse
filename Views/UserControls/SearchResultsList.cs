@@ -26,10 +26,11 @@ namespace CineVerse.Views.UserControls
 
             foreach (Movie movie in movies)
             {
-                var item = new SearchResultMovieItem(movie)
+                var item = new SearchResultMovieItem
                 {
                     Dock = DockStyle.Top,
                 };
+                item.SetMovieData(movie);
                 item.SetMediator(_mediator);
                 
                 pnlResults.Controls.Add(item);

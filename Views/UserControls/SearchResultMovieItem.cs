@@ -1,5 +1,7 @@
-﻿using CineVerse.Data.Entities;
+﻿using CineVerse.Core.Services;
+using CineVerse.Data.Entities;
 using CineVerse.Forms;
+using Microsoft.VisualBasic.Devices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,33 +17,40 @@ namespace CineVerse.Views.UserControls
 {
     public partial class SearchResultMovieItem : UserControlComponent
     {
-        private readonly Movie _movie;
+        private Movie _movie;
 
-        public SearchResultMovieItem(Movie movie)
+        public SearchResultMovieItem()
         {
             InitializeComponent();
+            RegisterEventHandlers(this);
+        }
 
+        public async void SetMovieData(Movie movie)
+        {
             _movie = movie;
 
             lblTitle.Text = movie.Title;
-            if (movie.ReleaseDate != null )
-            {
-                lblReleaseYear.Text = movie.ReleaseDate.Value.Year.ToString();
-            }
+            string releaseYear = movie.ReleaseDate.HasValue ? movie.ReleaseDate.Value.Year.ToString() : "N/A";
+            lblReleaseYear.Text = $"({releaseYear})";
 
-            RegisterEventHandlers();
+            var directors = await MovieService.Instance.GetMovieDirectors(_movie.Id);
+            string directorNames = string.Join(", ", directors.Select(d => d.Name));
+            lblDirectors.Text = directorNames;
         }
 
-        private void RegisterEventHandlers()
+        private void RegisterEventHandlers(Control parentControl)
         {
-            this.Click += OnClick;
-            foreach (Control control in this.Controls)
+            parentControl.Click += OnClick;
+            parentControl.MouseEnter += OnMouseEnter;
+            parentControl.MouseLeave += OnMouseLeave;
+
+            foreach (Control childControl in parentControl.Controls)
             {
-                control.Click += OnClick;
+                RegisterEventHandlers(childControl);
             }
         }
 
-        private async void OnClick(object sender, EventArgs e)
+        private async void OnClick(object? sender, EventArgs e)
         {
             var mainForm = this.FindForm() as MainForm;
             var navService = mainForm.GetNavService();
@@ -51,6 +60,16 @@ namespace CineVerse.Views.UserControls
             navService.NavigateToScreen(movieDetailsScreen, false);
 
             _mediator?.Notify(this, "HideSearchResults");
+        }
+
+        private void OnMouseEnter(object? sender, EventArgs e)
+        {
+            this.BackColor = Color.FromArgb(0, 138, 22);
+        }
+
+        private void OnMouseLeave(object? sender, EventArgs e)
+        {
+            this.BackColor = Color.Transparent;
         }
     }
 }

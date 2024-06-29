@@ -67,10 +67,10 @@ namespace CineVerse.Data.Repositories
                         switch (sortValue.ToLower())
                         {
                             case "highest first":
-                                query = query.OrderBy(m => m.VoteAverage);
+                                query = query.OrderByDescending(m => m.VoteAverage);
                                 break;
                             case "lowest first":
-                                query = query.OrderByDescending(m => m.VoteAverage);
+                                query = query.OrderBy(m => m.VoteAverage);
                                 break;
                         }
                         break;
@@ -110,6 +110,15 @@ namespace CineVerse.Data.Repositories
                 .Include(c => c.Person)
                 .Select(c => c.Person)
                 .FirstOrDefaultAsync();
+        }
+
+        public async Task<List<Person>> GetDirectorsByMovieIdAsync(int movieId)
+        {
+            return await _context.Set<Credit>()
+                .Where(c => c.MovieId == movieId && c.Job == "Director")
+                .Include(c => c.Person)
+                .Select(c => c.Person)
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<Movie>> SearchMoviesAsync(string searchTerm, int maxItems = 100)

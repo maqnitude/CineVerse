@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             pnNavBar = new Panel();
             pSearchAndUser = new Panel();
             pnUserWrapper = new Panel();
@@ -40,11 +41,26 @@
             lblHomeTab = new Label();
             picLogo = new PictureBox();
             pnMain = new Panel();
+            cmsUserDropdown = new ContextMenuStrip(components);
+            homeToolStripMenuItem = new ToolStripMenuItem();
+            profileToolStripMenuItem = new ToolStripMenuItem();
+            moviesToolStripMenuItem = new ToolStripMenuItem();
+            diaryToolStripMenuItem = new ToolStripMenuItem();
+            reviewsToolStripMenuItem = new ToolStripMenuItem();
+            watchlistToolStripMenuItem = new ToolStripMenuItem();
+            listsToolStripMenuItem = new ToolStripMenuItem();
+            likesToolStripMenuItem = new ToolStripMenuItem();
+            tagsToolStripMenuItem = new ToolStripMenuItem();
+            networkToolStripMenuItem = new ToolStripMenuItem();
+            separator = new ToolStripSeparator();
+            settingsToolStripMenuItem = new ToolStripMenuItem();
+            signOutToolStripMenuItem = new ToolStripMenuItem();
             pnNavBar.SuspendLayout();
             pSearchAndUser.SuspendLayout();
             pnUserWrapper.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picUser).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
+            cmsUserDropdown.SuspendLayout();
             SuspendLayout();
             // 
             // pnNavBar
@@ -68,51 +84,53 @@
             pSearchAndUser.AutoSize = true;
             pSearchAndUser.Controls.Add(pnUserWrapper);
             pSearchAndUser.Controls.Add(searchBar);
-            pSearchAndUser.Location = new Point(1009, 7);
+            pSearchAndUser.Location = new Point(990, 7);
             pSearchAndUser.Name = "pSearchAndUser";
-            pSearchAndUser.Size = new Size(333, 43);
+            pSearchAndUser.Size = new Size(352, 43);
             pSearchAndUser.TabIndex = 2;
             // 
             // pnUserWrapper
             // 
             pnUserWrapper.AutoSize = true;
-            pnUserWrapper.BackColor = Color.FromArgb(0, 157, 26);
+            pnUserWrapper.BackColor = Color.FromArgb(0, 138, 22);
+            pnUserWrapper.BorderStyle = BorderStyle.FixedSingle;
             pnUserWrapper.Controls.Add(btnUser);
             pnUserWrapper.Controls.Add(picUser);
-            pnUserWrapper.Location = new Point(229, 4);
+            pnUserWrapper.Location = new Point(244, 4);
             pnUserWrapper.Name = "pnUserWrapper";
-            pnUserWrapper.Size = new Size(101, 36);
+            pnUserWrapper.Size = new Size(103, 36);
             pnUserWrapper.TabIndex = 1;
             // 
             // btnUser
             // 
             btnUser.AutoSize = true;
-            btnUser.BackColor = Color.Transparent;
+            btnUser.BackColor = Color.FromArgb(0, 138, 22);
             btnUser.Dock = DockStyle.Fill;
             btnUser.FlatAppearance.BorderSize = 0;
             btnUser.FlatStyle = FlatStyle.Flat;
-            btnUser.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnUser.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             btnUser.ForeColor = Color.White;
             btnUser.Image = Properties.Resources.down;
             btnUser.ImageAlign = ContentAlignment.MiddleLeft;
             btnUser.Location = new Point(36, 0);
             btnUser.Margin = new Padding(8);
             btnUser.Name = "btnUser";
-            btnUser.Size = new Size(65, 36);
+            btnUser.Size = new Size(65, 34);
             btnUser.TabIndex = 0;
             btnUser.Text = "User";
             btnUser.TextAlign = ContentAlignment.MiddleRight;
             btnUser.TextImageRelation = TextImageRelation.TextBeforeImage;
             btnUser.UseVisualStyleBackColor = false;
+            btnUser.Click += btnUser_Click;
             // 
             // picUser
             // 
             picUser.Dock = DockStyle.Left;
-            picUser.Image = Properties.Resources.user;
+            picUser.Image = Properties.Resources.user_big;
             picUser.Location = new Point(0, 0);
             picUser.Name = "picUser";
-            picUser.Size = new Size(36, 36);
-            picUser.SizeMode = PictureBoxSizeMode.CenterImage;
+            picUser.Size = new Size(36, 34);
+            picUser.SizeMode = PictureBoxSizeMode.StretchImage;
             picUser.TabIndex = 0;
             picUser.TabStop = false;
             // 
@@ -124,7 +142,7 @@
             searchBar.Location = new Point(0, 5);
             searchBar.Margin = new Padding(1);
             searchBar.Name = "searchBar";
-            searchBar.Size = new Size(221, 36);
+            searchBar.Size = new Size(233, 36);
             searchBar.TabIndex = 0;
             // 
             // lblDiscussionsTab
@@ -184,6 +202,7 @@
             picLogo.SizeMode = PictureBoxSizeMode.StretchImage;
             picLogo.TabIndex = 1;
             picLogo.TabStop = false;
+            picLogo.Click += picLogo_Click;
             // 
             // pnMain
             // 
@@ -194,6 +213,118 @@
             pnMain.Name = "pnMain";
             pnMain.Size = new Size(1354, 884);
             pnMain.TabIndex = 1;
+            // 
+            // cmsUserDropdown
+            // 
+            cmsUserDropdown.BackColor = Color.FromArgb(72, 87, 101);
+            cmsUserDropdown.Items.AddRange(new ToolStripItem[] { homeToolStripMenuItem, profileToolStripMenuItem, moviesToolStripMenuItem, diaryToolStripMenuItem, reviewsToolStripMenuItem, watchlistToolStripMenuItem, listsToolStripMenuItem, likesToolStripMenuItem, tagsToolStripMenuItem, networkToolStripMenuItem, separator, settingsToolStripMenuItem, signOutToolStripMenuItem });
+            cmsUserDropdown.Name = "cmsUserDropdown";
+            cmsUserDropdown.RenderMode = ToolStripRenderMode.System;
+            cmsUserDropdown.Size = new Size(125, 274);
+            cmsUserDropdown.Closed += cmsUserDropdown_Closed;
+            // 
+            // homeToolStripMenuItem
+            // 
+            homeToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            homeToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
+            homeToolStripMenuItem.Name = "homeToolStripMenuItem";
+            homeToolStripMenuItem.Size = new Size(124, 22);
+            homeToolStripMenuItem.Text = "Home";
+            // 
+            // profileToolStripMenuItem
+            // 
+            profileToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            profileToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
+            profileToolStripMenuItem.Name = "profileToolStripMenuItem";
+            profileToolStripMenuItem.Size = new Size(124, 22);
+            profileToolStripMenuItem.Text = "Profile";
+            profileToolStripMenuItem.Click += profileToolStripMenuItem_Click;
+            // 
+            // moviesToolStripMenuItem
+            // 
+            moviesToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            moviesToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
+            moviesToolStripMenuItem.Name = "moviesToolStripMenuItem";
+            moviesToolStripMenuItem.Size = new Size(124, 22);
+            moviesToolStripMenuItem.Text = "Movies";
+            // 
+            // diaryToolStripMenuItem
+            // 
+            diaryToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            diaryToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
+            diaryToolStripMenuItem.Name = "diaryToolStripMenuItem";
+            diaryToolStripMenuItem.Size = new Size(124, 22);
+            diaryToolStripMenuItem.Text = "Diary";
+            // 
+            // reviewsToolStripMenuItem
+            // 
+            reviewsToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            reviewsToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
+            reviewsToolStripMenuItem.Name = "reviewsToolStripMenuItem";
+            reviewsToolStripMenuItem.Size = new Size(124, 22);
+            reviewsToolStripMenuItem.Text = "Reviews";
+            // 
+            // watchlistToolStripMenuItem
+            // 
+            watchlistToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            watchlistToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
+            watchlistToolStripMenuItem.Name = "watchlistToolStripMenuItem";
+            watchlistToolStripMenuItem.Size = new Size(124, 22);
+            watchlistToolStripMenuItem.Text = "Watchlist";
+            // 
+            // listsToolStripMenuItem
+            // 
+            listsToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            listsToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
+            listsToolStripMenuItem.Name = "listsToolStripMenuItem";
+            listsToolStripMenuItem.Size = new Size(124, 22);
+            listsToolStripMenuItem.Text = "Lists";
+            // 
+            // likesToolStripMenuItem
+            // 
+            likesToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            likesToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
+            likesToolStripMenuItem.Name = "likesToolStripMenuItem";
+            likesToolStripMenuItem.Size = new Size(124, 22);
+            likesToolStripMenuItem.Text = "Likes";
+            // 
+            // tagsToolStripMenuItem
+            // 
+            tagsToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            tagsToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
+            tagsToolStripMenuItem.Name = "tagsToolStripMenuItem";
+            tagsToolStripMenuItem.Size = new Size(124, 22);
+            tagsToolStripMenuItem.Text = "Tags";
+            // 
+            // networkToolStripMenuItem
+            // 
+            networkToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            networkToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
+            networkToolStripMenuItem.Name = "networkToolStripMenuItem";
+            networkToolStripMenuItem.Size = new Size(124, 22);
+            networkToolStripMenuItem.Text = "Network";
+            // 
+            // separator
+            // 
+            separator.Name = "separator";
+            separator.Size = new Size(121, 6);
+            // 
+            // settingsToolStripMenuItem
+            // 
+            settingsToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            settingsToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
+            settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            settingsToolStripMenuItem.Size = new Size(124, 22);
+            settingsToolStripMenuItem.Text = "Settings";
+            settingsToolStripMenuItem.Click += settingsToolStripMenuItem_Click;
+            // 
+            // signOutToolStripMenuItem
+            // 
+            signOutToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            signOutToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
+            signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
+            signOutToolStripMenuItem.Size = new Size(124, 22);
+            signOutToolStripMenuItem.Text = "Sign out";
             // 
             // MainForm
             // 
@@ -214,6 +345,7 @@
             pnUserWrapper.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picUser).EndInit();
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
+            cmsUserDropdown.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -231,5 +363,19 @@
         private Panel pnUserWrapper;
         private PictureBox picUser;
         private Panel pSearchAndUser;
+        private ContextMenuStrip cmsUserDropdown;
+        private ToolStripMenuItem homeToolStripMenuItem;
+        private ToolStripMenuItem profileToolStripMenuItem;
+        private ToolStripMenuItem moviesToolStripMenuItem;
+        private ToolStripMenuItem diaryToolStripMenuItem;
+        private ToolStripMenuItem reviewsToolStripMenuItem;
+        private ToolStripMenuItem watchlistToolStripMenuItem;
+        private ToolStripMenuItem listsToolStripMenuItem;
+        private ToolStripMenuItem likesToolStripMenuItem;
+        private ToolStripMenuItem tagsToolStripMenuItem;
+        private ToolStripMenuItem networkToolStripMenuItem;
+        private ToolStripSeparator separator;
+        private ToolStripMenuItem settingsToolStripMenuItem;
+        private ToolStripMenuItem signOutToolStripMenuItem;
     }
 }

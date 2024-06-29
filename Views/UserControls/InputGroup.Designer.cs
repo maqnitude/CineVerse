@@ -37,7 +37,7 @@
             // txtInput
             // 
             txtInput.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtInput.BackColor = Color.FromArgb(43, 47, 49);
+            txtInput.BackColor = Color.FromArgb(44, 52, 64);
             txtInput.BorderStyle = BorderStyle.None;
             txtInput.Font = new Font("Segoe UI", 10F);
             txtInput.ForeColor = Color.FromArgb(168, 160, 149);
@@ -62,7 +62,7 @@
             // 
             // pnTextInput
             // 
-            pnTextInput.BackColor = Color.FromArgb(43, 47, 49);
+            pnTextInput.BackColor = Color.FromArgb(44, 52, 64);
             pnTextInput.Controls.Add(txtInput);
             pnTextInput.Dock = DockStyle.Fill;
             pnTextInput.Location = new Point(0, 20);

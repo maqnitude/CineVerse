@@ -13,6 +13,8 @@ namespace CineVerse.Core.Events
     public enum EventType
     {
         UserSignedIn,
+        
+        UserSettingsChanged,
 
         ListAdding,
         ListAdded,

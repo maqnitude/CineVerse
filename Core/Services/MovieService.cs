@@ -121,6 +121,15 @@ namespace CineVerse.Core.Services
             }
         }
 
+        public async Task<List<Person>> GetMovieDirectors(int movieId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var directors = await unitOfWork.Movies.GetDirectorsByMovieIdAsync(movieId);
+                return directors;
+            }
+        }
+
         public async Task<List<Movie>> SearchMoviesAsync(string searchTerm)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))

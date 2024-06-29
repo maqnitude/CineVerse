@@ -11,12 +11,17 @@ namespace CineVerse.Data.Entities
     {
         public string Id { get; set; }
         public string? Name { get; set; }
+        public string? GivenName { get; set; }
+        public string? FamilyName { get; set;}
         [Required]
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }
         public string? Email { get; set; }
         public string? AvatarPath { get; set; }
+        public string? Location { get; set; }
+        public string? Website { get; set; }
+        public string? Bio { get; set; }
 
         public string WatchlistId { get; set; }
         public List Watchlist {  get; set; }

@@ -28,29 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            lblWelcomeMessage = new Label();
             SuspendLayout();
             // 
-            // flowLayoutPanel1
+            // lblWelcomeMessage
             // 
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(859, 611);
-            flowLayoutPanel1.TabIndex = 0;
+            lblWelcomeMessage.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            lblWelcomeMessage.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblWelcomeMessage.ForeColor = Color.FromArgb(164, 184, 200);
+            lblWelcomeMessage.Location = new Point(3, 266);
+            lblWelcomeMessage.Name = "lblWelcomeMessage";
+            lblWelcomeMessage.Size = new Size(853, 32);
+            lblWelcomeMessage.TabIndex = 0;
+            lblWelcomeMessage.Text = "Welcome Message!\r\n";
+            lblWelcomeMessage.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // HomePage
+            // HomeScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(flowLayoutPanel1);
-            Name = "HomePage";
+            BackColor = Color.FromArgb(20, 24, 28);
+            Controls.Add(lblWelcomeMessage);
+            Name = "HomeScreen";
             Size = new Size(859, 611);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private FlowLayoutPanel flowLayoutPanel1;
+        private Label lblWelcomeMessage;
     }
 }

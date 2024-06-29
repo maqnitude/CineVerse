@@ -98,6 +98,7 @@
             btnLike.Size = new Size(30, 26);
             btnLike.TabIndex = 3;
             btnLike.UseVisualStyleBackColor = false;
+            btnLike.Click += btnLike_Click;
             // 
             // btnMore
             // 
@@ -127,6 +128,7 @@
             btnWatch.Size = new Size(27, 26);
             btnWatch.TabIndex = 0;
             btnWatch.UseVisualStyleBackColor = false;
+            btnWatch.Click += btnWatch_Click;
             // 
             // cmsActions
             // 
@@ -134,7 +136,7 @@
             cmsActions.Items.AddRange(new ToolStripItem[] { whereToWatchToolStripMenuItem, addToWatchlistToolStripMenuItem, removeFromWatchlistToolStripMenuItem, addToListsToolStripMenuItem, logOrReviewToolStripMenuItem });
             cmsActions.Name = "cmsActions";
             cmsActions.RenderMode = ToolStripRenderMode.System;
-            cmsActions.Size = new Size(199, 136);
+            cmsActions.Size = new Size(199, 114);
             // 
             // whereToWatchToolStripMenuItem
             // 

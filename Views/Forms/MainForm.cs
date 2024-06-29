@@ -61,7 +61,7 @@ namespace CineVerse.Forms
             RegisterEventHandlers();
         }
 
-        public void Notify(object sender, string ev)
+        public async void Notify(object sender, string ev)
         {
             switch (ev)
             {
@@ -69,13 +69,13 @@ namespace CineVerse.Forms
                     if (sender is MovieCard card)
                     {
                         var addToListForm = new AddToListForm(_currentUser, card.Movie);
-                        addToListForm.LoadListsAsync();
+                        await addToListForm.LoadListsAsync();
                         addToListForm.ShowDialog();
                     }
                     else if (sender is MovieDetailsScreen detailsScreen)
                     {
-                        var addToListForm = new AddToListForm(_currentUser, detailsScreen.GetCurrentMovie());
-                        addToListForm.LoadListsAsync();
+                        var addToListForm = new AddToListForm(_currentUser, detailsScreen.Movie);
+                        await addToListForm.LoadListsAsync();
                         addToListForm.ShowDialog();
                     }
 

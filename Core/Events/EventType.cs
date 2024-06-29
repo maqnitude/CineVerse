@@ -24,6 +24,12 @@ namespace CineVerse.Core.Events
         WatchlistMovieAdded,
         WatchlistMovieRemoved,
 
+        WatchedListMovieAdded,
+        WatchedListMovieRemoved,
+
+        LikedListMovieAdded,
+        LikedListMovieRemoved,
+
         ReviewAdding,
         ReviewAdded,
 

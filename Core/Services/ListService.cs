@@ -87,16 +87,18 @@ namespace CineVerse.Core.Services
                 await AddMovieToListsAsync([watchedListId], movieId);
                 await RemoveMovieFromListsAsync([watchlistId], movieId);
 
-                EventManager.Instance.Publish(EventType.WatchlistMovieAdded, this, EventArgs.Empty);
+                EventManager.Instance.Publish(EventType.WatchedListMovieAdded, this, EventArgs.Empty);
             }
         }
 
-        public async Task AddMovieToLikedlistAsync(string likedListId, string watchlistId, string watchedListId, int movieId)
+        public async Task AddMovieToLikedListAsync(string likedListId, string watchlistId, string watchedListId, int movieId)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
             {
                 await AddMovieToListsAsync([likedListId, watchedListId], movieId);
                 await RemoveMovieFromListsAsync([watchlistId], movieId);
+
+                EventManager.Instance.Publish(EventType.LikedListMovieAdded, this, EventArgs.Empty);
             }
         }
 
@@ -148,6 +150,26 @@ namespace CineVerse.Core.Services
                 await RemoveMovieFromListsAsync([watchlistId], movieId);
 
                 EventManager.Instance.Publish(EventType.WatchlistMovieRemoved, this, EventArgs.Empty);
+            }
+        }
+
+        public async Task RemoveMovieFromWatchedListAsync(string watchedListId, string likedListId, int movieId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                await RemoveMovieFromListsAsync([watchedListId, likedListId], movieId);
+
+                EventManager.Instance.Publish(EventType.WatchedListMovieRemoved, this, EventArgs.Empty);
+            }
+        }
+
+        public async Task RemoveMovieFromLikedListAsync(string likedListId, int movieId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                await RemoveMovieFromListsAsync([likedListId], movieId);
+
+                EventManager.Instance.Publish(EventType.LikedListMovieRemoved, this, EventArgs.Empty);
             }
         }
 

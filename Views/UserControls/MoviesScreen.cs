@@ -85,10 +85,10 @@ namespace CineVerse.Views.UserControls
             {
                 for (int i = 0; i < movies.Count; i++)
                 {
+                    var mainForm = this.FindForm() as MainForm;
+
                     MovieCard card = _movieCards[i];
-                    card.SetMainForm(this.FindForm() as MainForm);
-                    card.SetMovieData(movies[i]);
-                    card.SetMediator(_mediator);
+                    await card.Initialize(mainForm, movies[i], _mediator);                    
                     card.SetSize("big");
 
                     flpMovieCardsContainer.Controls.Add(card);

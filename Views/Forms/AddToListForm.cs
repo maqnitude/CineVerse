@@ -32,7 +32,7 @@ namespace CineVerse.Views.Forms
             EventManager.Instance.Subscribe<ListMovieEventArgs>(EventType.ListMovieAdded, OnListMovieAdded);
         }
 
-        public async void LoadListsAsync()
+        public async Task LoadListsAsync()
         {
             List<List> lists = await ListService.Instance.GetUserListsAsync(_user.Id, false);
 

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             pnProfileHeader = new Panel();
+            btnBack = new Button();
             lblBio = new Label();
             pnUsernameAndEdit = new Panel();
             lblUsername = new Label();
@@ -83,6 +84,7 @@
             // 
             // pnProfileHeader
             // 
+            pnProfileHeader.Controls.Add(btnBack);
             pnProfileHeader.Controls.Add(lblBio);
             pnProfileHeader.Controls.Add(pnUsernameAndEdit);
             pnProfileHeader.Controls.Add(picAvatar);
@@ -96,12 +98,24 @@
             pnProfileHeader.Size = new Size(974, 133);
             pnProfileHeader.TabIndex = 0;
             // 
+            // btnBack
+            // 
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.Image = Properties.Resources.back;
+            btnBack.Location = new Point(14, 14);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(30, 30);
+            btnBack.TabIndex = 9;
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
             // lblBio
             // 
             lblBio.AutoSize = true;
             lblBio.Font = new Font("Segoe UI", 9F);
             lblBio.ForeColor = Color.FromArgb(178, 172, 162);
-            lblBio.Location = new Point(136, 70);
+            lblBio.Location = new Point(181, 71);
             lblBio.Name = "lblBio";
             lblBio.Size = new Size(128, 15);
             lblBio.TabIndex = 4;
@@ -112,7 +126,7 @@
             pnUsernameAndEdit.AutoSize = true;
             pnUsernameAndEdit.Controls.Add(lblUsername);
             pnUsernameAndEdit.Controls.Add(btnEditProfile);
-            pnUsernameAndEdit.Location = new Point(136, 26);
+            pnUsernameAndEdit.Location = new Point(181, 27);
             pnUsernameAndEdit.Name = "pnUsernameAndEdit";
             pnUsernameAndEdit.Size = new Size(187, 28);
             pnUsernameAndEdit.TabIndex = 3;
@@ -146,7 +160,7 @@
             // 
             // picAvatar
             // 
-            picAvatar.Location = new Point(30, 13);
+            picAvatar.Location = new Point(75, 14);
             picAvatar.Name = "picAvatar";
             picAvatar.Size = new Size(100, 100);
             picAvatar.TabIndex = 1;
@@ -436,7 +450,7 @@
             // 
             pnFollowingSection.Controls.Add(pnFollowingUserCards);
             pnFollowingSection.Controls.Add(lblFollowingHeading);
-            pnFollowingSection.Location = new Point(30, 496);
+            pnFollowingSection.Location = new Point(75, 498);
             pnFollowingSection.Name = "pnFollowingSection";
             pnFollowingSection.Size = new Size(621, 80);
             pnFollowingSection.TabIndex = 2;
@@ -465,7 +479,7 @@
             // 
             pnRecentLikesSection.Controls.Add(pnLikedMovieCards);
             pnRecentLikesSection.Controls.Add(lblRecentLikesHeading);
-            pnRecentLikesSection.Location = new Point(30, 269);
+            pnRecentLikesSection.Location = new Point(75, 266);
             pnRecentLikesSection.Name = "pnRecentLikesSection";
             pnRecentLikesSection.Size = new Size(621, 190);
             pnRecentLikesSection.TabIndex = 1;
@@ -494,7 +508,7 @@
             // 
             pnFavouriteMoviesSection.Controls.Add(pnFavouriteMovieCards);
             pnFavouriteMoviesSection.Controls.Add(lblFavouriteMoviesHeading);
-            pnFavouriteMoviesSection.Location = new Point(30, 40);
+            pnFavouriteMoviesSection.Location = new Point(75, 39);
             pnFavouriteMoviesSection.Name = "pnFavouriteMoviesSection";
             pnFavouriteMoviesSection.Size = new Size(621, 190);
             pnFavouriteMoviesSection.TabIndex = 0;
@@ -595,5 +609,6 @@
         private Panel pnFollowingSection;
         private Panel pnFollowingUserCards;
         private Label lblFollowingHeading;
+        private Button btnBack;
     }
 }

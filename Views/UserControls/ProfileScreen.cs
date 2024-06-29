@@ -1,4 +1,5 @@
 ﻿using CineVerse.Data.Entities;
+using CineVerse.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,6 +27,13 @@ namespace CineVerse.Views.UserControls
             picAvatar.Image = (user.AvatarPath != null) ? new Bitmap(user.AvatarPath) : Properties.Resources.default_avatar;
             picAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
             _user = user;
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            var mainForm = this.FindForm() as MainForm;
+            var navService = mainForm.GetNavService();
+            navService.NavigateBack();
         }
     }
 }

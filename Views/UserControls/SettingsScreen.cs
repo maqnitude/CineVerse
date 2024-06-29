@@ -1,4 +1,5 @@
 ﻿using CineVerse.Configuration;
+using CineVerse.Core.Events;
 using CineVerse.Core.Services;
 using CineVerse.Data.Entities;
 using CineVerse.Forms;
@@ -29,9 +30,49 @@ namespace CineVerse.Views.UserControls
             txtUsername.Text = user.Username;
             txtEmail.Text = user.Email;
             txtEmail.Enabled = false;
-            picAvatar.Image = (user.AvatarPath != null) ? new Bitmap(user.AvatarPath) : Properties.Resources.default_avatar;
-            picAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
+            LoadAvatarImage(user.AvatarPath);
             _user = user;
+            _tempAvatarPath = null;
+        }
+
+        private void LoadAvatarImage(string avatarPath)
+        {
+            if (picAvatar.Image != null)
+            {
+                picAvatar.Image.Dispose();
+            }
+
+            if (avatarPath != null)
+            {
+                try
+                {
+                    using (FileStream fs = new FileStream(avatarPath, FileMode.Open, FileAccess.Read))
+                    {
+                        picAvatar.Image = Image.FromStream(fs);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Failed to load image: {ex.Message}", "Image Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (_user.AvatarPath != null)
+                    {
+                        using (FileStream fs = new FileStream(_user.AvatarPath, FileMode.Open, FileAccess.Read))
+                        {
+                            picAvatar.Image = Image.FromStream(fs);
+                        }
+                    }
+                    else
+                    {
+                        picAvatar.Image = Properties.Resources.default_avatar;
+                    }
+                }
+            }
+            else
+            {
+                picAvatar.Image = Properties.Resources.default_avatar;
+            }
+
+            picAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void btnSelectAvatar_Click(object sender, EventArgs e)
@@ -42,21 +83,8 @@ namespace CineVerse.Views.UserControls
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string selectedImagePath = openFileDialog.FileName;
-                    string imagesFolderPath = AppSettings.ImagesPath;
-                    string avatarDirectory = Path.Combine(imagesFolderPath, "avatars");
-
-                    if (!Directory.Exists(avatarDirectory))
-                    {
-                        Directory.CreateDirectory(avatarDirectory);
-                    }
-
-                    string avatarFileName = $"{_user.Id}{Path.GetExtension(selectedImagePath)}";
-                    string avatarFilePath = Path.Combine(avatarDirectory, avatarFileName);
-
-                    File.Copy(selectedImagePath, avatarFilePath, true);
-
-                    _tempAvatarPath = avatarFilePath;
-                    picAvatar.Image = new Bitmap(avatarFilePath);
+                    LoadAvatarImage(selectedImagePath);
+                    _tempAvatarPath = selectedImagePath;
                 }
             }
         }
@@ -64,7 +92,7 @@ namespace CineVerse.Views.UserControls
         private async void btnSave_Click(object sender, EventArgs e)
         {
             bool isUsernameChanged = _user.Username != txtUsername.Text;
-            bool isAvatarChanged = _user.AvatarPath != _tempAvatarPath;
+            bool isAvatarChanged = _tempAvatarPath != null && _user.AvatarPath != _tempAvatarPath;
 
             if (isUsernameChanged)
             {
@@ -73,36 +101,52 @@ namespace CineVerse.Views.UserControls
 
             if (isAvatarChanged)
             {
-                _user.AvatarPath = _tempAvatarPath;
+                string imagesFolderPath = AppSettings.ImagesPath;
+                string avatarDirectory = Path.Combine(imagesFolderPath, "avatars");
+                
+                if (!Directory.Exists(avatarDirectory))
+                {
+                    Directory.CreateDirectory(avatarDirectory);
+                }
+
+                string avatarFileName = $"{_user.Id}{Path.GetExtension(_tempAvatarPath)}";
+                string avatarFilePath = Path.Combine(avatarDirectory, avatarFileName);
+                
+                if (File.Exists(avatarFilePath))
+                {
+                    File.Delete(avatarFilePath);
+                }
+
+                File.Copy(_tempAvatarPath, avatarFilePath);
+                _user.AvatarPath = avatarFilePath;
+                _tempAvatarPath = null;
             }
 
             if (isUsernameChanged || isAvatarChanged)
             {
-                await UserService.Instance.UpdateUser(_user);
+                await UserService.Instance.UpdateUser(_user.Id, _user);
+                EventManager.Instance.Publish(EventType.UserSettingsChanged, this, EventArgs.Empty);
                 MessageBox.Show("Succesfully saved your changes", "Save Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private bool IsUnsavedChanges()
         {
-            return _user.Username != txtUsername.Text || _tempAvatarPath != _user.AvatarPath;
+            return _user.Username != txtUsername.Text || _tempAvatarPath != null;
         }
 
         private void DiscardChanges()
         {
             txtUsername.Text = _user.Username;
-            picAvatar.Image = (_user.AvatarPath != null) ? new Bitmap(_user.AvatarPath) : Properties.Resources.default_avatar;
+            LoadAvatarImage(_user.AvatarPath);
             _tempAvatarPath = null;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            bool isUsernameChanged = _user.Username != txtUsername.Text;
-            bool isAvatarChanged = _user.AvatarPath != _tempAvatarPath;
-
-            if (isUsernameChanged || isAvatarChanged)
+            if (IsUnsavedChanges())
             {
-                DialogResult result = MessageBox.Show("You have unsaved changes. Do you want to save them before going back?", "Unsaved Changes", MessageBoxButtons.YesNoCancel);
+                DialogResult result = MessageBox.Show("Do you want to save your unsaved changes before going back?", "Unsaved Changes", MessageBoxButtons.YesNoCancel);
                 if (result == DialogResult.Yes)
                 {
                     btnSave_Click(this, EventArgs.Empty);
@@ -115,10 +159,11 @@ namespace CineVerse.Views.UserControls
                 {
                     return;
                 }
-                var mainForm = this.FindForm() as MainForm;
-                var navService = mainForm.GetNavService();
-                navService.NavigateBack();
             }
+
+            var mainForm = this.FindForm() as MainForm;
+            var navService = mainForm.GetNavService();
+            navService.NavigateBack();
         }
     }
 }

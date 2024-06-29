@@ -104,6 +104,8 @@ namespace CineVerse.Forms
         {
             EventManager.Instance.Subscribe<UserEventArgs>(EventType.UserSignedIn, OnUserSignedIn);
 
+            EventManager.Instance.Subscribe<EventArgs>(EventType.UserSettingsChanged, OnUserSettingsChanged);
+
             EventManager.Instance.Subscribe<ListAddEventArgs>(EventType.ListAdding, OnListAdding);
             EventManager.Instance.Subscribe<ListMovieEventArgs>(EventType.ListMovieAdding, OnListMovieAdding);
 
@@ -139,17 +141,53 @@ namespace CineVerse.Forms
             }
         }
 
+        private Image LoadImage(string imagePath)
+        {
+            Image image = null;
+            if (imagePath != null)
+            {
+                try
+                {
+                    using (FileStream fs = new FileStream(imagePath, FileMode.Open, FileAccess.Read))
+                    {
+                        image = Image.FromStream(fs);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Failed to load image: {ex.Message}", "Image Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    image = Properties.Resources.default_avatar;
+                }
+            }
+            else
+            {
+                image = Properties.Resources.default_avatar;
+            }
+            return image;
+        }
+
+        private void UpdateUserDisplay()
+        {
+            btnUser.Text = _currentUser.Username;
+            picUser.Image?.Dispose();
+            picUser.Image = LoadImage(_currentUser.AvatarPath);
+        }
+
         private void OnUserSignedIn(object sender, UserEventArgs e)
         {
             this.Show();
 
             _currentUser = e.User;
 
-            btnUser.Text = _currentUser.Name;
-
+            UpdateUserDisplay();
             _homeScreen.SetUser(_currentUser);
             _listsScreen.SetUser(_currentUser);
-            _navigationService.NavigateToScreen("homeScreen");
+            lblHomeTab_Click(this, EventArgs.Empty);
+        }
+
+        private void OnUserSettingsChanged(object? sender, EventArgs e)
+        {
+            UpdateUserDisplay();
         }
 
         private async void OnListAdding(object sender, ListAddEventArgs e)
@@ -233,7 +271,7 @@ namespace CineVerse.Forms
         private void picLogo_Click(object sender, EventArgs e)
         {
             // Navigate to homescreen here
-            throw new NotImplementedException();
+            lblHomeTab_Click(this, EventArgs.Empty);
         }
 
         private void btnUser_Click(object sender, EventArgs e)

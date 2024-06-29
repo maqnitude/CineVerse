@@ -95,7 +95,7 @@ namespace CineVerse.Views.UserControls
                 }
             }
 
-            _isLastPage = (CurrentPage - 1) * _moviesPerPage > movies.Count;
+            _isLastPage = await MovieService.Instance.IsLastPage(CurrentPage, _moviesPerPage);
 
             btnNextPage.Enabled = !_isLastPage;
             btnPrevPage.Enabled = CurrentPage > 1;

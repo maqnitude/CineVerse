@@ -50,7 +50,7 @@ namespace CineVerse.Views.UserControls
             }
         }
 
-        private void OnClick(object? sender, EventArgs e)
+        private async void OnClick(object? sender, EventArgs e)
         {
             var mainForm = this.FindForm() as MainForm;
             var navService = mainForm.GetNavService();

@@ -33,15 +33,15 @@
             // 
             // lblWelcomeMessage
             // 
-            lblWelcomeMessage.Anchor = AnchorStyles.None;
-            lblWelcomeMessage.AutoSize = true;
+            lblWelcomeMessage.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblWelcomeMessage.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblWelcomeMessage.ForeColor = Color.FromArgb(164, 184, 200);
-            lblWelcomeMessage.Location = new Point(310, 282);
+            lblWelcomeMessage.Location = new Point(3, 266);
             lblWelcomeMessage.Name = "lblWelcomeMessage";
-            lblWelcomeMessage.Size = new Size(221, 32);
+            lblWelcomeMessage.Size = new Size(853, 32);
             lblWelcomeMessage.TabIndex = 0;
             lblWelcomeMessage.Text = "Welcome Message!\r\n";
+            lblWelcomeMessage.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // HomeScreen
             // 
@@ -52,7 +52,6 @@
             Name = "HomeScreen";
             Size = new Size(859, 611);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion

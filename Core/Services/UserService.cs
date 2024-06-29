@@ -26,10 +26,13 @@ namespace CineVerse.Core.Services
 
         private UserService() { }
 
-        public async Task UpdateUser(User user)
+        public async Task UpdateUser(string userId, User newUser)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
             {
+                var user = await unitOfWork.Users.GetUserByIdAsync(userId);
+                user.Username = newUser.Username;
+                user.AvatarPath = newUser.AvatarPath;
                 unitOfWork.Users.Update(user);
                 await unitOfWork.CompleteAsync();
             }

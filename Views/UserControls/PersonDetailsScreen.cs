@@ -1,5 +1,6 @@
 ﻿using CineVerse.Core.Services;
 using CineVerse.Data.Entities;
+using CineVerse.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 
 namespace CineVerse.Views.UserControls
 {
-    public partial class PersonDetailsScreen : UserControl
+    public partial class PersonDetailsScreen : UserControlComponent
     {
         private readonly NavigationService _navigationService;
         private Person _person;
@@ -55,9 +56,12 @@ namespace CineVerse.Views.UserControls
             List<Movie> movies = await PersonService.Instance.GetTopMoviesByPersonId(_person.Id);
             foreach (Movie movie in movies)
             {
+                var mainForm = this.FindForm() as MainForm;
+
                 MovieCard card = new MovieCard();
-                card.SetMovieData(movie);
+                await card.Initialize(mainForm, movie, _mediator);
                 card.SetSize("medium");
+
                 pnMovieCards.Controls.Add(card);
                 card.BringToFront();
                 card.Dock = DockStyle.Left;

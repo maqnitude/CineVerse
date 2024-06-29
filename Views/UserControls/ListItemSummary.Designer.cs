@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             pnPosters = new Panel();
-            picPoster5 = new PictureBox();
-            picPoster4 = new PictureBox();
-            picPoster3 = new PictureBox();
-            picPoster2 = new PictureBox();
             picPoster1 = new PictureBox();
+            picPoster2 = new PictureBox();
+            picPoster3 = new PictureBox();
+            picPoster4 = new PictureBox();
+            picPoster5 = new PictureBox();
             lblListTitle = new Label();
             pnUser = new Panel();
             lblUsername = new Label();
@@ -42,11 +42,11 @@
             lblListDescription = new Label();
             pnUserAndNumFilms = new Panel();
             pnPosters.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picPoster5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picPoster4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picPoster3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picPoster2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picPoster1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picPoster2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picPoster3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picPoster4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picPoster5).BeginInit();
             pnUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picUserAvatar).BeginInit();
             pnUserAndNumFilms.SuspendLayout();
@@ -54,39 +54,23 @@
             // 
             // pnPosters
             // 
-            pnPosters.Controls.Add(picPoster5);
-            pnPosters.Controls.Add(picPoster4);
-            pnPosters.Controls.Add(picPoster3);
-            pnPosters.Controls.Add(picPoster2);
             pnPosters.Controls.Add(picPoster1);
+            pnPosters.Controls.Add(picPoster2);
+            pnPosters.Controls.Add(picPoster3);
+            pnPosters.Controls.Add(picPoster4);
+            pnPosters.Controls.Add(picPoster5);
             pnPosters.Location = new Point(10, 6);
             pnPosters.Name = "pnPosters";
             pnPosters.Size = new Size(300, 150);
             pnPosters.TabIndex = 0;
             // 
-            // picPoster5
+            // picPoster1
             // 
-            picPoster5.Location = new Point(200, 0);
-            picPoster5.Name = "picPoster5";
-            picPoster5.Size = new Size(100, 150);
-            picPoster5.TabIndex = 4;
-            picPoster5.TabStop = false;
-            // 
-            // picPoster4
-            // 
-            picPoster4.Location = new Point(150, 0);
-            picPoster4.Name = "picPoster4";
-            picPoster4.Size = new Size(100, 150);
-            picPoster4.TabIndex = 3;
-            picPoster4.TabStop = false;
-            // 
-            // picPoster3
-            // 
-            picPoster3.Location = new Point(100, 0);
-            picPoster3.Name = "picPoster3";
-            picPoster3.Size = new Size(100, 150);
-            picPoster3.TabIndex = 2;
-            picPoster3.TabStop = false;
+            picPoster1.Location = new Point(0, 0);
+            picPoster1.Name = "picPoster1";
+            picPoster1.Size = new Size(100, 150);
+            picPoster1.TabIndex = 0;
+            picPoster1.TabStop = false;
             // 
             // picPoster2
             // 
@@ -96,13 +80,29 @@
             picPoster2.TabIndex = 1;
             picPoster2.TabStop = false;
             // 
-            // picPoster1
+            // picPoster3
             // 
-            picPoster1.Location = new Point(0, 0);
-            picPoster1.Name = "picPoster1";
-            picPoster1.Size = new Size(100, 150);
-            picPoster1.TabIndex = 0;
-            picPoster1.TabStop = false;
+            picPoster3.Location = new Point(100, 0);
+            picPoster3.Name = "picPoster3";
+            picPoster3.Size = new Size(100, 150);
+            picPoster3.TabIndex = 2;
+            picPoster3.TabStop = false;
+            // 
+            // picPoster4
+            // 
+            picPoster4.Location = new Point(150, 0);
+            picPoster4.Name = "picPoster4";
+            picPoster4.Size = new Size(100, 150);
+            picPoster4.TabIndex = 3;
+            picPoster4.TabStop = false;
+            // 
+            // picPoster5
+            // 
+            picPoster5.Location = new Point(200, 0);
+            picPoster5.Name = "picPoster5";
+            picPoster5.Size = new Size(100, 150);
+            picPoster5.TabIndex = 4;
+            picPoster5.TabStop = false;
             // 
             // lblListTitle
             // 
@@ -196,11 +196,11 @@
             Name = "ListItemSummary";
             Size = new Size(910, 163);
             pnPosters.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)picPoster5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picPoster4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picPoster3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picPoster2).EndInit();
             ((System.ComponentModel.ISupportInitialize)picPoster1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picPoster2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picPoster3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picPoster4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picPoster5).EndInit();
             pnUser.ResumeLayout(false);
             pnUser.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picUserAvatar).EndInit();

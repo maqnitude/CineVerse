@@ -31,12 +31,22 @@ namespace CineVerse.Core.Services
 
         }
 
+        // Depricated
         public async Task<bool> IsLastPage(int pageNumber, int pageSize)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
             {
                 int moviesCount = await unitOfWork.Movies.CountMoviesAsync();
                 return pageNumber * pageSize >= moviesCount;
+            }
+        }
+
+        public async Task<bool> IsMovieInListAsync(string listId, int movieId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var listMovie = await unitOfWork.ListMovies.GetAsync(listId, movieId);
+                return listMovie != null;
             }
         }
 

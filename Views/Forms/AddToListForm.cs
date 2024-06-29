@@ -29,24 +29,27 @@ namespace CineVerse.Views.Forms
             _movie = movie;
             lblFormTitle.Text = $"Add '{movie.Title}' to lists";
 
-            EventManager.Instance.Subscribe<EventArgs>(EventType.ListMovieAdded, OnListMovieAdded);
+            EventManager.Instance.Subscribe<ListMovieEventArgs>(EventType.ListMovieAdded, OnListMovieAdded);
         }
 
-        public async void LoadListsAsync()
+        public async Task LoadListsAsync()
         {
             List<List> lists = await ListService.Instance.GetUserListsAsync(_user.Id, false);
 
             foreach (List list in lists)
             {
-                ListItemBasic listItem = new(list)
+                if (list.Id != _user.WatchlistId && list.Id != _user.WatchedListId && list.Id != _user.LikedListId)
                 {
-                    Dock = DockStyle.Top,
-                };
-                pnFormBody.Controls.Add(listItem);
+                    ListItemBasic listItem = new(list)
+                    {
+                        Dock = DockStyle.Top,
+                    };
+                    pnFormBody.Controls.Add(listItem);
+                }
             }
         }
 
-        private void OnListMovieAdded(object sender, EventArgs e)
+        private void OnListMovieAdded(object sender, ListMovieEventArgs e)
         {
             this.Close();
         }

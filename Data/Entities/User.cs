@@ -23,6 +23,15 @@ namespace CineVerse.Data.Entities
         //public string? Website { get; set; }
         //public string? Bio { get; set; }
 
+        public string WatchlistId { get; set; }
+        public List Watchlist {  get; set; }
+
+        public string WatchedListId { get; set; }
+        public List WatchedList { get; set; }
+
+        public string LikedListId { get; set; }
+        public List LikedList {  get; set; }
+
         public ICollection<List> Lists { get; set; } = new List<List>();
         public ICollection<Review> Reviews { get; set; } = new List<Review>();
         public ICollection<Post> Posts { get; set; } = new List<Post>();
@@ -30,5 +39,38 @@ namespace CineVerse.Data.Entities
 
         public ICollection<PostVote> PostVotes { get; set; } = new List<PostVote>();
         public ICollection<CommentVote> CommentVotes { get; set; } = new List<CommentVote>();
+
+        public User()
+        {
+            Watchlist = new List
+            {
+                Id = Guid.NewGuid().ToString(),
+                Name = "Watchlist",
+                Type = ListType.Private,
+                UserId = Id
+            };
+            WatchedList = new List
+            {
+                Id = Guid.NewGuid().ToString(),
+                Name = "Watched List",
+                Type = ListType.Private,
+                UserId = Id
+            };
+            LikedList = new List
+            {
+                Id = Guid.NewGuid().ToString(),
+                Name = "Liked",
+                Type = ListType.Private,
+                UserId = Id
+            };
+
+            WatchlistId = Watchlist.Id;
+            WatchedListId = WatchedList.Id;
+            LikedListId = LikedList.Id;
+
+            Lists.Add(WatchedList);
+            Lists.Add(Watchlist);
+            Lists.Add(LikedList);
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace CineVerse.Views.UserControls
 {
-    partial class DiscussionItem
+    partial class PostItem
     {
         /// <summary> 
         /// Required designer variable.
@@ -177,7 +177,7 @@
             pictureBox3.TabIndex = 0;
             pictureBox3.TabStop = false;
             // 
-            // DiscussionItem
+            // PostItem
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -189,7 +189,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
-            Name = "DiscussionItem";
+            Name = "PostItem";
             Size = new Size(778, 72);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);

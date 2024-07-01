@@ -1,6 +1,6 @@
 ﻿namespace CineVerse.Views.UserControls
 {
-    partial class DiscussionsScreen
+    partial class PostsScreen
     {
         /// <summary> 
         /// Required designer variable.

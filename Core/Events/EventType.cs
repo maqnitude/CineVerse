@@ -39,6 +39,12 @@ namespace CineVerse.Core.Events
 
         PostAdding,
         PostAdded,
+
+        PostReplyAdding,
+        PostReplyAdded,
+
+        CommentReplyAdding,
+        CommentReplyAdded,
     }
 
     public class UserEventArgs : EventArgs
@@ -109,6 +115,28 @@ namespace CineVerse.Core.Events
         public PostEventArgs(string title, string content)
         {
             Title = title;
+            Content = content;
+        }
+    }
+
+    public class PostReplyEventArgs : EventArgs
+    {
+        public string Content { get; set; }
+
+        public PostReplyEventArgs(string content)
+        {
+            Content = content;
+        }
+    }
+
+    public class CommentReplyEventArgs : EventArgs
+    {
+        public string ParentCommentId { get; set; }
+        public string Content { get; set; }
+
+        public CommentReplyEventArgs(string parentCommentId, string content)
+        {
+            ParentCommentId = parentCommentId;
             Content = content;
         }
     }

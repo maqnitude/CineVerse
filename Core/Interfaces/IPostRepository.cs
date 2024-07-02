@@ -10,5 +10,7 @@ namespace CineVerse.Core.Interfaces
     public interface IPostRepository : IRepository<Post>
     {
         Task<IEnumerable<Post>> GetPostsByPageAsync(int page, int pageSize);
+        Task<Post> GetPostByIdAsync(string postId);
+        Task<IEnumerable<Comment>> GetPostRepliesAsync(string postId);
     }
 }

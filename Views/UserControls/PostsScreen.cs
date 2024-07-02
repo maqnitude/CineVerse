@@ -59,12 +59,15 @@ namespace CineVerse.Views.UserControls
 
             List<Post> posts = await PostService.Instance.GetPostsAsync(_currentPage, _itemsPerPage);
 
+            var mainForm = this.FindForm() as MainForm;
             foreach (Post post in posts)
             {
-                var postItem = new PostItem(post)
+                var postItem = new PostItem()
                 {
                     Dock = DockStyle.Top,
                 };
+                postItem.Initialize(mainForm, post);
+
                 pnlPostsContainer.Controls.Add(postItem);
             }
 

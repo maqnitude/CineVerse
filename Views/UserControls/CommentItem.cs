@@ -1,4 +1,6 @@
-﻿using CineVerse.Core.Interfaces;
+﻿using CineVerse.Core.Events;
+using CineVerse.Core.Interfaces;
+using CineVerse.Core.Services;
 using CineVerse.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,14 +17,29 @@ namespace CineVerse.Views.UserControls
     public partial class CommentItem : UserControl
     {
         private ICommentable _commentable;
+        private CommentEditor? _editor = null;
         private bool _isUpvoted;
         private bool _isDownvoted;
+
+        private int _indentWidth = 20;
 
         public CommentItem()
         {
             InitializeComponent();
             _isDownvoted = false;
             _isUpvoted = false;
+
+            EventManager.Instance.Subscribe<EventArgs>(EventType.PostReplyAdded, OnPostReplyAdded);
+            EventManager.Instance.Subscribe<EventArgs>(EventType.CommentReplyAdded, OnCommentReplyAdded);
+        }
+
+        public string? GetCommentId()
+        {
+            if (_commentable is Comment comment)
+            {
+                return comment.Id;
+            }
+            return null;
         }
 
         public void SetCommentableData(ICommentable commentable)
@@ -38,10 +55,12 @@ namespace CineVerse.Views.UserControls
             {
                 lblTitle.Text = post.Title;
                 lblUsername.Text = _commentable.User.Username;
+                rtbContent.Text = post.Content;
             }
             else if (_commentable is Comment comment)
             {
                 lblTitle.Text = $"Replied by {comment.User.Username}";
+                rtbContent.Text = comment.Content;
                 lblBy.Visible = false;
                 lblUsername.Visible = false;
                 lblCreatedAt.Dock = DockStyle.Left;
@@ -51,14 +70,52 @@ namespace CineVerse.Views.UserControls
             // set _isDownvoted and _isUpvoted here
         }
 
-        public void AddReply(Comment reply)
+        private void ClearReplies()
         {
-            CommentItem replyItem = new CommentItem();
+            foreach (var control in this.Controls.OfType<CommentItem>().ToList())
+            {
+                this.Controls.Remove(control);
+            }
+        }
+
+        public async Task AddReply(Comment reply)
+        {
+            CommentItem replyItem = new CommentItem()
+            {
+                Padding = new Padding(left: _indentWidth, right: 0, top: 0, bottom: 0),
+                Dock = DockStyle.Top,
+            };
             replyItem.SetCommentableData(reply);
-            replyItem.Padding = new Padding(left: 10, right: 0, top: 0, bottom: 0);
+
             this.Controls.Add(replyItem);
             replyItem.BringToFront();
-            replyItem.Dock = DockStyle.Top;
+
+            // Recursively add replies
+            await replyItem.LoadReplies(reply);
+        }
+
+        public async Task LoadReplies(ICommentable commentable)
+        {
+            ClearReplies();
+
+            List<Comment>? replies = null;
+
+            if (commentable is Post post)
+            {
+                replies = await PostService.Instance.GetPostRepliesAsync(post.Id);
+            }
+            else if (_commentable is Comment comment)
+            {
+                replies = await CommentService.Instance.GetCommentRepliesAsync(comment.Id);
+            }
+
+            if (replies != null)
+            {
+                foreach (Comment reply in replies)
+                {
+                    await AddReply(reply);
+                }
+            }
         }
 
         private void ToggleButton(bool toggleOn, Button button, Image imageOn, Image imageOff, Color colorOn, Color colorOff)
@@ -105,9 +162,43 @@ namespace CineVerse.Views.UserControls
 
         private void btnReply_Click(object sender, EventArgs e)
         {
-            // Navigate to new Comment form
+            if (_editor == null)
+            {
+                _editor = new CommentEditor(_commentable)
+                {
+                    Padding = new Padding(left: _indentWidth, top: 0, right: 0, bottom: 0),
+                    Dock = DockStyle.Top,
+                };
+
+                this.Controls.Add(_editor);
+                this.Controls.SetChildIndex(_editor, 1);
+
+                _editor.BringToFront();
+            }
+            else if (_editor.Visible)
+            {
+                _editor.Hide();
+            }
+            else
+            {
+                _editor.Show();
+                _editor.BringToFront();
+            }
         }
+
         private void btnReply_MouseEnter(object sender, EventArgs e) => HoverButton(true, btnReply, Properties.Resources.quote_blue, Properties.Resources.quote, Color.FromArgb(51, 145, 255), Color.FromArgb(170, 170, 170));
         private void btnReply_MouseLeave(object sender, EventArgs e) => HoverButton(false, btnReply, Properties.Resources.quote_blue, Properties.Resources.quote, Color.FromArgb(51, 145, 255), Color.FromArgb(170, 170, 170));
+
+        private void OnPostReplyAdded(object sender, EventArgs e)
+        {
+            _editor?.Dispose();
+            _editor = null;
+        }
+
+        private void OnCommentReplyAdded(object sender, EventArgs e)
+        {
+            _editor?.Dispose();
+            _editor = null;
+        }
     }
 }

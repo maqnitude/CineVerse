@@ -153,6 +153,7 @@
             rtbContent.BackColor = Color.FromArgb(16, 19, 22);
             rtbContent.BorderStyle = BorderStyle.None;
             rtbContent.Dock = DockStyle.Fill;
+            rtbContent.ForeColor = Color.White;
             rtbContent.Location = new Point(0, 0);
             rtbContent.Name = "rtbContent";
             rtbContent.Size = new Size(802, 111);

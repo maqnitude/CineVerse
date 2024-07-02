@@ -1,4 +1,5 @@
-﻿using CineVerse.Data;
+﻿using CineVerse.Core.Events;
+using CineVerse.Data;
 using CineVerse.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,15 @@ namespace CineVerse.Core.Services
             }
         }
 
+        public async Task<List<Comment>> GetPostRepliesAsync(string postId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var replies = await unitOfWork.Posts.GetPostRepliesAsync(postId);
+                return replies.ToList();
+            }
+        }
+
         public async Task AddPostAsync(string userId, string title, string content)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
@@ -55,6 +65,30 @@ namespace CineVerse.Core.Services
                 };
 
                 await unitOfWork.Posts.AddAsync(post);
+                await unitOfWork.CompleteAsync();
+            }
+        }
+
+        public async Task AddPostReplyAsync(string postId, string userId, string content)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var post = await unitOfWork.Posts.GetPostByIdAsync(postId)
+                    ?? throw new Exception("Post not found");
+                var user = await unitOfWork.Users.GetUserByIdAsync(userId)
+                    ?? throw new Exception("User not found");
+
+                var comment = new Comment()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Content = content,
+                    UserId = user.Id,
+                    PostId = post.Id,
+                    CreatedAt = DateTime.UtcNow,
+                    ParentCommentId = null,
+                };
+
+                await unitOfWork.Comments.AddAsync(comment);
                 await unitOfWork.CompleteAsync();
             }
         }

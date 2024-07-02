@@ -22,6 +22,7 @@ namespace CineVerse.Data
         public DbSet<Person> People { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<UserFollow> UserFollows { get; set; }
         public DbSet<Credit> Credits { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<MovieCompany> MovieCompanies { get; set; }
@@ -224,6 +225,7 @@ namespace CineVerse.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // seed data
             var companies = new List<Company>();
             var companyDataPath = Path.GetFullPath(Path.Combine(AppSettings.StartupPath, "..\\..\\..\\Data\\data\\company_data"));
             foreach (var file in Directory.EnumerateFiles(companyDataPath, "*.json"))
@@ -336,6 +338,19 @@ namespace CineVerse.Data
                 .HasOne(v => v.Post)
                 .WithMany(p => p.Votes)
                 .HasForeignKey(v => v.PostId);
+
+            modelBuilder.Entity<UserFollow>()
+                .HasKey(uf => new { uf.FollowerId, uf.FolloweeId });
+            modelBuilder.Entity<UserFollow>()
+                .HasOne(uf => uf.Follower)
+                .WithMany(u => u.Followees)
+                .HasForeignKey(uf => uf.FollowerId)
+                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<UserFollow>()
+                .HasOne(uf => uf.Followee)
+                .WithMany(u => u.Followers)
+                .HasForeignKey(uf => uf.FolloweeId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

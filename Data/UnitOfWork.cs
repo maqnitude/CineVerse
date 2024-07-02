@@ -20,6 +20,7 @@ namespace CineVerse.Data
         public IPersonRepository People { get; private set; }
         public ICompanyRepository Companies { get; private set; }
         public IReviewRepository Reviews { get; private set; }
+        public IUserFollowRepository UserFollows { get; private set; }
 
         public UnitOfWork(AppDbContext context)
         {
@@ -31,6 +32,7 @@ namespace CineVerse.Data
             People = new PersonRepository(_context);
             Companies = new CompanyRepository(_context);
             Reviews = new ReviewRepository(_context);
+            UserFollows = new UserFollowRepository(_context);
         }
 
         public async Task<int> CompleteAsync()

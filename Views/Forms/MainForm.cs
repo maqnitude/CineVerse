@@ -291,15 +291,13 @@ namespace CineVerse.Forms
 
         private void profileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ProfileScreen profileScreen = new ProfileScreen();
-            profileScreen.SetUserData(_currentUser);
+            ProfileScreen profileScreen = new ProfileScreen(_currentUser);
             _navigationService.NavigateToScreen(profileScreen);
         }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SettingsScreen settingsScreen = new SettingsScreen();
-            settingsScreen.SetUserData(_currentUser);
+            SettingsScreen settingsScreen = new SettingsScreen(_currentUser);
             _navigationService.NavigateToScreen(settingsScreen);
         }
     }

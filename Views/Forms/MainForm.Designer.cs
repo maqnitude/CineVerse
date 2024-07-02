@@ -55,6 +55,7 @@
             separator = new ToolStripSeparator();
             settingsToolStripMenuItem = new ToolStripMenuItem();
             signOutToolStripMenuItem = new ToolStripMenuItem();
+            lblMembersTab = new Label();
             pnNavBar.SuspendLayout();
             pSearchAndUser.SuspendLayout();
             pnUserWrapper.SuspendLayout();
@@ -66,6 +67,7 @@
             // pnNavBar
             // 
             pnNavBar.BackColor = Color.FromArgb(35, 42, 51);
+            pnNavBar.Controls.Add(lblMembersTab);
             pnNavBar.Controls.Add(pSearchAndUser);
             pnNavBar.Controls.Add(lblDiscussionsTab);
             pnNavBar.Controls.Add(lblListsTab);
@@ -150,7 +152,7 @@
             lblDiscussionsTab.AutoSize = true;
             lblDiscussionsTab.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
             lblDiscussionsTab.ForeColor = Color.FromArgb(178, 172, 162);
-            lblDiscussionsTab.Location = new Point(356, 20);
+            lblDiscussionsTab.Location = new Point(453, 20);
             lblDiscussionsTab.Name = "lblDiscussionsTab";
             lblDiscussionsTab.Size = new Size(117, 21);
             lblDiscussionsTab.TabIndex = 2;
@@ -326,6 +328,17 @@
             signOutToolStripMenuItem.Size = new Size(124, 22);
             signOutToolStripMenuItem.Text = "Sign out";
             // 
+            // lblMembersTab
+            // 
+            lblMembersTab.AutoSize = true;
+            lblMembersTab.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
+            lblMembersTab.ForeColor = Color.FromArgb(178, 172, 162);
+            lblMembersTab.Location = new Point(356, 20);
+            lblMembersTab.Name = "lblMembersTab";
+            lblMembersTab.Size = new Size(91, 21);
+            lblMembersTab.TabIndex = 3;
+            lblMembersTab.Text = "MEMBERS";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -377,5 +390,6 @@
         private ToolStripSeparator separator;
         private ToolStripMenuItem settingsToolStripMenuItem;
         private ToolStripMenuItem signOutToolStripMenuItem;
+        private Label lblMembersTab;
     }
 }

@@ -213,6 +213,36 @@ namespace CineVerse.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap downvote {
+            get {
+                object obj = ResourceManager.GetObject("downvote", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap downvote_fill {
+            get {
+                object obj = ResourceManager.GetObject("downvote_fill", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap downvote_fill_red {
+            get {
+                object obj = ResourceManager.GetObject("downvote_fill_red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap expand_left {
             get {
                 object obj = ResourceManager.GetObject("expand_left", resourceCulture);
@@ -443,6 +473,16 @@ namespace CineVerse.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap quote_green {
+            get {
+                object obj = ResourceManager.GetObject("quote_green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap reply {
             get {
                 object obj = ResourceManager.GetObject("reply", resourceCulture);
@@ -586,6 +626,26 @@ namespace CineVerse.Properties {
         internal static System.Drawing.Bitmap upvote {
             get {
                 object obj = ResourceManager.GetObject("upvote", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap upvote_fill {
+            get {
+                object obj = ResourceManager.GetObject("upvote_fill", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap upvote_fill_green {
+            get {
+                object obj = ResourceManager.GetObject("upvote_fill_green", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

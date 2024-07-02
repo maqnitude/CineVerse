@@ -13,29 +13,24 @@ namespace CineVerse.Views.UserControls
 {
     public partial class PostItem : UserControl
     {
-        private Post _post;
+        private bool _isUpvoted;
+        private bool _isDownvoted;
 
-        public PostItem(Post post)
+        public PostItem()
         {
             InitializeComponent();
-
-            SetPostData(post);
+            _isUpvoted = false;
+            _isDownvoted = false;
         }
 
-        private void SetPostData(Post post)
+        public void SetPostData(Post post)
         {
-            _post = post;
-
-            lblTitle.Text = _post.Title;
-            lblUsername.Text = _post.User.Username;
-            lblCreatedAt.Text = _post.CreatedAt.ToString();
-
-            picAvatar.Image?.Dispose();
-            if (_post.User.AvatarPath != null)
-            {
-                picAvatar.Image = new Bitmap(_post.User.AvatarPath);
-                picAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
-            }
+            picUser.Image?.Dispose();
+            picUser.Image = (post.User.AvatarPath != null) ? new Bitmap(post.User.AvatarPath) : Properties.Resources.user_big;
+            picUser.SizeMode = PictureBoxSizeMode.StretchImage;
+            lblTitle.Text = post.Title;
+            lblUsername.Text = post.User.Username;
+            lblCreatedAt.Text = post.CreatedAt.ToString("MMM dd, yyyy 'at' H:mm tt");
         }
     }
 }

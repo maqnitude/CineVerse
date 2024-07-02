@@ -28,33 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            picAvatar = new PictureBox();
+            picUser = new PictureBox();
             lblTitle = new Label();
             lblCreatedAt = new Label();
-            panel1 = new Panel();
+            pnByUser = new Panel();
             lblUsername = new Label();
-            label3 = new Label();
-            panel2 = new Panel();
-            label5 = new Label();
-            pictureBox2 = new PictureBox();
-            panel3 = new Panel();
-            label6 = new Label();
-            pictureBox3 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)picAvatar).BeginInit();
-            panel1.SuspendLayout();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            lblBy = new Label();
+            btnComment = new Button();
+            btnUpvote = new Button();
+            btnDownvote = new Button();
+            pnButtons = new Panel();
+            ((System.ComponentModel.ISupportInitialize)picUser).BeginInit();
+            pnByUser.SuspendLayout();
+            pnButtons.SuspendLayout();
             SuspendLayout();
             // 
-            // picAvatar
+            // picUser
             // 
-            picAvatar.Location = new Point(12, 10);
-            picAvatar.Name = "picAvatar";
-            picAvatar.Size = new Size(42, 42);
-            picAvatar.TabIndex = 0;
-            picAvatar.TabStop = false;
+            picUser.Location = new Point(12, 10);
+            picUser.Name = "picUser";
+            picUser.Size = new Size(42, 42);
+            picUser.TabIndex = 0;
+            picUser.TabStop = false;
             // 
             // lblTitle
             // 
@@ -78,16 +73,16 @@
             lblCreatedAt.TabIndex = 2;
             lblCreatedAt.Text = "Jun 28, 2024 at 2:30 AM";
             // 
-            // panel1
+            // pnByUser
             // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            panel1.AutoSize = true;
-            panel1.Controls.Add(lblUsername);
-            panel1.Controls.Add(label3);
-            panel1.Location = new Point(697, 35);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(69, 21);
-            panel1.TabIndex = 3;
+            pnByUser.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pnByUser.AutoSize = true;
+            pnByUser.Controls.Add(lblUsername);
+            pnByUser.Controls.Add(lblBy);
+            pnByUser.Location = new Point(697, 35);
+            pnByUser.Name = "pnByUser";
+            pnByUser.Size = new Size(69, 21);
+            pnByUser.TabIndex = 3;
             // 
             // lblUsername
             // 
@@ -100,82 +95,78 @@
             lblUsername.TabIndex = 1;
             lblUsername.Text = "Markoff";
             // 
-            // label3
+            // lblBy
             // 
-            label3.AutoSize = true;
-            label3.Dock = DockStyle.Left;
-            label3.ForeColor = Color.FromArgb(173, 196, 214);
-            label3.Location = new Point(0, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(20, 15);
-            label3.TabIndex = 0;
-            label3.Text = "by";
+            lblBy.AutoSize = true;
+            lblBy.Dock = DockStyle.Left;
+            lblBy.ForeColor = Color.FromArgb(173, 196, 214);
+            lblBy.Location = new Point(0, 0);
+            lblBy.Name = "lblBy";
+            lblBy.Size = new Size(20, 15);
+            lblBy.TabIndex = 0;
+            lblBy.Text = "by";
             // 
-            // panel2
+            // btnComment
             // 
-            panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            panel2.AutoSize = true;
-            panel2.Controls.Add(label5);
-            panel2.Controls.Add(pictureBox2);
-            panel2.Location = new Point(73, 48);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(59, 18);
-            panel2.TabIndex = 4;
+            btnComment.AutoSize = true;
+            btnComment.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnComment.Dock = DockStyle.Right;
+            btnComment.FlatAppearance.BorderSize = 0;
+            btnComment.FlatStyle = FlatStyle.Flat;
+            btnComment.ForeColor = Color.FromArgb(173, 196, 214);
+            btnComment.Image = Properties.Resources.reply;
+            btnComment.Location = new Point(90, 0);
+            btnComment.Name = "btnComment";
+            btnComment.Size = new Size(45, 31);
+            btnComment.TabIndex = 6;
+            btnComment.Text = "12";
+            btnComment.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnComment.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // btnUpvote
             // 
-            label5.AutoSize = true;
-            label5.Dock = DockStyle.Fill;
-            label5.ForeColor = Color.FromArgb(173, 196, 214);
-            label5.Location = new Point(18, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(19, 15);
-            label5.TabIndex = 1;
-            label5.Text = "10";
+            btnUpvote.AutoSize = true;
+            btnUpvote.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnUpvote.Dock = DockStyle.Left;
+            btnUpvote.FlatAppearance.BorderSize = 0;
+            btnUpvote.FlatStyle = FlatStyle.Flat;
+            btnUpvote.ForeColor = Color.FromArgb(173, 196, 214);
+            btnUpvote.Image = Properties.Resources.upvote;
+            btnUpvote.Location = new Point(0, 0);
+            btnUpvote.Name = "btnUpvote";
+            btnUpvote.Size = new Size(45, 31);
+            btnUpvote.TabIndex = 7;
+            btnUpvote.Text = "12";
+            btnUpvote.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnUpvote.UseVisualStyleBackColor = true;
             // 
-            // pictureBox2
+            // btnDownvote
             // 
-            pictureBox2.Dock = DockStyle.Left;
-            pictureBox2.Image = Properties.Resources.upvote;
-            pictureBox2.Location = new Point(0, 0);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(18, 18);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 0;
-            pictureBox2.TabStop = false;
+            btnDownvote.AutoSize = true;
+            btnDownvote.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnDownvote.Dock = DockStyle.Fill;
+            btnDownvote.FlatAppearance.BorderSize = 0;
+            btnDownvote.FlatStyle = FlatStyle.Flat;
+            btnDownvote.ForeColor = Color.FromArgb(173, 196, 214);
+            btnDownvote.Image = Properties.Resources.downvote;
+            btnDownvote.Location = new Point(45, 0);
+            btnDownvote.Name = "btnDownvote";
+            btnDownvote.Size = new Size(45, 31);
+            btnDownvote.TabIndex = 6;
+            btnDownvote.Text = "12";
+            btnDownvote.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnDownvote.UseVisualStyleBackColor = true;
             // 
-            // panel3
+            // pnButtons
             // 
-            panel3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            panel3.AutoSize = true;
-            panel3.Controls.Add(label6);
-            panel3.Controls.Add(pictureBox3);
-            panel3.Location = new Point(138, 48);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(59, 18);
-            panel3.TabIndex = 5;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Dock = DockStyle.Fill;
-            label6.ForeColor = Color.FromArgb(173, 196, 214);
-            label6.Location = new Point(18, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(19, 15);
-            label6.TabIndex = 1;
-            label6.Text = "12";
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Dock = DockStyle.Left;
-            pictureBox3.Image = Properties.Resources.reply;
-            pictureBox3.Location = new Point(0, 0);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(18, 18);
-            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox3.TabIndex = 0;
-            pictureBox3.TabStop = false;
+            pnButtons.AutoSize = true;
+            pnButtons.Controls.Add(btnDownvote);
+            pnButtons.Controls.Add(btnUpvote);
+            pnButtons.Controls.Add(btnComment);
+            pnButtons.Location = new Point(73, 42);
+            pnButtons.Name = "pnButtons";
+            pnButtons.Size = new Size(135, 31);
+            pnButtons.TabIndex = 8;
             // 
             // PostItem
             // 
@@ -183,40 +174,33 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(54, 68, 82);
             BorderStyle = BorderStyle.FixedSingle;
-            Controls.Add(panel3);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
+            Controls.Add(pnButtons);
+            Controls.Add(pnByUser);
             Controls.Add(lblCreatedAt);
             Controls.Add(lblTitle);
-            Controls.Add(picAvatar);
+            Controls.Add(picUser);
             Name = "PostItem";
             Size = new Size(778, 72);
-            ((System.ComponentModel.ISupportInitialize)picAvatar).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picUser).EndInit();
+            pnByUser.ResumeLayout(false);
+            pnByUser.PerformLayout();
+            pnButtons.ResumeLayout(false);
+            pnButtons.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private PictureBox picAvatar;
+        private PictureBox picUser;
         private Label lblTitle;
         private Label lblCreatedAt;
-        private Panel panel1;
+        private Panel pnByUser;
         private Label lblUsername;
-        private Label label3;
-        private Panel panel2;
-        private Label label5;
-        private PictureBox pictureBox2;
-        private Panel panel3;
-        private Label label6;
-        private PictureBox pictureBox3;
+        private Label lblBy;
+        private Button btnComment;
+        private Button btnUpvote;
+        private Button btnDownvote;
+        private Panel pnButtons;
     }
 }

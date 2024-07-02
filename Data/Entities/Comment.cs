@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineVerse.Core.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CineVerse.Data.Entities
 {
-    public class Comment
+    public class Comment : ICommentable
     {
         public string Id { get; set; }
         [Required]

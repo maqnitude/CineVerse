@@ -13,8 +13,8 @@ namespace CineVerse.Core.Events
     public enum EventType
     {
         UserSignedIn,
-        
         UserSettingsChanged,
+        UserMovieRated,
 
         ListAdding,
         ListAdded,
@@ -85,6 +85,16 @@ namespace CineVerse.Core.Events
             MovieId = movieId;
             Rating = rating;
             Content = content;
+        }
+    }
+
+    public class RatingEventArgs : EventArgs
+    {
+        public double Rating { get; set; }
+
+        public RatingEventArgs(double rating)
+        {
+            Rating = rating;
         }
     }
 }

@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pictureBox1 = new PictureBox();
-            label1 = new Label();
-            label2 = new Label();
+            picAvatar = new PictureBox();
+            lblTitle = new Label();
+            lblCreatedAt = new Label();
             panel1 = new Panel();
-            label4 = new Label();
+            lblUsername = new Label();
             label3 = new Label();
             panel2 = new Panel();
             label5 = new Label();
@@ -40,7 +40,7 @@
             panel3 = new Panel();
             label6 = new Label();
             pictureBox3 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picAvatar).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -48,57 +48,57 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
-            // pictureBox1
+            // picAvatar
             // 
-            pictureBox1.Location = new Point(12, 10);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(42, 42);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            picAvatar.Location = new Point(12, 10);
+            picAvatar.Name = "picAvatar";
+            picAvatar.Size = new Size(42, 42);
+            picAvatar.TabIndex = 0;
+            picAvatar.TabStop = false;
             // 
-            // label1
+            // lblTitle
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Black", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.FromArgb(232, 230, 227);
-            label1.Location = new Point(73, 10);
-            label1.Name = "label1";
-            label1.Size = new Size(376, 20);
-            label1.TabIndex = 1;
-            label1.Text = "Furiosa - a movie that  never should've been made";
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI Black", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitle.ForeColor = Color.FromArgb(232, 230, 227);
+            lblTitle.Location = new Point(73, 10);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(376, 20);
+            lblTitle.TabIndex = 1;
+            lblTitle.Text = "Furiosa - a movie that  never should've been made";
             // 
-            // label2
+            // lblCreatedAt
             // 
-            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label2.AutoSize = true;
-            label2.ForeColor = Color.FromArgb(173, 196, 214);
-            label2.Location = new Point(637, 17);
-            label2.Name = "label2";
-            label2.Size = new Size(129, 15);
-            label2.TabIndex = 2;
-            label2.Text = "Jun 28, 2024 at 2:30 AM";
+            lblCreatedAt.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblCreatedAt.AutoSize = true;
+            lblCreatedAt.ForeColor = Color.FromArgb(173, 196, 214);
+            lblCreatedAt.Location = new Point(637, 17);
+            lblCreatedAt.Name = "lblCreatedAt";
+            lblCreatedAt.Size = new Size(129, 15);
+            lblCreatedAt.TabIndex = 2;
+            lblCreatedAt.Text = "Jun 28, 2024 at 2:30 AM";
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             panel1.AutoSize = true;
-            panel1.Controls.Add(label4);
+            panel1.Controls.Add(lblUsername);
             panel1.Controls.Add(label3);
             panel1.Location = new Point(697, 35);
             panel1.Name = "panel1";
             panel1.Size = new Size(69, 21);
             panel1.TabIndex = 3;
             // 
-            // label4
+            // lblUsername
             // 
-            label4.AutoSize = true;
-            label4.Dock = DockStyle.Fill;
-            label4.ForeColor = Color.FromArgb(1, 180, 228);
-            label4.Location = new Point(20, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(49, 15);
-            label4.TabIndex = 1;
-            label4.Text = "Markoff";
+            lblUsername.AutoSize = true;
+            lblUsername.Dock = DockStyle.Fill;
+            lblUsername.ForeColor = Color.FromArgb(1, 180, 228);
+            lblUsername.Location = new Point(20, 0);
+            lblUsername.Name = "lblUsername";
+            lblUsername.Size = new Size(49, 15);
+            lblUsername.TabIndex = 1;
+            lblUsername.Text = "Markoff";
             // 
             // label3
             // 
@@ -186,12 +186,12 @@
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(pictureBox1);
+            Controls.Add(lblCreatedAt);
+            Controls.Add(lblTitle);
+            Controls.Add(picAvatar);
             Name = "PostItem";
             Size = new Size(778, 72);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picAvatar).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -206,11 +206,11 @@
 
         #endregion
 
-        private PictureBox pictureBox1;
-        private Label label1;
-        private Label label2;
+        private PictureBox picAvatar;
+        private Label lblTitle;
+        private Label lblCreatedAt;
         private Panel panel1;
-        private Label label4;
+        private Label lblUsername;
         private Label label3;
         private Panel panel2;
         private Label label5;

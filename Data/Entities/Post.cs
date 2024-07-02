@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineVerse.Core.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CineVerse.Data.Entities
 {
-    public class Post
+    public class Post : ICommentable
     {
         public string Id { get; set; }
         [Required]
@@ -30,5 +31,11 @@ namespace CineVerse.Data.Entities
         public int Upvotes { get; set; } = 0;
         public int Downvotes { get; set; } = 0;
         public ICollection<PostVote> Votes { get; set; } = new List<PostVote>();
+
+        public ICollection<Comment> Replies
+        {
+            get { return Comments; }
+            set { Comments = value; }
+        }
     }
 }

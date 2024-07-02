@@ -28,39 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnPostInfo = new Panel();
-            picUser = new PictureBox();
             pnHeader = new Panel();
-            pnTitle = new Label();
+            picUser = new PictureBox();
+            pnPostInfo = new Panel();
+            lblTitle = new Label();
             pnBy = new Panel();
             lblUsername = new Label();
             lblBy = new Label();
-            lblDateTime = new Label();
+            lblCreatedAt = new Label();
             panel4 = new Panel();
             rtbContent = new RichTextBox();
             pnToolBar = new Panel();
             btnReply = new Button();
-            btnLike = new Button();
+            btnDownvote = new Button();
+            btnUpvote = new Button();
             btnReport = new Button();
             btnIgnore = new Button();
-            pnPostInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picUser).BeginInit();
             pnHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picUser).BeginInit();
+            pnPostInfo.SuspendLayout();
             pnBy.SuspendLayout();
             panel4.SuspendLayout();
             pnToolBar.SuspendLayout();
             SuspendLayout();
             // 
-            // pnPostInfo
+            // pnHeader
             // 
-            pnPostInfo.BackColor = Color.FromArgb(38, 48, 58);
-            pnPostInfo.Controls.Add(picUser);
-            pnPostInfo.Controls.Add(pnHeader);
-            pnPostInfo.Dock = DockStyle.Top;
-            pnPostInfo.Location = new Point(0, 0);
-            pnPostInfo.Name = "pnPostInfo";
-            pnPostInfo.Size = new Size(802, 70);
-            pnPostInfo.TabIndex = 0;
+            pnHeader.BackColor = Color.FromArgb(38, 48, 58);
+            pnHeader.Controls.Add(picUser);
+            pnHeader.Controls.Add(pnPostInfo);
+            pnHeader.Dock = DockStyle.Top;
+            pnHeader.Location = new Point(0, 0);
+            pnHeader.Name = "pnHeader";
+            pnHeader.Size = new Size(802, 70);
+            pnHeader.TabIndex = 0;
             // 
             // picUser
             // 
@@ -70,34 +71,34 @@
             picUser.TabIndex = 0;
             picUser.TabStop = false;
             // 
-            // pnHeader
+            // pnPostInfo
             // 
-            pnHeader.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            pnHeader.AutoSize = true;
-            pnHeader.Controls.Add(pnTitle);
-            pnHeader.Controls.Add(pnBy);
-            pnHeader.Location = new Point(75, 6);
-            pnHeader.Name = "pnHeader";
-            pnHeader.Size = new Size(718, 56);
-            pnHeader.TabIndex = 1;
+            pnPostInfo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pnPostInfo.AutoSize = true;
+            pnPostInfo.Controls.Add(lblTitle);
+            pnPostInfo.Controls.Add(pnBy);
+            pnPostInfo.Location = new Point(75, 6);
+            pnPostInfo.Name = "pnPostInfo";
+            pnPostInfo.Size = new Size(718, 56);
+            pnPostInfo.TabIndex = 1;
             // 
-            // pnTitle
+            // lblTitle
             // 
-            pnTitle.AutoSize = true;
-            pnTitle.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            pnTitle.ForeColor = Color.FromArgb(232, 230, 227);
-            pnTitle.Location = new Point(0, 1);
-            pnTitle.Name = "pnTitle";
-            pnTitle.Size = new Size(474, 21);
-            pnTitle.TabIndex = 1;
-            pnTitle.Text = "Oppenheimer released in Japan - whose dumb idea was that?";
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitle.ForeColor = Color.FromArgb(232, 230, 227);
+            lblTitle.Location = new Point(0, 1);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(474, 21);
+            lblTitle.TabIndex = 1;
+            lblTitle.Text = "Oppenheimer released in Japan - whose dumb idea was that?";
             // 
             // pnBy
             // 
             pnBy.AutoSize = true;
             pnBy.Controls.Add(lblUsername);
             pnBy.Controls.Add(lblBy);
-            pnBy.Controls.Add(lblDateTime);
+            pnBy.Controls.Add(lblCreatedAt);
             pnBy.Location = new Point(3, 32);
             pnBy.Name = "pnBy";
             pnBy.Size = new Size(280, 21);
@@ -126,16 +127,16 @@
             lblBy.TabIndex = 1;
             lblBy.Text = "posted by";
             // 
-            // lblDateTime
+            // lblCreatedAt
             // 
-            lblDateTime.AutoSize = true;
-            lblDateTime.Dock = DockStyle.Right;
-            lblDateTime.ForeColor = Color.FromArgb(232, 230, 227);
-            lblDateTime.Location = new Point(115, 0);
-            lblDateTime.Name = "lblDateTime";
-            lblDateTime.Size = new Size(165, 15);
-            lblDateTime.TabIndex = 0;
-            lblDateTime.Text = " on March 30, 2024 at 2:48 AM";
+            lblCreatedAt.AutoSize = true;
+            lblCreatedAt.Dock = DockStyle.Right;
+            lblCreatedAt.ForeColor = Color.FromArgb(232, 230, 227);
+            lblCreatedAt.Location = new Point(115, 0);
+            lblCreatedAt.Name = "lblCreatedAt";
+            lblCreatedAt.Size = new Size(165, 15);
+            lblCreatedAt.TabIndex = 0;
+            lblCreatedAt.Text = " on March 30, 2024 at 2:48 AM";
             // 
             // panel4
             // 
@@ -163,7 +164,8 @@
             pnToolBar.BackColor = Color.FromArgb(16, 19, 22);
             pnToolBar.BorderStyle = BorderStyle.FixedSingle;
             pnToolBar.Controls.Add(btnReply);
-            pnToolBar.Controls.Add(btnLike);
+            pnToolBar.Controls.Add(btnDownvote);
+            pnToolBar.Controls.Add(btnUpvote);
             pnToolBar.Controls.Add(btnReport);
             pnToolBar.Controls.Add(btnIgnore);
             pnToolBar.Dock = DockStyle.Bottom;
@@ -175,13 +177,14 @@
             // btnReply
             // 
             btnReply.AutoSize = true;
+            btnReply.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnReply.FlatAppearance.BorderSize = 0;
             btnReply.FlatStyle = FlatStyle.Flat;
             btnReply.ForeColor = Color.FromArgb(170, 170, 170);
             btnReply.Image = Properties.Resources.quote;
-            btnReply.Location = new Point(71, 1);
+            btnReply.Location = new Point(183, 1);
             btnReply.Name = "btnReply";
-            btnReply.Size = new Size(69, 29);
+            btnReply.Size = new Size(65, 25);
             btnReply.TabIndex = 2;
             btnReply.Text = "Reply";
             btnReply.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -190,23 +193,43 @@
             btnReply.MouseEnter += btnReply_MouseEnter;
             btnReply.MouseLeave += btnReply_MouseLeave;
             // 
-            // btnLike
+            // btnDownvote
             // 
-            btnLike.AutoSize = true;
-            btnLike.FlatAppearance.BorderSize = 0;
-            btnLike.FlatStyle = FlatStyle.Flat;
-            btnLike.ForeColor = Color.FromArgb(170, 170, 170);
-            btnLike.Image = Properties.Resources.comment_like;
-            btnLike.Location = new Point(10, 1);
-            btnLike.Name = "btnLike";
-            btnLike.Size = new Size(57, 29);
-            btnLike.TabIndex = 1;
-            btnLike.Text = "Like";
-            btnLike.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnLike.UseVisualStyleBackColor = true;
-            btnLike.Click += btnLike_Click;
-            btnLike.MouseEnter += btnLike_MouseEnter;
-            btnLike.MouseLeave += btnLike_MouseLeave;
+            btnDownvote.AutoSize = true;
+            btnDownvote.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnDownvote.FlatAppearance.BorderSize = 0;
+            btnDownvote.FlatStyle = FlatStyle.Flat;
+            btnDownvote.ForeColor = Color.FromArgb(170, 170, 170);
+            btnDownvote.Image = Properties.Resources.downvote;
+            btnDownvote.Location = new Point(89, 1);
+            btnDownvote.Name = "btnDownvote";
+            btnDownvote.Size = new Size(87, 25);
+            btnDownvote.TabIndex = 1;
+            btnDownvote.Text = "Downvote";
+            btnDownvote.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnDownvote.UseVisualStyleBackColor = true;
+            btnDownvote.Click += btnDownvote_Click;
+            btnDownvote.MouseEnter += btnDownvote_MouseEnter;
+            btnDownvote.MouseLeave += btnDownvote_MouseLeave;
+            // 
+            // btnUpvote
+            // 
+            btnUpvote.AutoSize = true;
+            btnUpvote.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnUpvote.FlatAppearance.BorderSize = 0;
+            btnUpvote.FlatStyle = FlatStyle.Flat;
+            btnUpvote.ForeColor = Color.FromArgb(170, 170, 170);
+            btnUpvote.Image = Properties.Resources.upvote;
+            btnUpvote.Location = new Point(10, 1);
+            btnUpvote.Name = "btnUpvote";
+            btnUpvote.Size = new Size(71, 25);
+            btnUpvote.TabIndex = 1;
+            btnUpvote.Text = "Upvote";
+            btnUpvote.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnUpvote.UseVisualStyleBackColor = true;
+            btnUpvote.Click += btnUpvote_Click;
+            btnUpvote.MouseEnter += btnUpvote_MouseEnter;
+            btnUpvote.MouseLeave += btnUpvote_MouseLeave;
             // 
             // btnReport
             // 
@@ -243,14 +266,14 @@
             AutoSize = true;
             BackColor = Color.Transparent;
             Controls.Add(panel4);
-            Controls.Add(pnPostInfo);
+            Controls.Add(pnHeader);
             Name = "CommentItem";
             Size = new Size(802, 343);
-            pnPostInfo.ResumeLayout(false);
-            pnPostInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picUser).EndInit();
             pnHeader.ResumeLayout(false);
             pnHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picUser).EndInit();
+            pnPostInfo.ResumeLayout(false);
+            pnPostInfo.PerformLayout();
             pnBy.ResumeLayout(false);
             pnBy.PerformLayout();
             panel4.ResumeLayout(false);
@@ -261,20 +284,21 @@
 
         #endregion
 
-        private Panel pnPostInfo;
-        private PictureBox picUser;
         private Panel pnHeader;
-        private Label pnTitle;
+        private PictureBox picUser;
+        private Panel pnPostInfo;
+        private Label lblTitle;
         private Panel pnBy;
         private Label lblUsername;
         private Label lblBy;
-        private Label lblDateTime;
+        private Label lblCreatedAt;
         private Panel panel4;
         private Panel pnToolBar;
         private Button btnReport;
         private Button btnIgnore;
         private Button btnReply;
-        private Button btnLike;
+        private Button btnUpvote;
         private RichTextBox rtbContent;
+        private Button btnDownvote;
     }
 }

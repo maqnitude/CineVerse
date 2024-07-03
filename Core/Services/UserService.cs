@@ -28,6 +28,16 @@ namespace CineVerse.Core.Services
 
         private UserService() { }
 
+        public async Task<List<User>> GetPublicUsersAsync()
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var publicUsers = await unitOfWork.Users.GetPublicUsersAsync();
+                return publicUsers;
+            }
+
+        }
+
         public async Task UpdateUser(string userId, User newUser)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
@@ -79,6 +89,8 @@ namespace CineVerse.Core.Services
                 };
                 await unitOfWork.UserFollows.AddAsync(follow);
                 await unitOfWork.CompleteAsync();
+
+                EventManager.Instance.Publish(EventType.UserFollowed, this, new FollowEventArgs(followerId, followeeId));
             }
         }
 
@@ -91,6 +103,7 @@ namespace CineVerse.Core.Services
                 {
                     unitOfWork.UserFollows.Delete(follow);
                     await unitOfWork.CompleteAsync();
+                    EventManager.Instance.Publish(EventType.UserUnfollowed, this, new FollowEventArgs(followerId, followeeId));
                 }
             }
         }

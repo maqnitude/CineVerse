@@ -15,6 +15,13 @@ namespace CineVerse.Data.Repositories
         {
         }
 
+        public async Task<List<User>> GetPublicUsersAsync()
+        {
+            return await _context.Set<User>()
+                .Where(u => u.ProfileVisibility == ProfileVisibility.Public)
+                .ToListAsync();
+        }
+
         public async Task<User> GetUserByIdAsync(string id)
         {
             return await _context.Set<User>().FirstOrDefaultAsync(u => u.Id == id);

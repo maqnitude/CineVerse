@@ -31,7 +31,7 @@
             panel1 = new Panel();
             panel2 = new Panel();
             btnBack = new Button();
-            commentItemRoot = new CommentItem();
+            rootCommentItem = new CommentItem();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -41,7 +41,7 @@
             panel1.AutoScroll = true;
             panel1.BackColor = Color.FromArgb(16, 19, 22);
             panel1.Controls.Add(panel2);
-            panel1.Controls.Add(commentItemRoot);
+            panel1.Controls.Add(rootCommentItem);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
@@ -72,16 +72,16 @@
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
             // 
-            // commentItemRoot
+            // rootCommentItem
             // 
-            commentItemRoot.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            commentItemRoot.AutoSize = true;
-            commentItemRoot.BackColor = Color.Transparent;
-            commentItemRoot.Location = new Point(0, 32);
-            commentItemRoot.Margin = new Padding(0);
-            commentItemRoot.Name = "commentItemRoot";
-            commentItemRoot.Size = new Size(986, 214);
-            commentItemRoot.TabIndex = 0;
+            rootCommentItem.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            rootCommentItem.AutoSize = true;
+            rootCommentItem.BackColor = Color.Transparent;
+            rootCommentItem.Location = new Point(0, 32);
+            rootCommentItem.Margin = new Padding(0);
+            rootCommentItem.Name = "rootCommentItem";
+            rootCommentItem.Size = new Size(986, 214);
+            rootCommentItem.TabIndex = 0;
             // 
             // PostDetailsScreen
             // 
@@ -99,7 +99,7 @@
         #endregion
 
         private Panel panel1;
-        private CommentItem commentItemRoot;
+        private CommentItem rootCommentItem;
         private Panel panel2;
         private Button btnBack;
     }

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ using System.Windows.Forms;
 
 namespace CineVerse.Views.UserControls
 {
-    public partial class CommentItem : UserControl
+    public partial class CommentItem : UserControlComponent
     {
         private ICommentable _commentable;
         private CommentEditor? _editor = null;
@@ -33,6 +34,12 @@ namespace CineVerse.Views.UserControls
             EventManager.Instance.Subscribe<EventArgs>(EventType.CommentReplyAdded, OnCommentReplyAdded);
         }
 
+        public async void Initialize(ICommentable commentable, IMediator mediator)
+        {
+            SetCommentableData(commentable);
+            SetMediator(mediator);
+        }
+
         public string? GetCommentId()
         {
             if (_commentable is Comment comment)
@@ -40,6 +47,12 @@ namespace CineVerse.Views.UserControls
                 return comment.Id;
             }
             return null;
+        }
+        
+        public void DisposeCommentEditor()
+        {
+            _editor?.Dispose();
+            _editor = null;
         }
 
         public void SetCommentableData(ICommentable commentable)
@@ -64,7 +77,7 @@ namespace CineVerse.Views.UserControls
                 lblBy.Visible = false;
                 lblUsername.Visible = false;
                 lblCreatedAt.Dock = DockStyle.Left;
-                pnHeader.BackColor = Color.FromArgb(80, 80, 80);
+                pnlHeader.BackColor = Color.FromArgb(80, 80, 80);
             }
 
             // set _isDownvoted and _isUpvoted here
@@ -85,22 +98,25 @@ namespace CineVerse.Views.UserControls
                 Padding = new Padding(left: _indentWidth, right: 0, top: 0, bottom: 0),
                 Dock = DockStyle.Top,
             };
-            replyItem.SetCommentableData(reply);
+            //replyItem.SetCommentableData(reply);
+            replyItem.Initialize(reply, _mediator);
 
             this.Controls.Add(replyItem);
             replyItem.BringToFront();
 
             // Recursively add replies
-            await replyItem.LoadReplies(reply);
+            await replyItem.LoadReplies();
         }
 
-        public async Task LoadReplies(ICommentable commentable)
+        public async Task LoadReplies()
         {
+            this.SuspendLayout();
+
             ClearReplies();
 
             List<Comment>? replies = null;
 
-            if (commentable is Post post)
+            if (_commentable is Post post)
             {
                 replies = await PostService.Instance.GetPostRepliesAsync(post.Id);
             }
@@ -116,6 +132,8 @@ namespace CineVerse.Views.UserControls
                     await AddReply(reply);
                 }
             }
+
+            this.ResumeLayout();
         }
 
         private void ToggleButton(bool toggleOn, Button button, Image imageOn, Image imageOff, Color colorOn, Color colorOff)
@@ -170,10 +188,16 @@ namespace CineVerse.Views.UserControls
                     Dock = DockStyle.Top,
                 };
 
-                this.Controls.Add(_editor);
-                this.Controls.SetChildIndex(_editor, 1);
+                this.SuspendLayout();
 
-                _editor.BringToFront();
+                this.Controls.Add(_editor);
+
+                int bodyIndex = this.Controls.GetChildIndex(pnlBody);
+                this.Controls.SetChildIndex(_editor, bodyIndex); // put editor directly below the body
+
+                this.ResumeLayout();
+
+                _mediator?.Notify(this, "ReplyButtonClicked");
             }
             else if (_editor.Visible)
             {
@@ -182,7 +206,6 @@ namespace CineVerse.Views.UserControls
             else
             {
                 _editor.Show();
-                _editor.BringToFront();
             }
         }
 
@@ -191,14 +214,12 @@ namespace CineVerse.Views.UserControls
 
         private void OnPostReplyAdded(object sender, EventArgs e)
         {
-            _editor?.Dispose();
-            _editor = null;
+            DisposeCommentEditor();
         }
 
         private void OnCommentReplyAdded(object sender, EventArgs e)
         {
-            _editor?.Dispose();
-            _editor = null;
+            DisposeCommentEditor();
         }
     }
 }

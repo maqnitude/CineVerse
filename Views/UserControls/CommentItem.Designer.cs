@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnHeader = new Panel();
+            pnlHeader = new Panel();
             picUser = new PictureBox();
             pnPostInfo = new Panel();
             lblTitle = new Label();
@@ -36,32 +36,32 @@
             lblUsername = new Label();
             lblBy = new Label();
             lblCreatedAt = new Label();
-            panel4 = new Panel();
+            pnlBody = new Panel();
             rtbContent = new RichTextBox();
-            pnToolBar = new Panel();
+            pnlToolBar = new Panel();
             btnReply = new Button();
             btnDownvote = new Button();
             btnUpvote = new Button();
             btnReport = new Button();
             btnIgnore = new Button();
-            pnHeader.SuspendLayout();
+            pnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picUser).BeginInit();
             pnPostInfo.SuspendLayout();
             pnBy.SuspendLayout();
-            panel4.SuspendLayout();
-            pnToolBar.SuspendLayout();
+            pnlBody.SuspendLayout();
+            pnlToolBar.SuspendLayout();
             SuspendLayout();
             // 
-            // pnHeader
+            // pnlHeader
             // 
-            pnHeader.BackColor = Color.FromArgb(38, 48, 58);
-            pnHeader.Controls.Add(picUser);
-            pnHeader.Controls.Add(pnPostInfo);
-            pnHeader.Dock = DockStyle.Top;
-            pnHeader.Location = new Point(0, 0);
-            pnHeader.Name = "pnHeader";
-            pnHeader.Size = new Size(802, 70);
-            pnHeader.TabIndex = 0;
+            pnlHeader.BackColor = Color.FromArgb(38, 48, 58);
+            pnlHeader.Controls.Add(picUser);
+            pnlHeader.Controls.Add(pnPostInfo);
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Location = new Point(0, 0);
+            pnlHeader.Name = "pnlHeader";
+            pnlHeader.Size = new Size(802, 70);
+            pnlHeader.TabIndex = 0;
             // 
             // picUser
             // 
@@ -138,15 +138,15 @@
             lblCreatedAt.TabIndex = 0;
             lblCreatedAt.Text = " on March 30, 2024 at 2:48 AM";
             // 
-            // panel4
+            // pnlBody
             // 
-            panel4.Controls.Add(rtbContent);
-            panel4.Controls.Add(pnToolBar);
-            panel4.Dock = DockStyle.Top;
-            panel4.Location = new Point(0, 70);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(802, 144);
-            panel4.TabIndex = 1;
+            pnlBody.Controls.Add(rtbContent);
+            pnlBody.Controls.Add(pnlToolBar);
+            pnlBody.Dock = DockStyle.Top;
+            pnlBody.Location = new Point(0, 70);
+            pnlBody.Name = "pnlBody";
+            pnlBody.Size = new Size(802, 144);
+            pnlBody.TabIndex = 1;
             // 
             // rtbContent
             // 
@@ -160,20 +160,20 @@
             rtbContent.TabIndex = 1;
             rtbContent.Text = "";
             // 
-            // pnToolBar
+            // pnlToolBar
             // 
-            pnToolBar.BackColor = Color.FromArgb(16, 19, 22);
-            pnToolBar.BorderStyle = BorderStyle.FixedSingle;
-            pnToolBar.Controls.Add(btnReply);
-            pnToolBar.Controls.Add(btnDownvote);
-            pnToolBar.Controls.Add(btnUpvote);
-            pnToolBar.Controls.Add(btnReport);
-            pnToolBar.Controls.Add(btnIgnore);
-            pnToolBar.Dock = DockStyle.Bottom;
-            pnToolBar.Location = new Point(0, 111);
-            pnToolBar.Name = "pnToolBar";
-            pnToolBar.Size = new Size(802, 33);
-            pnToolBar.TabIndex = 0;
+            pnlToolBar.BackColor = Color.FromArgb(16, 19, 22);
+            pnlToolBar.BorderStyle = BorderStyle.FixedSingle;
+            pnlToolBar.Controls.Add(btnReply);
+            pnlToolBar.Controls.Add(btnDownvote);
+            pnlToolBar.Controls.Add(btnUpvote);
+            pnlToolBar.Controls.Add(btnReport);
+            pnlToolBar.Controls.Add(btnIgnore);
+            pnlToolBar.Dock = DockStyle.Bottom;
+            pnlToolBar.Location = new Point(0, 111);
+            pnlToolBar.Name = "pnlToolBar";
+            pnlToolBar.Size = new Size(802, 33);
+            pnlToolBar.TabIndex = 0;
             // 
             // btnReply
             // 
@@ -266,26 +266,26 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = Color.Transparent;
-            Controls.Add(panel4);
-            Controls.Add(pnHeader);
+            Controls.Add(pnlBody);
+            Controls.Add(pnlHeader);
             Name = "CommentItem";
             Size = new Size(802, 343);
-            pnHeader.ResumeLayout(false);
-            pnHeader.PerformLayout();
+            pnlHeader.ResumeLayout(false);
+            pnlHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picUser).EndInit();
             pnPostInfo.ResumeLayout(false);
             pnPostInfo.PerformLayout();
             pnBy.ResumeLayout(false);
             pnBy.PerformLayout();
-            panel4.ResumeLayout(false);
-            pnToolBar.ResumeLayout(false);
-            pnToolBar.PerformLayout();
+            pnlBody.ResumeLayout(false);
+            pnlToolBar.ResumeLayout(false);
+            pnlToolBar.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel pnHeader;
+        private Panel pnlHeader;
         private PictureBox picUser;
         private Panel pnPostInfo;
         private Label lblTitle;
@@ -293,8 +293,8 @@
         private Label lblUsername;
         private Label lblBy;
         private Label lblCreatedAt;
-        private Panel panel4;
-        private Panel pnToolBar;
+        private Panel pnlBody;
+        private Panel pnlToolBar;
         private Button btnReport;
         private Button btnIgnore;
         private Button btnReply;

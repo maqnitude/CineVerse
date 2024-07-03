@@ -1,4 +1,5 @@
 ﻿using CineVerse.Core.Events;
+using CineVerse.Core.Interfaces;
 using CineVerse.Core.Services;
 using CineVerse.Data.Entities;
 using CineVerse.Forms;
@@ -9,13 +10,14 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CineVerse.Views.UserControls
 {
-    public partial class PostDetailsScreen : UserControl
+    public partial class PostDetailsScreen : UserControl, IMediator
     {
         private MainForm _mainForm;
         private Post _post;
@@ -26,6 +28,52 @@ namespace CineVerse.Views.UserControls
 
             RegisterEventHandlers();
             this.Disposed += (s, e) => UnregisterEventHandlers();
+        }
+
+        public void Notify(object sender, string ev)
+        {
+            switch (ev)
+            {
+                case "ReplyButtonClicked":
+                    // Dispose the comment editor in every other comment item
+                    if (sender is CommentItem s)
+                    {
+                        Action<CommentItem> DisposeEditor = null;
+                        DisposeEditor = (c) =>
+                        {
+                            if (c != s)
+                            {
+                                c.DisposeCommentEditor();
+                            }
+
+                            foreach (Control control in c.Controls)
+                            {
+                                if (control is CommentItem commentItem)
+                                {
+                                    DisposeEditor(commentItem);
+                                }
+                            }
+                        };
+
+                        this.SuspendLayout();
+
+                        if (s != rootCommentItem)
+                        {
+                            rootCommentItem.DisposeCommentEditor();
+                        }
+
+                        foreach (Control control in rootCommentItem.Controls)
+                        {
+                            if (control is CommentItem commentItem)
+                            {
+                                DisposeEditor(commentItem);
+                            }
+                        }
+
+                        this.ResumeLayout();
+                    }
+                    break;
+            }
         }
 
         private void RegisterEventHandlers()
@@ -58,8 +106,10 @@ namespace CineVerse.Views.UserControls
         {
             _post = post;
 
-            commentItemRoot.SetCommentableData(post);
-            await commentItemRoot.LoadReplies(post);
+            //commentItemRoot.SetCommentableData(post);
+            //await commentItemRoot.LoadReplies(post);
+            rootCommentItem.Initialize(post, this);
+            await rootCommentItem.LoadReplies();
         }
 
         private async void OnPostReplyAdding(object sender, PostReplyEventArgs e)
@@ -72,7 +122,7 @@ namespace CineVerse.Views.UserControls
 
         private async void OnPostReplyAdded(object sender, EventArgs e)
         {
-            await commentItemRoot.LoadReplies(_post);
+            await rootCommentItem.LoadReplies();
         }
 
         private async void OnCommentReplyAdding(object sender, CommentReplyEventArgs e)
@@ -85,7 +135,8 @@ namespace CineVerse.Views.UserControls
 
         private async void OnCommentReplyAdded(object sender, EventArgs e)
         {
-            await commentItemRoot.LoadReplies(_post);
+            // TODO: load the replies of the parent comment instead
+            await rootCommentItem.LoadReplies();
         }
 
         private void btnBack_Click(object sender, EventArgs e)

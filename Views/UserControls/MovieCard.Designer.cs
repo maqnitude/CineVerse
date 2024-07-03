@@ -41,6 +41,7 @@
             removeFromWatchlistToolStripMenuItem = new ToolStripMenuItem();
             addToListsToolStripMenuItem = new ToolStripMenuItem();
             logOrReviewToolStripMenuItem = new ToolStripMenuItem();
+            removeFromThisListToolStripMenuItem = new ToolStripMenuItem();
             pnMoviePoster.SuspendLayout();
             pnActions.SuspendLayout();
             cmsActions.SuspendLayout();
@@ -133,10 +134,10 @@
             // cmsActions
             // 
             cmsActions.BackColor = Color.FromArgb(72, 87, 101);
-            cmsActions.Items.AddRange(new ToolStripItem[] { whereToWatchToolStripMenuItem, addToWatchlistToolStripMenuItem, removeFromWatchlistToolStripMenuItem, addToListsToolStripMenuItem, logOrReviewToolStripMenuItem });
+            cmsActions.Items.AddRange(new ToolStripItem[] { whereToWatchToolStripMenuItem, addToWatchlistToolStripMenuItem, removeFromWatchlistToolStripMenuItem, addToListsToolStripMenuItem, removeFromThisListToolStripMenuItem, logOrReviewToolStripMenuItem });
             cmsActions.Name = "cmsActions";
             cmsActions.RenderMode = ToolStripRenderMode.System;
-            cmsActions.Size = new Size(199, 114);
+            cmsActions.Size = new Size(199, 158);
             // 
             // whereToWatchToolStripMenuItem
             // 
@@ -185,6 +186,15 @@
             logOrReviewToolStripMenuItem.Size = new Size(198, 22);
             logOrReviewToolStripMenuItem.Text = "Log or review film ...";
             // 
+            // removeFromThisListToolStripMenuItem
+            // 
+            removeFromThisListToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
+            removeFromThisListToolStripMenuItem.Name = "removeFromThisListToolStripMenuItem";
+            removeFromThisListToolStripMenuItem.Size = new Size(198, 22);
+            removeFromThisListToolStripMenuItem.Text = "Remove from this list";
+            removeFromThisListToolStripMenuItem.Visible = false;
+            removeFromThisListToolStripMenuItem.Click += removeFromThisListToolStripMenuItem_Click;
+            // 
             // MovieCard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -214,5 +224,6 @@
         private ToolStripMenuItem addToListsToolStripMenuItem;
         private ToolStripMenuItem logOrReviewToolStripMenuItem;
         private ToolStripMenuItem removeFromWatchlistToolStripMenuItem;
+        private ToolStripMenuItem removeFromThisListToolStripMenuItem;
     }
 }

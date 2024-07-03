@@ -34,6 +34,7 @@ namespace CineVerse.Forms
         private readonly MoviesScreen _moviesScreen;
         private readonly ListsScreen _listsScreen;
         private readonly PostsScreen _postsScreen;
+        private readonly UsersScreen _usersScreen;
 
         private Label _selectedTab;
 
@@ -53,10 +54,12 @@ namespace CineVerse.Forms
             _moviesScreen = new MoviesScreen(_navigationService, 12);
             _listsScreen = new ListsScreen();
             _postsScreen = new PostsScreen();
+            _usersScreen = new UsersScreen();
 
             _moviesScreen.SetMediator(this);
             _listsScreen.SetMediator(this);
             _postsScreen.SetMediator(this);
+            _usersScreen.SetMediator(this);
 
             searchBar.SetMediator(this);
 
@@ -64,6 +67,7 @@ namespace CineVerse.Forms
             _navigationService.RegisterScreen("moviesScreen", _moviesScreen);
             _navigationService.RegisterScreen("listsScreen", _listsScreen);
             _navigationService.RegisterScreen("postsScreen", _postsScreen);
+            _navigationService.RegisterScreen("usersScreen", _usersScreen);
 
             RegisterEventHandlers();
         }
@@ -188,6 +192,8 @@ namespace CineVerse.Forms
             UpdateUserDisplay();
             _homeScreen.SetUser(_currentUser);
             _listsScreen.SetUser(_currentUser);
+            _usersScreen.SetUser(_currentUser);
+            _usersScreen.LoadUsersAsync();
             lblHomeTab_Click(this, EventArgs.Empty);
         }
 
@@ -286,6 +292,14 @@ namespace CineVerse.Forms
             await _postsScreen.LoadPostsAsync();
         }
 
+        private async void lblUsersTab_Click(object sender, EventArgs e)
+        {
+            ResetNavItemColors();
+            lblUsersTab.ForeColor = Color.FromArgb(0, 157, 26);
+            _selectedTab = lblUsersTab;
+            _navigationService.NavigateToScreen("usersScreen");
+        }
+
         private void picLogo_Click(object sender, EventArgs e)
         {
             // Navigate to homescreen here
@@ -310,6 +324,7 @@ namespace CineVerse.Forms
         private void profileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ProfileScreen profileScreen = new ProfileScreen(_currentUser);
+            profileScreen.SetCurrentUser(_currentUser);
             _navigationService.NavigateToScreen(profileScreen);
         }
 

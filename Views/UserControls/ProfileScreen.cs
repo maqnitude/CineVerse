@@ -1,10 +1,12 @@
-﻿using CineVerse.Core.Services;
+﻿using CineVerse.Core.Events;
+using CineVerse.Core.Services;
 using CineVerse.Data.Entities;
 using CineVerse.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,19 +23,11 @@ namespace CineVerse.Views.UserControls
         public ProfileScreen(User profileUser)
         {
             InitializeComponent();
-            SetUsersData(profileUser);
-            SetupButton();
+            SetProfileUser(profileUser);
         }
 
-        public void SetUsersData(User profileUser)
+        public void SetProfileUser(User profileUser)
         {
-            // get current user
-            var mainForm = this.FindForm() as MainForm;
-            if (mainForm != null)
-            {
-                _currentUser = mainForm.GetCurrentUser();
-            }
-
             // set profile user
             _profileUser = profileUser;
             lblUsername.Text = _profileUser.Username;
@@ -41,38 +35,66 @@ namespace CineVerse.Views.UserControls
             picAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
+        public void SetCurrentUser(User currentUser)
+        {
+            _currentUser = currentUser;
+            SetupButton();
+        }
+
+        private void RegisterEventHandlers()
+        {
+            EventManager.Instance.Subscribe<FollowEventArgs>(EventType.UserFollowed, OnUserFollowed);
+            EventManager.Instance.Subscribe<FollowEventArgs>(EventType.UserUnfollowed, OnUserUnfollowed);
+        }
+
         private async void SetupButton()
         {
             if (_currentUser != null && _profileUser != null)
             {
-                if (_currentUser == _profileUser)
+                if (_currentUser.Id == _profileUser.Id)
                 {
-                    btnAction.BackColor = Color.FromArgb(68, 82, 95);
-                    btnAction.ForeColor = Color.FromArgb(184, 201, 215);
-                    btnAction.Text = "EDIT PROFILE";
-                    btnAction.Click += btnEditProfile_Click;
+                    SetupEditProfileButton();
                 }
                 else
                 {
+                    RegisterEventHandlers();
                     bool isFollowing = await UserService.Instance.IsFollowingAsync(_currentUser.Id, _profileUser.Id);
-                    if (isFollowing)
-                    {
-                        btnAction.BackColor = Color.FromArgb(13, 125, 31);
-                        btnAction.ForeColor = Color.FromArgb(188, 210, 176);
-                        btnAction.Text = "FOLLOWING";
-
-                        btnAction.MouseEnter += btnFollowing_MouseEnter;
-                        btnAction.MouseLeave += btnFollowing_MouseLeave;
-                    }
-                    else
-                    {
-                        btnAction.BackColor = Color.FromArgb(68, 82, 95);
-                        btnAction.ForeColor = Color.FromArgb(184, 201, 215);
-                        btnAction.Text = "FOLLOW";
-                    }
-                    btnAction.Click += btnFollowUnfollow_Click;
+                    SetupFollowButton(isFollowing);
                 }
             }
+        }
+
+        private void SetupEditProfileButton()
+        {
+            btnAction.BackColor = Color.FromArgb(68, 82, 95);
+            btnAction.ForeColor = Color.FromArgb(184, 201, 215);
+            btnAction.Text = "EDIT PROFILE";
+            btnAction.Click += btnEditProfile_Click;
+        }
+
+        private void SetupFollowButton(bool isFollowing)
+        {
+            btnAction.Click -= btnEditProfile_Click;
+            btnAction.Click -= btnFollowUnfollow_Click;
+            btnAction.MouseEnter -= btnFollowing_MouseEnter;
+            btnAction.MouseLeave -= btnFollowing_MouseLeave;
+
+            if (isFollowing)
+            {
+                btnAction.BackColor = Color.FromArgb(13, 125, 31);
+                btnAction.ForeColor = Color.FromArgb(188, 210, 176);
+                btnAction.Text = "FOLLOWING";
+
+                btnAction.MouseEnter += btnFollowing_MouseEnter;
+                btnAction.MouseLeave += btnFollowing_MouseLeave;
+            }
+            else
+            {
+                btnAction.BackColor = Color.FromArgb(68, 82, 95);
+                btnAction.ForeColor = Color.FromArgb(184, 201, 215);
+                btnAction.Text = "FOLLOW";
+            }
+            btnAction.Click += btnFollowUnfollow_Click;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -115,6 +137,22 @@ namespace CineVerse.Views.UserControls
             btnAction.BackColor = Color.FromArgb(13, 125, 31);
             btnAction.ForeColor = Color.FromArgb(188, 210, 176);
             btnAction.Text = "FOLLOWING";
+        }
+
+        private void OnUserFollowed(object? sender, FollowEventArgs e)
+        {
+            if (_currentUser != null && _profileUser != null && e.FollowerId == _currentUser.Id && e.FolloweeId == _profileUser.Id)
+            {
+                SetupFollowButton(true);
+            }
+        }
+
+        private void OnUserUnfollowed(object? sender, FollowEventArgs e)
+        {
+            if (_currentUser != null && _profileUser != null && e.FollowerId == _currentUser.Id && e.FolloweeId == _profileUser.Id)
+            {
+                SetupFollowButton(false);
+            }
         }
     }
 }

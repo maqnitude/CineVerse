@@ -30,6 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             pnNavBar = new Panel();
+            lblUsersTab = new Label();
             pSearchAndUser = new Panel();
             pnUserWrapper = new Panel();
             btnUser = new Button();
@@ -55,7 +56,6 @@
             separator = new ToolStripSeparator();
             settingsToolStripMenuItem = new ToolStripMenuItem();
             signOutToolStripMenuItem = new ToolStripMenuItem();
-            lblMembersTab = new Label();
             pnNavBar.SuspendLayout();
             pSearchAndUser.SuspendLayout();
             pnUserWrapper.SuspendLayout();
@@ -67,7 +67,7 @@
             // pnNavBar
             // 
             pnNavBar.BackColor = Color.FromArgb(35, 42, 51);
-            pnNavBar.Controls.Add(lblMembersTab);
+            pnNavBar.Controls.Add(lblUsersTab);
             pnNavBar.Controls.Add(pSearchAndUser);
             pnNavBar.Controls.Add(lblPostsTab);
             pnNavBar.Controls.Add(lblListsTab);
@@ -79,6 +79,18 @@
             pnNavBar.Name = "pnNavBar";
             pnNavBar.Size = new Size(1354, 58);
             pnNavBar.TabIndex = 0;
+            // 
+            // lblUsersTab
+            // 
+            lblUsersTab.AutoSize = true;
+            lblUsersTab.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
+            lblUsersTab.ForeColor = Color.FromArgb(178, 172, 162);
+            lblUsersTab.Location = new Point(479, 20);
+            lblUsersTab.Name = "lblUsersTab";
+            lblUsersTab.Size = new Size(91, 21);
+            lblUsersTab.TabIndex = 3;
+            lblUsersTab.Text = "MEMBERS";
+            lblUsersTab.Click += lblUsersTab_Click;
             // 
             // pSearchAndUser
             // 
@@ -328,17 +340,6 @@
             signOutToolStripMenuItem.Size = new Size(124, 22);
             signOutToolStripMenuItem.Text = "Sign out";
             // 
-            // lblMembersTab
-            // 
-            lblMembersTab.AutoSize = true;
-            lblMembersTab.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
-            lblMembersTab.ForeColor = Color.FromArgb(178, 172, 162);
-            lblMembersTab.Location = new Point(356, 20);
-            lblMembersTab.Name = "lblMembersTab";
-            lblMembersTab.Size = new Size(91, 21);
-            lblMembersTab.TabIndex = 3;
-            lblMembersTab.Text = "MEMBERS";
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -390,6 +391,6 @@
         private ToolStripSeparator separator;
         private ToolStripMenuItem settingsToolStripMenuItem;
         private ToolStripMenuItem signOutToolStripMenuItem;
-        private Label lblMembersTab;
+        private Label lblUsersTab;
     }
 }

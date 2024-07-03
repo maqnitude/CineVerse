@@ -31,13 +31,12 @@
             picUser = new PictureBox();
             lblUsername = new Label();
             lblNumReviews = new Label();
-            picFollow = new PictureBox();
             btnLists = new Button();
             btnWatched = new Button();
             btnLiked = new Button();
             pnStats = new Panel();
+            btnFollow = new Button();
             ((System.ComponentModel.ISupportInitialize)picUser).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picFollow).BeginInit();
             pnStats.SuspendLayout();
             SuspendLayout();
             // 
@@ -72,18 +71,6 @@
             lblNumReviews.Size = new Size(120, 15);
             lblNumReviews.TabIndex = 2;
             lblNumReviews.Text = "324 films, 272 reviews";
-            // 
-            // picFollow
-            // 
-            picFollow.Anchor = AnchorStyles.Right;
-            picFollow.Cursor = Cursors.Hand;
-            picFollow.Image = Properties.Resources.add_follow;
-            picFollow.Location = new Point(512, 21);
-            picFollow.Name = "picFollow";
-            picFollow.Size = new Size(30, 30);
-            picFollow.SizeMode = PictureBoxSizeMode.StretchImage;
-            picFollow.TabIndex = 4;
-            picFollow.TabStop = false;
             // 
             // btnLists
             // 
@@ -149,10 +136,23 @@
             pnStats.Controls.Add(btnLists);
             pnStats.Controls.Add(btnLiked);
             pnStats.Controls.Add(btnWatched);
-            pnStats.Location = new Point(301, 18);
+            pnStats.Location = new Point(336, 18);
             pnStats.Name = "pnStats";
             pnStats.Size = new Size(180, 33);
             pnStats.TabIndex = 6;
+            // 
+            // btnFollow
+            // 
+            btnFollow.Anchor = AnchorStyles.Right;
+            btnFollow.FlatAppearance.BorderSize = 0;
+            btnFollow.FlatStyle = FlatStyle.Flat;
+            btnFollow.Image = Properties.Resources.add_follow;
+            btnFollow.Location = new Point(549, 18);
+            btnFollow.Name = "btnFollow";
+            btnFollow.Size = new Size(33, 33);
+            btnFollow.TabIndex = 7;
+            btnFollow.UseVisualStyleBackColor = true;
+            btnFollow.Click += btnFollow_Click;
             // 
             // UserListItem
             // 
@@ -161,16 +161,15 @@
             AutoSize = true;
             BackColor = Color.Transparent;
             BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(btnFollow);
             Controls.Add(pnStats);
-            Controls.Add(picFollow);
             Controls.Add(lblNumReviews);
             Controls.Add(lblUsername);
             Controls.Add(picUser);
             MinimumSize = new Size(440, 0);
             Name = "UserListItem";
-            Size = new Size(553, 71);
+            Size = new Size(588, 71);
             ((System.ComponentModel.ISupportInitialize)picUser).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picFollow).EndInit();
             pnStats.ResumeLayout(false);
             pnStats.PerformLayout();
             ResumeLayout(false);
@@ -182,10 +181,10 @@
         private PictureBox picUser;
         private Label lblUsername;
         private Label lblNumReviews;
-        private PictureBox picFollow;
         private Button btnLists;
         private Button btnWatched;
         private Button btnLiked;
         private Panel pnStats;
+        private Button btnFollow;
     }
 }

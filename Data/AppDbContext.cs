@@ -25,6 +25,10 @@ namespace CineVerse.Data
         public DbSet<Credit> Credits { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<MovieCompany> MovieCompanies { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<PostVote> PostVotes { get; set; }
+        public DbSet<CommentVote> CommentsVote { get; set; }
 
         private static List<string> ParseGenres(JsonElement genreElements)
         {
@@ -308,7 +312,7 @@ namespace CineVerse.Data
                 .HasForeignKey(c => c.UserId);
             modelBuilder.Entity<Comment>()
                 .HasOne(c => c.Post)
-                .WithMany(u => u.Comments)
+                .WithMany(p => p.Replies)
                 .HasForeignKey(c => c.PostId);
             modelBuilder.Entity<Comment>()
                 .HasOne(c => c.ParentComment)

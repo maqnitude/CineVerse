@@ -37,5 +37,18 @@ namespace CineVerse.Core.Services
                 return reviews.ToList();
             }
         }
+
+        public async Task<double> GetUserMovieRatingAsync(string userId, int movieId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var review = await unitOfWork.Reviews.GetReviewByUserIdMovieIdAsync(userId, movieId);
+                if (review != null)
+                {
+                    return review.Rating;
+                }
+                return 0.0;
+            }
+        }
     }
 }

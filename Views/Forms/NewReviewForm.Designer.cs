@@ -147,6 +147,7 @@
             // starRatingControl
             // 
             starRatingControl.BackColor = Color.Transparent;
+            starRatingControl.CanSaveRating = true;
             starRatingControl.Dock = DockStyle.Fill;
             starRatingControl.Location = new Point(0, 20);
             starRatingControl.Name = "starRatingControl";

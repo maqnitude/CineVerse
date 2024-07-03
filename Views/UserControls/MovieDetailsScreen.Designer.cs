@@ -83,7 +83,7 @@
             pnActionsRow3 = new Panel();
             lblShowActivity = new Label();
             pnActionsRow2 = new Panel();
-            starRatingControlNew1 = new StarRatingControl();
+            starRatingControl = new StarRatingControl();
             lblRate = new Label();
             pnActionsRow1 = new Panel();
             btnWatchlist = new Button();
@@ -721,7 +721,7 @@
             // pnActionsRow2
             // 
             pnActionsRow2.BorderStyle = BorderStyle.FixedSingle;
-            pnActionsRow2.Controls.Add(starRatingControlNew1);
+            pnActionsRow2.Controls.Add(starRatingControl);
             pnActionsRow2.Controls.Add(lblRate);
             pnActionsRow2.Dock = DockStyle.Top;
             pnActionsRow2.Location = new Point(0, 90);
@@ -729,14 +729,15 @@
             pnActionsRow2.Size = new Size(250, 69);
             pnActionsRow2.TabIndex = 1;
             // 
-            // starRatingControlNew1
+            // starRatingControl
             // 
-            starRatingControlNew1.BackColor = Color.Transparent;
-            starRatingControlNew1.Location = new Point(44, 28);
-            starRatingControlNew1.Name = "starRatingControlNew1";
-            starRatingControlNew1.Rating = 0D;
-            starRatingControlNew1.Size = new Size(160, 32);
-            starRatingControlNew1.TabIndex = 1;
+            starRatingControl.BackColor = Color.Transparent;
+            starRatingControl.CanSaveRating = true;
+            starRatingControl.Location = new Point(44, 28);
+            starRatingControl.Name = "starRatingControl";
+            starRatingControl.Rating = 0D;
+            starRatingControl.Size = new Size(160, 32);
+            starRatingControl.TabIndex = 1;
             // 
             // lblRate
             // 
@@ -919,6 +920,6 @@
         private Label lblReleaseYear;
         private Panel pnDirector;
         private Label lblDirectorName;
-        private StarRatingControl starRatingControlNew1;
+        private StarRatingControl starRatingControl;
     }
 }

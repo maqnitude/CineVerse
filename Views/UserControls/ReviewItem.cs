@@ -1,4 +1,5 @@
-﻿using CineVerse.Data.Entities;
+﻿using CineVerse.Core.Events;
+using CineVerse.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,8 @@ namespace CineVerse.Views.UserControls
             Dock = DockStyle.Top;
 
             SetReviewData(review);
+
+            EventManager.Instance.Subscribe<RatingEventArgs>(EventType.RatingChanged, OnRatingChanged);
         }
 
         private void SetReviewData(Review review)
@@ -28,6 +31,11 @@ namespace CineVerse.Views.UserControls
             lblUsername.Text = review.User.Name;
             lblRating.Text = review.Rating.ToString();
             lblContent.Text = review.Content;
+        }
+
+        private void OnRatingChanged(object sender, RatingEventArgs e)
+        {
+            lblRating.Text = e.Rating.ToString();
         }
     }
 }

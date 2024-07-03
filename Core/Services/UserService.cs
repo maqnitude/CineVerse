@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace CineVerse.Core.Services
 {
@@ -27,6 +28,16 @@ namespace CineVerse.Core.Services
 
         private UserService() { }
 
+        public async Task<List<User>> GetPublicUsersAsync()
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var publicUsers = await unitOfWork.Users.GetPublicUsersAsync();
+                return publicUsers;
+            }
+
+        }
+
         public async Task UpdateUser(string userId, User newUser)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
@@ -37,6 +48,63 @@ namespace CineVerse.Core.Services
 
                 unitOfWork.Users.Update(user);
                 await unitOfWork.CompleteAsync();
+            }
+        }
+
+        public async Task<bool> IsFollowingAsync(string followerId, string followeeId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                bool isFollowing = await unitOfWork.UserFollows.IsFollowingAsync(followerId, followeeId);
+                return isFollowing;
+            }
+        }
+
+        public async Task<List<User>> GetFollowersByIdAsync(string userId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var followers = await unitOfWork.UserFollows.GetFollowersAsync(userId);
+                return followers;
+            }
+        }
+
+        public async Task<List<User>> GetFolloweesByIdAsync(string userId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var followees = await unitOfWork.UserFollows.GetFolloweesAsync(userId);
+                return followees;
+            }
+        }
+    
+        public async Task FollowUserAsync(string followerId, string followeeId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var follow = new UserFollow
+                {
+                    FollowerId = followerId,
+                    FolloweeId = followeeId,
+                };
+                await unitOfWork.UserFollows.AddAsync(follow);
+                await unitOfWork.CompleteAsync();
+
+                EventManager.Instance.Publish(EventType.UserFollowed, this, new FollowEventArgs(followerId, followeeId));
+            }
+        }
+
+        public async Task UnfollowUserAsync(string followerId, string followeeId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var follow = await unitOfWork.UserFollows.GetFollowAsync(followerId, followeeId);
+                if (follow != null)
+                {
+                    unitOfWork.UserFollows.Delete(follow);
+                    await unitOfWork.CompleteAsync();
+                    EventManager.Instance.Publish(EventType.UserUnfollowed, this, new FollowEventArgs(followerId, followeeId));
+                }
             }
         }
 

@@ -33,7 +33,7 @@
             lblBio = new Label();
             pnUsernameAndEdit = new Panel();
             lblUsername = new Label();
-            btnEditProfile = new Button();
+            btnAction = new Button();
             picAvatar = new PictureBox();
             pnFollowersCount = new Panel();
             lblNumFollowers = new Label();
@@ -125,10 +125,10 @@
             // 
             pnUsernameAndEdit.AutoSize = true;
             pnUsernameAndEdit.Controls.Add(lblUsername);
-            pnUsernameAndEdit.Controls.Add(btnEditProfile);
+            pnUsernameAndEdit.Controls.Add(btnAction);
             pnUsernameAndEdit.Location = new Point(181, 27);
             pnUsernameAndEdit.Name = "pnUsernameAndEdit";
-            pnUsernameAndEdit.Size = new Size(187, 28);
+            pnUsernameAndEdit.Size = new Size(186, 28);
             pnUsernameAndEdit.TabIndex = 3;
             // 
             // lblUsername
@@ -143,20 +143,20 @@
             lblUsername.TabIndex = 1;
             lblUsername.Text = "ZyklonX";
             // 
-            // btnEditProfile
+            // btnAction
             // 
-            btnEditProfile.BackColor = Color.FromArgb(68, 82, 95);
-            btnEditProfile.Dock = DockStyle.Right;
-            btnEditProfile.FlatAppearance.BorderSize = 0;
-            btnEditProfile.FlatStyle = FlatStyle.Flat;
-            btnEditProfile.Font = new Font("Segoe UI Black", 8F, FontStyle.Bold);
-            btnEditProfile.ForeColor = Color.FromArgb(184, 201, 215);
-            btnEditProfile.Location = new Point(89, 0);
-            btnEditProfile.Name = "btnEditProfile";
-            btnEditProfile.Size = new Size(98, 28);
-            btnEditProfile.TabIndex = 0;
-            btnEditProfile.Text = "EDIT PROFILE";
-            btnEditProfile.UseVisualStyleBackColor = false;
+            btnAction.BackColor = Color.FromArgb(68, 82, 95);
+            btnAction.Dock = DockStyle.Right;
+            btnAction.FlatAppearance.BorderSize = 0;
+            btnAction.FlatStyle = FlatStyle.Flat;
+            btnAction.Font = new Font("Segoe UI Black", 8F, FontStyle.Bold);
+            btnAction.ForeColor = Color.FromArgb(184, 201, 215);
+            btnAction.Location = new Point(94, 0);
+            btnAction.Name = "btnAction";
+            btnAction.Size = new Size(92, 28);
+            btnAction.TabIndex = 0;
+            btnAction.Text = "EDIT PROFILE";
+            btnAction.UseVisualStyleBackColor = false;
             // 
             // picAvatar
             // 
@@ -576,7 +576,7 @@
         private Panel pnUsernameAndEdit;
         private PictureBox picAvatar;
         private Panel pnMoviesCount;
-        private Button btnEditProfile;
+        private Button btnAction;
         private Label lblBio;
         private Label lblUsername;
         private Label lblMoviesFixed;

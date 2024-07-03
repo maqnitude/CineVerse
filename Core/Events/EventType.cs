@@ -45,6 +45,9 @@ namespace CineVerse.Core.Events
 
         CommentReplyAdding,
         CommentReplyAdded,
+
+        UserFollowed,
+        UserUnfollowed,
     }
 
     public class UserEventArgs : EventArgs
@@ -138,6 +141,17 @@ namespace CineVerse.Core.Events
         {
             ParentCommentId = parentCommentId;
             Content = content;
+        }
+    }
+
+    public class FollowEventArgs : EventArgs
+    {
+        public string FollowerId {  get; set; }
+        public string FolloweeId { get; set; }
+        public FollowEventArgs(string followerId, string followeeId)
+        {
+            FollowerId = followerId;
+            FolloweeId = followeeId;
         }
     }
 }

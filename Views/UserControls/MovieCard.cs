@@ -296,6 +296,5 @@ namespace CineVerse.Views.UserControls
 
             await ListService.Instance.RemoveMovieFromWatchlistAsync(user.WatchlistId, _movie.Id);
         }
-
     }
 }

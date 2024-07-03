@@ -2,11 +2,13 @@
 using CineVerse.Core.Events;
 using CineVerse.Core.Services;
 using CineVerse.Data.Entities;
+using CineVerse.Data.Repositories;
 using CineVerse.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,18 +22,29 @@ namespace CineVerse.Views.UserControls
         private User _user;
         private string? _tempAvatarPath;
 
-        public SettingsScreen()
+        public SettingsScreen(User user)
         {
             InitializeComponent();
+            SetUserData(user);
         }
 
         public void SetUserData(User user)
         {
+            _user = user;
+
             txtUsername.Text = user.Username;
+            
             txtEmail.Text = user.Email;
             txtEmail.Enabled = false;
+
+            txtGivenName.Text = user.GivenName;
+            txtFamilyName.Text = user.FamilyName;
+            txtLocation.Text = user.Location;
+            txtWebsite.Text = user.Website;
+            txtBio.Text = user.Bio;
+            cbbVisibility.SelectedItem = user.ProfileVisibility.ToString();
+
             LoadAvatarImage(user.AvatarPath);
-            _user = user;
             _tempAvatarPath = null;
         }
 
@@ -89,17 +102,32 @@ namespace CineVerse.Views.UserControls
             }
         }
 
+        private ProfileVisibility ParseProfileVisibility(string visibility)
+        {
+            return visibility switch
+            {
+                "Private" => ProfileVisibility.Private,
+                "Public" => ProfileVisibility.Public,
+                "Friends" => ProfileVisibility.Friends,
+                _ => throw new Exception("Invalid profile visibility"),
+            };
+        }
+
         private async void btnSave_Click(object sender, EventArgs e)
         {
-            bool isUsernameChanged = _user.Username != txtUsername.Text;
-            bool isAvatarChanged = _tempAvatarPath != null && _user.AvatarPath != _tempAvatarPath;
-
-            if (isUsernameChanged)
+            if (!HasUnsavedChanges())
             {
-                _user.Username = txtUsername.Text;
+                return;
             }
+            _user.Username = txtUsername.Text;
+            _user.ProfileVisibility = ParseProfileVisibility(cbbVisibility.Text);
+            _user.GivenName = txtGivenName.Text;
+            _user.FamilyName = txtFamilyName.Text;
+            _user.Location = txtLocation.Text;
+            _user.Website = txtWebsite.Text;
+            _user.Bio = txtBio.Text;
 
-            if (isAvatarChanged)
+            if (_tempAvatarPath != null && _user.AvatarPath != _tempAvatarPath)
             {
                 string imagesFolderPath = AppSettings.ImagesPath;
                 string avatarDirectory = Path.Combine(imagesFolderPath, "avatars");
@@ -122,29 +150,31 @@ namespace CineVerse.Views.UserControls
                 _tempAvatarPath = null;
             }
 
-            if (isUsernameChanged || isAvatarChanged)
-            {
-                await UserService.Instance.UpdateUser(_user.Id, _user);
-                EventManager.Instance.Publish(EventType.UserSettingsChanged, this, EventArgs.Empty);
-                MessageBox.Show("Succesfully saved your changes", "Save Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            await UserService.Instance.UpdateUser(_user.Id, _user);
+            EventManager.Instance.Publish(EventType.UserSettingsChanged, this, EventArgs.Empty);
+            MessageBox.Show("Succesfully saved your changes", "Save Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private bool IsUnsavedChanges()
+        private bool HasUnsavedChanges()
         {
-            return _user.Username != txtUsername.Text || _tempAvatarPath != null;
+            return _user.Username != txtUsername.Text ||
+                   _tempAvatarPath != null ||
+                   (_user.GivenName ?? string.Empty) != txtGivenName.Text ||
+                   (_user.FamilyName ?? string.Empty) != txtFamilyName.Text ||
+                   (_user.Location ?? string.Empty) != txtLocation.Text ||
+                   (_user.Website ?? string.Empty) != txtWebsite.Text ||
+                   (_user.Bio ?? string.Empty) != txtBio.Text ||
+                   _user.ProfileVisibility.ToString() != cbbVisibility.Text;
         }
 
         private void DiscardChanges()
         {
-            txtUsername.Text = _user.Username;
-            LoadAvatarImage(_user.AvatarPath);
-            _tempAvatarPath = null;
+            SetUserData(_user);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            if (IsUnsavedChanges())
+            if (HasUnsavedChanges())
             {
                 DialogResult result = MessageBox.Show("Do you want to save your unsaved changes before going back?", "Unsaved Changes", MessageBoxButtons.YesNoCancel);
                 if (result == DialogResult.Yes)

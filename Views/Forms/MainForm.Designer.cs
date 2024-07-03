@@ -30,6 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             pnNavBar = new Panel();
+            lblUsersTab = new Label();
             pSearchAndUser = new Panel();
             pnUserWrapper = new Panel();
             btnUser = new Button();
@@ -66,6 +67,7 @@
             // pnNavBar
             // 
             pnNavBar.BackColor = Color.FromArgb(35, 42, 51);
+            pnNavBar.Controls.Add(lblUsersTab);
             pnNavBar.Controls.Add(pSearchAndUser);
             pnNavBar.Controls.Add(lblPostsTab);
             pnNavBar.Controls.Add(lblListsTab);
@@ -77,6 +79,18 @@
             pnNavBar.Name = "pnNavBar";
             pnNavBar.Size = new Size(1354, 58);
             pnNavBar.TabIndex = 0;
+            // 
+            // lblUsersTab
+            // 
+            lblUsersTab.AutoSize = true;
+            lblUsersTab.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
+            lblUsersTab.ForeColor = Color.FromArgb(178, 172, 162);
+            lblUsersTab.Location = new Point(479, 20);
+            lblUsersTab.Name = "lblUsersTab";
+            lblUsersTab.Size = new Size(91, 21);
+            lblUsersTab.TabIndex = 3;
+            lblUsersTab.Text = "MEMBERS";
+            lblUsersTab.Click += lblUsersTab_Click;
             // 
             // pSearchAndUser
             // 
@@ -377,5 +391,6 @@
         private ToolStripSeparator separator;
         private ToolStripMenuItem settingsToolStripMenuItem;
         private ToolStripMenuItem signOutToolStripMenuItem;
+        private Label lblUsersTab;
     }
 }

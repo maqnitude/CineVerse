@@ -13,7 +13,6 @@ namespace CineVerse.Views.UserControls
 {
     public partial class StarRatingControl : UserControl
     {
-        private double _rating = 0;
         private readonly Image _darkLStar;
         private readonly Image _darkRStar;
         private readonly Image _blueLStar;
@@ -21,6 +20,7 @@ namespace CineVerse.Views.UserControls
         private readonly Image _greenLStar;
         private readonly Image _greenRStar;
 
+        private double _rating = 0;
         public double Rating
         {
             get { return _rating; }
@@ -31,6 +31,13 @@ namespace CineVerse.Views.UserControls
             }
         }
         
+        private bool _canSaveRating = true;
+        public bool CanSaveRating
+        {
+            get { return _canSaveRating; }
+            set { _canSaveRating = value; }
+        }
+
         public StarRatingControl()
         {
             InitializeComponent();
@@ -101,7 +108,8 @@ namespace CineVerse.Views.UserControls
         {
             PictureBox clickedHalfStar = (PictureBox)sender;
             Rating = (double)clickedHalfStar.Tag;
-            EventManager.Instance.Publish(EventType.RatingChanged, this, EventArgs.Empty);
+
+            EventManager.Instance.Publish(EventType.RatingChanged, this, new RatingEventArgs(Rating));
         }
 
         private void HalfStar_MouseLeave(object sender, EventArgs e)

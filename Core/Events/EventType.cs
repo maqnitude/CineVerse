@@ -13,8 +13,8 @@ namespace CineVerse.Core.Events
     public enum EventType
     {
         UserSignedIn,
-        
         UserSettingsChanged,
+        UserMovieRated,
 
         ListAdding,
         ListAdded,
@@ -36,6 +36,15 @@ namespace CineVerse.Core.Events
         ReviewAdded,
 
         RatingChanged,
+
+        PostAdding,
+        PostAdded,
+
+        PostReplyAdding,
+        PostReplyAdded,
+
+        CommentReplyAdding,
+        CommentReplyAdded,
     }
 
     public class UserEventArgs : EventArgs
@@ -84,6 +93,50 @@ namespace CineVerse.Core.Events
         {
             MovieId = movieId;
             Rating = rating;
+            Content = content;
+        }
+    }
+
+    public class RatingEventArgs : EventArgs
+    {
+        public double Rating { get; set; }
+
+        public RatingEventArgs(double rating)
+        {
+            Rating = rating;
+        }
+    }
+
+    public class PostEventArgs : EventArgs
+    {
+        public string Title { get; set; }
+        public string Content {  get; set; }
+
+        public PostEventArgs(string title, string content)
+        {
+            Title = title;
+            Content = content;
+        }
+    }
+
+    public class PostReplyEventArgs : EventArgs
+    {
+        public string Content { get; set; }
+
+        public PostReplyEventArgs(string content)
+        {
+            Content = content;
+        }
+    }
+
+    public class CommentReplyEventArgs : EventArgs
+    {
+        public string ParentCommentId { get; set; }
+        public string Content { get; set; }
+
+        public CommentReplyEventArgs(string parentCommentId, string content)
+        {
+            ParentCommentId = parentCommentId;
             Content = content;
         }
     }

@@ -33,6 +33,7 @@ namespace CineVerse.Forms
         private readonly HomeScreen _homeScreen;
         private readonly MoviesScreen _moviesScreen;
         private readonly ListsScreen _listsScreen;
+        private readonly PostsScreen _postsScreen;
 
         private Label _selectedTab;
 
@@ -51,15 +52,18 @@ namespace CineVerse.Forms
             _homeScreen = new HomeScreen();
             _moviesScreen = new MoviesScreen(_navigationService, 12);
             _listsScreen = new ListsScreen();
+            _postsScreen = new PostsScreen();
 
             _moviesScreen.SetMediator(this);
             _listsScreen.SetMediator(this);
+            _postsScreen.SetMediator(this);
 
             searchBar.SetMediator(this);
 
             _navigationService.RegisterScreen("homeScreen", _homeScreen);
             _navigationService.RegisterScreen("moviesScreen", _moviesScreen);
             _navigationService.RegisterScreen("listsScreen", _listsScreen);
+            _navigationService.RegisterScreen("postsScreen", _postsScreen);
 
             RegisterEventHandlers();
         }
@@ -110,6 +114,8 @@ namespace CineVerse.Forms
             EventManager.Instance.Subscribe<ListMovieEventArgs>(EventType.ListMovieAdding, OnListMovieAdding);
 
             EventManager.Instance.Subscribe<ReviewEventArgs>(EventType.ReviewAdding, OnReviewAdding);
+
+            EventManager.Instance.Subscribe<PostEventArgs>(EventType.PostAdding, OnPostAdding);
 
             // Click outside the search bar and the results list to hide the results list
             foreach (Control control in this.Controls)
@@ -212,6 +218,13 @@ namespace CineVerse.Forms
             EventManager.Instance.Publish(EventType.ReviewAdded, this, EventArgs.Empty);
         }
 
+        private async void OnPostAdding(object sender, PostEventArgs e)
+        {
+            await PostService.Instance.AddPostAsync(_currentUser.Id, e.Title, e.Content);
+
+            EventManager.Instance.Publish(EventType.PostAdded, this, EventArgs.Empty);
+        }
+
         private void OnMouseUp(object sender, MouseEventArgs e)
         {
             searchBar.HideResults();
@@ -263,9 +276,14 @@ namespace CineVerse.Forms
             await _listsScreen.LoadListsAsync();
         }
 
-        private void lblDiscussionsTab_Click(object sender, EventArgs e)
+        private async void lblPostsTab_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            ResetNavItemColors();
+            lblPostsTab.ForeColor = Color.FromArgb(0, 157, 26);
+            _selectedTab = lblPostsTab;
+            _navigationService.NavigateToScreen("postsScreen");
+
+            await _postsScreen.LoadPostsAsync();
         }
 
         private void picLogo_Click(object sender, EventArgs e)

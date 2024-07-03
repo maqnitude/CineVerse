@@ -25,7 +25,7 @@ namespace CineVerse.Data.Entities
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
 
-        public string ParentCommentId { get; set; }
+        public string? ParentCommentId { get; set; }
         public Comment ParentComment { get; set; }
         public ICollection<Comment> Replies { get; set; } = new List<Comment>();
 

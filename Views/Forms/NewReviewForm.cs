@@ -26,10 +26,25 @@ namespace CineVerse.Views.Forms
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterParent;
 
+            starRatingControl.CanSaveRating = false;
+
             SetMovieData(movie);
 
+            RegisterEventHandlers();
+        }
+
+        private void RegisterEventHandlers()
+        {
             EventManager.Instance.Subscribe<EventArgs>(EventType.ReviewAdded, OnReviewAdded);
-            EventManager.Instance.Subscribe<EventArgs>(EventType.RatingChanged, OnRatingChanged);
+            EventManager.Instance.Subscribe<RatingEventArgs>(EventType.RatingChanged, OnRatingChanged);
+
+            this.FormClosing += (s, e) => UnregisterEventHandlers();
+        }
+
+        private void UnregisterEventHandlers()
+        {
+            EventManager.Instance.Unsubscribe<EventArgs>(EventType.ReviewAdded, OnReviewAdded);
+            EventManager.Instance.Unsubscribe<RatingEventArgs>(EventType.RatingChanged, OnRatingChanged);
         }
 
         private void SetMovieData(Movie movie)
@@ -48,9 +63,10 @@ namespace CineVerse.Views.Forms
             this.Close();
         }
 
-        private void OnRatingChanged(object sender, EventArgs e)
+        private void OnRatingChanged(object sender, RatingEventArgs e)
         {
-            _rating = starRatingControl.Rating;
+            starRatingControl.Rating = e.Rating; 
+            _rating = e.Rating;
 
             lblRatingStatus.Text = _rating.ToString() + " out of 5";
         }

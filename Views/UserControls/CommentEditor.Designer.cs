@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             btnCancel = new Button();
-            btnComment = new Button();
+            btnSubmit = new Button();
             rtbContent = new RichTextBox();
             SuspendLayout();
             // 
@@ -46,20 +46,22 @@
             btnCancel.TabIndex = 0;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = false;
+            btnCancel.Click += btnCancel_Click;
             // 
-            // btnComment
+            // btnSubmit
             // 
-            btnComment.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnComment.BackColor = Color.FromArgb(59, 78, 88);
-            btnComment.FlatAppearance.BorderSize = 0;
-            btnComment.FlatStyle = FlatStyle.Flat;
-            btnComment.ForeColor = Color.White;
-            btnComment.Location = new Point(622, 132);
-            btnComment.Name = "btnComment";
-            btnComment.Size = new Size(75, 23);
-            btnComment.TabIndex = 0;
-            btnComment.Text = "Comment";
-            btnComment.UseVisualStyleBackColor = false;
+            btnSubmit.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnSubmit.BackColor = Color.FromArgb(59, 78, 88);
+            btnSubmit.FlatAppearance.BorderSize = 0;
+            btnSubmit.FlatStyle = FlatStyle.Flat;
+            btnSubmit.ForeColor = Color.White;
+            btnSubmit.Location = new Point(622, 132);
+            btnSubmit.Name = "btnSubmit";
+            btnSubmit.Size = new Size(75, 23);
+            btnSubmit.TabIndex = 0;
+            btnSubmit.Text = "Submit";
+            btnSubmit.UseVisualStyleBackColor = false;
+            btnSubmit.Click += btnSubmit_Click;
             // 
             // rtbContent
             // 
@@ -80,7 +82,7 @@
             BackColor = Color.Transparent;
             BorderStyle = BorderStyle.FixedSingle;
             Controls.Add(rtbContent);
-            Controls.Add(btnComment);
+            Controls.Add(btnSubmit);
             Controls.Add(btnCancel);
             Name = "CommentEditor";
             Size = new Size(713, 166);
@@ -90,7 +92,7 @@
         #endregion
 
         private Button btnCancel;
-        private Button btnComment;
+        private Button btnSubmit;
         private RichTextBox rtbContent;
     }
 }

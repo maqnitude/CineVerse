@@ -77,7 +77,7 @@ namespace CineVerse.Data.Repositories
                 }
             }
 
-            return await query.Skip((pageNumber - 1) *  pageSize).Take(pageSize).ToListAsync();
+            return await query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
         }
 
         public async Task<List<Person>> GetTopCastsByMovieIdAsync(int movieId, int n)

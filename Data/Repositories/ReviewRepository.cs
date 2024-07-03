@@ -20,5 +20,12 @@ namespace CineVerse.Data.Repositories
                 .Include(r => r.User)
                 .ToListAsync();
         }
+
+        public async Task<Review> GetReviewByUserIdMovieIdAsync(string userId, int movieId)
+        {
+            return await _context.Set<Review>()
+                .Where(r => r.UserId == userId && r.MovieId == movieId)
+                .FirstOrDefaultAsync();
+        }
     }
 }

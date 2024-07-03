@@ -35,7 +35,7 @@
             btnUser = new Button();
             picUser = new PictureBox();
             searchBar = new Views.UserControls.SearchBar();
-            lblDiscussionsTab = new Label();
+            lblPostsTab = new Label();
             lblListsTab = new Label();
             lblMoviesTab = new Label();
             lblHomeTab = new Label();
@@ -69,7 +69,7 @@
             pnNavBar.BackColor = Color.FromArgb(35, 42, 51);
             pnNavBar.Controls.Add(lblMembersTab);
             pnNavBar.Controls.Add(pSearchAndUser);
-            pnNavBar.Controls.Add(lblDiscussionsTab);
+            pnNavBar.Controls.Add(lblPostsTab);
             pnNavBar.Controls.Add(lblListsTab);
             pnNavBar.Controls.Add(lblMoviesTab);
             pnNavBar.Controls.Add(lblHomeTab);
@@ -147,17 +147,17 @@
             searchBar.Size = new Size(233, 36);
             searchBar.TabIndex = 0;
             // 
-            // lblDiscussionsTab
+            // lblPostsTab
             // 
-            lblDiscussionsTab.AutoSize = true;
-            lblDiscussionsTab.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
-            lblDiscussionsTab.ForeColor = Color.FromArgb(178, 172, 162);
-            lblDiscussionsTab.Location = new Point(453, 20);
-            lblDiscussionsTab.Name = "lblDiscussionsTab";
-            lblDiscussionsTab.Size = new Size(117, 21);
-            lblDiscussionsTab.TabIndex = 2;
-            lblDiscussionsTab.Text = "DISCUSSIONS";
-            lblDiscussionsTab.Click += lblDiscussionsTab_Click;
+            lblPostsTab.AutoSize = true;
+            lblPostsTab.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold);
+            lblPostsTab.ForeColor = Color.FromArgb(178, 172, 162);
+            lblPostsTab.Location = new Point(356, 20);
+            lblPostsTab.Name = "lblPostsTab";
+            lblPostsTab.Size = new Size(117, 21);
+            lblPostsTab.TabIndex = 2;
+            lblPostsTab.Text = "DISCUSSIONS";
+            lblPostsTab.Click += lblPostsTab_Click;
             // 
             // lblListsTab
             // 
@@ -372,7 +372,7 @@
         private Label lblHomeTab;
         private Label lblListsTab;
         private Label lblMoviesTab;
-        private Label lblDiscussionsTab;
+        private Label lblPostsTab;
         private Panel pnUserWrapper;
         private PictureBox picUser;
         private Panel pSearchAndUser;

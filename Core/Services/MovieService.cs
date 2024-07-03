@@ -31,7 +31,6 @@ namespace CineVerse.Core.Services
 
         }
 
-        // Depricated
         public async Task<bool> IsLastPage(int pageNumber, int pageSize)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
@@ -79,18 +78,32 @@ namespace CineVerse.Core.Services
                 var movie = await unitOfWork.Movies.GetMovieByTMDBIdAsync(movieId)
                     ?? throw new Exception("Movie not found");
 
-                var review = new Review()
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    UserId = userId,
-                    MovieId = movie.Id,
-                    Rating = rating,
-                    Content = content,
-                    CreatedAt = DateTime.UtcNow
-                };
+                var existingReview = await unitOfWork.Reviews.GetReviewByUserIdMovieIdAsync(userId, movieId);
 
-                await unitOfWork.Reviews.AddAsync(review);
-                await unitOfWork.CompleteAsync();
+                if (existingReview != null)
+                {
+                    existingReview.Rating = rating;
+                    existingReview.Content = content;
+                    existingReview.UpdatedAt = DateTime.UtcNow;
+
+                    unitOfWork.Reviews.Update(existingReview);
+                    await unitOfWork.CompleteAsync();
+                }
+                else
+                {
+                    var review = new Review()
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        UserId = userId,
+                        MovieId = movie.Id,
+                        Rating = rating,
+                        Content = content,
+                        CreatedAt = DateTime.UtcNow
+                    };
+
+                    await unitOfWork.Reviews.AddAsync(review);
+                    await unitOfWork.CompleteAsync();
+                }
             }
         }
 

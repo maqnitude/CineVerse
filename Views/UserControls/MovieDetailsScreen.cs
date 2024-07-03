@@ -53,6 +53,9 @@ namespace CineVerse.Views.UserControls
         {
             EventManager.Instance.Subscribe<EventArgs>(EventType.ReviewAdded, OnReviewAdded);
 
+            EventManager.Instance.Subscribe<RatingEventArgs>(EventType.RatingChanged, OnRatingChanged);
+            EventManager.Instance.Subscribe<EventArgs>(EventType.UserMovieRated, OnUserMovieRated);
+
             EventManager.Instance.Subscribe<EventArgs>(EventType.WatchlistMovieAdded, OnWatchlistMovieAdded);
             EventManager.Instance.Subscribe<EventArgs>(EventType.WatchlistMovieRemoved, OnWatchlistMovieRemoved);
 
@@ -124,8 +127,11 @@ namespace CineVerse.Views.UserControls
 
             foreach (Review review in reviews)
             {
-                ReviewItem reviewItem = new(review);
-                pnReviews.Controls.Add(reviewItem);
+                if (review.Content != null)
+                {
+                    ReviewItem reviewItem = new(review);
+                    pnReviews.Controls.Add(reviewItem);
+                }
             }
 
             pnReviews.ResumeLayout();
@@ -237,9 +243,20 @@ namespace CineVerse.Views.UserControls
             }
         }
 
+        //
+
+        private async Task UpdateStarRatingControl()
+        {
+            var user = _mainForm.GetCurrentUser();
+            var rating = await ReviewService.Instance.GetUserMovieRatingAsync(user.Id, _movie.Id);
+
+            starRatingControl.Rating = rating;
+        }
+
         private async Task UpdateState()
         {
             await UpdateActionIcons();
+            await UpdateStarRatingControl();
         }
 
         private async void OnWatchlistMovieAdded(object sender, EventArgs e)
@@ -275,7 +292,27 @@ namespace CineVerse.Views.UserControls
         private async void OnReviewAdded(object sender, EventArgs e)
         {
             await LoadReviews();
+            await UpdateState();
         }
+
+        private async void OnRatingChanged(object sender, RatingEventArgs e)
+        {
+            // This works, but there should be a better way
+            if (sender is StarRatingControl ratingControl && !ratingControl.CanSaveRating)
+            {
+                return;
+            }
+
+            var user = _mainForm.GetCurrentUser();
+            await UserService.Instance.RateMovieAsync(user.Id, _movie.Id, e.Rating);
+        }
+
+        private async void OnUserMovieRated(object sender, EventArgs e)
+        {
+            await UpdateState();
+        }
+        
+        //
 
         private void MovieDetailsScreen_Load(object sender, EventArgs e)
         {

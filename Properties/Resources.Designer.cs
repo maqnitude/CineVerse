@@ -103,6 +103,16 @@ namespace CineVerse.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add_follow {
+            get {
+                object obj = ResourceManager.GetObject("add_follow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap back {
             get {
                 object obj = ResourceManager.GetObject("back", resourceCulture);
@@ -316,6 +326,16 @@ namespace CineVerse.Properties {
         internal static System.Drawing.Bitmap eye_green {
             get {
                 object obj = ResourceManager.GetObject("eye_green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap grid {
+            get {
+                object obj = ResourceManager.GetObject("grid", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -616,6 +636,16 @@ namespace CineVerse.Properties {
         internal static System.Drawing.Bitmap star_r_green {
             get {
                 object obj = ResourceManager.GetObject("star_r_green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tick_green {
+            get {
+                object obj = ResourceManager.GetObject("tick_green", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

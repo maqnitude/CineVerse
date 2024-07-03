@@ -7,12 +7,20 @@ using System.Threading.Tasks;
 
 namespace CineVerse.Data.Entities
 {
+    public enum ProfileVisibility
+    {
+        Private,
+        Friends,
+        Public,
+    }
+
     public class User
     {
         public string Id { get; set; }
         public string? Name { get; set; }
         public string? GivenName { get; set; }
         public string? FamilyName { get; set;}
+        public ProfileVisibility ProfileVisibility { get; set; } = ProfileVisibility.Public;
         [Required]
         public string Username { get; set; }
         [Required]
@@ -39,6 +47,9 @@ namespace CineVerse.Data.Entities
 
         public ICollection<PostVote> PostVotes { get; set; } = new List<PostVote>();
         public ICollection<CommentVote> CommentVotes { get; set; } = new List<CommentVote>();
+
+        public ICollection<UserFollow> Followers { get; set; } = new List<UserFollow>();
+        public ICollection<UserFollow> Followees { get; set; } = new List<UserFollow>(); 
 
         public User()
         {

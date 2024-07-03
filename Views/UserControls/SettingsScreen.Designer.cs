@@ -37,7 +37,7 @@
             cbbVisibility = new ComboBox();
             lblVisibilityHeading = new Label();
             pnBioGroup = new Panel();
-            rtbBio = new RichTextBox();
+            txtBio = new TextBox();
             lblBioHeading = new Label();
             tlpLocationAndWebsiteGroup = new TableLayoutPanel();
             pnWebsiteGroup = new Panel();
@@ -184,11 +184,12 @@
             // 
             cbbVisibility.BackColor = Color.FromArgb(44, 52, 64);
             cbbVisibility.Dock = DockStyle.Fill;
+            cbbVisibility.DropDownStyle = ComboBoxStyle.DropDownList;
             cbbVisibility.FlatStyle = FlatStyle.Popup;
             cbbVisibility.Font = new Font("Segoe UI", 10F);
             cbbVisibility.ForeColor = Color.FromArgb(168, 160, 149);
             cbbVisibility.FormattingEnabled = true;
-            cbbVisibility.Items.AddRange(new object[] { "Public", "Friends only", "Private" });
+            cbbVisibility.Items.AddRange(new object[] { "Public", "Friends", "Private" });
             cbbVisibility.Location = new Point(0, 20);
             cbbVisibility.Name = "cbbVisibility";
             cbbVisibility.Size = new Size(258, 25);
@@ -209,25 +210,25 @@
             // 
             pnBioGroup.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pnBioGroup.AutoSize = true;
-            pnBioGroup.Controls.Add(rtbBio);
+            pnBioGroup.Controls.Add(txtBio);
             pnBioGroup.Controls.Add(lblBioHeading);
             pnBioGroup.Location = new Point(17, 385);
             pnBioGroup.Name = "pnBioGroup";
             pnBioGroup.Size = new Size(544, 191);
             pnBioGroup.TabIndex = 6;
             // 
-            // rtbBio
+            // txtBio
             // 
-            rtbBio.BackColor = Color.FromArgb(44, 52, 64);
-            rtbBio.BorderStyle = BorderStyle.None;
-            rtbBio.Dock = DockStyle.Fill;
-            rtbBio.Font = new Font("Segoe UI", 10F);
-            rtbBio.ForeColor = Color.FromArgb(168, 160, 149);
-            rtbBio.Location = new Point(0, 20);
-            rtbBio.Name = "rtbBio";
-            rtbBio.Size = new Size(544, 171);
-            rtbBio.TabIndex = 1;
-            rtbBio.Text = "";
+            txtBio.BackColor = Color.FromArgb(44, 52, 64);
+            txtBio.BorderStyle = BorderStyle.None;
+            txtBio.Dock = DockStyle.Fill;
+            txtBio.Font = new Font("Segoe UI", 10F);
+            txtBio.ForeColor = Color.FromArgb(168, 160, 149);
+            txtBio.Location = new Point(0, 20);
+            txtBio.Multiline = true;
+            txtBio.Name = "txtBio";
+            txtBio.Size = new Size(544, 171);
+            txtBio.TabIndex = 1;
             // 
             // lblBioHeading
             // 
@@ -750,6 +751,7 @@
             pnLeftCol.PerformLayout();
             pnVisibilityGroup.ResumeLayout(false);
             pnBioGroup.ResumeLayout(false);
+            pnBioGroup.PerformLayout();
             tlpLocationAndWebsiteGroup.ResumeLayout(false);
             tlpLocationAndWebsiteGroup.PerformLayout();
             pnWebsiteGroup.ResumeLayout(false);
@@ -822,7 +824,6 @@
         private TextBox txtEmail;
         private Label lblEmailHeading;
         private Panel pnBioGroup;
-        private RichTextBox rtbBio;
         private Label lblBioHeading;
         private TableLayoutPanel tlpLocationAndWebsiteGroup;
         private Panel pnWebsiteGroup;
@@ -845,5 +846,6 @@
         private Label lblFavouriteMoviesSection;
         private Panel pnFavouriteMovieCards;
         private Button btnBack;
+        private TextBox txtBio;
     }
 }

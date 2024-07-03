@@ -34,13 +34,13 @@
             lblContent = new Label();
             btnLike = new Button();
             btnReply = new Button();
-            pictureBox2 = new PictureBox();
+            picStar = new PictureBox();
             lblRating = new Label();
             lblMaxRating = new Label();
-            panel1 = new Panel();
+            pnRating = new Panel();
             ((System.ComponentModel.ISupportInitialize)picUser).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picStar).BeginInit();
+            pnRating.SuspendLayout();
             SuspendLayout();
             // 
             // picUser
@@ -120,17 +120,17 @@
             btnReply.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnReply.UseVisualStyleBackColor = true;
             // 
-            // pictureBox2
+            // picStar
             // 
-            pictureBox2.Dock = DockStyle.Left;
-            pictureBox2.Image = Properties.Resources.star;
-            pictureBox2.Location = new Point(0, 0);
-            pictureBox2.Margin = new Padding(2);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(20, 20);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 6;
-            pictureBox2.TabStop = false;
+            picStar.Dock = DockStyle.Left;
+            picStar.Image = Properties.Resources.star;
+            picStar.Location = new Point(0, 0);
+            picStar.Margin = new Padding(2);
+            picStar.Name = "picStar";
+            picStar.Size = new Size(20, 20);
+            picStar.SizeMode = PictureBoxSizeMode.StretchImage;
+            picStar.TabIndex = 6;
+            picStar.TabStop = false;
             // 
             // lblRating
             // 
@@ -159,17 +159,17 @@
             lblMaxRating.Text = "/5";
             lblMaxRating.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // panel1
+            // pnRating
             // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            panel1.AutoSize = true;
-            panel1.Controls.Add(lblRating);
-            panel1.Controls.Add(pictureBox2);
-            panel1.Controls.Add(lblMaxRating);
-            panel1.Location = new Point(388, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(62, 20);
-            panel1.TabIndex = 9;
+            pnRating.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pnRating.AutoSize = true;
+            pnRating.Controls.Add(lblRating);
+            pnRating.Controls.Add(picStar);
+            pnRating.Controls.Add(lblMaxRating);
+            pnRating.Location = new Point(388, 3);
+            pnRating.Name = "pnRating";
+            pnRating.Size = new Size(62, 20);
+            pnRating.TabIndex = 9;
             // 
             // ReviewItem
             // 
@@ -177,7 +177,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(24, 26, 27);
             BorderStyle = BorderStyle.FixedSingle;
-            Controls.Add(panel1);
+            Controls.Add(pnRating);
             Controls.Add(btnReply);
             Controls.Add(btnLike);
             Controls.Add(lblContent);
@@ -189,9 +189,9 @@
             Name = "ReviewItem";
             Size = new Size(461, 101);
             ((System.ComponentModel.ISupportInitialize)picUser).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picStar).EndInit();
+            pnRating.ResumeLayout(false);
+            pnRating.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -204,9 +204,9 @@
         private Label lblContent;
         private Button btnLike;
         private Button btnReply;
-        private PictureBox pictureBox2;
+        private PictureBox picStar;
         private Label lblRating;
         private Label lblMaxRating;
-        private Panel panel1;
+        private Panel pnRating;
     }
 }

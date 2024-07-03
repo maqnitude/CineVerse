@@ -20,6 +20,7 @@ namespace CineVerse.Data
         public IPersonRepository People { get; private set; }
         public ICompanyRepository Companies { get; private set; }
         public IReviewRepository Reviews { get; private set; }
+        public IUserFollowRepository UserFollows { get; private set; }
         public IPostRepository Posts { get; private set; }
         public ICommentRepository Comments { get; private set; }
 
@@ -33,6 +34,7 @@ namespace CineVerse.Data
             People = new PersonRepository(_context);
             Companies = new CompanyRepository(_context);
             Reviews = new ReviewRepository(_context);
+            UserFollows = new UserFollowRepository(_context);
             Posts = new PostRepository(_context);
             Comments = new CommentRepository(_context);
         }

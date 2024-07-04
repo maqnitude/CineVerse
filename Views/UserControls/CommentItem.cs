@@ -78,12 +78,12 @@ namespace CineVerse.Views.UserControls
             {
                 lblTitle.Text = post.Title;
                 lblUsername.Text = _commentable.User.Username;
-                rtbContent.Text = post.Content;
+                lblContent.Text = post.Content;
             }
             else if (_commentable is Comment comment)
             {
                 lblTitle.Text = $"Replied by {comment.User.Username}";
-                rtbContent.Text = comment.Content;
+                lblContent.Text = comment.Content;
                 lblBy.Visible = false;
                 lblUsername.Visible = false;
                 lblCreatedAt.Dock = DockStyle.Left;

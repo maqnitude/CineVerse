@@ -30,7 +30,11 @@
         {
             btnCancel = new Button();
             btnSubmit = new Button();
-            rtbContent = new RichTextBox();
+            pnFooter = new Panel();
+            pnContent = new Panel();
+            txtContent = new TextBox();
+            pnFooter.SuspendLayout();
+            pnContent.SuspendLayout();
             SuspendLayout();
             // 
             // btnCancel
@@ -40,7 +44,7 @@
             btnCancel.FlatAppearance.BorderSize = 0;
             btnCancel.FlatStyle = FlatStyle.Flat;
             btnCancel.ForeColor = Color.White;
-            btnCancel.Location = new Point(541, 132);
+            btnCancel.Location = new Point(507, 4);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(75, 23);
             btnCancel.TabIndex = 0;
@@ -55,7 +59,7 @@
             btnSubmit.FlatAppearance.BorderSize = 0;
             btnSubmit.FlatStyle = FlatStyle.Flat;
             btnSubmit.ForeColor = Color.White;
-            btnSubmit.Location = new Point(622, 132);
+            btnSubmit.Location = new Point(588, 4);
             btnSubmit.Name = "btnSubmit";
             btnSubmit.Size = new Size(75, 23);
             btnSubmit.TabIndex = 0;
@@ -63,29 +67,55 @@
             btnSubmit.UseVisualStyleBackColor = false;
             btnSubmit.Click += btnSubmit_Click;
             // 
-            // rtbContent
+            // pnFooter
             // 
-            rtbContent.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            rtbContent.BackColor = Color.FromArgb(24, 28, 31);
-            rtbContent.BorderStyle = BorderStyle.None;
-            rtbContent.ForeColor = Color.White;
-            rtbContent.Location = new Point(3, 3);
-            rtbContent.Name = "rtbContent";
-            rtbContent.Size = new Size(707, 115);
-            rtbContent.TabIndex = 1;
-            rtbContent.Text = "";
+            pnFooter.BackColor = Color.FromArgb(24, 28, 31);
+            pnFooter.BorderStyle = BorderStyle.FixedSingle;
+            pnFooter.Controls.Add(btnSubmit);
+            pnFooter.Controls.Add(btnCancel);
+            pnFooter.Dock = DockStyle.Bottom;
+            pnFooter.Location = new Point(0, 69);
+            pnFooter.Name = "pnFooter";
+            pnFooter.Size = new Size(670, 34);
+            pnFooter.TabIndex = 2;
+            // 
+            // pnContent
+            // 
+            pnContent.BackColor = Color.FromArgb(24, 28, 31);
+            pnContent.BorderStyle = BorderStyle.FixedSingle;
+            pnContent.Controls.Add(txtContent);
+            pnContent.Dock = DockStyle.Fill;
+            pnContent.Location = new Point(0, 0);
+            pnContent.Name = "pnContent";
+            pnContent.Size = new Size(670, 69);
+            pnContent.TabIndex = 3;
+            // 
+            // txtContent
+            // 
+            txtContent.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            txtContent.BackColor = Color.FromArgb(24, 28, 31);
+            txtContent.BorderStyle = BorderStyle.None;
+            txtContent.Font = new Font("Segoe UI", 10F);
+            txtContent.ForeColor = Color.White;
+            txtContent.Location = new Point(15, 11);
+            txtContent.Multiline = true;
+            txtContent.Name = "txtContent";
+            txtContent.PlaceholderText = "Add a comment here";
+            txtContent.Size = new Size(639, 44);
+            txtContent.TabIndex = 0;
             // 
             // CommentEditor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
-            BorderStyle = BorderStyle.FixedSingle;
-            Controls.Add(rtbContent);
-            Controls.Add(btnSubmit);
-            Controls.Add(btnCancel);
+            Controls.Add(pnContent);
+            Controls.Add(pnFooter);
             Name = "CommentEditor";
-            Size = new Size(713, 166);
+            Size = new Size(670, 103);
+            pnFooter.ResumeLayout(false);
+            pnContent.ResumeLayout(false);
+            pnContent.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -93,6 +123,8 @@
 
         private Button btnCancel;
         private Button btnSubmit;
-        private RichTextBox rtbContent;
+        private Panel pnFooter;
+        private Panel pnContent;
+        private TextBox txtContent;
     }
 }

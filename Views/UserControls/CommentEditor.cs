@@ -45,7 +45,7 @@ namespace CineVerse.Views.UserControls
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(rtbContent.Text))
+            if (string.IsNullOrWhiteSpace(txtContent.Text))
             {
                 MessageBox.Show("Content is empty");
                 return;
@@ -54,12 +54,12 @@ namespace CineVerse.Views.UserControls
             if (_commentable is Post post)
             {
                 EventManager.Instance.Publish(EventType.PostReplyAdding, this,
-                    new PostReplyEventArgs(post.Id, rtbContent.Text));
+                    new PostReplyEventArgs(post.Id, txtContent.Text));
             }
             else if (_commentable is Comment comment)
             {
                 EventManager.Instance.Publish(EventType.CommentReplyAdding, this,
-                    new CommentReplyEventArgs(comment.PostId, comment.Id, rtbContent.Text));
+                    new CommentReplyEventArgs(comment.PostId, comment.Id, txtContent.Text));
             }
         }
     }

@@ -42,7 +42,7 @@ namespace CineVerse.Core.Services
             _screens[key] = screen;
         }
 
-        public void NavigateToScreen(string key)
+        public void NavigateToScreen(string key, bool dockFill = true)
         {
             if (!_screens.ContainsKey(key))
             {
@@ -52,9 +52,19 @@ namespace CineVerse.Core.Services
             var screen = _screens[key];
             _mainPanel.Controls.Clear();
             _mainPanel.Controls.Add(screen);
-            screen.Dock = DockStyle.Fill;
+            if (dockFill)
+            {
+                screen.Dock = DockStyle.Fill;
+            }
+            else
+            {
+                screen.Dock = DockStyle.None;
+                screen.Location = new Point(0, 0);
+                screen.Width = _mainPanel.ClientSize.Width;
+                screen.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
+            }
 
-            _navigationStack.Push((screen, true));
+            _navigationStack.Push((screen, dockFill));
         }
 
         public void NavigateToScreen(UserControl screen, bool dockFill = true)

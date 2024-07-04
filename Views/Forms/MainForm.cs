@@ -268,7 +268,7 @@ namespace CineVerse.Forms
             ResetNavItemColors();
             lblHomeTab.ForeColor = Color.FromArgb(0, 157, 26);
             _selectedTab = lblHomeTab;
-            _navigationService.NavigateToScreen("homeScreen");
+            _navigationService.NavigateToScreen("homeScreen", false);
         }
 
         private async void lblMoviesTab_Click(object sender, EventArgs e)

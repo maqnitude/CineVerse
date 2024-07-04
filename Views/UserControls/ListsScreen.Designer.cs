@@ -33,14 +33,14 @@
             pnFooter = new Panel();
             btnAddList = new Button();
             pnHeader = new Panel();
-            lblHeading = new Label();
             menuStripBrowsingTools = new MenuStrip();
             filterByToolStripMenuItem = new ToolStripMenuItem();
-            sortByToolStripMenuItem = new ToolStripMenuItem();
             friendsToolStripMenuItem = new ToolStripMenuItem();
+            sortByToolStripMenuItem = new ToolStripMenuItem();
             highestFirstToolStripMenuItem = new ToolStripMenuItem();
             lowestFirstToolStripMenuItem = new ToolStripMenuItem();
             txtSortedBy = new ToolStripTextBox();
+            lblHeading = new Label();
             pnWrapper.SuspendLayout();
             pnFooter.SuspendLayout();
             pnHeader.SuspendLayout();
@@ -104,18 +104,6 @@
             pnHeader.Size = new Size(950, 26);
             pnHeader.TabIndex = 2;
             // 
-            // lblHeading
-            // 
-            lblHeading.AutoSize = true;
-            lblHeading.Dock = DockStyle.Left;
-            lblHeading.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblHeading.ForeColor = Color.FromArgb(178, 172, 162);
-            lblHeading.Location = new Point(0, 0);
-            lblHeading.Name = "lblHeading";
-            lblHeading.Size = new Size(101, 17);
-            lblHeading.TabIndex = 0;
-            lblHeading.Text = "POPULAR LISTS";
-            // 
             // menuStripBrowsingTools
             // 
             menuStripBrowsingTools.BackColor = Color.FromArgb(32, 38, 45);
@@ -137,6 +125,14 @@
             filterByToolStripMenuItem.Size = new Size(52, 20);
             filterByToolStripMenuItem.Text = "Public";
             // 
+            // friendsToolStripMenuItem
+            // 
+            friendsToolStripMenuItem.BackColor = Color.FromArgb(32, 38, 45);
+            friendsToolStripMenuItem.ForeColor = Color.FromArgb(178, 172, 162);
+            friendsToolStripMenuItem.Name = "friendsToolStripMenuItem";
+            friendsToolStripMenuItem.Size = new Size(112, 22);
+            friendsToolStripMenuItem.Text = "Friends";
+            // 
             // sortByToolStripMenuItem
             // 
             sortByToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { highestFirstToolStripMenuItem, lowestFirstToolStripMenuItem });
@@ -145,20 +141,12 @@
             sortByToolStripMenuItem.Size = new Size(87, 20);
             sortByToolStripMenuItem.Text = "Date Created";
             // 
-            // friendsToolStripMenuItem
-            // 
-            friendsToolStripMenuItem.BackColor = Color.FromArgb(32, 38, 45);
-            friendsToolStripMenuItem.ForeColor = Color.FromArgb(178, 172, 162);
-            friendsToolStripMenuItem.Name = "friendsToolStripMenuItem";
-            friendsToolStripMenuItem.Size = new Size(180, 22);
-            friendsToolStripMenuItem.Text = "Friends";
-            // 
             // highestFirstToolStripMenuItem
             // 
             highestFirstToolStripMenuItem.BackColor = Color.FromArgb(32, 38, 45);
             highestFirstToolStripMenuItem.ForeColor = Color.FromArgb(178, 172, 162);
             highestFirstToolStripMenuItem.Name = "highestFirstToolStripMenuItem";
-            highestFirstToolStripMenuItem.Size = new Size(180, 22);
+            highestFirstToolStripMenuItem.Size = new Size(167, 22);
             highestFirstToolStripMenuItem.Text = "Ascending order";
             // 
             // lowestFirstToolStripMenuItem
@@ -166,7 +154,7 @@
             lowestFirstToolStripMenuItem.BackColor = Color.FromArgb(32, 38, 45);
             lowestFirstToolStripMenuItem.ForeColor = Color.FromArgb(178, 172, 162);
             lowestFirstToolStripMenuItem.Name = "lowestFirstToolStripMenuItem";
-            lowestFirstToolStripMenuItem.Size = new Size(180, 22);
+            lowestFirstToolStripMenuItem.Size = new Size(167, 22);
             lowestFirstToolStripMenuItem.Text = "Descending order";
             // 
             // txtSortedBy
@@ -178,6 +166,18 @@
             txtSortedBy.Name = "txtSortedBy";
             txtSortedBy.Size = new Size(100, 20);
             txtSortedBy.Text = "Sorted by";
+            // 
+            // lblHeading
+            // 
+            lblHeading.AutoSize = true;
+            lblHeading.Dock = DockStyle.Left;
+            lblHeading.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblHeading.ForeColor = Color.FromArgb(178, 172, 162);
+            lblHeading.Location = new Point(0, 0);
+            lblHeading.Name = "lblHeading";
+            lblHeading.Size = new Size(101, 17);
+            lblHeading.TabIndex = 0;
+            lblHeading.Text = "POPULAR LISTS";
             // 
             // ListsScreen
             // 

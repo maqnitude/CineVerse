@@ -40,6 +40,15 @@ namespace CineVerse.Core.Services
             }
         }
 
+        public async Task<CommentVote> GetCommentVoteAsync(string commentId, string userId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var vote = await unitOfWork.CommentVotes.GetCommentVoteByCommentIdUserIdAsync(commentId, userId);
+                return vote;
+            }
+        }
+
         public async Task AddCommentReplyAsync(string parentCommentId, string userId, string content)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
@@ -61,6 +70,109 @@ namespace CineVerse.Core.Services
 
                 await unitOfWork.Comments.AddAsync(comment);
                 await unitOfWork.CompleteAsync();
+            }
+        }
+
+        public async Task AddOrUpdateCommentVoteAsync(string commentId, string userId, bool isUpvote)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var comment = await unitOfWork.Comments.GetCommentByIdAsync(commentId)
+                    ?? throw new Exception("Comment not found");
+                var user = await unitOfWork.Users.GetUserByIdAsync(userId)
+                    ?? throw new Exception("User not found");
+
+                var vote = await unitOfWork.CommentVotes.GetCommentVoteByCommentIdUserIdAsync(commentId, userId);
+                if (vote != null)
+                {
+                    if (vote.IsUpvote != isUpvote)
+                    {
+                        vote.IsUpvote = isUpvote;
+
+                        unitOfWork.CommentVotes.Update(vote);
+
+                        if (isUpvote)
+                        {
+                            comment.Upvotes++;
+                            comment.Downvotes--;
+                        }
+                        else
+                        {
+                            comment.Upvotes--;
+                            comment.Downvotes++;
+                        }
+                        comment.UpdatedAt = DateTime.UtcNow;
+
+                        unitOfWork.Comments.Update(comment);
+
+                        await unitOfWork.CompleteAsync();
+
+                        EventManager.Instance.Publish(EventType.CommentVoteChanged, this,
+                            new CommentVoteEventArgs(commentId, userId, isUpvote, comment.Upvotes, comment.Downvotes));
+                    }
+                }
+                else
+                {
+                    var newVote = new CommentVote()
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        UserId = user.Id,
+                        CommentId = comment.Id,
+                        IsUpvote = isUpvote,
+                        CreatedAt = DateTime.UtcNow
+                    };
+
+                    await unitOfWork.CommentVotes.AddAsync(newVote);
+
+                    if (isUpvote)
+                    {
+                        comment.Upvotes++;
+                    }
+                    else
+                    {
+                        comment.Downvotes++;
+                    }
+
+                    unitOfWork.Comments.Update(comment);
+
+                    await unitOfWork.CompleteAsync();
+
+                    EventManager.Instance.Publish(EventType.CommentVoteAdded, this,
+                        new CommentVoteEventArgs(commentId, userId, isUpvote, comment.Upvotes, comment.Downvotes));
+                }
+            }
+        }
+
+        public async Task RemoveCommentVoteAsync(string commentId, string userId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var comment = await unitOfWork.Comments.GetCommentByIdAsync(commentId)
+                    ?? throw new Exception("Comment not found");
+                var user = await unitOfWork.Users.GetUserByIdAsync(userId)
+                    ?? throw new Exception("User not found");
+
+                var vote = await unitOfWork.CommentVotes.GetCommentVoteByCommentIdUserIdAsync(comment.Id, user.Id);
+                if (vote != null)
+                {
+                    unitOfWork.CommentVotes.Delete(vote);
+
+                    if (vote.IsUpvote)
+                    {
+                        comment.Upvotes--;
+                    }
+                    else
+                    {
+                        comment.Downvotes--;
+                    }
+
+                    unitOfWork.Comments.Update(comment);
+
+                    await unitOfWork.CompleteAsync();
+
+                    EventManager.Instance.Publish(EventType.CommentVoteAdded, this,
+                        new CommentVoteEventArgs(commentId, userId, vote.IsUpvote, comment.Upvotes, comment.Downvotes));
+                }
             }
         }
     }

@@ -32,6 +32,15 @@ namespace CineVerse.Core.Services
         {
         }
 
+        public async Task<List<List>> GetListsAsync(ListType listType, bool includeUser = false, bool includeMovies = false)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var lists = await unitOfWork.Lists.GetListsAsync(listType, includeUser, includeMovies);
+                return lists.ToList();
+            }
+        }
+
         public async Task<List<List>> GetUserListsAsync(string userId, bool includeUser = false, bool includeMovies = false)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))

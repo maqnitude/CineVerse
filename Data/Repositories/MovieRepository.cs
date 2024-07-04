@@ -14,9 +14,61 @@ namespace CineVerse.Data.Repositories
     {
         public MovieRepository(AppDbContext context) : base(context) { }
 
-        public async Task<int> CountMoviesAsync()
+        public async Task<int> CountMoviesAsync(
+            string? filterBy = null, string? filterValue = null,
+            string? sortBy = null, string? sortValue = null)
         {
-            return await _context.Set<Movie>().CountAsync();
+            IQueryable<Movie> query = _context.Set<Movie>();
+
+            // Filter by something
+            if (!string.IsNullOrWhiteSpace(filterBy))
+            {
+                switch (filterBy.ToLower())
+                {
+                    case "decade":
+                        if (!string.IsNullOrWhiteSpace(filterValue))
+                        {
+                            switch (filterValue.ToLower())
+                            {
+                                case "all":
+                                    break;
+                                case "upcoming":
+                                    query = query.Where(m => m.ReleaseDate == null);
+                                    break;
+                                default:
+                                    int startYear = int.Parse(filterValue.Substring(0, 4));
+                                    int endYear = startYear + 9;
+                                    query = query
+                                        .Where(m => m.ReleaseDate != null && m.ReleaseDate.Value.Year >= startYear && m.ReleaseDate.Value.Year <= endYear);
+                                    break;
+                            }
+                        }
+                        break;
+                }
+            }
+
+            // Sort by something
+            if (!string.IsNullOrWhiteSpace(sortBy))
+            {
+                switch (sortBy.ToLower())
+                {
+                    case "rating":
+                        if (string.IsNullOrWhiteSpace(sortValue)) { break; }
+                        switch (sortValue.ToLower())
+                        {
+                            case "highest first":
+                                query = query.OrderByDescending(m => m.VoteAverage);
+                                break;
+                            case "lowest first":
+                                query = query.OrderBy(m => m.VoteAverage);
+                                break;
+                        }
+                        break;
+                }
+            }
+
+            return await query.CountAsync();
+            //return await _context.Set<Movie>().CountAsync();
         }
 
         public async Task<Movie> GetMovieByTMDBIdAsync(int tmdbId)

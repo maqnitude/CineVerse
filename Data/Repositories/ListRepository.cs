@@ -15,8 +15,28 @@ namespace CineVerse.Data.Repositories
 
         //public async Task<List> GetWatchlistByUserIdAsync(string userId)
         //{
-            
+
         //}
+
+        public async Task<IEnumerable<List>> GetListsAsync(ListType listType, bool includeUser = false, bool includeMovies = false)
+        {
+            IQueryable<List> query = _context.Set<List>()
+                .Where(l => l.Type == listType);
+
+            if (includeUser)
+            {
+                query = query.Include(l => l.User);
+            }
+
+            if (includeMovies)
+            {
+                query = query
+                    .Include(l => l.Movies) // this is just the ListMovie collection
+                        .ThenInclude(lm => lm.Movie); // include actual movies
+            }
+
+            return await query.ToListAsync();
+        }
 
         public async Task<IEnumerable<List>> GetListsByUserIdAsync(string userId, bool includeUser = false, bool includeMovies = false)
         {

@@ -106,37 +106,52 @@ namespace CineVerse.Views.UserControls
         {
             _post = post;
 
-            //commentItemRoot.SetCommentableData(post);
-            //await commentItemRoot.LoadReplies(post);
-            rootCommentItem.Initialize(post, this);
+            this.SuspendLayout();
+
+            await rootCommentItem.Initialize(_mainForm, post, this);
             await rootCommentItem.LoadReplies();
+
+            this.ResumeLayout();
         }
 
         private async void OnPostReplyAdding(object sender, PostReplyEventArgs e)
         {
-            var user = _mainForm.GetCurrentUser();
-            await PostService.Instance.AddPostReplyAsync(_post.Id, user.Id, e.Content);
+            if (_post.Id == e.PostId)
+            {
+                var user = _mainForm.GetCurrentUser();
+                await PostService.Instance.AddPostReplyAsync(_post.Id, user.Id, e.Content);
 
-            EventManager.Instance.Publish(EventType.PostReplyAdded, this, EventArgs.Empty);
+                EventManager.Instance.Publish(EventType.PostReplyAdded, this, EventArgs.Empty);
+            }
         }
 
         private async void OnPostReplyAdded(object sender, EventArgs e)
         {
+            this.SuspendLayout();
+
             await rootCommentItem.LoadReplies();
+
+            this.ResumeLayout();
         }
 
         private async void OnCommentReplyAdding(object sender, CommentReplyEventArgs e)
         {
-            var user = _mainForm.GetCurrentUser();
-            await CommentService.Instance.AddCommentReplyAsync(e.ParentCommentId, user.Id, e.Content);
+            if (_post.Id == e.PostId)
+            {
+                var user = _mainForm.GetCurrentUser();
+                await CommentService.Instance.AddCommentReplyAsync(e.ParentCommentId, user.Id, e.Content);
 
-            EventManager.Instance.Publish(EventType.CommentReplyAdded, this, EventArgs.Empty);
+                EventManager.Instance.Publish(EventType.CommentReplyAdded, this, EventArgs.Empty);
+            }
         }
 
         private async void OnCommentReplyAdded(object sender, EventArgs e)
         {
+            this.SuspendLayout();
             // TODO: load the replies of the parent comment instead
             await rootCommentItem.LoadReplies();
+
+            this.ResumeLayout();
         }
 
         private void btnBack_Click(object sender, EventArgs e)

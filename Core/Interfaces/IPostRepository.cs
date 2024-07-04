@@ -12,5 +12,6 @@ namespace CineVerse.Core.Interfaces
         Task<IEnumerable<Post>> GetPostsByPageAsync(int page, int pageSize);
         Task<Post> GetPostByIdAsync(string postId);
         Task<IEnumerable<Comment>> GetPostRepliesAsync(string postId);
+        Task<int> CountPostRepliesAsync(string postId);
     }
 }

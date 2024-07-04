@@ -13,5 +13,6 @@ namespace CineVerse.Core.Interfaces
         Task<User> GetUserByIdAsync(string id);
         Task<User> GetUserByUsernameAsync(string username);
         Task<User> GetUserByEmailAsync(string email);
+        Task<List<Movie?>> GetFavouriteMoviesByIds(List<int?> movieIds);
     }
 }

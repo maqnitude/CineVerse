@@ -31,6 +31,15 @@ namespace CineVerse.Core.Services
 
         }
 
+        public async Task<Movie> GetMovieByIdAsync(int movieId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var movie = await unitOfWork.Movies.GetMovieByTMDBIdAsync(movieId);
+                return movie;
+            }
+        }
+
         public async Task<bool> IsLastPage(int pageNumber, int pageSize)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
@@ -125,7 +134,7 @@ namespace CineVerse.Core.Services
             }
         }
 
-        public async Task<Person> GetMovieDirector(int movieId)
+        public async Task<Person> GetMovieDirectorAsync(int movieId)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
             {
@@ -134,7 +143,7 @@ namespace CineVerse.Core.Services
             }
         }
 
-        public async Task<List<Person>> GetMovieDirectors(int movieId)
+        public async Task<List<Person>> GetMovieDirectorsAsync(int movieId)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
             {

@@ -181,11 +181,11 @@
             // 
             lblNumFollowers.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblNumFollowers.AutoSize = true;
-            lblNumFollowers.Font = new Font("Georgia", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNumFollowers.Font = new Font("Georgia", 18.25F, FontStyle.Bold);
             lblNumFollowers.ForeColor = Color.FromArgb(196, 209, 220);
             lblNumFollowers.Location = new Point(25, 0);
             lblNumFollowers.Name = "lblNumFollowers";
-            lblNumFollowers.Size = new Size(31, 31);
+            lblNumFollowers.Size = new Size(29, 30);
             lblNumFollowers.TabIndex = 1;
             lblNumFollowers.Text = "3";
             // 
@@ -216,11 +216,11 @@
             // 
             lblNumFollowing.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblNumFollowing.AutoSize = true;
-            lblNumFollowing.Font = new Font("Georgia", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNumFollowing.Font = new Font("Georgia", 18.25F, FontStyle.Bold);
             lblNumFollowing.ForeColor = Color.FromArgb(196, 209, 220);
-            lblNumFollowing.Location = new Point(22, 0);
+            lblNumFollowing.Location = new Point(24, 0);
             lblNumFollowing.Name = "lblNumFollowing";
-            lblNumFollowing.Size = new Size(32, 31);
+            lblNumFollowing.Size = new Size(29, 30);
             lblNumFollowing.TabIndex = 1;
             lblNumFollowing.Text = "4";
             // 
@@ -251,11 +251,11 @@
             // 
             lblNumLists.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblNumLists.AutoSize = true;
-            lblNumLists.Font = new Font("Georgia", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNumLists.Font = new Font("Georgia", 18.25F, FontStyle.Bold);
             lblNumLists.ForeColor = Color.FromArgb(196, 209, 220);
-            lblNumLists.Location = new Point(13, 0);
+            lblNumLists.Location = new Point(14, 0);
             lblNumLists.Name = "lblNumLists";
-            lblNumLists.Size = new Size(27, 31);
+            lblNumLists.Size = new Size(25, 30);
             lblNumLists.TabIndex = 1;
             lblNumLists.Text = "1";
             // 
@@ -286,11 +286,11 @@
             // 
             lblNumMovies.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblNumMovies.AutoSize = true;
-            lblNumMovies.Font = new Font("Georgia", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNumMovies.Font = new Font("Georgia", 18.25F, FontStyle.Bold);
             lblNumMovies.ForeColor = Color.FromArgb(196, 209, 220);
-            lblNumMovies.Location = new Point(9, 0);
+            lblNumMovies.Location = new Point(11, 0);
             lblNumMovies.Name = "lblNumMovies";
-            lblNumMovies.Size = new Size(65, 31);
+            lblNumMovies.Size = new Size(61, 30);
             lblNumMovies.TabIndex = 1;
             lblNumMovies.Text = "222";
             // 
@@ -443,16 +443,16 @@
             pnMain.Dock = DockStyle.Fill;
             pnMain.Location = new Point(0, 176);
             pnMain.Name = "pnMain";
-            pnMain.Size = new Size(974, 610);
+            pnMain.Size = new Size(974, 690);
             pnMain.TabIndex = 2;
             // 
             // pnFollowingSection
             // 
             pnFollowingSection.Controls.Add(pnFollowingUserCards);
             pnFollowingSection.Controls.Add(lblFollowingHeading);
-            pnFollowingSection.Location = new Point(75, 498);
+            pnFollowingSection.Location = new Point(75, 572);
             pnFollowingSection.Name = "pnFollowingSection";
-            pnFollowingSection.Size = new Size(621, 80);
+            pnFollowingSection.Size = new Size(640, 80);
             pnFollowingSection.TabIndex = 2;
             // 
             // pnFollowingUserCards
@@ -460,7 +460,7 @@
             pnFollowingUserCards.Dock = DockStyle.Fill;
             pnFollowingUserCards.Location = new Point(0, 17);
             pnFollowingUserCards.Name = "pnFollowingUserCards";
-            pnFollowingUserCards.Size = new Size(621, 63);
+            pnFollowingUserCards.Size = new Size(640, 63);
             pnFollowingUserCards.TabIndex = 1;
             // 
             // lblFollowingHeading
@@ -479,9 +479,9 @@
             // 
             pnRecentLikesSection.Controls.Add(pnLikedMovieCards);
             pnRecentLikesSection.Controls.Add(lblRecentLikesHeading);
-            pnRecentLikesSection.Location = new Point(75, 266);
+            pnRecentLikesSection.Location = new Point(75, 302);
             pnRecentLikesSection.Name = "pnRecentLikesSection";
-            pnRecentLikesSection.Size = new Size(621, 190);
+            pnRecentLikesSection.Size = new Size(640, 242);
             pnRecentLikesSection.TabIndex = 1;
             // 
             // pnLikedMovieCards
@@ -489,7 +489,7 @@
             pnLikedMovieCards.Dock = DockStyle.Fill;
             pnLikedMovieCards.Location = new Point(0, 17);
             pnLikedMovieCards.Name = "pnLikedMovieCards";
-            pnLikedMovieCards.Size = new Size(621, 173);
+            pnLikedMovieCards.Size = new Size(640, 225);
             pnLikedMovieCards.TabIndex = 1;
             // 
             // lblRecentLikesHeading
@@ -510,7 +510,7 @@
             pnFavouriteMoviesSection.Controls.Add(lblFavouriteMoviesHeading);
             pnFavouriteMoviesSection.Location = new Point(75, 39);
             pnFavouriteMoviesSection.Name = "pnFavouriteMoviesSection";
-            pnFavouriteMoviesSection.Size = new Size(621, 190);
+            pnFavouriteMoviesSection.Size = new Size(640, 242);
             pnFavouriteMoviesSection.TabIndex = 0;
             // 
             // pnFavouriteMovieCards
@@ -518,7 +518,7 @@
             pnFavouriteMovieCards.Dock = DockStyle.Fill;
             pnFavouriteMovieCards.Location = new Point(0, 17);
             pnFavouriteMovieCards.Name = "pnFavouriteMovieCards";
-            pnFavouriteMovieCards.Size = new Size(621, 173);
+            pnFavouriteMovieCards.Size = new Size(640, 225);
             pnFavouriteMovieCards.TabIndex = 1;
             // 
             // lblFavouriteMoviesHeading
@@ -542,7 +542,7 @@
             Controls.Add(pnProfileNavbar);
             Controls.Add(pnProfileHeader);
             Name = "ProfileScreen";
-            Size = new Size(974, 786);
+            Size = new Size(974, 866);
             pnProfileHeader.ResumeLayout(false);
             pnProfileHeader.PerformLayout();
             pnUsernameAndEdit.ResumeLayout(false);

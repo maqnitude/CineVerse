@@ -146,5 +146,61 @@ namespace CineVerse.Core.Services
                 EventManager.Instance.Publish(EventType.UserMovieRated, this, EventArgs.Empty);
             }
         }
+
+        public async Task<List<Movie?>> GetFavouriteMovies(User user)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var movieIds = user.FavouriteMovieIds;
+                var favouriteMovies = await unitOfWork.Users.GetFavouriteMoviesByIds(user.FavouriteMovieIds);
+                return favouriteMovies;
+            }
+        }
+
+        public async Task AddOrUpdateFavouriteMovies(string userId, int movieId, int position)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var user = await unitOfWork.Users.GetUserByIdAsync(userId)
+                    ?? throw new Exception("User not found");
+                
+                if (user.FavouriteMovieIds.Contains(movieId))
+                {
+                    throw new InvalidOperationException("This movie is already in your top 4 favourite movies");
+                }
+                
+                if (position < 0 || position > user.FavouriteMovieIds.Count)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(position));
+                }
+                
+                user.FavouriteMovieIds[position] = movieId;
+                unitOfWork.Users.Update(user);
+                await unitOfWork.CompleteAsync();
+
+                EventManager.Instance.Publish(EventType.FavouriteMovieChanged, this, new FavouriteMovieEventArgs(movieId, position));
+            }
+        }
+
+        public async Task RemoveFavouriteMovie(string userId, int position)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var user = await unitOfWork.Users.GetUserByIdAsync(userId)
+                    ?? throw new Exception("User not found");
+                
+                if (position < 0 || position > user.FavouriteMovieIds.Count)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(position));
+                }
+
+                user.FavouriteMovieIds[position] = null;
+                unitOfWork.Users.Update(user);
+                await unitOfWork.CompleteAsync();
+                
+                // -1 indicates the favourite movie at index `position` is removed
+                EventManager.Instance.Publish(EventType.FavouriteMovieChanged, this, new FavouriteMovieEventArgs(-1, position));
+            }
+        }
     }
 }

@@ -84,7 +84,7 @@ namespace CineVerse.Views.UserControls
             lblGenres.Text = String.Join(", ", movie.Genres);
             lblRuntime.Text = $"{movie.Runtime / 60}h{movie.Runtime % 60}m";
 
-            var director = await MovieService.Instance.GetMovieDirector(movie.Id);
+            var director = await MovieService.Instance.GetMovieDirectorAsync(movie.Id);
             lblDirectorName.Text = director.Name;
 
             lblTagline.Text = movie.TagLine.ToUpper();

@@ -48,6 +48,8 @@ namespace CineVerse.Core.Events
 
         UserFollowed,
         UserUnfollowed,
+
+        FavouriteMovieChanged,
     }
 
     public class UserEventArgs : EventArgs
@@ -153,5 +155,16 @@ namespace CineVerse.Core.Events
             FollowerId = followerId;
             FolloweeId = followeeId;
         }
+    }
+
+    public class FavouriteMovieEventArgs : EventArgs
+    {
+        public int MovieId { get; set; }
+        public int Position { get; set; }
+        public FavouriteMovieEventArgs(int movieId, int position)
+        {
+            this.MovieId = movieId;
+            this.Position = position;
+        }   
     }
 }

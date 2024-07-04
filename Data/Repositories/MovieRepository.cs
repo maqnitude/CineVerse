@@ -136,5 +136,12 @@ namespace CineVerse.Data.Repositories
 
             return await query.Take(maxItems).ToListAsync();
         }
+
+        public async Task<List<Movie>> GetMoviesByIdsAsync(List<int> movieIds)
+        {
+            return await _context.Set<Movie>()
+                .Where(m => movieIds.Contains(m.Id))
+                .ToListAsync();
+        }
     }
 }

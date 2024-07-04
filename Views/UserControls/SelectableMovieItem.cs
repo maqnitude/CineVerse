@@ -28,7 +28,26 @@ namespace CineVerse.Views.UserControls
             _movie = movie;
 
             picMoviePoster.Image?.Dispose();
-            picMoviePoster.Image = new Bitmap(_movie.PosterPath);
+            //picMoviePoster.Image = new Bitmap(_movie.PosterPath);
+            using (var originalImage = new Bitmap(_movie.PosterPath))
+            {
+                // Adjust this value to scale the image. 
+                // For example, 0.5 will make the image half its original size.
+                float scaleFactor = 0.05f;
+                
+                int newWidth = (int)(originalImage.Width * scaleFactor);
+                int newHeight = (int)(originalImage.Height * scaleFactor);
+                
+                var resizedImage = new Bitmap(newWidth, newHeight);
+                using (var graphics = Graphics.FromImage(resizedImage))
+                {
+                    graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    graphics.DrawImage(originalImage, 0, 0, newWidth, newHeight);
+                }
+                
+                picMoviePoster.Image = new Bitmap(resizedImage);
+            }
+
             picMoviePoster.SizeMode = PictureBoxSizeMode.StretchImage;
 
             string year = _movie.ReleaseDate.HasValue ? _movie.ReleaseDate.Value.Year.ToString() : "N/A";

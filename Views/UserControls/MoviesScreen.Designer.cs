@@ -63,7 +63,7 @@
             pnlBrowseTooBar.Location = new Point(0, 0);
             pnlBrowseTooBar.Margin = new Padding(0);
             pnlBrowseTooBar.Name = "pnlBrowseTooBar";
-            pnlBrowseTooBar.Size = new Size(960, 22);
+            pnlBrowseTooBar.Size = new Size(970, 22);
             pnlBrowseTooBar.TabIndex = 0;
             // 
             // menuStripBrowsingTools
@@ -200,7 +200,7 @@
             flpMovieCardsContainer.Margin = new Padding(4);
             flpMovieCardsContainer.Name = "flpMovieCardsContainer";
             flpMovieCardsContainer.Padding = new Padding(4);
-            flpMovieCardsContainer.Size = new Size(960, 806);
+            flpMovieCardsContainer.Size = new Size(970, 806);
             flpMovieCardsContainer.TabIndex = 3;
             // 
             // btnNextPage
@@ -211,7 +211,7 @@
             btnNextPage.FlatStyle = FlatStyle.Flat;
             btnNextPage.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             btnNextPage.ForeColor = Color.FromArgb(198, 192, 182);
-            btnNextPage.Location = new Point(901, 0);
+            btnNextPage.Location = new Point(911, 0);
             btnNextPage.Name = "btnNextPage";
             btnNextPage.Size = new Size(56, 30);
             btnNextPage.TabIndex = 5;
@@ -242,7 +242,7 @@
             lblPageNumber.BackColor = Color.Transparent;
             lblPageNumber.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPageNumber.ForeColor = Color.FromArgb(178, 172, 162);
-            lblPageNumber.Location = new Point(471, 3);
+            lblPageNumber.Location = new Point(476, 3);
             lblPageNumber.Name = "lblPageNumber";
             lblPageNumber.Size = new Size(18, 21);
             lblPageNumber.TabIndex = 7;
@@ -254,9 +254,9 @@
             pnWrapper.Controls.Add(flpMovieCardsContainer);
             pnWrapper.Controls.Add(pnFooter);
             pnWrapper.Controls.Add(pnlBrowseTooBar);
-            pnWrapper.Location = new Point(117, 0);
+            pnWrapper.Location = new Point(112, 0);
             pnWrapper.Name = "pnWrapper";
-            pnWrapper.Size = new Size(960, 858);
+            pnWrapper.Size = new Size(970, 858);
             pnWrapper.TabIndex = 8;
             // 
             // pnFooter
@@ -267,7 +267,7 @@
             pnFooter.Dock = DockStyle.Bottom;
             pnFooter.Location = new Point(0, 828);
             pnFooter.Name = "pnFooter";
-            pnFooter.Size = new Size(960, 30);
+            pnFooter.Size = new Size(970, 30);
             pnFooter.TabIndex = 0;
             // 
             // MoviesScreen

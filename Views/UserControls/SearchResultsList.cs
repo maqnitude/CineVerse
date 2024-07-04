@@ -26,7 +26,7 @@ namespace CineVerse.Views.UserControls
 
             foreach (Movie movie in movies)
             {
-                SearchResultMovieItem item = new SearchResultMovieItem
+                SearchResultMovieItem item = new()
                 {
                     Dock = DockStyle.Top,
                 };
@@ -47,7 +47,7 @@ namespace CineVerse.Views.UserControls
 
             foreach(Movie movie in movies)
             {
-                SelectableMovieItem item = new SelectableMovieItem
+                SelectableMovieItem item = new()
                 {
                     Dock = DockStyle.Top,
                 };

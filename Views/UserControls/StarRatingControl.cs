@@ -72,13 +72,16 @@ namespace CineVerse.Views.UserControls
             for (int i = 1; i <= 10; i++)
             {
                 PictureBox picHalfStar = (PictureBox)Controls["picHalfStar" + i];
-                if ((double)picHalfStar.Tag <= _rating)
+                if (picHalfStar != null)
                 {
-                    picHalfStar.Image = (i % 2 != 0) ? _greenLStar : _greenRStar;
-                }
-                else
-                {
-                    picHalfStar.Image = (i % 2 != 0) ? _darkLStar: _darkRStar;
+                    if ((double)picHalfStar.Tag <= _rating)
+                    {
+                        picHalfStar.Image = (i % 2 != 0) ? _greenLStar : _greenRStar;
+                    }
+                    else
+                    {
+                        picHalfStar.Image = (i % 2 != 0) ? _darkLStar: _darkRStar;
+                    }
                 }
             }
         }

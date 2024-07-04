@@ -82,6 +82,7 @@
             // pnWrapper
             // 
             pnWrapper.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            pnWrapper.AutoScroll = true;
             pnWrapper.Controls.Add(pnContents);
             pnWrapper.Controls.Add(lblWelcomeMessage);
             pnWrapper.Location = new Point(238, 0);
@@ -284,6 +285,7 @@
             // 
             // pnRecommendations
             // 
+            pnRecommendations.AutoScroll = true;
             pnRecommendations.Dock = DockStyle.Fill;
             pnRecommendations.Location = new Point(0, 17);
             pnRecommendations.Name = "pnRecommendations";
@@ -314,6 +316,7 @@
             // 
             // pnMovies
             // 
+            pnMovies.AutoScroll = true;
             pnMovies.Dock = DockStyle.Fill;
             pnMovies.Location = new Point(0, 17);
             pnMovies.Name = "pnMovies";

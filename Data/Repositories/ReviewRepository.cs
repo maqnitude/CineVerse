@@ -13,6 +13,14 @@ namespace CineVerse.Data.Repositories
     {
         public ReviewRepository(AppDbContext context) : base(context) { }
 
+        public async Task<IEnumerable<Review>> GetReviewsAsync(int max = 100)
+        {
+            return await _context.Set<Review>()
+                .Include(r => r.User)
+                .Take(max)
+                .ToListAsync();
+        }
+
         public async Task<IEnumerable<Review>> GetReviewsByMovieIdAsync(int movieId, bool includeUser = false)
         {
             IQueryable<Review> query = _context.Set<Review>()

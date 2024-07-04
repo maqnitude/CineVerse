@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace CineVerse.Views.UserControls
 {
-    public partial class ListItemSummary : UserControl
+    public partial class ListItemSummary : UserControlComponent
     {
         private List _list;
 
@@ -24,7 +24,9 @@ namespace CineVerse.Views.UserControls
 
             _list = list;
 
-            LoadListData(_list);
+            picUserAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            LoadListData();
 
             RegisterEventHandlers();
         }
@@ -42,10 +44,8 @@ namespace CineVerse.Views.UserControls
             }
         }
 
-        public void LoadListData(List list)
+        public void LoadListData()
         {
-            _list = list;
-
             if (_list != null)
             {
                 var moviesToDisplay = _list.Movies.Take(5).ToList();
@@ -55,26 +55,6 @@ namespace CineVerse.Views.UserControls
                     var movie = moviesToDisplay[i].Movie;
                     var picPoster = (PictureBox)pnPosters.Controls["picPoster" + (i + 1)];
 
-                    //if (picPoster != null)
-                    //{
-                    //    if (picPoster.Image != null)
-                    //    {
-                    //        picPoster.Image.Dispose();
-                    //        picPoster.Image = null;
-                    //    }
-
-                    //    try
-                    //    {
-                    //        picPoster.Image = new Bitmap(movie.PosterPath);
-                    //        picPoster.SizeMode = PictureBoxSizeMode.StretchImage;
-                    //    }
-                    //    catch (Exception ex)
-                    //    {
-                    //        MessageBox.Show($"There is an error while loading movie images: {ex}");
-                    //        picPoster.Image = null;
-                    //    }
-                    //}
-
                     if (picPoster != null)
                     {
                         picPoster.Image?.Dispose();
@@ -82,14 +62,20 @@ namespace CineVerse.Views.UserControls
                         picPoster.Image = new Bitmap(movie.PosterPath);
                         picPoster.SizeMode = PictureBoxSizeMode.StretchImage;
                     }
-
-                    //picPoster?.SendToBack();
                 }
 
                 lblListTitle.Text = _list.Name;
                 lblUsername.Text = _list.User.Username;
                 lblListDescription.Text = _list.Overview;
                 lblNumMovies.Text = $"{_list.Movies.Count} films";
+
+                // This causes System.ArgumentException: Parameter is not valid
+
+                //picUserAvatar.Image?.Dispose();
+                //if (_list.User.AvatarPath != null)
+                //{
+                //    picUserAvatar.Image = new Bitmap(_list.User.AvatarPath);
+                //}
             }
         }
 
@@ -114,6 +100,7 @@ namespace CineVerse.Views.UserControls
             var navService = mainForm.GetNavService();
 
             var listDetailsScreen = new ListDetailsScreen(_list);
+            listDetailsScreen.SetMediator(_mediator);
             
             navService.NavigateToScreen(listDetailsScreen, false);
         }

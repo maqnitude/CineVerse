@@ -54,6 +54,12 @@ namespace CineVerse.Views.UserControls
             return _moviesPerPage;
         }
 
+        public void SetCurrentPage(int pageNumber)
+        {
+            CurrentPage = pageNumber;
+            lblPageNumber.Text = pageNumber.ToString();
+        }
+
         public void RemoveMovieCards()
         {
             // Avoid modifying the collection that we're iterating over
@@ -95,7 +101,7 @@ namespace CineVerse.Views.UserControls
                 }
             }
 
-            _isLastPage = await MovieService.Instance.IsLastPage(CurrentPage, _moviesPerPage);
+            _isLastPage = await MovieService.Instance.IsLastPage(CurrentPage, _moviesPerPage, _filterBy, _filterValue, _sortBy, _sortValue);
 
             btnNextPage.Enabled = !_isLastPage;
             btnPrevPage.Enabled = CurrentPage > 1;
@@ -107,8 +113,7 @@ namespace CineVerse.Views.UserControls
 
         private async void btnNextPage_Click(object sender, EventArgs e)
         {
-            CurrentPage++;
-            lblPageNumber.Text = CurrentPage.ToString();
+            SetCurrentPage(CurrentPage + 1);
 
             await LoadMoviesInPageAsync();
 
@@ -117,8 +122,7 @@ namespace CineVerse.Views.UserControls
 
         private async void btnPrevPage_Click(object sender, EventArgs e)
         {
-            CurrentPage--;
-            lblPageNumber.Text = CurrentPage.ToString();
+            SetCurrentPage(CurrentPage - 1);
 
             await LoadMoviesInPageAsync();
 
@@ -132,7 +136,7 @@ namespace CineVerse.Views.UserControls
             _filterBy = "decade";
             _filterValue = "all";
 
-            CurrentPage = 1;
+            SetCurrentPage(1);
             await LoadMoviesInPageAsync();
         }
 
@@ -141,7 +145,7 @@ namespace CineVerse.Views.UserControls
             _filterBy = "decade";
             _filterValue = "upcoming";
 
-            CurrentPage = 1;
+            SetCurrentPage(1);
             await LoadMoviesInPageAsync();
         }
 
@@ -150,7 +154,7 @@ namespace CineVerse.Views.UserControls
             _filterBy = "decade";
             _filterValue = toolStripMenuItem2020s.Text;
 
-            CurrentPage = 1;
+            SetCurrentPage(1);
             await LoadMoviesInPageAsync();
         }
 
@@ -159,7 +163,7 @@ namespace CineVerse.Views.UserControls
             _filterBy = "decade";
             _filterValue = toolStripMenuItem2010s.Text;
 
-            CurrentPage = 1;
+            SetCurrentPage(1);
             await LoadMoviesInPageAsync();
         }
 
@@ -168,7 +172,7 @@ namespace CineVerse.Views.UserControls
             _filterBy = "decade";
             _filterValue = toolStripMenuItem2000s.Text;
 
-            CurrentPage = 1;
+            SetCurrentPage(1);
             await LoadMoviesInPageAsync();
         }
 
@@ -177,7 +181,7 @@ namespace CineVerse.Views.UserControls
             _filterBy = "decade";
             _filterValue = toolStripMenuItem1990s.Text;
 
-            CurrentPage = 1;
+            SetCurrentPage(1);
             await LoadMoviesInPageAsync();
         }
 
@@ -186,7 +190,7 @@ namespace CineVerse.Views.UserControls
             _filterBy = "decade";
             _filterValue = toolStripMenuItem1980s.Text;
 
-            CurrentPage = 1;
+            SetCurrentPage(1);
             await LoadMoviesInPageAsync();
         }
 
@@ -197,7 +201,7 @@ namespace CineVerse.Views.UserControls
             _sortBy = "rating";
             _sortValue = toolStripMenuItemHighest.Text;
 
-            CurrentPage = 1;
+            SetCurrentPage(1);
             await LoadMoviesInPageAsync();
         }
 
@@ -206,7 +210,7 @@ namespace CineVerse.Views.UserControls
             _sortBy = "rating";
             _sortValue = toolStripMenuItemLowest.Text;
 
-            CurrentPage = 1;
+            SetCurrentPage(1);
             await LoadMoviesInPageAsync();
         }
     }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Tracing;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,19 @@ namespace CineVerse.Views.UserControls
             InitializeComponent();
 
             _commentable = commentable;
+
+            EventManager.Instance.Subscribe<EventArgs>(EventType.PostReplyAdded, OnPostReplyAdded);
+            EventManager.Instance.Subscribe<EventArgs>(EventType.CommentReplyAdded, OnCommentReplyAdded);
+        }
+
+        private void OnPostReplyAdded(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+        private void OnCommentReplyAdded(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -37,15 +51,15 @@ namespace CineVerse.Views.UserControls
                 return;
             }
 
-            if (_commentable is Post)
+            if (_commentable is Post post)
             {
                 EventManager.Instance.Publish(EventType.PostReplyAdding, this,
-                    new PostReplyEventArgs(rtbContent.Text));
+                    new PostReplyEventArgs(post.Id, rtbContent.Text));
             }
-            else if (_commentable is Comment)
+            else if (_commentable is Comment comment)
             {
                 EventManager.Instance.Publish(EventType.CommentReplyAdding, this,
-                    new CommentReplyEventArgs(_commentable.Id, rtbContent.Text));
+                    new CommentReplyEventArgs(comment.PostId, comment.Id, rtbContent.Text));
             }
         }
     }

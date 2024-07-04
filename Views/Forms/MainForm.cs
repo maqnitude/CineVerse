@@ -185,7 +185,7 @@ namespace CineVerse.Forms
             picUser.Image = LoadImage(_currentUser.AvatarPath);
         }
 
-        private void OnUserSignedIn(object sender, UserEventArgs e)
+        private async void OnUserSignedIn(object sender, UserEventArgs e)
         {
             this.Show();
 
@@ -195,7 +195,7 @@ namespace CineVerse.Forms
             _homeScreen.SetUser(_currentUser);
             _listsScreen.SetUser(_currentUser);
             _usersScreen.SetUser(_currentUser);
-            _usersScreen.LoadUsersAsync();
+            await _usersScreen.LoadUsersAsync();
             lblHomeTab_Click(this, EventArgs.Empty);
         }
 

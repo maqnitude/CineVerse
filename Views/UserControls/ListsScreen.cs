@@ -57,7 +57,7 @@ namespace CineVerse.Views.UserControls
 
             ClearLists();
 
-            List<List> lists = await ListService.Instance.GetUserListsAsync(_user.Id, true, true);
+            List<List> lists = await ListService.Instance.GetListsAsync(ListType.Public, includeUser: true, includeMovies: true);
 
             foreach (List list in lists)
             {
@@ -65,6 +65,7 @@ namespace CineVerse.Views.UserControls
                 {
                     Dock = DockStyle.Top
                 };
+                item.SetMediator(_mediator);
 
                 pnlListsContainer.Controls.Add(item);
             }

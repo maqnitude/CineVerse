@@ -1,4 +1,5 @@
 ﻿using CineVerse.Core.Events;
+using CineVerse.Core.Interfaces;
 using CineVerse.Core.Services;
 using CineVerse.Data.Entities;
 using CineVerse.Forms;
@@ -24,6 +25,8 @@ namespace CineVerse.Views.UserControls
 
             _list = list;
 
+            picUser.SizeMode = PictureBoxSizeMode.StretchImage;
+
             LoadListData();
 
             EventManager.Instance.Subscribe<ListMovieEventArgs>(EventType.ListMovieRemoved, OnListMovieRemoved);
@@ -33,6 +36,13 @@ namespace CineVerse.Views.UserControls
         {
             lblListTitle.Text = _list.Name;
             lblListOverview.Text = _list.Overview;
+            lblUser.Text = _list.User.Username;
+
+            picUser.Image?.Dispose();
+            if (_list.User.AvatarPath != null )
+            {
+                picUser.Image = new Bitmap(_list.User.AvatarPath);
+            }
 
             await LoadMovieCards();
         }
@@ -70,6 +80,7 @@ namespace CineVerse.Views.UserControls
 
                 MovieCard card = new MovieCard();
                 await card.Initialize(mainForm, movie, _mediator);
+                card.SetList(_list);
                 card.SetSize("medium");
 
                 flpMovieCards.Controls.Add(card);

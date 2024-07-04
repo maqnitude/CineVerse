@@ -44,8 +44,16 @@ namespace CineVerse.Core.Events
         PostReplyAdding,
         PostReplyAdded,
 
+        PostVoteAdded,
+        PostVoteChanged,
+        PostVoteRemoved,
+
         CommentReplyAdding,
         CommentReplyAdded,
+
+        CommentVoteAdded,
+        CommentVoteChanged,
+        CommentVoteRemoved,
 
         UserFollowed,
         UserUnfollowed,
@@ -127,23 +135,63 @@ namespace CineVerse.Core.Events
 
     public class PostReplyEventArgs : EventArgs
     {
+        public string PostId { get; set; }
         public string Content { get; set; }
 
-        public PostReplyEventArgs(string content)
+        public PostReplyEventArgs(string postId, string content)
         {
+            PostId = postId;
             Content = content;
+        }
+    }
+
+    public class PostVoteEventArgs : EventArgs
+    {
+        public string PostId { get; set; }
+        public string UserId { get; set; }
+        public bool IsUpvote { get; set; }
+        public int Upvotes { get; set; }
+        public int Downvotes { get; set; }
+
+        public PostVoteEventArgs(string postId, string userId, bool isUpvote, int upvotes, int downvotes)
+        {
+            PostId = postId;
+            UserId = userId;
+            IsUpvote = isUpvote;
+            Upvotes = upvotes;
+            Downvotes = downvotes;
         }
     }
 
     public class CommentReplyEventArgs : EventArgs
     {
+        public string PostId { get; set; }
         public string ParentCommentId { get; set; }
         public string Content { get; set; }
 
-        public CommentReplyEventArgs(string parentCommentId, string content)
+        public CommentReplyEventArgs(string postId, string parentCommentId, string content)
         {
+            PostId = postId;
             ParentCommentId = parentCommentId;
             Content = content;
+        }
+    }
+
+    public class CommentVoteEventArgs : EventArgs
+    {
+        public string CommentId { get; set; }
+        public string UserId { get; set; }
+        public bool IsUpvote { get; set; }
+        public int Upvotes { get; set; }
+        public int Downvotes { get; set; }
+
+        public CommentVoteEventArgs(string commentId, string userId, bool isUpvote, int upvotes, int downvotes)
+        {
+            CommentId = commentId;
+            UserId = userId;
+            IsUpvote = isUpvote;
+            Upvotes = upvotes;
+            Downvotes = downvotes;
         }
     }
 

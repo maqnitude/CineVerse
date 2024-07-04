@@ -13,7 +13,9 @@ namespace CineVerse.Core.Interfaces
         Task<IEnumerable<Movie>> GetMoviesByPageAsync(int pageNumber, int pageSize,
             string? filterBy = null, string? filterValue = null,
             string? sortBy = null, string? sortValue = null);
-        Task<int> CountMoviesAsync();
+        Task<int> CountMoviesAsync(
+            string? filterBy = null, string? filterValue = null,
+            string? sortBy = null, string? sortValue = null);
         Task<List<Person>> GetTopCastsByMovieIdAsync(int movieId, int n);
         Task<List<Person>> GetTopCrewsByMovieIdAsync(int movieId, int n);
         Task<Person> GetDirectorByMovieIdAsync(int movieId);

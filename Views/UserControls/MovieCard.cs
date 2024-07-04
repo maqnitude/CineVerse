@@ -20,6 +20,7 @@ namespace CineVerse.Views.UserControls
     {
         private MainForm _mainForm;
         private Movie _movie;
+        private List _list;
 
         private PictureBox _poster;
 
@@ -95,6 +96,17 @@ namespace CineVerse.Views.UserControls
         public void SetMainForm(MainForm mainForm)
         {
             _mainForm = mainForm;
+        }
+
+        public void SetList(List list)
+        {
+            _list = list;
+
+            var user = _mainForm.GetCurrentUser();
+            if (user.Id == _list.User.Id)
+            {
+                removeFromThisListToolStripMenuItem.Visible = true;
+            }
         }
 
         public async Task SetMovieData(Movie movie)
@@ -295,6 +307,11 @@ namespace CineVerse.Views.UserControls
             var user = _mainForm.GetCurrentUser();
 
             await ListService.Instance.RemoveMovieFromWatchlistAsync(user.WatchlistId, _movie.Id);
+        }
+
+        private async void removeFromThisListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            await ListService.Instance.RemoveMovieFromListsAsync([_list.Id], _movie.Id);
         }
     }
 }

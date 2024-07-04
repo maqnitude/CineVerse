@@ -40,11 +40,13 @@ namespace CineVerse.Core.Services
             }
         }
 
-        public async Task<bool> IsLastPage(int pageNumber, int pageSize)
+        public async Task<bool> IsLastPage(int pageNumber, int pageSize,
+            string? filterBy = null, string? filterValue = null,
+            string? sortBy = null, string? sortValue = null)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
             {
-                int moviesCount = await unitOfWork.Movies.CountMoviesAsync();
+                int moviesCount = await unitOfWork.Movies.CountMoviesAsync(filterBy, filterValue, sortBy, sortValue);
                 return pageNumber * pageSize >= moviesCount;
             }
         }

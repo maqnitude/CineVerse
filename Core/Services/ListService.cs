@@ -33,20 +33,26 @@ namespace CineVerse.Core.Services
         {
         }
 
-        public async Task<List<List>> GetListsAsync(ListType listType, bool includeUser = false, bool includeMovies = false)
+        public async Task<List<List>> GetListsAsync(ListType listType, bool includeUser = false, bool includeMovies = false,
+            string? filterBy = null, string? filterValue = null,
+            string? sortBy = null, string? sortValue = null)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
             {
-                var lists = await unitOfWork.Lists.GetListsByTypeAsync(listType, includeUser, includeMovies);
+                var lists = await unitOfWork.Lists.GetListsByTypeAsync(listType, includeUser, includeMovies,
+                    filterBy, filterValue, sortBy, sortValue);
                 return lists.ToList();
             }
         }
 
-        public async Task<List<List>> GetUserListsAsync(string userId, bool includeUser = false, bool includeMovies = false)
+        public async Task<List<List>> GetUserListsAsync(string userId, bool includeUser = false, bool includeMovies = false,
+            string? filterBy = null, string? filterValue = null,
+            string? sortBy = null, string? sortValue = null)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
             {
-                var lists = await unitOfWork.Lists.GetListsByUserIdAsync(userId, includeUser, includeMovies);
+                var lists = await unitOfWork.Lists.GetListsByUserIdAsync(userId, includeUser, includeMovies,
+                    filterBy, filterValue, sortBy, sortValue);
                 return lists.ToList();
             }
         }

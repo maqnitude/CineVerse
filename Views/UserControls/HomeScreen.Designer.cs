@@ -82,6 +82,7 @@
             // pnWrapper
             // 
             pnWrapper.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            pnWrapper.AutoScroll = true;
             pnWrapper.Controls.Add(pnContents);
             pnWrapper.Controls.Add(lblWelcomeMessage);
             pnWrapper.Location = new Point(238, 0);

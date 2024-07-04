@@ -253,10 +253,20 @@ namespace CineVerse.Views.UserControls
             starRatingControl.Rating = rating;
         }
 
+        private async Task UpdateRatingInfo()
+        {
+            int totalReviews = await ReviewService.Instance.CountMovieReviewsAsync(_movie.Id);
+            lblNumReviews.Text = $"({totalReviews})";
+
+            double avgRating = await MovieService.Instance.GetMovieAverageRatingAsync(_movie.Id);
+            lblAvgRating.Text = avgRating.ToString();
+        }
+
         private async Task UpdateState()
         {
             await UpdateActionIcons();
             await UpdateStarRatingControl();
+            await UpdateRatingInfo();
         }
 
         private async void OnWatchlistMovieAdded(object sender, EventArgs e)
@@ -321,6 +331,7 @@ namespace CineVerse.Views.UserControls
             pnMovieTitle.BackColor = Color.Transparent;
             pnMovieFacts.BackColor = Color.Transparent;
             pnDirector.BackColor = Color.Transparent;
+            pnlRatingInfo.BackColor = Color.Transparent;
         }
 
         private void btnBack_Click(object sender, EventArgs e)

@@ -1,6 +1,7 @@
 ﻿using CineVerse.Core.Interfaces;
 using CineVerse.Data;
 using CineVerse.Data.Entities;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
@@ -77,6 +78,16 @@ namespace CineVerse.Core.Services
             {
                 var movies = await unitOfWork.Movies.GetMoviesByPageAsync(pageNumber, pageSize, "decade", decade);
                 return movies.ToList();
+            }
+        }
+
+        public async Task<double> GetMovieAverageRatingAsync(int movieId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var reviews = await unitOfWork.Reviews.GetReviewsByMovieIdAsync(movieId);
+                double averageRating = reviews.Sum(r => r.Rating) / reviews.Count();
+                return Math.Round(averageRating, 2);
             }
         }
 

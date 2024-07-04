@@ -51,6 +51,7 @@
             pnPublicHeader = new Panel();
             btnMorePublic = new Button();
             lblPublicHeading = new Label();
+            pnWrapper = new Panel();
             pnColumnRight.SuspendLayout();
             pnFolloweesBlock.SuspendLayout();
             pnFollowingHeader.SuspendLayout();
@@ -61,6 +62,7 @@
             pnTableHeader.SuspendLayout();
             pnColStats.SuspendLayout();
             pnPublicHeader.SuspendLayout();
+            pnWrapper.SuspendLayout();
             SuspendLayout();
             // 
             // pnColumnRight
@@ -70,14 +72,14 @@
             pnColumnRight.Dock = DockStyle.Right;
             pnColumnRight.Location = new Point(742, 0);
             pnColumnRight.Name = "pnColumnRight";
-            pnColumnRight.Size = new Size(258, 800);
+            pnColumnRight.Size = new Size(258, 924);
             pnColumnRight.TabIndex = 0;
             // 
             // pnFolloweesBlock
             // 
             pnFolloweesBlock.Controls.Add(pnFolloweesList);
             pnFolloweesBlock.Controls.Add(pnFollowingHeader);
-            pnFolloweesBlock.Location = new Point(22, 370);
+            pnFolloweesBlock.Location = new Point(22, 350);
             pnFolloweesBlock.Name = "pnFolloweesBlock";
             pnFolloweesBlock.Size = new Size(216, 288);
             pnFolloweesBlock.TabIndex = 0;
@@ -133,7 +135,7 @@
             // 
             pnPopularMembersBlock.Controls.Add(pnPopularMembersList);
             pnPopularMembersBlock.Controls.Add(pnPopularHeader);
-            pnPopularMembersBlock.Location = new Point(22, 49);
+            pnPopularMembersBlock.Location = new Point(22, 29);
             pnPopularMembersBlock.Name = "pnPopularMembersBlock";
             pnPopularMembersBlock.Size = new Size(216, 288);
             pnPopularMembersBlock.TabIndex = 0;
@@ -191,7 +193,7 @@
             pnColumnLeft.Dock = DockStyle.Fill;
             pnColumnLeft.Location = new Point(0, 0);
             pnColumnLeft.Name = "pnColumnLeft";
-            pnColumnLeft.Size = new Size(742, 800);
+            pnColumnLeft.Size = new Size(742, 924);
             pnColumnLeft.TabIndex = 1;
             // 
             // pnPublicMembersBlock
@@ -200,9 +202,9 @@
             pnPublicMembersBlock.Controls.Add(pnPublicMembersList);
             pnPublicMembersBlock.Controls.Add(pnTableHeader);
             pnPublicMembersBlock.Controls.Add(pnPublicHeader);
-            pnPublicMembersBlock.Location = new Point(47, 49);
+            pnPublicMembersBlock.Location = new Point(47, 30);
             pnPublicMembersBlock.Name = "pnPublicMembersBlock";
-            pnPublicMembersBlock.Size = new Size(644, 696);
+            pnPublicMembersBlock.Size = new Size(655, 844);
             pnPublicMembersBlock.TabIndex = 0;
             // 
             // pnPublicMembersList
@@ -210,7 +212,7 @@
             pnPublicMembersList.Dock = DockStyle.Fill;
             pnPublicMembersList.Location = new Point(0, 51);
             pnPublicMembersList.Name = "pnPublicMembersList";
-            pnPublicMembersList.Size = new Size(644, 645);
+            pnPublicMembersList.Size = new Size(655, 793);
             pnPublicMembersList.TabIndex = 2;
             // 
             // pnTableHeader
@@ -222,7 +224,7 @@
             pnTableHeader.Dock = DockStyle.Top;
             pnTableHeader.Location = new Point(0, 22);
             pnTableHeader.Name = "pnTableHeader";
-            pnTableHeader.Size = new Size(644, 29);
+            pnTableHeader.Size = new Size(655, 29);
             pnTableHeader.TabIndex = 1;
             // 
             // pnColStats
@@ -231,7 +233,7 @@
             pnColStats.Controls.Add(lblColLists);
             pnColStats.Controls.Add(lblColLikes);
             pnColStats.Controls.Add(lblColWatched);
-            pnColStats.Location = new Point(382, 2);
+            pnColStats.Location = new Point(393, 2);
             pnColStats.Name = "pnColStats";
             pnColStats.Size = new Size(180, 19);
             pnColStats.TabIndex = 1;
@@ -287,7 +289,7 @@
             pnPublicHeader.Dock = DockStyle.Top;
             pnPublicHeader.Location = new Point(0, 0);
             pnPublicHeader.Name = "pnPublicHeader";
-            pnPublicHeader.Size = new Size(644, 22);
+            pnPublicHeader.Size = new Size(655, 22);
             pnPublicHeader.TabIndex = 0;
             // 
             // btnMorePublic
@@ -298,7 +300,7 @@
             btnMorePublic.FlatAppearance.BorderSize = 0;
             btnMorePublic.FlatStyle = FlatStyle.Flat;
             btnMorePublic.ForeColor = Color.FromArgb(157, 148, 136);
-            btnMorePublic.Location = new Point(599, 0);
+            btnMorePublic.Location = new Point(610, 0);
             btnMorePublic.Name = "btnMorePublic";
             btnMorePublic.Size = new Size(45, 22);
             btnMorePublic.TabIndex = 2;
@@ -318,15 +320,24 @@
             lblPublicHeading.TabIndex = 0;
             lblPublicHeading.Text = "PUBLIC MEMBERS";
             // 
+            // pnWrapper
+            // 
+            pnWrapper.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            pnWrapper.Controls.Add(pnColumnLeft);
+            pnWrapper.Controls.Add(pnColumnRight);
+            pnWrapper.Location = new Point(170, 0);
+            pnWrapper.Name = "pnWrapper";
+            pnWrapper.Size = new Size(1000, 924);
+            pnWrapper.TabIndex = 2;
+            // 
             // UsersScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(16, 19, 22);
-            Controls.Add(pnColumnLeft);
-            Controls.Add(pnColumnRight);
+            Controls.Add(pnWrapper);
             Name = "UsersScreen";
-            Size = new Size(1000, 800);
+            Size = new Size(1338, 924);
             pnColumnRight.ResumeLayout(false);
             pnFolloweesBlock.ResumeLayout(false);
             pnFollowingHeader.ResumeLayout(false);
@@ -342,6 +353,7 @@
             pnColStats.PerformLayout();
             pnPublicHeader.ResumeLayout(false);
             pnPublicHeader.PerformLayout();
+            pnWrapper.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -370,5 +382,6 @@
         private Panel pnFolloweesList;
         private Panel pnPopularMembersList;
         private Panel pnPublicMembersList;
+        private Panel pnWrapper;
     }
 }

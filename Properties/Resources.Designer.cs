@@ -203,6 +203,16 @@ namespace CineVerse.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap default_list_backdrop {
+            get {
+                object obj = ResourceManager.GetObject("default_list_backdrop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap default_person {
             get {
                 object obj = ResourceManager.GetObject("default_person", resourceCulture);

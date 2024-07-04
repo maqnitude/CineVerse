@@ -17,22 +17,28 @@ namespace CineVerse.Views.UserControls
 {
     public partial class ListDetailsScreen : UserControlComponent
     {
-        private readonly List _list;
+        private MainForm _mainForm;
+        private List _list;
 
-        public ListDetailsScreen(List list)
+        public ListDetailsScreen()
         {
             InitializeComponent();
 
-            _list = list;
-
             picUser.SizeMode = PictureBoxSizeMode.StretchImage;
-
-            LoadListData();
 
             EventManager.Instance.Subscribe<ListMovieEventArgs>(EventType.ListMovieRemoved, OnListMovieRemoved);
         }
 
-        private async void LoadListData()
+        public async Task Initialize(MainForm mainForm, List list, IMediator mediator)
+        {
+            _mainForm = mainForm;
+            _list = list;
+            _mediator = mediator;
+
+            await LoadListData();
+        }
+
+        private async Task LoadListData()
         {
             lblListTitle.Text = _list.Name;
             lblListOverview.Text = _list.Overview;
@@ -76,10 +82,8 @@ namespace CineVerse.Views.UserControls
 
             foreach (Movie movie in movies)
             {
-                var mainForm = this.FindForm() as MainForm;
-
                 MovieCard card = new MovieCard();
-                await card.Initialize(mainForm, movie, _mediator);
+                await card.Initialize(_mainForm, movie, _mediator);
                 card.SetList(_list);
                 card.SetSize("medium");
 
@@ -113,8 +117,7 @@ namespace CineVerse.Views.UserControls
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            var mainForm = this.FindForm() as MainForm;
-            var navService = mainForm.GetNavService();
+            var navService = _mainForm.GetNavService();
 
             navService.NavigateBack();
         }

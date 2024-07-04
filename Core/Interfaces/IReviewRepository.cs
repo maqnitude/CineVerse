@@ -9,7 +9,7 @@ namespace CineVerse.Core.Interfaces
 {
     public interface IReviewRepository : IRepository<Review>
     {
-        Task<IEnumerable<Review>> GetReviewsByMovieIdAsync(int movieId);
+        Task<IEnumerable<Review>> GetReviewsByMovieIdAsync(int movieId, bool includeUser = false);
         Task<Review> GetReviewByUserIdMovieIdAsync(string userId, int movieId);
     }
 }

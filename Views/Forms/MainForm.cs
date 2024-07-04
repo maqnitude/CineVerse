@@ -330,11 +330,11 @@ namespace CineVerse.Forms
             pnUserWrapper.BackColor = originalColor;
         }
 
-        private void profileToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void profileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ProfileScreen profileScreen = new ProfileScreen();
             _navigationService.NavigateToScreen(profileScreen);
-            profileScreen.SetProfileUser(_currentUser);
+            await profileScreen.SetProfileUser(_currentUser);
             profileScreen.SetCurrentUser(_currentUser);
         }
 
@@ -352,6 +352,51 @@ namespace CineVerse.Forms
         private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             EventManager.Instance.Publish(EventType.UserSignedOut, this, new UserEventArgs(_currentUser));
+        }
+
+        private async void watchlistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var watchlist = await ListService.Instance.GetUserWatchlistAsync(_currentUser.Id, true, true);
+
+            var listDetailsScreen = new ListDetailsScreen();
+
+            _navigationService.NavigateToScreen(listDetailsScreen, false);
+
+            await listDetailsScreen.Initialize(this, watchlist, this);
+        }
+
+        private async void listsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var userListsScreen = new ListsScreen();
+            userListsScreen.SetUser(_currentUser);
+            userListsScreen.SetMediator(this);
+            userListsScreen.CurrentUserOnly = true;
+
+            _navigationService.NavigateToScreen(userListsScreen);
+
+            await userListsScreen.LoadListsAsync();
+        }
+
+        private async void likesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var likedList = await ListService.Instance.GetUserLikedListAsync(_currentUser.Id, true, true);
+
+            var listDetailsScreen = new ListDetailsScreen();
+
+            _navigationService.NavigateToScreen(listDetailsScreen, false);
+
+            await listDetailsScreen.Initialize(this, likedList, this);
+        }
+
+        private async void watchedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var watchedList = await ListService.Instance.GetUserWatchedListAsync(_currentUser.Id, true, true);
+
+            var listDetailsScreen = new ListDetailsScreen();
+
+            _navigationService.NavigateToScreen(listDetailsScreen, false);
+
+            await listDetailsScreen.Initialize(this, watchedList, this);
         }
     }
 }

@@ -59,15 +59,17 @@
             lblActivityTab = new Label();
             lblProfileTab = new Label();
             pnMain = new Panel();
+            pnMainContents = new Panel();
             pnFollowingSection = new Panel();
             pnFollowingUserCards = new Panel();
             lblFollowingHeading = new Label();
             pnRecentLikesSection = new Panel();
-            pnLikedMovieCards = new Panel();
+            pnRecentlyLikedMovieCards = new Panel();
             lblRecentLikesHeading = new Label();
             pnFavouriteMoviesSection = new Panel();
             pnFavouriteMovieCards = new Panel();
             lblFavouriteMoviesHeading = new Label();
+            pnWrapper = new Panel();
             pnProfileHeader.SuspendLayout();
             pnUsernameAndEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picAvatar).BeginInit();
@@ -77,9 +79,11 @@
             pnMoviesCount.SuspendLayout();
             pnProfileNavbar.SuspendLayout();
             pnMain.SuspendLayout();
+            pnMainContents.SuspendLayout();
             pnFollowingSection.SuspendLayout();
             pnRecentLikesSection.SuspendLayout();
             pnFavouriteMoviesSection.SuspendLayout();
+            pnWrapper.SuspendLayout();
             SuspendLayout();
             // 
             // pnProfileHeader
@@ -95,7 +99,7 @@
             pnProfileHeader.Dock = DockStyle.Top;
             pnProfileHeader.Location = new Point(0, 0);
             pnProfileHeader.Name = "pnProfileHeader";
-            pnProfileHeader.Size = new Size(974, 133);
+            pnProfileHeader.Size = new Size(950, 133);
             pnProfileHeader.TabIndex = 0;
             // 
             // btnBack
@@ -171,7 +175,7 @@
             pnFollowersCount.AutoSize = true;
             pnFollowersCount.Controls.Add(lblNumFollowers);
             pnFollowersCount.Controls.Add(lblFollowersFixed);
-            pnFollowersCount.Location = new Point(866, 28);
+            pnFollowersCount.Location = new Point(842, 28);
             pnFollowersCount.Name = "pnFollowersCount";
             pnFollowersCount.Size = new Size(81, 46);
             pnFollowersCount.TabIndex = 0;
@@ -206,7 +210,7 @@
             pnFollowingCount.AutoSize = true;
             pnFollowingCount.Controls.Add(lblNumFollowing);
             pnFollowingCount.Controls.Add(lblFollowingFixed);
-            pnFollowingCount.Location = new Point(783, 28);
+            pnFollowingCount.Location = new Point(759, 28);
             pnFollowingCount.Name = "pnFollowingCount";
             pnFollowingCount.Size = new Size(77, 46);
             pnFollowingCount.TabIndex = 0;
@@ -241,7 +245,7 @@
             pnListsCount.AutoSize = true;
             pnListsCount.Controls.Add(lblNumLists);
             pnListsCount.Controls.Add(lblListsFixed);
-            pnListsCount.Location = new Point(725, 28);
+            pnListsCount.Location = new Point(701, 28);
             pnListsCount.Name = "pnListsCount";
             pnListsCount.Size = new Size(52, 46);
             pnListsCount.TabIndex = 0;
@@ -276,7 +280,7 @@
             pnMoviesCount.AutoSize = true;
             pnMoviesCount.Controls.Add(lblNumMovies);
             pnMoviesCount.Controls.Add(lblMoviesFixed);
-            pnMoviesCount.Location = new Point(637, 28);
+            pnMoviesCount.Location = new Point(613, 28);
             pnMoviesCount.Name = "pnMoviesCount";
             pnMoviesCount.Size = new Size(82, 46);
             pnMoviesCount.TabIndex = 0;
@@ -321,7 +325,7 @@
             pnProfileNavbar.Dock = DockStyle.Top;
             pnProfileNavbar.Location = new Point(0, 133);
             pnProfileNavbar.Name = "pnProfileNavbar";
-            pnProfileNavbar.Size = new Size(974, 43);
+            pnProfileNavbar.Size = new Size(950, 43);
             pnProfileNavbar.TabIndex = 1;
             // 
             // lblNetworkTab
@@ -436,30 +440,42 @@
             // 
             // pnMain
             // 
-            pnMain.Controls.Add(pnFollowingSection);
-            pnMain.Controls.Add(pnRecentLikesSection);
-            pnMain.Controls.Add(pnFavouriteMoviesSection);
+            pnMain.Controls.Add(pnMainContents);
             pnMain.Dock = DockStyle.Fill;
             pnMain.Location = new Point(0, 176);
             pnMain.Name = "pnMain";
-            pnMain.Size = new Size(974, 690);
+            pnMain.Size = new Size(950, 659);
             pnMain.TabIndex = 2;
+            // 
+            // pnMainContents
+            // 
+            pnMainContents.AutoSize = true;
+            pnMainContents.Controls.Add(pnFollowingSection);
+            pnMainContents.Controls.Add(pnRecentLikesSection);
+            pnMainContents.Controls.Add(pnFavouriteMoviesSection);
+            pnMainContents.Location = new Point(30, 29);
+            pnMainContents.Name = "pnMainContents";
+            pnMainContents.Size = new Size(640, 566);
+            pnMainContents.TabIndex = 3;
             // 
             // pnFollowingSection
             // 
             pnFollowingSection.Controls.Add(pnFollowingUserCards);
             pnFollowingSection.Controls.Add(lblFollowingHeading);
-            pnFollowingSection.Location = new Point(75, 572);
+            pnFollowingSection.Dock = DockStyle.Top;
+            pnFollowingSection.Location = new Point(0, 498);
             pnFollowingSection.Name = "pnFollowingSection";
-            pnFollowingSection.Size = new Size(640, 80);
+            pnFollowingSection.Size = new Size(640, 68);
             pnFollowingSection.TabIndex = 2;
             // 
             // pnFollowingUserCards
             // 
+            pnFollowingUserCards.AutoSize = true;
+            pnFollowingUserCards.BorderStyle = BorderStyle.FixedSingle;
             pnFollowingUserCards.Dock = DockStyle.Fill;
             pnFollowingUserCards.Location = new Point(0, 17);
             pnFollowingUserCards.Name = "pnFollowingUserCards";
-            pnFollowingUserCards.Size = new Size(640, 63);
+            pnFollowingUserCards.Size = new Size(640, 51);
             pnFollowingUserCards.TabIndex = 1;
             // 
             // lblFollowingHeading
@@ -476,20 +492,22 @@
             // 
             // pnRecentLikesSection
             // 
-            pnRecentLikesSection.Controls.Add(pnLikedMovieCards);
+            pnRecentLikesSection.Controls.Add(pnRecentlyLikedMovieCards);
             pnRecentLikesSection.Controls.Add(lblRecentLikesHeading);
-            pnRecentLikesSection.Location = new Point(75, 302);
+            pnRecentLikesSection.Dock = DockStyle.Top;
+            pnRecentLikesSection.Location = new Point(0, 249);
             pnRecentLikesSection.Name = "pnRecentLikesSection";
-            pnRecentLikesSection.Size = new Size(640, 242);
+            pnRecentLikesSection.Size = new Size(640, 249);
             pnRecentLikesSection.TabIndex = 1;
             // 
-            // pnLikedMovieCards
+            // pnRecentlyLikedMovieCards
             // 
-            pnLikedMovieCards.Dock = DockStyle.Fill;
-            pnLikedMovieCards.Location = new Point(0, 17);
-            pnLikedMovieCards.Name = "pnLikedMovieCards";
-            pnLikedMovieCards.Size = new Size(640, 225);
-            pnLikedMovieCards.TabIndex = 1;
+            pnRecentlyLikedMovieCards.BorderStyle = BorderStyle.FixedSingle;
+            pnRecentlyLikedMovieCards.Dock = DockStyle.Fill;
+            pnRecentlyLikedMovieCards.Location = new Point(0, 17);
+            pnRecentlyLikedMovieCards.Name = "pnRecentlyLikedMovieCards";
+            pnRecentlyLikedMovieCards.Size = new Size(640, 232);
+            pnRecentlyLikedMovieCards.TabIndex = 1;
             // 
             // lblRecentLikesHeading
             // 
@@ -507,17 +525,20 @@
             // 
             pnFavouriteMoviesSection.Controls.Add(pnFavouriteMovieCards);
             pnFavouriteMoviesSection.Controls.Add(lblFavouriteMoviesHeading);
-            pnFavouriteMoviesSection.Location = new Point(75, 39);
+            pnFavouriteMoviesSection.Dock = DockStyle.Top;
+            pnFavouriteMoviesSection.Location = new Point(0, 0);
             pnFavouriteMoviesSection.Name = "pnFavouriteMoviesSection";
-            pnFavouriteMoviesSection.Size = new Size(640, 242);
+            pnFavouriteMoviesSection.Size = new Size(640, 249);
             pnFavouriteMoviesSection.TabIndex = 0;
             // 
             // pnFavouriteMovieCards
             // 
+            pnFavouriteMovieCards.AutoSize = true;
+            pnFavouriteMovieCards.BorderStyle = BorderStyle.FixedSingle;
             pnFavouriteMovieCards.Dock = DockStyle.Fill;
             pnFavouriteMovieCards.Location = new Point(0, 17);
             pnFavouriteMovieCards.Name = "pnFavouriteMovieCards";
-            pnFavouriteMovieCards.Size = new Size(640, 225);
+            pnFavouriteMovieCards.Size = new Size(640, 232);
             pnFavouriteMovieCards.TabIndex = 1;
             // 
             // lblFavouriteMoviesHeading
@@ -532,16 +553,25 @@
             lblFavouriteMoviesHeading.TabIndex = 0;
             lblFavouriteMoviesHeading.Text = "FAVOURITE MOVIES";
             // 
+            // pnWrapper
+            // 
+            pnWrapper.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            pnWrapper.Controls.Add(pnMain);
+            pnWrapper.Controls.Add(pnProfileNavbar);
+            pnWrapper.Controls.Add(pnProfileHeader);
+            pnWrapper.Location = new Point(168, 0);
+            pnWrapper.Name = "pnWrapper";
+            pnWrapper.Size = new Size(950, 835);
+            pnWrapper.TabIndex = 3;
+            // 
             // ProfileScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(16, 19, 22);
-            Controls.Add(pnMain);
-            Controls.Add(pnProfileNavbar);
-            Controls.Add(pnProfileHeader);
+            Controls.Add(pnWrapper);
             Name = "ProfileScreen";
-            Size = new Size(974, 866);
+            Size = new Size(1286, 835);
             pnProfileHeader.ResumeLayout(false);
             pnProfileHeader.PerformLayout();
             pnUsernameAndEdit.ResumeLayout(false);
@@ -558,12 +588,15 @@
             pnProfileNavbar.ResumeLayout(false);
             pnProfileNavbar.PerformLayout();
             pnMain.ResumeLayout(false);
+            pnMain.PerformLayout();
+            pnMainContents.ResumeLayout(false);
             pnFollowingSection.ResumeLayout(false);
             pnFollowingSection.PerformLayout();
             pnRecentLikesSection.ResumeLayout(false);
             pnRecentLikesSection.PerformLayout();
             pnFavouriteMoviesSection.ResumeLayout(false);
             pnFavouriteMoviesSection.PerformLayout();
+            pnWrapper.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -602,12 +635,14 @@
         private Panel pnFavouriteMoviesSection;
         private Label lblFavouriteMoviesHeading;
         private Panel pnRecentLikesSection;
-        private Panel pnLikedMovieCards;
+        private Panel pnRecentlyLikedMovieCards;
         private Label lblRecentLikesHeading;
         private Panel pnFavouriteMovieCards;
         private Panel pnFollowingSection;
         private Panel pnFollowingUserCards;
         private Label lblFollowingHeading;
         private Button btnBack;
+        private Panel pnMainContents;
+        private Panel pnWrapper;
     }
 }

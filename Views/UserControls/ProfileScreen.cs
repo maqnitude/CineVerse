@@ -2,6 +2,7 @@
 using CineVerse.Core.Services;
 using CineVerse.Data.Entities;
 using CineVerse.Forms;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,7 +40,10 @@ namespace CineVerse.Views.UserControls
             await SetListCountAsync();
             await SetFolloweeCountAsync();
             await SetFollowerCountAsync();
-            await LoadFavouriteMoviePostersAsync();
+
+            await LoadFavouriteMovieCardsAsync();
+            await LoadRecentlyLikedMovieCardsAsync();
+            await LoadFolloweeAvatarsAsync();
         }
 
         public void SetCurrentUser(User currentUser)
@@ -72,28 +76,44 @@ namespace CineVerse.Views.UserControls
             lblNumFollowers.Text = followerCount.ToString();
         }
 
-        private async Task LoadFavouriteMoviePostersAsync()
+        private async Task LoadFavouriteMovieCardsAsync()
         {
-            ClearFavouriteMoviePosters();
+            ClearFavouriteMovieCards();
             
             List<Movie?> favouriteMovies = await UserService.Instance.GetFavouriteMovies(_profileUser);
-            var mainForm = this.FindForm() as MainForm;
-            for (int i = 0; i < 4; i++)
+            if (favouriteMovies.All(movie => movie == null))
             {
-                var movie = favouriteMovies[i];
-                if (movie != null)
+                Label message = new Label
                 {
-                    var movieCard = new MovieCard();
-                    await movieCard.Initialize(mainForm, movie, _mediator);
-                    movieCard.SetSize("medium");
-                    pnFavouriteMovieCards.Controls.Add(movieCard);
-                    movieCard.Dock = DockStyle.Left;
-                    movieCard.BringToFront();
+                    Text = $"{_profileUser.Username} hasn't set any favourite movies!!!",
+                    ForeColor = Color.FromArgb(178, 172, 162),
+                    BackColor = Color.Transparent,
+                    Dock = DockStyle.Fill,
+                    AutoSize = true,
+                    Font = new Font("Segoe UI", 10),
+                };
+                pnFavouriteMovieCards.Controls.Add(message);
+            }
+            else
+            {
+                var mainForm = this.FindForm() as MainForm;
+                for (int i = 0; i < 4; i++)
+                {
+                    var movie = favouriteMovies[i];
+                    if (movie != null)
+                    {
+                        var movieCard = new MovieCard();
+                        await movieCard.Initialize(mainForm, movie, _mediator);
+                        movieCard.SetSize("medium");
+                        pnFavouriteMovieCards.Controls.Add(movieCard);
+                        movieCard.Dock = DockStyle.Left;
+                        movieCard.BringToFront();
+                    }
                 }
             }
         }
 
-        private async void ClearFavouriteMoviePosters()
+        private void ClearFavouriteMovieCards()
         {
             foreach (MovieCard movieCard in pnFavouriteMovieCards.Controls.OfType<MovieCard>().ToList())
             {
@@ -101,6 +121,91 @@ namespace CineVerse.Views.UserControls
                 movieCard.Dispose();
             }
         }
+
+        private async Task LoadFolloweeAvatarsAsync()
+        {
+            ClearFolloweeAvatars();
+            List<User> followees = await UserService.Instance.GetFolloweesByIdAsync(_profileUser.Id);
+            if (followees.Count == 0)
+            {
+                Label message = new Label
+                {
+                    Text = $"{_profileUser.Username} hasn't followed anyone!!!",
+                    ForeColor = Color.FromArgb(178, 172, 162),
+                    BackColor = Color.Transparent,
+                    Dock = DockStyle.Fill,
+                    AutoSize = true,
+                    Font = new Font("Segoe UI", 10),
+                };
+                pnFollowingUserCards.Controls.Add(message);
+            }
+            else
+            {
+                foreach(User followee in followees)
+                {
+                    var userAvatar = new CircularUserAvatar(followee);
+                    pnFollowingUserCards.Controls.Add(userAvatar);
+                    userAvatar.Dock = DockStyle.Left;
+                    userAvatar.BringToFront();
+                }
+            }
+        }
+
+        private void ClearFolloweeAvatars()
+        {
+            foreach (CircularUserAvatar userAvatar in pnFollowingUserCards.Controls.OfType<CircularUserAvatar>().ToList())
+            {
+                pnFollowingUserCards.Controls.Remove(userAvatar);
+                userAvatar.Dispose();
+            }
+        }
+
+        private async Task LoadRecentlyLikedMovieCardsAsync()
+        {
+            ClearRecentlyLikedMovieCards();
+
+            List<Movie> recentlyLikedMovies = await ListService.Instance.GetMoviesFromListAsync(_profileUser.LikedList.Id);
+            if (recentlyLikedMovies.All(movie => movie == null))
+            {
+                Label message = new Label
+                {
+                    Text = $"{_profileUser.Username} hasn't liked any movie yet!!!",
+                    ForeColor = Color.FromArgb(178, 172, 162),
+                    BackColor = Color.Transparent,
+                    Dock = DockStyle.Fill,
+                    AutoSize = true,
+                    Font = new Font("Segoe UI", 10),
+                };
+                pnRecentlyLikedMovieCards.Controls.Add(message);
+            }
+            else
+            {
+                var mainForm = this.FindForm() as MainForm;
+                for (int i = 0; i < 4; i++)
+                {
+                    var movie = recentlyLikedMovies[i];
+                    if (movie != null)
+                    {
+                        var movieCard = new MovieCard();
+                        await movieCard.Initialize(mainForm, movie, _mediator);
+                        movieCard.SetSize("medium");
+                        pnFavouriteMovieCards.Controls.Add(movieCard);
+                        movieCard.Dock = DockStyle.Left;
+                        movieCard.BringToFront();
+                    }
+                }
+            }
+        }
+
+        private void ClearRecentlyLikedMovieCards()
+        {
+            foreach (MovieCard movieCard in pnRecentlyLikedMovieCards.Controls.OfType<MovieCard>().ToList())
+            {
+                pnRecentlyLikedMovieCards.Controls.Remove(movieCard);
+                movieCard.Dispose();
+            }
+        }
+
 
         private void RegisterEventHandlers()
         {

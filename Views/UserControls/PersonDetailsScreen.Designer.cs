@@ -55,6 +55,7 @@
             pnCreditsListSection = new Panel();
             pnCreditsListContainer = new Panel();
             lblCreditsHeading = new Label();
+            pnWrapper = new Panel();
             ((System.ComponentModel.ISupportInitialize)picProfile).BeginInit();
             pnKnownForSection.SuspendLayout();
             pnColumn1.SuspendLayout();
@@ -65,6 +66,7 @@
             pnKnownForRoleSection.SuspendLayout();
             pnColumn2.SuspendLayout();
             pnCreditsListSection.SuspendLayout();
+            pnWrapper.SuspendLayout();
             SuspendLayout();
             // 
             // picProfile
@@ -109,7 +111,7 @@
             txtBiography.Name = "txtBiography";
             txtBiography.ReadOnly = true;
             txtBiography.ScrollBars = ScrollBars.Vertical;
-            txtBiography.Size = new Size(740, 224);
+            txtBiography.Size = new Size(588, 224);
             txtBiography.TabIndex = 4;
             // 
             // pnKnownForSection
@@ -119,7 +121,7 @@
             pnKnownForSection.Controls.Add(lblKnownForHeading);
             pnKnownForSection.Location = new Point(24, 403);
             pnKnownForSection.Name = "pnKnownForSection";
-            pnKnownForSection.Size = new Size(740, 275);
+            pnKnownForSection.Size = new Size(588, 275);
             pnKnownForSection.TabIndex = 5;
             // 
             // pnMovieCards
@@ -128,7 +130,7 @@
             pnMovieCards.Dock = DockStyle.Fill;
             pnMovieCards.Location = new Point(0, 22);
             pnMovieCards.Name = "pnMovieCards";
-            pnMovieCards.Size = new Size(740, 253);
+            pnMovieCards.Size = new Size(588, 253);
             pnMovieCards.TabIndex = 1;
             // 
             // lblKnownForHeading
@@ -138,7 +140,7 @@
             lblKnownForHeading.ForeColor = Color.FromArgb(232, 230, 227);
             lblKnownForHeading.Location = new Point(0, 0);
             lblKnownForHeading.Name = "lblKnownForHeading";
-            lblKnownForHeading.Size = new Size(740, 22);
+            lblKnownForHeading.Size = new Size(588, 22);
             lblKnownForHeading.TabIndex = 0;
             lblKnownForHeading.Text = "Known for";
             // 
@@ -150,7 +152,7 @@
             pnColumn1.Dock = DockStyle.Left;
             pnColumn1.Location = new Point(0, 0);
             pnColumn1.Name = "pnColumn1";
-            pnColumn1.Size = new Size(281, 1060);
+            pnColumn1.Size = new Size(281, 1057);
             pnColumn1.TabIndex = 6;
             // 
             // btnBack
@@ -175,7 +177,7 @@
             pnPersonalInfo.Controls.Add(lblPersonalInfoHeading);
             pnPersonalInfo.Location = new Point(10, 435);
             pnPersonalInfo.Name = "pnPersonalInfo";
-            pnPersonalInfo.Size = new Size(261, 612);
+            pnPersonalInfo.Size = new Size(261, 609);
             pnPersonalInfo.TabIndex = 1;
             // 
             // pnBirthdaySection
@@ -328,7 +330,7 @@
             pnColumn2.Dock = DockStyle.Fill;
             pnColumn2.Location = new Point(281, 0);
             pnColumn2.Name = "pnColumn2";
-            pnColumn2.Size = new Size(821, 1060);
+            pnColumn2.Size = new Size(669, 1057);
             pnColumn2.TabIndex = 7;
             // 
             // pnCreditsListSection
@@ -339,7 +341,7 @@
             pnCreditsListSection.Controls.Add(lblCreditsHeading);
             pnCreditsListSection.Location = new Point(24, 712);
             pnCreditsListSection.Name = "pnCreditsListSection";
-            pnCreditsListSection.Size = new Size(740, 335);
+            pnCreditsListSection.Size = new Size(588, 332);
             pnCreditsListSection.TabIndex = 6;
             // 
             // pnCreditsListContainer
@@ -348,7 +350,7 @@
             pnCreditsListContainer.Dock = DockStyle.Fill;
             pnCreditsListContainer.Location = new Point(0, 23);
             pnCreditsListContainer.Name = "pnCreditsListContainer";
-            pnCreditsListContainer.Size = new Size(740, 312);
+            pnCreditsListContainer.Size = new Size(588, 309);
             pnCreditsListContainer.TabIndex = 1;
             // 
             // lblCreditsHeading
@@ -358,19 +360,28 @@
             lblCreditsHeading.ForeColor = Color.FromArgb(232, 230, 227);
             lblCreditsHeading.Location = new Point(0, 0);
             lblCreditsHeading.Name = "lblCreditsHeading";
-            lblCreditsHeading.Size = new Size(740, 23);
+            lblCreditsHeading.Size = new Size(588, 23);
             lblCreditsHeading.TabIndex = 0;
             lblCreditsHeading.Text = "Credits";
+            // 
+            // pnWrapper
+            // 
+            pnWrapper.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            pnWrapper.Controls.Add(pnColumn2);
+            pnWrapper.Controls.Add(pnColumn1);
+            pnWrapper.Location = new Point(171, 0);
+            pnWrapper.Name = "pnWrapper";
+            pnWrapper.Size = new Size(950, 1057);
+            pnWrapper.TabIndex = 8;
             // 
             // PersonDetailsScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(16, 19, 22);
-            Controls.Add(pnColumn2);
-            Controls.Add(pnColumn1);
+            Controls.Add(pnWrapper);
             Name = "PersonDetailsScreen";
-            Size = new Size(1102, 1060);
+            Size = new Size(1290, 1060);
             ((System.ComponentModel.ISupportInitialize)picProfile).EndInit();
             pnKnownForSection.ResumeLayout(false);
             pnColumn1.ResumeLayout(false);
@@ -384,6 +395,7 @@
             pnColumn2.PerformLayout();
             pnCreditsListSection.ResumeLayout(false);
             pnCreditsListSection.PerformLayout();
+            pnWrapper.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -416,5 +428,6 @@
         private Label lblCreditsHeading;
         private Panel pnCreditsListContainer;
         private Button btnBack;
+        private Panel pnWrapper;
     }
 }

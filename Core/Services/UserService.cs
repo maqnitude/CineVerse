@@ -151,8 +151,9 @@ namespace CineVerse.Core.Services
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
             {
-                var movieIds = user.FavouriteMovieIds;
-                var favouriteMovies = await unitOfWork.Users.GetFavouriteMoviesByIds(user.FavouriteMovieIds);
+                var updatedUser = await unitOfWork.Users.GetUserByIdAsync(user.Id);
+                var movieIds = updatedUser.FavouriteMovieIds;
+                var favouriteMovies = await unitOfWork.Users.GetFavouriteMoviesByIds(movieIds);
                 return favouriteMovies;
             }
         }

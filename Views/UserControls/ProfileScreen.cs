@@ -15,15 +15,14 @@ using System.Windows.Forms;
 
 namespace CineVerse.Views.UserControls
 {
-    public partial class ProfileScreen : UserControl
+    public partial class ProfileScreen : UserControlComponent
     {
         private User? _currentUser;
         private User? _profileUser;
 
-        public ProfileScreen(User profileUser)
+        public ProfileScreen()
         {
             InitializeComponent();
-            SetProfileUser(profileUser);
         }
 
         public void SetProfileUser(User profileUser)
@@ -33,12 +32,44 @@ namespace CineVerse.Views.UserControls
             lblUsername.Text = _profileUser.Username;
             picAvatar.Image = (_profileUser.AvatarPath != null) ? new Bitmap(_profileUser.AvatarPath) : Properties.Resources.default_avatar;
             picAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
+            lblBio.Text = _profileUser.Bio;
+            LoadFavouriteMoviePosters();
         }
 
         public void SetCurrentUser(User currentUser)
         {
             _currentUser = currentUser;
             SetupButton();
+        }
+
+        private async void LoadFavouriteMoviePosters()
+        {
+            ClearFavouriteMoviePosters();
+            
+            List<Movie?> favouriteMovies = await UserService.Instance.GetFavouriteMovies(_profileUser);
+            var mainForm = this.FindForm() as MainForm;
+            for (int i = 0; i < 4; i++)
+            {
+                var movie = favouriteMovies[i];
+                if (movie != null)
+                {
+                    var movieCard = new MovieCard();
+                    await movieCard.Initialize(mainForm, movie, _mediator);
+                    movieCard.SetSize("medium");
+                    pnFavouriteMovieCards.Controls.Add(movieCard);
+                    movieCard.Dock = DockStyle.Left;
+                    movieCard.BringToFront();
+                }
+            }
+        }
+
+        private async void ClearFavouriteMoviePosters()
+        {
+            foreach (MovieCard movieCard in pnFavouriteMovieCards.Controls.OfType<MovieCard>().ToList())
+            {
+                pnFavouriteMovieCards.Controls.Remove(movieCard);
+                movieCard.Dispose();
+            }
         }
 
         private void RegisterEventHandlers()

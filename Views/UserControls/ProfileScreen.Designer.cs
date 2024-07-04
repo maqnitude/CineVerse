@@ -112,12 +112,11 @@
             // 
             // lblBio
             // 
-            lblBio.AutoSize = true;
             lblBio.Font = new Font("Segoe UI", 9F);
             lblBio.ForeColor = Color.FromArgb(178, 172, 162);
-            lblBio.Location = new Point(181, 71);
+            lblBio.Location = new Point(181, 68);
             lblBio.Name = "lblBio";
-            lblBio.Size = new Size(128, 15);
+            lblBio.Size = new Size(440, 46);
             lblBio.TabIndex = 4;
             lblBio.Text = "Just a normal cinephile";
             // 

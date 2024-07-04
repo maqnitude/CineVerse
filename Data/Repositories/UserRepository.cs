@@ -39,9 +39,9 @@ namespace CineVerse.Data.Repositories
 
         public async Task<List<Movie?>> GetFavouriteMoviesByIds(List<int?> movieIds)
         {
-            var movies = _context.Set<Movie>()
+            var movies = await _context.Set<Movie>()
                 .Where(m => movieIds.Contains(m.Id))
-                .ToList();
+                .ToListAsync();
 
             var movieDict = movies.ToDictionary(m => m.Id, m => m);
 

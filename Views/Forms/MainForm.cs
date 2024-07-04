@@ -195,8 +195,12 @@ namespace CineVerse.Forms
             _homeScreen.SetUser(_currentUser);
             _listsScreen.SetUser(_currentUser);
             _usersScreen.SetUser(_currentUser);
-            await _usersScreen.LoadUsersAsync();
+
             lblHomeTab_Click(this, EventArgs.Empty);
+
+            await _homeScreen.LoadContents();
+            await _usersScreen.LoadUsersAsync();
+
         }
 
         private void OnUserSettingsChanged(object? sender, EventArgs e)

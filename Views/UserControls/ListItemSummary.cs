@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 namespace CineVerse.Views.UserControls
 {
@@ -59,7 +60,25 @@ namespace CineVerse.Views.UserControls
                     {
                         picPoster.Image?.Dispose();
 
-                        picPoster.Image = new Bitmap(movie.PosterPath);
+                        //picPoster.Image = new Bitmap(movie.PosterPath);
+                        using (var originalImage = new Bitmap(movie.PosterPath))
+                        {
+                            // Adjust this value to scale the image. 
+                            float scaleFactor = 0.1f;
+                            
+                            int newWidth = (int)(originalImage.Width * scaleFactor);
+                            int newHeight = (int)(originalImage.Height * scaleFactor);
+                            
+                            var resizedImage = new Bitmap(newWidth, newHeight);
+                            using (var graphics = Graphics.FromImage(resizedImage))
+                            {
+                                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                                graphics.DrawImage(originalImage, 0, 0, newWidth, newHeight);
+                            }
+                            
+                            picPoster.Image = new Bitmap(resizedImage);
+                        }
+
                         picPoster.SizeMode = PictureBoxSizeMode.StretchImage;
                     }
                 }

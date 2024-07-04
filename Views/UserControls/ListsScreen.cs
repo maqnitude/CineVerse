@@ -20,6 +20,11 @@ namespace CineVerse.Views.UserControls
 
         private bool _currentUserOnly = false;
 
+        private string? _filterBy;
+        private string? _filterValue;
+        private string? _sortBy;
+        private string? _sortValue;
+
         public bool CurrentUserOnly
         {
             get { return _currentUserOnly; }
@@ -68,11 +73,13 @@ namespace CineVerse.Views.UserControls
             List<List> lists = new List<List>();
             if (_currentUserOnly)
             {
-                lists = await ListService.Instance.GetUserListsAsync(_user.Id, includeUser: true, includeMovies: true);
+                lists = await ListService.Instance.GetUserListsAsync(_user.Id, includeUser: true, includeMovies: true,
+                    sortBy: _sortBy, sortValue: _sortValue);
             }
             else
             {
-                lists = await ListService.Instance.GetListsAsync(ListType.Public, includeUser: true, includeMovies: true);
+                lists = await ListService.Instance.GetListsAsync(ListType.Public, includeUser: true, includeMovies: true,
+                    sortBy: _sortBy, sortValue: _sortValue);
             }
 
             foreach (List list in lists)
@@ -108,6 +115,22 @@ namespace CineVerse.Views.UserControls
         {
             var newListForm = new NewListForm();
             newListForm.ShowDialog();
+        }
+
+        private async void newestFirstToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _sortBy = "date";
+            _sortValue = "newest";
+
+            await LoadListsAsync();
+        }
+
+        private async void oldestFirstToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _sortBy = "date";
+            _sortValue = "oldest";
+
+            await LoadListsAsync();
         }
     }
 }

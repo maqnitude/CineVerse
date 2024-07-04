@@ -14,6 +14,7 @@ using CineVerse.Data.Entities;
 using CineVerse.Forms;
 using CineVerse.Views.Forms;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using System.Drawing.Drawing2D;
 
 namespace CineVerse.Views.UserControls
 {
@@ -73,10 +74,44 @@ namespace CineVerse.Views.UserControls
             lblMovieTitle.Text = movie.Title;
 
             pnBackdrop.BackgroundImage?.Dispose();
-            pnBackdrop.BackgroundImage = new Bitmap(movie.BackdropPath);
+            //pnBackdrop.BackgroundImage = new Bitmap(movie.BackdropPath);
+            using (var originalImage = new Bitmap(_movie.BackdropPath))
+            {
+                // Adjust this value to scale the image. 
+                float scaleFactor = 0.2f;
+                
+                int newWidth = (int)(originalImage.Width * scaleFactor);
+                int newHeight = (int)(originalImage.Height * scaleFactor);
+                
+                var resizedImage = new Bitmap(newWidth, newHeight);
+                using (var graphics = Graphics.FromImage(resizedImage))
+                {
+                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    graphics.DrawImage(originalImage, 0, 0, newWidth, newHeight);
+                }
+                
+                pnBackdrop.BackgroundImage = new Bitmap(resizedImage);
+            }
 
             picMoviePoster.Image?.Dispose();
-            picMoviePoster.Image = new Bitmap(movie.PosterPath);
+            //picMoviePoster.Image = new Bitmap(movie.PosterPath);
+            using (var originalImage = new Bitmap(_movie.PosterPath))
+            {
+                // Adjust this value to scale the image. 
+                float scaleFactor = 0.2f;
+                
+                int newWidth = (int)(originalImage.Width * scaleFactor);
+                int newHeight = (int)(originalImage.Height * scaleFactor);
+                
+                var resizedImage = new Bitmap(newWidth, newHeight);
+                using (var graphics = Graphics.FromImage(resizedImage))
+                {
+                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    graphics.DrawImage(originalImage, 0, 0, newWidth, newHeight);
+                }
+                
+                picMoviePoster.Image = new Bitmap(resizedImage);
+            }
 
             lblReleaseYear.Text = movie.ReleaseDate.HasValue ? movie.ReleaseDate.Value.Year.ToString() : "N/A";
             lblReleaseDate.Text = movie.ReleaseDate.HasValue ? movie.ReleaseDate.Value.ToString("MM/dd/yyyy") : "N/A";

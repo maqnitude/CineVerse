@@ -37,8 +37,8 @@
             filterByToolStripMenuItem = new ToolStripMenuItem();
             friendsToolStripMenuItem = new ToolStripMenuItem();
             sortByToolStripMenuItem = new ToolStripMenuItem();
-            highestFirstToolStripMenuItem = new ToolStripMenuItem();
-            lowestFirstToolStripMenuItem = new ToolStripMenuItem();
+            newestFirstToolStripMenuItem = new ToolStripMenuItem();
+            oldestFirstToolStripMenuItem = new ToolStripMenuItem();
             txtSortedBy = new ToolStripTextBox();
             lblHeading = new Label();
             pnWrapper.SuspendLayout();
@@ -135,27 +135,29 @@
             // 
             // sortByToolStripMenuItem
             // 
-            sortByToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { highestFirstToolStripMenuItem, lowestFirstToolStripMenuItem });
+            sortByToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newestFirstToolStripMenuItem, oldestFirstToolStripMenuItem });
             sortByToolStripMenuItem.ForeColor = Color.FromArgb(178, 172, 162);
             sortByToolStripMenuItem.Name = "sortByToolStripMenuItem";
             sortByToolStripMenuItem.Size = new Size(87, 20);
             sortByToolStripMenuItem.Text = "Date Created";
             // 
-            // highestFirstToolStripMenuItem
+            // newestFirstToolStripMenuItem
             // 
-            highestFirstToolStripMenuItem.BackColor = Color.FromArgb(32, 38, 45);
-            highestFirstToolStripMenuItem.ForeColor = Color.FromArgb(178, 172, 162);
-            highestFirstToolStripMenuItem.Name = "highestFirstToolStripMenuItem";
-            highestFirstToolStripMenuItem.Size = new Size(167, 22);
-            highestFirstToolStripMenuItem.Text = "Ascending order";
+            newestFirstToolStripMenuItem.BackColor = Color.FromArgb(32, 38, 45);
+            newestFirstToolStripMenuItem.ForeColor = Color.FromArgb(178, 172, 162);
+            newestFirstToolStripMenuItem.Name = "newestFirstToolStripMenuItem";
+            newestFirstToolStripMenuItem.Size = new Size(180, 22);
+            newestFirstToolStripMenuItem.Text = "Newest";
+            newestFirstToolStripMenuItem.Click += newestFirstToolStripMenuItem_Click;
             // 
-            // lowestFirstToolStripMenuItem
+            // oldestFirstToolStripMenuItem
             // 
-            lowestFirstToolStripMenuItem.BackColor = Color.FromArgb(32, 38, 45);
-            lowestFirstToolStripMenuItem.ForeColor = Color.FromArgb(178, 172, 162);
-            lowestFirstToolStripMenuItem.Name = "lowestFirstToolStripMenuItem";
-            lowestFirstToolStripMenuItem.Size = new Size(167, 22);
-            lowestFirstToolStripMenuItem.Text = "Descending order";
+            oldestFirstToolStripMenuItem.BackColor = Color.FromArgb(32, 38, 45);
+            oldestFirstToolStripMenuItem.ForeColor = Color.FromArgb(178, 172, 162);
+            oldestFirstToolStripMenuItem.Name = "oldestFirstToolStripMenuItem";
+            oldestFirstToolStripMenuItem.Size = new Size(180, 22);
+            oldestFirstToolStripMenuItem.Text = "Oldest";
+            oldestFirstToolStripMenuItem.Click += oldestFirstToolStripMenuItem_Click;
             // 
             // txtSortedBy
             // 
@@ -209,8 +211,8 @@
         private ToolStripMenuItem filterByToolStripMenuItem;
         private ToolStripMenuItem sortByToolStripMenuItem;
         private ToolStripMenuItem friendsToolStripMenuItem;
-        private ToolStripMenuItem highestFirstToolStripMenuItem;
-        private ToolStripMenuItem lowestFirstToolStripMenuItem;
+        private ToolStripMenuItem newestFirstToolStripMenuItem;
+        private ToolStripMenuItem oldestFirstToolStripMenuItem;
         private ToolStripTextBox txtSortedBy;
     }
 }

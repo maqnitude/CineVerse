@@ -44,24 +44,24 @@ namespace CineVerse.Views.UserControls
         {
             List<ListItemSummary> itemsToRemove = new List<ListItemSummary>();
 
-            foreach (Control control in pnlListsContainer.Controls)
+            foreach (Control control in pnWrapper.Controls)
             {
                 if (control is ListItemSummary item)
                 {
-                    itemsToRemove.Add(item); 
+                    itemsToRemove.Add(item);
                 }
             }
 
             foreach (ListItemSummary item in itemsToRemove)
             {
-                pnlListsContainer.Controls.Remove(item);
+                pnWrapper.Controls.Remove(item);
                 item.DisposeImages();
             }
         }
 
         public async Task LoadListsAsync()
         {
-            pnlListsContainer.SuspendLayout();
+            pnWrapper.SuspendLayout();
 
             ClearLists();
 
@@ -88,10 +88,10 @@ namespace CineVerse.Views.UserControls
                 };
                 item.SetMediator(_mediator);
 
-                pnlListsContainer.Controls.Add(item);
+                pnWrapper.Controls.Add(item);
             }
 
-            pnlListsContainer.ResumeLayout();
+            pnWrapper.ResumeLayout();
         }
 
         private async void OnListAdded(object sender, EventArgs e)

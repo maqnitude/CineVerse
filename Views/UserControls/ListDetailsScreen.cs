@@ -53,6 +53,23 @@ namespace CineVerse.Views.UserControls
             await LoadMovieCards();
         }
 
+        private void SetRandomBackdropImage(List<Movie> movies)
+        {
+            picBackdrop.Image?.Dispose();
+            if (movies.Count > 0)
+            {
+                Random random = new Random();
+                int index = random.Next(movies.Count);
+                Movie selectedMovie = movies[index];
+
+                picBackdrop.Image = new Bitmap(selectedMovie.BackdropPath);
+            }
+            else
+            {
+                picBackdrop.Image = Properties.Resources.default_list_backdrop;
+            }
+        }
+
         public void RemoveMovieCards()
         {
             // Avoid modifying the collection that we're iterating over
@@ -79,6 +96,8 @@ namespace CineVerse.Views.UserControls
             RemoveMovieCards();
 
             List<Movie> movies = await ListService.Instance.GetMoviesFromListAsync(_list.Id);
+
+            SetRandomBackdropImage(movies);
 
             foreach (Movie movie in movies)
             {

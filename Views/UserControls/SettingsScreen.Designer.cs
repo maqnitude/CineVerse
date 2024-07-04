@@ -85,6 +85,8 @@
             lblAuthTab = new Label();
             lblProfileTab = new Label();
             btnBack = new Button();
+            panel1 = new Panel();
+            panel2 = new Panel();
             pnMain.SuspendLayout();
             pnForm.SuspendLayout();
             pnLeftCol.SuspendLayout();
@@ -110,14 +112,17 @@
             pnFavouriteMoviesSection.SuspendLayout();
             pnFavouriteMoviePosters.SuspendLayout();
             pnSettingsNavbar.SuspendLayout();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // lblSettings
             // 
             lblSettings.AutoSize = true;
+            lblSettings.Dock = DockStyle.Left;
             lblSettings.Font = new Font("Segoe UI", 16F);
             lblSettings.ForeColor = Color.FromArgb(164, 184, 200);
-            lblSettings.Location = new Point(59, 16);
+            lblSettings.Location = new Point(30, 0);
             lblSettings.Name = "lblSettings";
             lblSettings.Size = new Size(174, 30);
             lblSettings.TabIndex = 0;
@@ -125,12 +130,12 @@
             // 
             // pnMain
             // 
-            pnMain.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnMain.Controls.Add(pnForm);
             pnMain.Controls.Add(pnSettingsNavbar);
-            pnMain.Location = new Point(17, 70);
+            pnMain.Dock = DockStyle.Fill;
+            pnMain.Location = new Point(0, 30);
             pnMain.Name = "pnMain";
-            pnMain.Size = new Size(944, 769);
+            pnMain.Size = new Size(950, 831);
             pnMain.TabIndex = 1;
             // 
             // pnForm
@@ -140,7 +145,7 @@
             pnForm.Dock = DockStyle.Fill;
             pnForm.Location = new Point(0, 18);
             pnForm.Name = "pnForm";
-            pnForm.Size = new Size(944, 751);
+            pnForm.Size = new Size(950, 813);
             pnForm.TabIndex = 1;
             // 
             // pnLeftCol
@@ -156,7 +161,7 @@
             pnLeftCol.Dock = DockStyle.Fill;
             pnLeftCol.Location = new Point(0, 0);
             pnLeftCol.Name = "pnLeftCol";
-            pnLeftCol.Size = new Size(442, 751);
+            pnLeftCol.Size = new Size(448, 813);
             pnLeftCol.TabIndex = 1;
             // 
             // btnSave
@@ -167,7 +172,7 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Segoe UI Black", 10F, FontStyle.Bold);
             btnSave.ForeColor = Color.FromArgb(216, 244, 202);
-            btnSave.Location = new Point(17, 706);
+            btnSave.Location = new Point(17, 768);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(138, 30);
             btnSave.TabIndex = 8;
@@ -219,7 +224,7 @@
             pnBioGroup.Controls.Add(lblBioHeading);
             pnBioGroup.Location = new Point(17, 385);
             pnBioGroup.Name = "pnBioGroup";
-            pnBioGroup.Size = new Size(393, 191);
+            pnBioGroup.Size = new Size(399, 191);
             pnBioGroup.TabIndex = 6;
             // 
             // txtBio
@@ -232,7 +237,7 @@
             txtBio.Location = new Point(0, 20);
             txtBio.Multiline = true;
             txtBio.Name = "txtBio";
-            txtBio.Size = new Size(393, 171);
+            txtBio.Size = new Size(399, 171);
             txtBio.TabIndex = 1;
             // 
             // lblBioHeading
@@ -242,7 +247,7 @@
             lblBioHeading.ForeColor = Color.FromArgb(232, 230, 227);
             lblBioHeading.Location = new Point(0, 0);
             lblBioHeading.Name = "lblBioHeading";
-            lblBioHeading.Size = new Size(393, 20);
+            lblBioHeading.Size = new Size(399, 20);
             lblBioHeading.TabIndex = 0;
             lblBioHeading.Text = "Bio";
             // 
@@ -259,7 +264,7 @@
             tlpLocationAndWebsiteGroup.Name = "tlpLocationAndWebsiteGroup";
             tlpLocationAndWebsiteGroup.RowCount = 1;
             tlpLocationAndWebsiteGroup.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpLocationAndWebsiteGroup.Size = new Size(403, 56);
+            tlpLocationAndWebsiteGroup.Size = new Size(409, 56);
             tlpLocationAndWebsiteGroup.TabIndex = 5;
             // 
             // pnWebsiteGroup
@@ -267,11 +272,11 @@
             pnWebsiteGroup.Controls.Add(pnWebsiteTextbox);
             pnWebsiteGroup.Controls.Add(lblWebsiteHeading);
             pnWebsiteGroup.Dock = DockStyle.Fill;
-            pnWebsiteGroup.Location = new Point(201, 0);
+            pnWebsiteGroup.Location = new Point(204, 0);
             pnWebsiteGroup.Margin = new Padding(0);
             pnWebsiteGroup.Name = "pnWebsiteGroup";
             pnWebsiteGroup.Padding = new Padding(0, 0, 10, 0);
-            pnWebsiteGroup.Size = new Size(202, 56);
+            pnWebsiteGroup.Size = new Size(205, 56);
             pnWebsiteGroup.TabIndex = 3;
             // 
             // pnWebsiteTextbox
@@ -282,7 +287,7 @@
             pnWebsiteTextbox.Dock = DockStyle.Fill;
             pnWebsiteTextbox.Location = new Point(0, 20);
             pnWebsiteTextbox.Name = "pnWebsiteTextbox";
-            pnWebsiteTextbox.Size = new Size(192, 36);
+            pnWebsiteTextbox.Size = new Size(195, 36);
             pnWebsiteTextbox.TabIndex = 2;
             // 
             // txtWebsite
@@ -294,7 +299,7 @@
             txtWebsite.ForeColor = Color.FromArgb(168, 160, 149);
             txtWebsite.Location = new Point(4, 9);
             txtWebsite.Name = "txtWebsite";
-            txtWebsite.Size = new Size(191, 18);
+            txtWebsite.Size = new Size(194, 18);
             txtWebsite.TabIndex = 0;
             // 
             // lblWebsiteHeading
@@ -304,7 +309,7 @@
             lblWebsiteHeading.ForeColor = Color.FromArgb(232, 230, 227);
             lblWebsiteHeading.Location = new Point(0, 0);
             lblWebsiteHeading.Name = "lblWebsiteHeading";
-            lblWebsiteHeading.Size = new Size(192, 20);
+            lblWebsiteHeading.Size = new Size(195, 20);
             lblWebsiteHeading.TabIndex = 0;
             lblWebsiteHeading.Text = "Website";
             // 
@@ -318,7 +323,7 @@
             pnLocationGroup.Margin = new Padding(0);
             pnLocationGroup.Name = "pnLocationGroup";
             pnLocationGroup.Padding = new Padding(0, 0, 15, 0);
-            pnLocationGroup.Size = new Size(201, 56);
+            pnLocationGroup.Size = new Size(204, 56);
             pnLocationGroup.TabIndex = 2;
             // 
             // pnLocationTextbox
@@ -329,7 +334,7 @@
             pnLocationTextbox.Dock = DockStyle.Fill;
             pnLocationTextbox.Location = new Point(0, 20);
             pnLocationTextbox.Name = "pnLocationTextbox";
-            pnLocationTextbox.Size = new Size(186, 36);
+            pnLocationTextbox.Size = new Size(189, 36);
             pnLocationTextbox.TabIndex = 2;
             // 
             // txtLocation
@@ -341,7 +346,7 @@
             txtLocation.ForeColor = Color.FromArgb(168, 160, 149);
             txtLocation.Location = new Point(4, 9);
             txtLocation.Name = "txtLocation";
-            txtLocation.Size = new Size(182, 18);
+            txtLocation.Size = new Size(185, 18);
             txtLocation.TabIndex = 0;
             // 
             // lblLocationHeading
@@ -351,7 +356,7 @@
             lblLocationHeading.ForeColor = Color.FromArgb(232, 230, 227);
             lblLocationHeading.Location = new Point(0, 0);
             lblLocationHeading.Name = "lblLocationHeading";
-            lblLocationHeading.Size = new Size(186, 20);
+            lblLocationHeading.Size = new Size(189, 20);
             lblLocationHeading.TabIndex = 0;
             lblLocationHeading.Text = "Location";
             // 
@@ -362,7 +367,7 @@
             pnEmailGroup.Controls.Add(lblEmailHeading);
             pnEmailGroup.Location = new Point(17, 213);
             pnEmailGroup.Name = "pnEmailGroup";
-            pnEmailGroup.Size = new Size(393, 56);
+            pnEmailGroup.Size = new Size(399, 56);
             pnEmailGroup.TabIndex = 4;
             // 
             // pnEmailTextbox
@@ -373,7 +378,7 @@
             pnEmailTextbox.Dock = DockStyle.Fill;
             pnEmailTextbox.Location = new Point(0, 20);
             pnEmailTextbox.Name = "pnEmailTextbox";
-            pnEmailTextbox.Size = new Size(393, 36);
+            pnEmailTextbox.Size = new Size(399, 36);
             pnEmailTextbox.TabIndex = 2;
             // 
             // txtEmail
@@ -385,7 +390,7 @@
             txtEmail.ForeColor = Color.FromArgb(168, 160, 149);
             txtEmail.Location = new Point(4, 9);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(383, 18);
+            txtEmail.Size = new Size(389, 18);
             txtEmail.TabIndex = 0;
             // 
             // lblEmailHeading
@@ -395,7 +400,7 @@
             lblEmailHeading.ForeColor = Color.FromArgb(232, 230, 227);
             lblEmailHeading.Location = new Point(0, 0);
             lblEmailHeading.Name = "lblEmailHeading";
-            lblEmailHeading.Size = new Size(393, 20);
+            lblEmailHeading.Size = new Size(399, 20);
             lblEmailHeading.TabIndex = 0;
             lblEmailHeading.Text = "Email address";
             // 
@@ -412,7 +417,7 @@
             tlpNameGroup.Name = "tlpNameGroup";
             tlpNameGroup.RowCount = 1;
             tlpNameGroup.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tlpNameGroup.Size = new Size(403, 56);
+            tlpNameGroup.Size = new Size(409, 56);
             tlpNameGroup.TabIndex = 3;
             // 
             // pnFamilyNameGroup
@@ -420,11 +425,11 @@
             pnFamilyNameGroup.Controls.Add(pnFamilyNameTextbox);
             pnFamilyNameGroup.Controls.Add(lblFamilyNameHeading);
             pnFamilyNameGroup.Dock = DockStyle.Fill;
-            pnFamilyNameGroup.Location = new Point(201, 0);
+            pnFamilyNameGroup.Location = new Point(204, 0);
             pnFamilyNameGroup.Margin = new Padding(0);
             pnFamilyNameGroup.Name = "pnFamilyNameGroup";
             pnFamilyNameGroup.Padding = new Padding(0, 0, 10, 0);
-            pnFamilyNameGroup.Size = new Size(202, 56);
+            pnFamilyNameGroup.Size = new Size(205, 56);
             pnFamilyNameGroup.TabIndex = 3;
             // 
             // pnFamilyNameTextbox
@@ -435,7 +440,7 @@
             pnFamilyNameTextbox.Dock = DockStyle.Fill;
             pnFamilyNameTextbox.Location = new Point(0, 20);
             pnFamilyNameTextbox.Name = "pnFamilyNameTextbox";
-            pnFamilyNameTextbox.Size = new Size(192, 36);
+            pnFamilyNameTextbox.Size = new Size(195, 36);
             pnFamilyNameTextbox.TabIndex = 2;
             // 
             // txtFamilyName
@@ -447,7 +452,7 @@
             txtFamilyName.ForeColor = Color.FromArgb(168, 160, 149);
             txtFamilyName.Location = new Point(4, 9);
             txtFamilyName.Name = "txtFamilyName";
-            txtFamilyName.Size = new Size(188, 18);
+            txtFamilyName.Size = new Size(191, 18);
             txtFamilyName.TabIndex = 0;
             // 
             // lblFamilyNameHeading
@@ -457,7 +462,7 @@
             lblFamilyNameHeading.ForeColor = Color.FromArgb(232, 230, 227);
             lblFamilyNameHeading.Location = new Point(0, 0);
             lblFamilyNameHeading.Name = "lblFamilyNameHeading";
-            lblFamilyNameHeading.Size = new Size(192, 20);
+            lblFamilyNameHeading.Size = new Size(195, 20);
             lblFamilyNameHeading.TabIndex = 0;
             lblFamilyNameHeading.Text = "Family name";
             // 
@@ -471,7 +476,7 @@
             pnGivenNameGroup.Margin = new Padding(0);
             pnGivenNameGroup.Name = "pnGivenNameGroup";
             pnGivenNameGroup.Padding = new Padding(0, 0, 15, 0);
-            pnGivenNameGroup.Size = new Size(201, 56);
+            pnGivenNameGroup.Size = new Size(204, 56);
             pnGivenNameGroup.TabIndex = 2;
             // 
             // pnGivenNameTextbox
@@ -482,7 +487,7 @@
             pnGivenNameTextbox.Dock = DockStyle.Fill;
             pnGivenNameTextbox.Location = new Point(0, 20);
             pnGivenNameTextbox.Name = "pnGivenNameTextbox";
-            pnGivenNameTextbox.Size = new Size(186, 36);
+            pnGivenNameTextbox.Size = new Size(189, 36);
             pnGivenNameTextbox.TabIndex = 2;
             // 
             // txtGivenName
@@ -494,7 +499,7 @@
             txtGivenName.ForeColor = Color.FromArgb(168, 160, 149);
             txtGivenName.Location = new Point(4, 9);
             txtGivenName.Name = "txtGivenName";
-            txtGivenName.Size = new Size(182, 18);
+            txtGivenName.Size = new Size(185, 18);
             txtGivenName.TabIndex = 0;
             // 
             // lblGivenNameHeading
@@ -504,7 +509,7 @@
             lblGivenNameHeading.ForeColor = Color.FromArgb(232, 230, 227);
             lblGivenNameHeading.Location = new Point(0, 0);
             lblGivenNameHeading.Name = "lblGivenNameHeading";
-            lblGivenNameHeading.Size = new Size(186, 20);
+            lblGivenNameHeading.Size = new Size(189, 20);
             lblGivenNameHeading.TabIndex = 0;
             lblGivenNameHeading.Text = "Given name";
             // 
@@ -515,7 +520,7 @@
             pnUsernameGroup.Controls.Add(lblUsernameHeading);
             pnUsernameGroup.Location = new Point(17, 46);
             pnUsernameGroup.Name = "pnUsernameGroup";
-            pnUsernameGroup.Size = new Size(393, 56);
+            pnUsernameGroup.Size = new Size(399, 56);
             pnUsernameGroup.TabIndex = 1;
             // 
             // pnUsernameTextbox
@@ -526,7 +531,7 @@
             pnUsernameTextbox.Dock = DockStyle.Fill;
             pnUsernameTextbox.Location = new Point(0, 20);
             pnUsernameTextbox.Name = "pnUsernameTextbox";
-            pnUsernameTextbox.Size = new Size(393, 36);
+            pnUsernameTextbox.Size = new Size(399, 36);
             pnUsernameTextbox.TabIndex = 2;
             // 
             // txtUsername
@@ -538,7 +543,7 @@
             txtUsername.ForeColor = Color.FromArgb(168, 160, 149);
             txtUsername.Location = new Point(4, 9);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(380, 18);
+            txtUsername.Size = new Size(386, 18);
             txtUsername.TabIndex = 0;
             // 
             // lblUsernameHeading
@@ -548,7 +553,7 @@
             lblUsernameHeading.ForeColor = Color.FromArgb(232, 230, 227);
             lblUsernameHeading.Location = new Point(0, 0);
             lblUsernameHeading.Name = "lblUsernameHeading";
-            lblUsernameHeading.Size = new Size(393, 20);
+            lblUsernameHeading.Size = new Size(399, 20);
             lblUsernameHeading.TabIndex = 0;
             lblUsernameHeading.Text = "Username";
             // 
@@ -568,9 +573,9 @@
             pnRightCol.Controls.Add(pnAvatarSection);
             pnRightCol.Controls.Add(pnFavouriteMoviesSection);
             pnRightCol.Dock = DockStyle.Right;
-            pnRightCol.Location = new Point(442, 0);
+            pnRightCol.Location = new Point(448, 0);
             pnRightCol.Name = "pnRightCol";
-            pnRightCol.Size = new Size(502, 751);
+            pnRightCol.Size = new Size(502, 813);
             pnRightCol.TabIndex = 0;
             // 
             // pnAvatarSection
@@ -581,7 +586,7 @@
             pnAvatarSection.Dock = DockStyle.Fill;
             pnAvatarSection.Location = new Point(0, 0);
             pnAvatarSection.Name = "pnAvatarSection";
-            pnAvatarSection.Size = new Size(502, 297);
+            pnAvatarSection.Size = new Size(502, 359);
             pnAvatarSection.TabIndex = 2;
             // 
             // lblAvatarSection
@@ -603,7 +608,7 @@
             btnSelectAvatar.FlatStyle = FlatStyle.Flat;
             btnSelectAvatar.Font = new Font("Segoe UI Black", 9.5F, FontStyle.Bold);
             btnSelectAvatar.ForeColor = Color.FromArgb(216, 244, 202);
-            btnSelectAvatar.Location = new Point(160, 229);
+            btnSelectAvatar.Location = new Point(160, 291);
             btnSelectAvatar.Name = "btnSelectAvatar";
             btnSelectAvatar.Size = new Size(180, 30);
             btnSelectAvatar.TabIndex = 9;
@@ -614,7 +619,7 @@
             // picAvatar
             // 
             picAvatar.Anchor = AnchorStyles.None;
-            picAvatar.Location = new Point(180, 65);
+            picAvatar.Location = new Point(180, 96);
             picAvatar.Name = "picAvatar";
             picAvatar.Size = new Size(140, 140);
             picAvatar.TabIndex = 0;
@@ -625,7 +630,7 @@
             pnFavouriteMoviesSection.Controls.Add(pnFavouriteMoviePosters);
             pnFavouriteMoviesSection.Controls.Add(lblFavouriteMoviesSection);
             pnFavouriteMoviesSection.Dock = DockStyle.Bottom;
-            pnFavouriteMoviesSection.Location = new Point(0, 297);
+            pnFavouriteMoviesSection.Location = new Point(0, 359);
             pnFavouriteMoviesSection.Name = "pnFavouriteMoviesSection";
             pnFavouriteMoviesSection.Size = new Size(502, 454);
             pnFavouriteMoviesSection.TabIndex = 1;
@@ -704,7 +709,7 @@
             pnSettingsNavbar.Dock = DockStyle.Top;
             pnSettingsNavbar.Location = new Point(0, 0);
             pnSettingsNavbar.Name = "pnSettingsNavbar";
-            pnSettingsNavbar.Size = new Size(944, 18);
+            pnSettingsNavbar.Size = new Size(950, 18);
             pnSettingsNavbar.TabIndex = 0;
             // 
             // lblDataTab
@@ -774,26 +779,45 @@
             // 
             // btnBack
             // 
+            btnBack.Dock = DockStyle.Left;
             btnBack.FlatAppearance.BorderSize = 0;
             btnBack.FlatStyle = FlatStyle.Flat;
             btnBack.Image = Properties.Resources.back;
-            btnBack.Location = new Point(18, 16);
+            btnBack.Location = new Point(0, 0);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(30, 30);
             btnBack.TabIndex = 8;
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
             // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            panel1.Controls.Add(pnMain);
+            panel1.Controls.Add(panel2);
+            panel1.Location = new Point(240, 6);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(950, 861);
+            panel1.TabIndex = 9;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(lblSettings);
+            panel2.Controls.Add(btnBack);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(950, 30);
+            panel2.TabIndex = 0;
+            // 
             // SettingsScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(16, 19, 22);
-            Controls.Add(btnBack);
-            Controls.Add(pnMain);
-            Controls.Add(lblSettings);
+            Controls.Add(panel1);
             Name = "SettingsScreen";
-            Size = new Size(976, 859);
+            Size = new Size(1430, 867);
             pnMain.ResumeLayout(false);
             pnForm.ResumeLayout(false);
             pnLeftCol.ResumeLayout(false);
@@ -838,8 +862,10 @@
             pnFavouriteMoviePosters.ResumeLayout(false);
             pnSettingsNavbar.ResumeLayout(false);
             pnSettingsNavbar.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -901,5 +927,7 @@
         private FavouriteMoviePoster poster3;
         private FavouriteMoviePoster poster2;
         private FavouriteMoviePoster poster1;
+        private Panel panel1;
+        private Panel panel2;
     }
 }

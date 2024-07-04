@@ -42,32 +42,34 @@
             toolStripMenuItemHighest = new ToolStripMenuItem();
             toolStripMenuItemLowest = new ToolStripMenuItem();
             lblBrowseBy = new Label();
+            flpMovieCardsContainer = new FlowLayoutPanel();
             btnNextPage = new Button();
             btnPrevPage = new Button();
-            flpMovieCardsContainer = new FlowLayoutPanel();
-            pnFooter = new Panel();
             lblPageNumber = new Label();
+            pnWrapper = new Panel();
+            pnFooter = new Panel();
             pnlBrowseTooBar.SuspendLayout();
             menuStripBrowsingTools.SuspendLayout();
+            pnWrapper.SuspendLayout();
             pnFooter.SuspendLayout();
             SuspendLayout();
             // 
             // pnlBrowseTooBar
             // 
-            pnlBrowseTooBar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            pnlBrowseTooBar.BackColor = Color.FromArgb(18, 22, 26);
+            pnlBrowseTooBar.BackColor = Color.FromArgb(32, 38, 45);
             pnlBrowseTooBar.Controls.Add(menuStripBrowsingTools);
             pnlBrowseTooBar.Controls.Add(lblBrowseBy);
+            pnlBrowseTooBar.Dock = DockStyle.Top;
             pnlBrowseTooBar.Location = new Point(0, 0);
             pnlBrowseTooBar.Margin = new Padding(0);
             pnlBrowseTooBar.Name = "pnlBrowseTooBar";
-            pnlBrowseTooBar.Size = new Size(992, 32);
+            pnlBrowseTooBar.Size = new Size(960, 22);
             pnlBrowseTooBar.TabIndex = 0;
             // 
             // menuStripBrowsingTools
             // 
             menuStripBrowsingTools.AutoSize = false;
-            menuStripBrowsingTools.BackColor = Color.FromArgb(16, 19, 22);
+            menuStripBrowsingTools.BackColor = Color.FromArgb(32, 38, 45);
             menuStripBrowsingTools.Dock = DockStyle.None;
             menuStripBrowsingTools.Items.AddRange(new ToolStripItem[] { toolStripMenuDecade, toolStripMenuRating });
             menuStripBrowsingTools.Location = new Point(104, 0);
@@ -79,7 +81,7 @@
             // 
             // toolStripMenuDecade
             // 
-            toolStripMenuDecade.BackColor = Color.FromArgb(16, 19, 22);
+            toolStripMenuDecade.BackColor = Color.FromArgb(32, 38, 45);
             toolStripMenuDecade.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItemAll, toolStripMenuItemUpcoming, toolStripMenuItem2020s, toolStripMenuItem2010s, toolStripMenuItem2000s, toolStripMenuItem1990s, toolStripMenuItem1980s });
             toolStripMenuDecade.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             toolStripMenuDecade.ForeColor = Color.FromArgb(178, 172, 162);
@@ -179,99 +181,111 @@
             // 
             // lblBrowseBy
             // 
+            lblBrowseBy.Dock = DockStyle.Left;
             lblBrowseBy.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblBrowseBy.ForeColor = Color.White;
-            lblBrowseBy.Location = new Point(4, 0);
+            lblBrowseBy.Location = new Point(0, 0);
             lblBrowseBy.Margin = new Padding(4, 0, 4, 0);
             lblBrowseBy.Name = "lblBrowseBy";
-            lblBrowseBy.Size = new Size(96, 32);
+            lblBrowseBy.Size = new Size(96, 22);
             lblBrowseBy.TabIndex = 0;
             lblBrowseBy.Text = "BROWSE BY";
             lblBrowseBy.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // flpMovieCardsContainer
+            // 
+            flpMovieCardsContainer.AutoScroll = true;
+            flpMovieCardsContainer.Dock = DockStyle.Fill;
+            flpMovieCardsContainer.Location = new Point(0, 22);
+            flpMovieCardsContainer.Margin = new Padding(4);
+            flpMovieCardsContainer.Name = "flpMovieCardsContainer";
+            flpMovieCardsContainer.Padding = new Padding(4);
+            flpMovieCardsContainer.Size = new Size(960, 806);
+            flpMovieCardsContainer.TabIndex = 3;
+            // 
             // btnNextPage
             // 
-            btnNextPage.Dock = DockStyle.Right;
+            btnNextPage.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnNextPage.BackColor = Color.FromArgb(32, 38, 45);
             btnNextPage.FlatAppearance.BorderSize = 0;
             btnNextPage.FlatStyle = FlatStyle.Flat;
-            btnNextPage.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnNextPage.Image = Properties.Resources.expand_right;
-            btnNextPage.Location = new Point(73, 0);
-            btnNextPage.Margin = new Padding(4);
+            btnNextPage.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnNextPage.ForeColor = Color.FromArgb(198, 192, 182);
+            btnNextPage.Location = new Point(901, 0);
             btnNextPage.Name = "btnNextPage";
-            btnNextPage.Size = new Size(32, 37);
-            btnNextPage.TabIndex = 2;
-            btnNextPage.UseVisualStyleBackColor = true;
+            btnNextPage.Size = new Size(56, 30);
+            btnNextPage.TabIndex = 5;
+            btnNextPage.Text = "Next";
+            btnNextPage.UseVisualStyleBackColor = false;
             btnNextPage.Click += btnNextPage_Click;
             // 
             // btnPrevPage
             // 
-            btnPrevPage.Dock = DockStyle.Left;
+            btnPrevPage.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnPrevPage.BackColor = Color.FromArgb(32, 38, 45);
             btnPrevPage.FlatAppearance.BorderSize = 0;
             btnPrevPage.FlatStyle = FlatStyle.Flat;
-            btnPrevPage.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnPrevPage.Image = Properties.Resources.expand_left;
-            btnPrevPage.Location = new Point(0, 0);
-            btnPrevPage.Margin = new Padding(4);
+            btnPrevPage.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnPrevPage.ForeColor = Color.FromArgb(198, 192, 182);
+            btnPrevPage.Location = new Point(3, 0);
             btnPrevPage.Name = "btnPrevPage";
-            btnPrevPage.Size = new Size(32, 37);
-            btnPrevPage.TabIndex = 2;
-            btnPrevPage.TextAlign = ContentAlignment.MiddleLeft;
-            btnPrevPage.UseVisualStyleBackColor = true;
+            btnPrevPage.Size = new Size(79, 30);
+            btnPrevPage.TabIndex = 6;
+            btnPrevPage.Text = "Previous";
+            btnPrevPage.UseVisualStyleBackColor = false;
             btnPrevPage.Click += btnPrevPage_Click;
-            // 
-            // flpMovieCardsContainer
-            // 
-            flpMovieCardsContainer.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            flpMovieCardsContainer.AutoScroll = true;
-            flpMovieCardsContainer.Location = new Point(4, 36);
-            flpMovieCardsContainer.Margin = new Padding(4);
-            flpMovieCardsContainer.Name = "flpMovieCardsContainer";
-            flpMovieCardsContainer.Padding = new Padding(4);
-            flpMovieCardsContainer.Size = new Size(984, 453);
-            flpMovieCardsContainer.TabIndex = 3;
-            // 
-            // pnFooter
-            // 
-            pnFooter.Anchor = AnchorStyles.Bottom;
-            pnFooter.AutoSize = true;
-            pnFooter.Controls.Add(lblPageNumber);
-            pnFooter.Controls.Add(btnNextPage);
-            pnFooter.Controls.Add(btnPrevPage);
-            pnFooter.Location = new Point(445, 496);
-            pnFooter.Name = "pnFooter";
-            pnFooter.Size = new Size(105, 37);
-            pnFooter.TabIndex = 4;
             // 
             // lblPageNumber
             // 
+            lblPageNumber.Anchor = AnchorStyles.Bottom;
+            lblPageNumber.AutoSize = true;
             lblPageNumber.BackColor = Color.Transparent;
-            lblPageNumber.Dock = DockStyle.Fill;
-            lblPageNumber.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblPageNumber.ForeColor = Color.White;
-            lblPageNumber.Location = new Point(32, 0);
+            lblPageNumber.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPageNumber.ForeColor = Color.FromArgb(178, 172, 162);
+            lblPageNumber.Location = new Point(471, 3);
             lblPageNumber.Name = "lblPageNumber";
-            lblPageNumber.Size = new Size(41, 37);
-            lblPageNumber.TabIndex = 3;
+            lblPageNumber.Size = new Size(18, 21);
+            lblPageNumber.TabIndex = 7;
             lblPageNumber.Text = "1";
-            lblPageNumber.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // pnWrapper
+            // 
+            pnWrapper.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            pnWrapper.Controls.Add(flpMovieCardsContainer);
+            pnWrapper.Controls.Add(pnFooter);
+            pnWrapper.Controls.Add(pnlBrowseTooBar);
+            pnWrapper.Location = new Point(117, 0);
+            pnWrapper.Name = "pnWrapper";
+            pnWrapper.Size = new Size(960, 858);
+            pnWrapper.TabIndex = 8;
+            // 
+            // pnFooter
+            // 
+            pnFooter.Controls.Add(btnPrevPage);
+            pnFooter.Controls.Add(btnNextPage);
+            pnFooter.Controls.Add(lblPageNumber);
+            pnFooter.Dock = DockStyle.Bottom;
+            pnFooter.Location = new Point(0, 828);
+            pnFooter.Name = "pnFooter";
+            pnFooter.Size = new Size(960, 30);
+            pnFooter.TabIndex = 0;
             // 
             // MoviesScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(31, 40, 47);
-            Controls.Add(pnFooter);
-            Controls.Add(flpMovieCardsContainer);
-            Controls.Add(pnlBrowseTooBar);
+            BackColor = Color.Transparent;
+            BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(pnWrapper);
             Name = "MoviesScreen";
-            Size = new Size(992, 533);
+            Size = new Size(1193, 858);
             pnlBrowseTooBar.ResumeLayout(false);
             menuStripBrowsingTools.ResumeLayout(false);
             menuStripBrowsingTools.PerformLayout();
+            pnWrapper.ResumeLayout(false);
             pnFooter.ResumeLayout(false);
+            pnFooter.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -280,6 +294,9 @@
         private Label lblBrowseBy;
         private Button btnNextPage;
         private Button btnPrevPage;
+        private Label lblPageNumber;
+        private Panel pnWrapper;
+        private Panel pnFooter;
         private FlowLayoutPanel flpMovieCardsContainer;
         private MenuStrip menuStripBrowsingTools;
         private ToolStripMenuItem toolStripMenuDecade;
@@ -293,7 +310,5 @@
         private ToolStripMenuItem toolStripMenuRating;
         private ToolStripMenuItem toolStripMenuItemHighest;
         private ToolStripMenuItem toolStripMenuItemLowest;
-        private Panel pnFooter;
-        private Label lblPageNumber;
     }
 }

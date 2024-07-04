@@ -40,8 +40,8 @@
             addToWatchlistToolStripMenuItem = new ToolStripMenuItem();
             removeFromWatchlistToolStripMenuItem = new ToolStripMenuItem();
             addToListsToolStripMenuItem = new ToolStripMenuItem();
-            logOrReviewToolStripMenuItem = new ToolStripMenuItem();
             removeFromThisListToolStripMenuItem = new ToolStripMenuItem();
+            logOrReviewToolStripMenuItem = new ToolStripMenuItem();
             pnMoviePoster.SuspendLayout();
             pnActions.SuspendLayout();
             cmsActions.SuspendLayout();
@@ -51,8 +51,8 @@
             // 
             lblMovieTitle.BackColor = Color.FromArgb(54, 68, 82);
             lblMovieTitle.Dock = DockStyle.Bottom;
-            lblMovieTitle.Font = new Font("Segoe UI Black", 10F, FontStyle.Bold);
-            lblMovieTitle.ForeColor = Color.FromArgb(157, 148, 136);
+            lblMovieTitle.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblMovieTitle.ForeColor = Color.FromArgb(217, 208, 196);
             lblMovieTitle.Location = new Point(0, 197);
             lblMovieTitle.Margin = new Padding(2, 0, 2, 0);
             lblMovieTitle.Name = "lblMovieTitle";
@@ -137,7 +137,7 @@
             cmsActions.Items.AddRange(new ToolStripItem[] { whereToWatchToolStripMenuItem, addToWatchlistToolStripMenuItem, removeFromWatchlistToolStripMenuItem, addToListsToolStripMenuItem, removeFromThisListToolStripMenuItem, logOrReviewToolStripMenuItem });
             cmsActions.Name = "cmsActions";
             cmsActions.RenderMode = ToolStripRenderMode.System;
-            cmsActions.Size = new Size(199, 158);
+            cmsActions.Size = new Size(199, 136);
             // 
             // whereToWatchToolStripMenuItem
             // 
@@ -177,15 +177,6 @@
             addToListsToolStripMenuItem.Text = "Add to lists ...";
             addToListsToolStripMenuItem.Click += addToListsToolStripMenuItem_Click;
             // 
-            // logOrReviewToolStripMenuItem
-            // 
-            logOrReviewToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            logOrReviewToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
-            logOrReviewToolStripMenuItem.ImageTransparentColor = Color.FromArgb(232, 230, 227);
-            logOrReviewToolStripMenuItem.Name = "logOrReviewToolStripMenuItem";
-            logOrReviewToolStripMenuItem.Size = new Size(198, 22);
-            logOrReviewToolStripMenuItem.Text = "Log or review film ...";
-            // 
             // removeFromThisListToolStripMenuItem
             // 
             removeFromThisListToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
@@ -194,6 +185,15 @@
             removeFromThisListToolStripMenuItem.Text = "Remove from this list";
             removeFromThisListToolStripMenuItem.Visible = false;
             removeFromThisListToolStripMenuItem.Click += removeFromThisListToolStripMenuItem_Click;
+            // 
+            // logOrReviewToolStripMenuItem
+            // 
+            logOrReviewToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            logOrReviewToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
+            logOrReviewToolStripMenuItem.ImageTransparentColor = Color.FromArgb(232, 230, 227);
+            logOrReviewToolStripMenuItem.Name = "logOrReviewToolStripMenuItem";
+            logOrReviewToolStripMenuItem.Size = new Size(198, 22);
+            logOrReviewToolStripMenuItem.Text = "Log or review film ...";
             // 
             // MovieCard
             // 

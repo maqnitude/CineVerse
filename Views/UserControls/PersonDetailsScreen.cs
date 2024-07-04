@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 namespace CineVerse.Views.UserControls
 {
@@ -28,8 +29,34 @@ namespace CineVerse.Views.UserControls
         {
             _person = person;
             lblName.Text = person.Name;
+
             picProfile.Image?.Dispose();
-            picProfile.Image = (person.ProfilePath != null) ? new Bitmap(person.ProfilePath) : Properties.Resources.default_person;
+            //picProfile.Image = (person.ProfilePath != null) ? new Bitmap(person.ProfilePath) : Properties.Resources.default_person;
+            if (person.ProfilePath != null)
+            {
+                using (var originalImage = new Bitmap(person.ProfilePath))
+                {
+                    // Adjust this value to scale the image. 
+                    float scaleFactor = 0.5f;
+                    
+                    int newWidth = (int)(originalImage.Width * scaleFactor);
+                    int newHeight = (int)(originalImage.Height * scaleFactor);
+                    
+                    var resizedImage = new Bitmap(newWidth, newHeight);
+                    using (var graphics = Graphics.FromImage(resizedImage))
+                    {
+                        graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                        graphics.DrawImage(originalImage, 0, 0, newWidth, newHeight);
+                    }
+                    
+                    picProfile.Image = new Bitmap(resizedImage);
+                }
+            }
+            else
+            {
+                picProfile.Image = Properties.Resources.default_person;
+            }
+
             txtBiography.Text = person.Biography;
             lblExperise.Text = person.MainExpertise;
             lblGender.Text = person.Gender.ToString();

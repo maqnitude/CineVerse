@@ -114,7 +114,25 @@ namespace CineVerse.Views.UserControls
             _movie = movie;
 
             _poster.Image?.Dispose();
-            _poster.Image = new Bitmap(_movie.PosterPath);
+            //_poster.Image = new Bitmap(_movie.PosterPath);
+            using (var originalImage = new Bitmap(_movie.PosterPath))
+            {
+                // Adjust this value to scale the image. 
+                float scaleFactor = 0.2f;
+                
+                int newWidth = (int)(originalImage.Width * scaleFactor);
+                int newHeight = (int)(originalImage.Height * scaleFactor);
+                
+                var resizedImage = new Bitmap(newWidth, newHeight);
+                using (var graphics = Graphics.FromImage(resizedImage))
+                {
+                    graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    graphics.DrawImage(originalImage, 0, 0, newWidth, newHeight);
+                }
+                
+                _poster.Image = new Bitmap(resizedImage);
+            }
+
             lblMovieTitle.Text = _movie.Title;
 
             await UpdateState();

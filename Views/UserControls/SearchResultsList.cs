@@ -18,15 +18,15 @@ namespace CineVerse.Views.UserControls
             InitializeComponent();
         }
 
-        public void LoadResultsMovies(List<Movie> movies)
+        public void LoadSearchResultMovieItems(List<Movie> movies)
         {
             pnlResults.SuspendLayout();
 
-            ClearResults();
+            ClearSearchResultMovieItems();
 
             foreach (Movie movie in movies)
             {
-                var item = new SearchResultMovieItem
+                SearchResultMovieItem item = new SearchResultMovieItem
                 {
                     Dock = DockStyle.Top,
                 };
@@ -39,7 +39,28 @@ namespace CineVerse.Views.UserControls
             pnlResults.ResumeLayout();
         }
 
-        private void ClearResults()
+        public void LoadSelectableMovieItems(List<Movie> movies)
+        {
+            pnlResults.SuspendLayout();
+
+            ClearSelectableMovieItems();
+
+            foreach(Movie movie in movies)
+            {
+                SelectableMovieItem item = new SelectableMovieItem
+                {
+                    Dock = DockStyle.Top,
+                };
+                item.SetMovieData(movie);
+                item.SetMediator(_mediator);
+
+                pnlResults.Controls.Add(item);
+            }
+
+            pnlResults.ResumeLayout();
+        }
+
+        private void ClearSearchResultMovieItems()
         {
             List<SearchResultMovieItem> movieResultItems = new List<SearchResultMovieItem>();
 
@@ -52,6 +73,24 @@ namespace CineVerse.Views.UserControls
             }
 
             foreach (SearchResultMovieItem item in movieResultItems)
+            {
+                pnlResults.Controls.Remove(item);
+            }
+        }
+
+        private void ClearSelectableMovieItems()
+        {
+            List<SelectableMovieItem> movieItems = new List<SelectableMovieItem>();
+
+            foreach (Control control in pnlResults.Controls)
+            {
+                if (control is SelectableMovieItem item)
+                {
+                    movieItems.Add(item);
+                }
+            }
+
+            foreach(SelectableMovieItem item in movieItems)
             {
                 pnlResults.Controls.Remove(item);
             }

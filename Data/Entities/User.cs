@@ -40,6 +40,8 @@ namespace CineVerse.Data.Entities
         public string LikedListId { get; set; }
         public List LikedList {  get; set; }
 
+        public List<int?> FavouriteMovieIds { get; set; } = new List<int?>(new int?[4]);
+
         public ICollection<List> Lists { get; set; } = new List<List>();
         public ICollection<Review> Reviews { get; set; } = new List<Review>();
         public ICollection<Post> Posts { get; set; } = new List<Post>();
@@ -49,7 +51,7 @@ namespace CineVerse.Data.Entities
         public ICollection<CommentVote> CommentVotes { get; set; } = new List<CommentVote>();
 
         public ICollection<UserFollow> Followers { get; set; } = new List<UserFollow>();
-        public ICollection<UserFollow> Followees { get; set; } = new List<UserFollow>(); 
+        public ICollection<UserFollow> Followees { get; set; } = new List<UserFollow>();
 
         public User()
         {

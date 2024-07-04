@@ -65,7 +65,7 @@ namespace CineVerse.Views.UserControls
 
             List<Movie> movies = await MovieService.Instance.SearchMoviesAsync(txtSearchBox.Text);
 
-            _results.LoadResultsMovies(movies);
+            _results.LoadSearchResultMovieItems(movies);
         }
 
         private void txtSearchBox_Enter(object sender, EventArgs e)

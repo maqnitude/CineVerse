@@ -121,6 +121,8 @@ namespace CineVerse.Forms
 
             EventManager.Instance.Subscribe<PostEventArgs>(EventType.PostAdding, OnPostAdding);
 
+            EventManager.Instance.Subscribe<UserEventArgs>(EventType.UserSignedOut, OnUserSignedOut);
+
             // Click outside the search bar and the results list to hide the results list
             foreach (Control control in this.Controls)
             {
@@ -254,6 +256,13 @@ namespace CineVerse.Forms
             }
         }
 
+        private void OnUserSignedOut(object? sender, UserEventArgs e)
+        {
+            this.Hide();
+            AuthForm authForm = new AuthForm();
+            authForm.ShowDialog();
+        }
+
         private void lblHomeTab_Click(object sender, EventArgs e)
         {
             ResetNavItemColors();
@@ -323,15 +332,26 @@ namespace CineVerse.Forms
 
         private void profileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ProfileScreen profileScreen = new ProfileScreen(_currentUser);
-            profileScreen.SetCurrentUser(_currentUser);
+            ProfileScreen profileScreen = new ProfileScreen();
             _navigationService.NavigateToScreen(profileScreen);
+            profileScreen.SetProfileUser(_currentUser);
+            profileScreen.SetCurrentUser(_currentUser);
         }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SettingsScreen settingsScreen = new SettingsScreen(_currentUser);
             _navigationService.NavigateToScreen(settingsScreen);
+        }
+
+        private void homeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _navigationService.NavigateToScreen("homeScreen");
+        }
+
+        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EventManager.Instance.Publish(EventType.UserSignedOut, this, new UserEventArgs(_currentUser));
         }
     }
 }

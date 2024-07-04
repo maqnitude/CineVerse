@@ -1,12 +1,10 @@
 ﻿using CineVerse.Core.Services;
 using CineVerse.Data.Entities;
-using CineVerse.Forms;
-using Microsoft.VisualBasic.Devices;
+using CineVerse.Views.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,11 +13,11 @@ using System.Windows.Forms;
 
 namespace CineVerse.Views.UserControls
 {
-    public partial class SearchResultMovieItem : UserControlComponent
+    public partial class SelectableMovieItem : UserControlComponent
     {
         private Movie _movie;
 
-        public SearchResultMovieItem()
+        public SelectableMovieItem()
         {
             InitializeComponent();
             RegisterEventHandlers(this);
@@ -29,13 +27,15 @@ namespace CineVerse.Views.UserControls
         {
             _movie = movie;
 
-            lblTitle.Text = movie.Title;
-            string releaseYear = movie.ReleaseDate.HasValue ? movie.ReleaseDate.Value.Year.ToString() : "N/A";
-            lblReleaseYear.Text = $"({releaseYear})";
+            picMoviePoster.Image?.Dispose();
+            picMoviePoster.Image = new Bitmap(_movie.PosterPath);
+            picMoviePoster.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            var directors = await MovieService.Instance.GetMovieDirectorsAsync(_movie.Id);
-            string directorNames = string.Join(", ", directors.Select(d => d.Name));
-            lblDirectors.Text = directorNames;
+            string year = _movie.ReleaseDate.HasValue ? _movie.ReleaseDate.Value.Year.ToString() : "N/A";
+            lblMovieTitle.Text = $"{_movie.Title} ({year})";
+
+            var director = await MovieService.Instance.GetMovieDirectorAsync(_movie.Id);
+            lblDirector.Text = director.Name;
         }
 
         private void RegisterEventHandlers(Control parentControl)
@@ -52,14 +52,11 @@ namespace CineVerse.Views.UserControls
 
         private async void OnClick(object? sender, EventArgs e)
         {
-            var mainForm = this.FindForm() as MainForm;
-            var navService = mainForm.GetNavService();
-
-            var movieDetailsScreen = new MovieDetailsScreen();
-            await movieDetailsScreen.Initialize(mainForm, _movie, _mediator);
-            navService.NavigateToScreen(movieDetailsScreen, false);
-
-            _mediator?.Notify(this, "HideSearchResults");
+            var movieSelectionForm = this.FindForm() as MovieSelectionForm;
+            if (movieSelectionForm != null && _movie != null)
+            {
+                movieSelectionForm.Submit(_movie);
+            }
         }
 
         private void OnMouseEnter(object? sender, EventArgs e)

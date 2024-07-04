@@ -46,6 +46,22 @@ namespace CineVerse.Views.UserControls
 
             LoadAvatarImage(user.AvatarPath);
             _tempAvatarPath = null;
+
+            LoadPosters();
+        }
+
+        private async void LoadPosters()
+        {
+            List<Movie?> movies = await UserService.Instance.GetFavouriteMovies(_user);
+            for (int i = 0; i < 4; i++)
+            {
+                string controlName = $"poster{i}";
+                var poster = pnFavouriteMoviePosters.Controls.Find(controlName, true).FirstOrDefault() as FavouriteMoviePoster;
+                if (poster != null && i <= movies.Count)
+                {
+                    poster.SetData(_user, movies[i], i);
+                }
+            }
         }
 
         private void LoadAvatarImage(string avatarPath)

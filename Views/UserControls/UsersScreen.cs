@@ -27,6 +27,7 @@ namespace CineVerse.Views.UserControls
 
         public async Task LoadUsersAsync()
         {
+            ClearUsersAsync();
             List<User> users = await UserService.Instance.GetPublicUsersAsync();
             foreach (User user in users)
             {
@@ -40,6 +41,15 @@ namespace CineVerse.Views.UserControls
                     pnPublicMembersList.Controls.Add(item);
                     item.SetCurrentUser(_user);
                 }
+            }
+        }
+
+        private async Task ClearUsersAsync()
+        {
+            foreach (var userListItem in pnPublicMembersList.Controls.OfType<UserListItem>().ToList())
+            {
+                pnPublicMembersList.Controls.Remove(userListItem);
+                userListItem.Dispose();
             }
         }
     }

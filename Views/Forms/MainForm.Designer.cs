@@ -234,7 +234,7 @@
             cmsUserDropdown.Items.AddRange(new ToolStripItem[] { homeToolStripMenuItem, profileToolStripMenuItem, moviesToolStripMenuItem, diaryToolStripMenuItem, reviewsToolStripMenuItem, watchlistToolStripMenuItem, listsToolStripMenuItem, likesToolStripMenuItem, tagsToolStripMenuItem, networkToolStripMenuItem, separator, settingsToolStripMenuItem, signOutToolStripMenuItem });
             cmsUserDropdown.Name = "cmsUserDropdown";
             cmsUserDropdown.RenderMode = ToolStripRenderMode.System;
-            cmsUserDropdown.Size = new Size(125, 274);
+            cmsUserDropdown.Size = new Size(181, 296);
             cmsUserDropdown.Closed += cmsUserDropdown_Closed;
             // 
             // homeToolStripMenuItem
@@ -244,6 +244,7 @@
             homeToolStripMenuItem.Name = "homeToolStripMenuItem";
             homeToolStripMenuItem.Size = new Size(124, 22);
             homeToolStripMenuItem.Text = "Home";
+            homeToolStripMenuItem.Click += homeToolStripMenuItem_Click;
             // 
             // profileToolStripMenuItem
             // 
@@ -268,7 +269,7 @@
             diaryToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
             diaryToolStripMenuItem.Name = "diaryToolStripMenuItem";
             diaryToolStripMenuItem.Size = new Size(124, 22);
-            diaryToolStripMenuItem.Text = "Diary";
+            diaryToolStripMenuItem.Text = "Activity";
             // 
             // reviewsToolStripMenuItem
             // 
@@ -292,7 +293,7 @@
             listsToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
             listsToolStripMenuItem.Name = "listsToolStripMenuItem";
             listsToolStripMenuItem.Size = new Size(124, 22);
-            listsToolStripMenuItem.Text = "Lists";
+            listsToolStripMenuItem.Text = "My Lists";
             // 
             // likesToolStripMenuItem
             // 
@@ -337,8 +338,9 @@
             signOutToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             signOutToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
             signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
-            signOutToolStripMenuItem.Size = new Size(124, 22);
+            signOutToolStripMenuItem.Size = new Size(180, 22);
             signOutToolStripMenuItem.Text = "Sign out";
+            signOutToolStripMenuItem.Click += signOutToolStripMenuItem_Click;
             // 
             // MainForm
             // 

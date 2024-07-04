@@ -77,10 +77,11 @@ namespace CineVerse.Views.UserControls
         {
             var mainForm = this.FindForm() as MainForm;
             var navService = mainForm.GetNavService();
-            ProfileScreen profileScreen = new ProfileScreen(_user);
+            ProfileScreen profileScreen = new ProfileScreen();
             var currentUser = mainForm.GetCurrentUser();
-            profileScreen.SetCurrentUser(currentUser);
             navService.NavigateToScreen(profileScreen);
+            profileScreen.SetProfileUser(_user);
+            profileScreen.SetCurrentUser(currentUser);
         }
 
         private void UpdateFollowButtonIcon(bool isFollowing)

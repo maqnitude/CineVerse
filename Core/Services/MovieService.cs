@@ -162,5 +162,33 @@ namespace CineVerse.Core.Services
                 return movies.ToList();
             }
         }
+
+        public async Task<int> CountWatchedMoviesAsync(string userId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var user = await unitOfWork.Users.GetUserByIdAsync(userId)
+                    ?? throw new Exception("User not found");
+
+                var watchedList = await unitOfWork.Lists.GetListByIdAsync(user.WatchedListId, includeMovies: true)
+                    ?? throw new Exception("Watched list not found");
+                
+                return watchedList.Movies.Count;
+            }
+        }
+
+        public async Task<int> CountLikedMoviesAsync(string userId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var user = await unitOfWork.Users.GetUserByIdAsync(userId)
+                    ?? throw new Exception("User not found");
+
+                var likedList = await unitOfWork.Lists.GetListByIdAsync(user.LikedListId, includeMovies: true)
+                    ?? throw new Exception("Watched list not found");
+                
+                return likedList.Movies.Count;
+            }
+        }
     }
 }

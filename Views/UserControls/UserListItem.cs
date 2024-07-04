@@ -73,14 +73,29 @@ namespace CineVerse.Views.UserControls
             }
         }
 
-        private void UserListItem_Click(object sender, EventArgs e)
+        public async Task SetStats()
+        {
+            int watchedCount = await MovieService.Instance.CountWatchedMoviesAsync(_user.Id);
+            btnWatched.Text = watchedCount.ToString();
+
+            int listCount = await ListService.Instance.CountUserListsAsync(_user.Id);
+            btnLists.Text = listCount.ToString();
+
+            int likedCount = await MovieService.Instance.CountLikedMoviesAsync(_user.Id);
+            btnLiked.Text = likedCount.ToString();
+        }
+
+        private async void UserListItem_Click(object sender, EventArgs e)
         {
             var mainForm = this.FindForm() as MainForm;
             var navService = mainForm.GetNavService();
+
             ProfileScreen profileScreen = new ProfileScreen();
+
             var currentUser = mainForm.GetCurrentUser();
             navService.NavigateToScreen(profileScreen);
-            profileScreen.SetProfileUser(_user);
+
+            await profileScreen.SetProfileUser(_user);
             profileScreen.SetCurrentUser(currentUser);
         }
 

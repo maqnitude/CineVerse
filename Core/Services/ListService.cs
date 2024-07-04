@@ -9,6 +9,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace CineVerse.Core.Services
 {
@@ -36,7 +37,7 @@ namespace CineVerse.Core.Services
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
             {
-                var lists = await unitOfWork.Lists.GetListsAsync(listType, includeUser, includeMovies);
+                var lists = await unitOfWork.Lists.GetListsByTypeAsync(listType, includeUser, includeMovies);
                 return lists.ToList();
             }
         }
@@ -50,12 +51,60 @@ namespace CineVerse.Core.Services
             }
         }
 
+        public async Task<List> GetUserWatchlistAsync(string userId, bool includeUser = false, bool includeMovies = false)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var user = await unitOfWork.Users.GetUserByIdAsync(userId)
+                    ?? throw new Exception("User not found");
+                var watchlist = await unitOfWork.Lists.GetListByIdAsync(user.WatchlistId, includeUser, includeMovies)
+                    ?? throw new Exception("Watchlist not found");
+
+                return watchlist;
+            }
+        }
+
+        public async Task<List> GetUserLikedListAsync(string userId, bool includeUser = false, bool includeMovies = false)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var user = await unitOfWork.Users.GetUserByIdAsync(userId)
+                    ?? throw new Exception("User not found");
+                var likedList = await unitOfWork.Lists.GetListByIdAsync(user.LikedListId, includeUser, includeMovies)
+                    ?? throw new Exception("Liked list not found");
+
+                return likedList;
+            }
+        }
+
+        public async Task<List> GetUserWatchedListAsync(string userId, bool includeUser = false, bool includeMovies = false)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var user = await unitOfWork.Users.GetUserByIdAsync(userId)
+                    ?? throw new Exception("User not found");
+                var watchedList = await unitOfWork.Lists.GetListByIdAsync(user.WatchedListId, includeUser, includeMovies)
+                    ?? throw new Exception("Watched list not found");
+
+                return watchedList;
+            }
+        }
+
         public async Task<List<Movie>> GetMoviesFromListAsync(string listId)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
             {
                 var movies = await unitOfWork.Lists.GetMoviesByListIdAsync(listId);
                 return movies;
+            }
+        }
+
+        public async Task<int> CountUserListsAsync(string userId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var lists = await unitOfWork.Lists.GetListsByUserIdAsync(userId);
+                return lists.Count() - 3; // exclude the 3 default lists
             }
         }
 

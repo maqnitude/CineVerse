@@ -80,7 +80,9 @@ namespace CineVerse.Core.Services
         {
             if (_navigationStack.Count > 1)
             {
-                _navigationStack.Pop();
+                var (currentScreen, _) = _navigationStack.Pop();
+                currentScreen.Dispose();
+
                 var (previousScreen, docked) = _navigationStack.Peek();
 
                 _mainPanel.Controls.Clear();

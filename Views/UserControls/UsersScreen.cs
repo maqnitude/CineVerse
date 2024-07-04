@@ -40,6 +40,7 @@ namespace CineVerse.Views.UserControls
                     item.BringToFront();
                     pnPublicMembersList.Controls.Add(item);
                     item.SetCurrentUser(_user);
+                    await item.SetStats();
                 }
             }
         }

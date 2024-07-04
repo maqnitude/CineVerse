@@ -146,7 +146,7 @@
             newestFirstToolStripMenuItem.BackColor = Color.FromArgb(32, 38, 45);
             newestFirstToolStripMenuItem.ForeColor = Color.FromArgb(178, 172, 162);
             newestFirstToolStripMenuItem.Name = "newestFirstToolStripMenuItem";
-            newestFirstToolStripMenuItem.Size = new Size(180, 22);
+            newestFirstToolStripMenuItem.Size = new Size(113, 22);
             newestFirstToolStripMenuItem.Text = "Newest";
             newestFirstToolStripMenuItem.Click += newestFirstToolStripMenuItem_Click;
             // 
@@ -155,7 +155,7 @@
             oldestFirstToolStripMenuItem.BackColor = Color.FromArgb(32, 38, 45);
             oldestFirstToolStripMenuItem.ForeColor = Color.FromArgb(178, 172, 162);
             oldestFirstToolStripMenuItem.Name = "oldestFirstToolStripMenuItem";
-            oldestFirstToolStripMenuItem.Size = new Size(180, 22);
+            oldestFirstToolStripMenuItem.Size = new Size(113, 22);
             oldestFirstToolStripMenuItem.Text = "Oldest";
             oldestFirstToolStripMenuItem.Click += oldestFirstToolStripMenuItem_Click;
             // 

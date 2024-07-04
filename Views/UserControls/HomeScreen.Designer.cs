@@ -285,6 +285,7 @@
             // 
             // pnRecommendations
             // 
+            pnRecommendations.AutoScroll = true;
             pnRecommendations.Dock = DockStyle.Fill;
             pnRecommendations.Location = new Point(0, 17);
             pnRecommendations.Name = "pnRecommendations";
@@ -315,6 +316,7 @@
             // 
             // pnMovies
             // 
+            pnMovies.AutoScroll = true;
             pnMovies.Dock = DockStyle.Fill;
             pnMovies.Location = new Point(0, 17);
             pnMovies.Name = "pnMovies";

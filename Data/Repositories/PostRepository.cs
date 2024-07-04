@@ -15,7 +15,10 @@ namespace CineVerse.Data.Repositories
 
         public async Task<Post> GetPostByIdAsync(string postId)
         {
-            return await _context.Set<Post>().FindAsync(postId);
+            return await _context.Set<Post>()
+                .Where(p => p.Id == postId)
+                .Include(p => p.User)
+                .FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<Post>> GetPostsByPageAsync(int page, int pageSize)
@@ -35,6 +38,15 @@ namespace CineVerse.Data.Repositories
                 .SelectMany(p => p.Replies)
                 .Where(r => r.ParentCommentId == null) // null means it's a reply to a post
                 .ToListAsync();
+        }
+
+        public async Task<int> CountPostRepliesAsync(string postId)
+        {
+            return await _context.Set<Post>()
+                .Where(p => p.Id == postId)
+                .Include(p => p.Replies)
+                .SelectMany(p => p.Replies)
+                .CountAsync();
         }
     }
 }

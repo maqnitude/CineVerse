@@ -139,6 +139,7 @@
             btnUpvote.Text = "12";
             btnUpvote.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnUpvote.UseVisualStyleBackColor = true;
+            btnUpvote.Click += btnUpvote_Click;
             // 
             // btnDownvote
             // 
@@ -156,6 +157,7 @@
             btnDownvote.Text = "12";
             btnDownvote.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnDownvote.UseVisualStyleBackColor = true;
+            btnDownvote.Click += btnDownvote_Click;
             // 
             // pnButtons
             // 

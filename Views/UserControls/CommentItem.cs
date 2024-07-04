@@ -2,6 +2,7 @@
 using CineVerse.Core.Interfaces;
 using CineVerse.Core.Services;
 using CineVerse.Data.Entities;
+using CineVerse.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,27 +18,24 @@ namespace CineVerse.Views.UserControls
 {
     public partial class CommentItem : UserControlComponent
     {
+        private MainForm _mainForm;
         private ICommentable _commentable;
         private CommentEditor? _editor = null;
+
         private bool _isUpvoted;
         private bool _isDownvoted;
+
+        private int _upvotes;
+        private int _downvotes;
 
         private int _indentWidth = 20;
 
         public CommentItem()
         {
             InitializeComponent();
+
             _isDownvoted = false;
             _isUpvoted = false;
-
-            EventManager.Instance.Subscribe<EventArgs>(EventType.PostReplyAdded, OnPostReplyAdded);
-            EventManager.Instance.Subscribe<EventArgs>(EventType.CommentReplyAdded, OnCommentReplyAdded);
-        }
-
-        public async void Initialize(ICommentable commentable, IMediator mediator)
-        {
-            SetCommentableData(commentable);
-            SetMediator(mediator);
         }
 
         public string? GetCommentId()
@@ -55,7 +53,19 @@ namespace CineVerse.Views.UserControls
             _editor = null;
         }
 
-        public void SetCommentableData(ICommentable commentable)
+        public async Task Initialize(MainForm mainForm, ICommentable commentable, IMediator mediator)
+        {
+            _mainForm = mainForm;
+            SetCommentableData(commentable);
+            SetMediator(mediator);
+
+            var user = _mainForm.GetCurrentUser();
+            await UpdateVoteButtons(commentable.Id, user.Id, _commentable.Upvotes, _commentable.Downvotes);
+
+            RegisterEventHandlers();
+        }
+
+        private void SetCommentableData(ICommentable commentable)
         {
             _commentable = commentable;
 
@@ -79,8 +89,100 @@ namespace CineVerse.Views.UserControls
                 lblCreatedAt.Dock = DockStyle.Left;
                 pnlHeader.BackColor = Color.FromArgb(80, 80, 80);
             }
+        }
 
-            // set _isDownvoted and _isUpvoted here
+        private void RegisterEventHandlers()
+        {
+            if (_commentable is Post post)
+            {
+                EventManager.Instance.Subscribe<PostVoteEventArgs>(EventType.PostVoteAdded, OnPostVoteAdded);
+                EventManager.Instance.Subscribe<PostVoteEventArgs>(EventType.PostVoteChanged, OnPostVoteChanged);
+                EventManager.Instance.Subscribe<PostVoteEventArgs>(EventType.PostVoteRemoved, OnPostVoteRemoved);
+            }
+            else if (_commentable is Comment comment)
+            {
+                EventManager.Instance.Subscribe<CommentVoteEventArgs>(EventType.CommentVoteAdded, OnCommentVoteAdded);
+                EventManager.Instance.Subscribe<CommentVoteEventArgs>(EventType.CommentVoteChanged, OnCommentVoteChanged);
+                EventManager.Instance.Subscribe<CommentVoteEventArgs>(EventType.CommentVoteRemoved, OnCommentVoteRemoved);
+            }
+
+            this.ControlRemoved += (s, e) => UnregisterEventHanders();
+        }
+
+        private void UnregisterEventHanders()
+        {
+            EventManager.Instance.Unsubscribe<PostVoteEventArgs>(EventType.PostVoteAdded, OnPostVoteAdded);
+            EventManager.Instance.Unsubscribe<PostVoteEventArgs>(EventType.PostVoteChanged, OnPostVoteChanged);
+            EventManager.Instance.Unsubscribe<PostVoteEventArgs>(EventType.PostVoteRemoved, OnPostVoteRemoved);
+
+            EventManager.Instance.Unsubscribe<CommentVoteEventArgs>(EventType.CommentVoteAdded, OnCommentVoteAdded);
+            EventManager.Instance.Unsubscribe<CommentVoteEventArgs>(EventType.CommentVoteChanged, OnCommentVoteChanged);
+            EventManager.Instance.Unsubscribe<CommentVoteEventArgs>(EventType.CommentVoteRemoved, OnCommentVoteRemoved);
+        }
+
+        private async Task UpdateVoteButtons(string commentableId, string userId, int upvotes, int downvotes)
+        {
+            PostVote? postVote = null;
+            CommentVote? commentVote = null;
+
+            if (_commentable is Post post)
+            {
+                postVote = await PostService.Instance.GetPostVoteAsync(commentableId, userId);
+            }
+            else if (_commentable is Comment comment)
+            {
+                commentVote = await CommentService.Instance.GetCommentVoteAsync(commentableId, userId);
+            }
+
+            if (postVote != null)
+            {
+                _isUpvoted = postVote.IsUpvote;
+                _isDownvoted = !postVote.IsUpvote;
+            }
+            else if (commentVote != null)
+            {
+                _isUpvoted = commentVote.IsUpvote;
+                _isDownvoted = !commentVote.IsUpvote;
+            }
+            else
+            {
+                _isUpvoted = false;
+                _isDownvoted = false;
+            }
+
+            if (_commentable.Id == commentableId)
+            {
+                _upvotes = upvotes;
+                _downvotes = downvotes;
+
+                btnUpvote.Text = _upvotes.ToString();
+                btnDownvote.Text = _downvotes.ToString();
+            }
+
+            if (_isUpvoted)
+            {
+                btnUpvote.Image?.Dispose();
+                btnUpvote.Image = Properties.Resources.upvote_fill_green;
+
+                btnDownvote.Image?.Dispose();
+                btnDownvote.Image = Properties.Resources.downvote;
+            }
+            else if (_isDownvoted)
+            {
+                btnUpvote.Image?.Dispose();
+                btnUpvote.Image = Properties.Resources.upvote;
+
+                btnDownvote.Image?.Dispose();
+                btnDownvote.Image = Properties.Resources.downvote_fill_red;
+            }
+            else
+            {
+                btnUpvote.Image?.Dispose();
+                btnUpvote.Image = Properties.Resources.upvote;
+
+                btnDownvote.Image?.Dispose();
+                btnDownvote.Image = Properties.Resources.downvote;
+            }
         }
 
         private void ClearReplies()
@@ -98,8 +200,7 @@ namespace CineVerse.Views.UserControls
                 Padding = new Padding(left: _indentWidth, right: 0, top: 0, bottom: 0),
                 Dock = DockStyle.Top,
             };
-            //replyItem.SetCommentableData(reply);
-            replyItem.Initialize(reply, _mediator);
+            await replyItem.Initialize(_mainForm, reply, _mediator);
 
             this.Controls.Add(replyItem);
             replyItem.BringToFront();
@@ -136,11 +237,11 @@ namespace CineVerse.Views.UserControls
             this.ResumeLayout();
         }
 
-        private void ToggleButton(bool toggleOn, Button button, Image imageOn, Image imageOff, Color colorOn, Color colorOff)
-        {
-            button.Image = toggleOn ? imageOn : imageOff;
-            button.ForeColor = toggleOn ? colorOn : colorOff;
-        }
+        //private void ToggleButton(bool toggleOn, Button button, Image imageOn, Image imageOff, Color colorOn, Color colorOff)
+        //{
+        //    button.Image = toggleOn ? imageOn : imageOff;
+        //    button.ForeColor = toggleOn ? colorOn : colorOff;
+        //}
 
         private void HoverButton(bool isToggled, Button button, Image hoverImage, Image defaultImage, Color hoverColor, Color defaultColor)
         {
@@ -148,39 +249,153 @@ namespace CineVerse.Views.UserControls
             button.ForeColor = isToggled ? hoverColor : defaultColor;
         }
 
-        private void UpvoteButtonAction()
+        //private void UpvoteButtonAction()
+        //{
+        //    _isUpvoted = !_isUpvoted;
+        //    ToggleButton(_isUpvoted, btnUpvote, Properties.Resources.upvote_fill_green, Properties.Resources.upvote, Color.FromArgb(0, 138, 22), Color.FromArgb(170, 170, 170));
+        //    if (_isUpvoted)
+        //    {
+        //        _isDownvoted = false;
+        //        ToggleButton(_isDownvoted, btnDownvote, Properties.Resources.downvote_fill_red, Properties.Resources.downvote, Color.FromArgb(197, 7, 4), Color.FromArgb(170, 170, 170));
+        //    }
+        //}
+
+        //private void DownVoteButtonAction()
+        //{
+        //    _isDownvoted = !_isDownvoted;
+        //    ToggleButton(_isDownvoted, btnDownvote, Properties.Resources.downvote_fill_red, Properties.Resources.downvote, Color.FromArgb(197, 7, 4), Color.FromArgb(170, 170, 170));
+        //    if (_isDownvoted)
+        //    {
+        //        _isUpvoted = false;
+        //        ToggleButton(_isUpvoted, btnUpvote, Properties.Resources.upvote_fill_green, Properties.Resources.upvote, Color.FromArgb(0, 138, 22), Color.FromArgb(170, 170, 170));
+        //    }
+        //}
+
+        // This needs refactoring, i.e., shared event args VoteEventArgs or something
+        private async void OnPostVoteAdded(object sender, PostVoteEventArgs e)
         {
-            _isUpvoted = !_isUpvoted;
-            ToggleButton(_isUpvoted, btnUpvote, Properties.Resources.upvote_fill_green, Properties.Resources.upvote, Color.FromArgb(0, 138, 22), Color.FromArgb(170, 170, 170));
+            if (_commentable is Post post && post.Id == e.PostId)
+            {
+                await UpdateVoteButtons(e.PostId, e.UserId, e.Upvotes, e.Downvotes);
+            }
+        }
+
+        private async void OnPostVoteChanged(object sender, PostVoteEventArgs e)
+        {
+            if (_commentable is Post post && post.Id == e.PostId)
+            {
+                await UpdateVoteButtons(e.PostId, e.UserId, e.Upvotes, e.Downvotes);
+            }
+        }
+
+        private async void OnPostVoteRemoved(object sender, PostVoteEventArgs e)
+        {
+            if (_commentable is Post post && post.Id == e.PostId)
+            {
+                await UpdateVoteButtons(e.PostId, e.UserId, e.Upvotes, e.Downvotes);
+            }
+        }
+
+        private async void OnCommentVoteAdded(object sender, CommentVoteEventArgs e)
+        {
+            if (_commentable is Comment comment && comment.Id == e.CommentId)
+            {
+                await UpdateVoteButtons(e.CommentId, e.UserId, e.Upvotes, e.Downvotes);
+            }
+        }
+
+        private async void OnCommentVoteChanged(object sender, CommentVoteEventArgs e)
+        {
+            if (_commentable is Comment comment && comment.Id == e.CommentId)
+            {
+                await UpdateVoteButtons(e.CommentId, e.UserId, e.Upvotes, e.Downvotes);
+            }
+        }
+
+        private async void OnCommentVoteRemoved(object sender, CommentVoteEventArgs e)
+        {
+            if (_commentable is Comment comment && comment.Id == e.CommentId)
+            {
+                await UpdateVoteButtons(e.CommentId, e.UserId, e.Upvotes, e.Downvotes);
+            }
+        }
+
+        private async void btnUpvote_Click(object sender, EventArgs e)
+        {
+            var user = _mainForm.GetCurrentUser();
+
             if (_isUpvoted)
             {
-                _isDownvoted = false;
-                ToggleButton(_isDownvoted, btnDownvote, Properties.Resources.downvote_fill_red, Properties.Resources.downvote, Color.FromArgb(197, 7, 4), Color.FromArgb(170, 170, 170));
+                if (_commentable is Post post)
+                {
+                    await PostService.Instance.RemovePostVoteAsync(post.Id, user.Id);
+                }
+                else if (_commentable is Comment comment)
+                {
+                    await CommentService.Instance.RemoveCommentVoteAsync(comment.Id, user.Id);
+                }
+            }
+            else
+            {
+                if (_commentable is Post post)
+                {
+                    await PostService.Instance.AddOrUpdatePostVoteAsync(post.Id, user.Id, true);
+                }
+                else if (_commentable is Comment comment)
+                {
+                    await CommentService.Instance.AddOrUpdateCommentVoteAsync(comment.Id, user.Id, true);
+                }
             }
         }
 
-        private void DownVoteButtonAction()
+        private async void btnDownvote_Click(object sender, EventArgs e)
         {
-            _isDownvoted = !_isDownvoted;
-            ToggleButton(_isDownvoted, btnDownvote, Properties.Resources.downvote_fill_red, Properties.Resources.downvote, Color.FromArgb(197, 7, 4), Color.FromArgb(170, 170, 170));
+            var user = _mainForm.GetCurrentUser();
+
             if (_isDownvoted)
             {
-                _isUpvoted = false;
-                ToggleButton(_isUpvoted, btnUpvote, Properties.Resources.upvote_fill_green, Properties.Resources.upvote, Color.FromArgb(0, 138, 22), Color.FromArgb(170, 170, 170));
+                if (_commentable is Post post)
+                {
+                    await PostService.Instance.RemovePostVoteAsync(post.Id, user.Id);
+                }
+                else if (_commentable is Comment comment)
+                {
+                    await CommentService.Instance.RemoveCommentVoteAsync(comment.Id, user.Id);
+                }
+            }
+            else
+            {
+                if (_commentable is Post post)
+                {
+                    await PostService.Instance.AddOrUpdatePostVoteAsync(post.Id, user.Id, false);
+                }
+                else if (_commentable is Comment comment)
+                {
+                    await CommentService.Instance.AddOrUpdateCommentVoteAsync(comment.Id, user.Id, false);
+                }
             }
         }
 
-        private void btnUpvote_Click(object sender, EventArgs e) => UpvoteButtonAction();
-        private void btnDownvote_Click(object sender, EventArgs e) => DownVoteButtonAction();
-        private void btnUpvote_MouseEnter(object sender, EventArgs e) => HoverButton(!_isUpvoted, btnUpvote, Properties.Resources.upvote_fill_green, Properties.Resources.upvote, Color.FromArgb(0, 138, 22), Color.FromArgb(170, 170, 170));
-        private void btnUpvote_MouseLeave(object sender, EventArgs e) => HoverButton(_isUpvoted, btnUpvote, Properties.Resources.upvote_fill_green, Properties.Resources.upvote, Color.FromArgb(0, 138, 22), Color.FromArgb(170, 170, 170));
-        private void btnDownvote_MouseEnter(object sender, EventArgs e) => HoverButton(!_isDownvoted, btnDownvote, Properties.Resources.downvote_fill_red, Properties.Resources.downvote, Color.FromArgb(179, 7, 4), Color.FromArgb(170, 170, 170));
-        private void btnDownvote_MouseLeave(object sender, EventArgs e) => HoverButton(_isDownvoted, btnDownvote, Properties.Resources.downvote_fill_red, Properties.Resources.downvote, Color.FromArgb(179, 7, 4), Color.FromArgb(170, 170, 170));
-
+        private void btnUpvote_MouseEnter(object sender, EventArgs e)
+        {
+            //HoverButton(!_isUpvoted, btnUpvote, Properties.Resources.upvote_fill_green, Properties.Resources.upvote, Color.FromArgb(0, 138, 22), Color.FromArgb(170, 170, 170));
+        }
+        private void btnUpvote_MouseLeave(object sender, EventArgs e)
+        {
+            //HoverButton(_isUpvoted, btnUpvote, Properties.Resources.upvote_fill_green, Properties.Resources.upvote, Color.FromArgb(0, 138, 22), Color.FromArgb(170, 170, 170));
+        }
+        private void btnDownvote_MouseEnter(object sender, EventArgs e)
+        {
+            //HoverButton(!_isDownvoted, btnDownvote, Properties.Resources.downvote_fill_red, Properties.Resources.downvote, Color.FromArgb(179, 7, 4), Color.FromArgb(170, 170, 170));
+        }
+        private void btnDownvote_MouseLeave(object sender, EventArgs e)
+        {
+            //HoverButton(_isDownvoted, btnDownvote, Properties.Resources.downvote_fill_red, Properties.Resources.downvote, Color.FromArgb(179, 7, 4), Color.FromArgb(170, 170, 170));
+        }
 
         private void btnReply_Click(object sender, EventArgs e)
         {
-            if (_editor == null)
+            if (_editor == null || _editor.IsDisposed)
             {
                 _editor = new CommentEditor(_commentable)
                 {
@@ -211,15 +426,5 @@ namespace CineVerse.Views.UserControls
 
         private void btnReply_MouseEnter(object sender, EventArgs e) => HoverButton(true, btnReply, Properties.Resources.quote_blue, Properties.Resources.quote, Color.FromArgb(51, 145, 255), Color.FromArgb(170, 170, 170));
         private void btnReply_MouseLeave(object sender, EventArgs e) => HoverButton(false, btnReply, Properties.Resources.quote_blue, Properties.Resources.quote, Color.FromArgb(51, 145, 255), Color.FromArgb(170, 170, 170));
-
-        private void OnPostReplyAdded(object sender, EventArgs e)
-        {
-            DisposeCommentEditor();
-        }
-
-        private void OnCommentReplyAdded(object sender, EventArgs e)
-        {
-            DisposeCommentEditor();
-        }
     }
 }

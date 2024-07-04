@@ -66,7 +66,7 @@ namespace CineVerse.Views.UserControls
                 {
                     Dock = DockStyle.Top,
                 };
-                postItem.Initialize(mainForm, post);
+                await postItem.Initialize(mainForm, post);
 
                 pnlPostsContainer.Controls.Add(postItem);
             }

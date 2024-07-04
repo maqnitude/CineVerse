@@ -18,6 +18,14 @@ namespace CineVerse.Views.UserControls
     {
         private User _user;
 
+        private bool _currentUserOnly = false;
+
+        public bool CurrentUserOnly
+        {
+            get { return _currentUserOnly; }
+            set { _currentUserOnly = value; }
+        }
+
         public ListsScreen()
         {
             InitializeComponent();
@@ -57,10 +65,23 @@ namespace CineVerse.Views.UserControls
 
             ClearLists();
 
-            List<List> lists = await ListService.Instance.GetListsAsync(ListType.Public, includeUser: true, includeMovies: true);
+            List<List> lists = new List<List>();
+            if (_currentUserOnly)
+            {
+                lists = await ListService.Instance.GetUserListsAsync(_user.Id, includeUser: true, includeMovies: true);
+            }
+            else
+            {
+                lists = await ListService.Instance.GetListsAsync(ListType.Public, includeUser: true, includeMovies: true);
+            }
 
             foreach (List list in lists)
             {
+                if (list.Id == _user.WatchlistId || list.Id == _user.WatchedListId || list.Id == _user.LikedListId)
+                {
+                    continue;
+                }
+
                 ListItemSummary item = new(list)
                 {
                     Dock = DockStyle.Top

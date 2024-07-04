@@ -77,6 +77,24 @@ namespace CineVerse.Core.Services
                 return followees;
             }
         }
+
+        public async Task<int> CountFolloweesAsync(string userId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var followees = await unitOfWork.UserFollows.GetFolloweesAsync(userId);
+                return followees.Count();
+            }
+        }
+
+        public async Task<int> CountFollowersAsync(string userId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var followers = await unitOfWork.UserFollows.GetFollowersAsync(userId);
+                return followers.Count();
+            }
+        }
     
         public async Task FollowUserAsync(string followerId, string followeeId)
         {

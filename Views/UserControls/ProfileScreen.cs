@@ -26,17 +26,24 @@ namespace CineVerse.Views.UserControls
             InitializeComponent();
         }
 
-        public void SetProfileUser(User profileUser)
+        public async Task SetProfileUser(User profileUser)
         {
             // set profile user
             _profileUser = profileUser;
+
             lblUsername.Text = _profileUser.Username;
             picAvatar.Image = (_profileUser.AvatarPath != null) ? new Bitmap(_profileUser.AvatarPath) : Properties.Resources.default_avatar;
             picAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
             lblBio.Text = _profileUser.Bio;
-            LoadFavouriteMovieCards();
-            LoadRecentlyLikedMovieCards();
-            LoadFolloweeAvatars();
+
+            await SetMovieCountAsync();
+            await SetListCountAsync();
+            await SetFolloweeCountAsync();
+            await SetFollowerCountAsync();
+
+            await LoadFavouriteMovieCardsAsync();
+            await LoadRecentlyLikedMovieCardsAsync();
+            await LoadFolloweeAvatarsAsync();
         }
 
         public void SetCurrentUser(User currentUser)
@@ -45,7 +52,31 @@ namespace CineVerse.Views.UserControls
             SetupButton();
         }
 
-        private async void LoadFavouriteMovieCards()
+        private async Task SetMovieCountAsync()
+        {
+            int watchedCount = await MovieService.Instance.CountWatchedMoviesAsync(_profileUser.Id);
+            lblNumMovies.Text = watchedCount.ToString();
+        }
+
+        private async Task SetListCountAsync()
+        {
+            int listCount = await ListService.Instance.CountUserListsAsync(_profileUser.Id);
+            lblNumLists.Text = listCount.ToString();
+        }
+
+        private async Task SetFolloweeCountAsync()
+        {
+            int followeeCount = await UserService.Instance.CountFolloweesAsync(_profileUser.Id);
+            lblNumFollowing.Text = followeeCount.ToString();
+        }
+
+        private async Task SetFollowerCountAsync()
+        {
+            int followerCount = await UserService.Instance.CountFollowersAsync(_profileUser.Id);
+            lblNumFollowers.Text = followerCount.ToString();
+        }
+
+        private async Task LoadFavouriteMovieCardsAsync()
         {
             ClearFavouriteMovieCards();
             
@@ -82,7 +113,7 @@ namespace CineVerse.Views.UserControls
             }
         }
 
-        private async void ClearFavouriteMovieCards()
+        private void ClearFavouriteMovieCards()
         {
             foreach (MovieCard movieCard in pnFavouriteMovieCards.Controls.OfType<MovieCard>().ToList())
             {
@@ -91,7 +122,7 @@ namespace CineVerse.Views.UserControls
             }
         }
 
-        private async void LoadFolloweeAvatars()
+        private async Task LoadFolloweeAvatarsAsync()
         {
             ClearFolloweeAvatars();
             List<User> followees = await UserService.Instance.GetFolloweesByIdAsync(_profileUser.Id);
@@ -120,7 +151,7 @@ namespace CineVerse.Views.UserControls
             }
         }
 
-        private async void ClearFolloweeAvatars()
+        private void ClearFolloweeAvatars()
         {
             foreach (CircularUserAvatar userAvatar in pnFollowingUserCards.Controls.OfType<CircularUserAvatar>().ToList())
             {
@@ -129,7 +160,7 @@ namespace CineVerse.Views.UserControls
             }
         }
 
-        private async void LoadRecentlyLikedMovieCards()
+        private async Task LoadRecentlyLikedMovieCardsAsync()
         {
             ClearRecentlyLikedMovieCards();
 
@@ -166,7 +197,7 @@ namespace CineVerse.Views.UserControls
             }
         }
 
-        private async void ClearRecentlyLikedMovieCards()
+        private void ClearRecentlyLikedMovieCards()
         {
             foreach (MovieCard movieCard in pnRecentlyLikedMovieCards.Controls.OfType<MovieCard>().ToList())
             {
@@ -274,19 +305,25 @@ namespace CineVerse.Views.UserControls
             btnAction.Text = "FOLLOWING";
         }
 
-        private void OnUserFollowed(object? sender, FollowEventArgs e)
+        private async void OnUserFollowed(object? sender, FollowEventArgs e)
         {
             if (_currentUser != null && _profileUser != null && e.FollowerId == _currentUser.Id && e.FolloweeId == _profileUser.Id)
             {
                 SetupFollowButton(true);
+
+                await SetFolloweeCountAsync();
+                await SetFollowerCountAsync();
             }
         }
 
-        private void OnUserUnfollowed(object? sender, FollowEventArgs e)
+        private async void OnUserUnfollowed(object? sender, FollowEventArgs e)
         {
             if (_currentUser != null && _profileUser != null && e.FollowerId == _currentUser.Id && e.FolloweeId == _profileUser.Id)
             {
                 SetupFollowButton(false);
+
+                await SetFolloweeCountAsync();
+                await SetFollowerCountAsync();
             }
         }
     }

@@ -13,12 +13,27 @@ namespace CineVerse.Data.Repositories
     {
         public ListRepository(AppDbContext context) : base(context) { }
 
-        //public async Task<List> GetWatchlistByUserIdAsync(string userId)
-        //{
+        public async Task<List> GetListByIdAsync(string listId, bool includeUser = false, bool includeMovies = false)
+        {
+            IQueryable<List> query = _context.Set<List>()
+                .Where(l => l.Id == listId);
 
-        //}
+            if (includeUser)
+            {
+                query = query.Include(l => l.User);
+            }
 
-        public async Task<IEnumerable<List>> GetListsAsync(ListType listType, bool includeUser = false, bool includeMovies = false)
+            if (includeMovies)
+            {
+                query = query
+                    .Include(l => l.Movies) // this is just the ListMovie collection
+                        .ThenInclude(lm => lm.Movie); // include actual movies
+            }
+
+            return await query.FirstOrDefaultAsync();
+        }
+
+        public async Task<IEnumerable<List>> GetListsByTypeAsync(ListType listType, bool includeUser = false, bool includeMovies = false)
         {
             IQueryable<List> query = _context.Set<List>()
                 .Where(l => l.Type == listType);

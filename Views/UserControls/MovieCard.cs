@@ -192,8 +192,11 @@ namespace CineVerse.Views.UserControls
 
         private async Task UpdateState()
         {
-            await UpdateContextMenu();
-            await UpdateActionIcons();
+            if (_mainForm != null)
+            {
+                await UpdateContextMenu();
+                await UpdateActionIcons();
+            }
         }
 
         private async void OnWatchlistMovieAdded(object sender, EventArgs e)

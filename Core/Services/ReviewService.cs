@@ -33,7 +33,7 @@ namespace CineVerse.Core.Services
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
             {
-                var reviews = await unitOfWork.Reviews.GetReviewsByMovieIdAsync(movieId);
+                var reviews = await unitOfWork.Reviews.GetReviewsByMovieIdAsync(movieId, includeUser: true);
                 return reviews.ToList();
             }
         }
@@ -48,6 +48,15 @@ namespace CineVerse.Core.Services
                     return review.Rating;
                 }
                 return 0.0;
+            }
+        }
+
+        public async Task<int> CountMovieReviewsAsync(int movieId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var reviews = await unitOfWork.Reviews.GetReviewsByMovieIdAsync(movieId);
+                return reviews.Count();
             }
         }
     }

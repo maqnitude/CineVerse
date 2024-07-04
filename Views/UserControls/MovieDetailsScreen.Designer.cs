@@ -37,6 +37,9 @@
             pnMovieTitle = new Panel();
             lblReleaseYear = new Label();
             lblMovieTitle = new Label();
+            pnlRatingInfo = new Panel();
+            lblNumReviews = new Label();
+            lblAvgRating = new Label();
             pnMovieFacts = new Panel();
             lblRuntime = new Label();
             lblGenres = new Label();
@@ -93,6 +96,7 @@
             pnHeader.SuspendLayout();
             pnDirector.SuspendLayout();
             pnMovieTitle.SuspendLayout();
+            pnlRatingInfo.SuspendLayout();
             pnMovieFacts.SuspendLayout();
             pnHeaderInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picMoviePoster).BeginInit();
@@ -132,6 +136,7 @@
             pnHeader.BackColor = Color.Transparent;
             pnHeader.Controls.Add(pnDirector);
             pnHeader.Controls.Add(pnMovieTitle);
+            pnHeader.Controls.Add(pnlRatingInfo);
             pnHeader.Controls.Add(pnMovieFacts);
             pnHeader.Controls.Add(btnBack);
             pnHeader.Controls.Add(pnHeaderInfo);
@@ -209,6 +214,42 @@
             lblMovieTitle.TabIndex = 1;
             lblMovieTitle.Text = "The Shawshank Redemption";
             // 
+            // pnlRatingInfo
+            // 
+            pnlRatingInfo.AutoSize = true;
+            pnlRatingInfo.Controls.Add(lblNumReviews);
+            pnlRatingInfo.Controls.Add(lblAvgRating);
+            pnlRatingInfo.Location = new Point(314, 111);
+            pnlRatingInfo.Name = "pnlRatingInfo";
+            pnlRatingInfo.Size = new Size(361, 30);
+            pnlRatingInfo.TabIndex = 9;
+            // 
+            // lblNumReviews
+            // 
+            lblNumReviews.AutoSize = true;
+            lblNumReviews.Dock = DockStyle.Left;
+            lblNumReviews.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            lblNumReviews.ForeColor = Color.White;
+            lblNumReviews.Location = new Point(45, 0);
+            lblNumReviews.Name = "lblNumReviews";
+            lblNumReviews.Padding = new Padding(0, 5, 5, 5);
+            lblNumReviews.Size = new Size(50, 27);
+            lblNumReviews.TabIndex = 3;
+            lblNumReviews.Text = "(846K)";
+            // 
+            // lblAvgRating
+            // 
+            lblAvgRating.AutoSize = true;
+            lblAvgRating.Dock = DockStyle.Left;
+            lblAvgRating.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            lblAvgRating.ForeColor = Color.White;
+            lblAvgRating.Location = new Point(0, 0);
+            lblAvgRating.Name = "lblAvgRating";
+            lblAvgRating.Padding = new Padding(4, 4, 0, 4);
+            lblAvgRating.Size = new Size(45, 29);
+            lblAvgRating.TabIndex = 2;
+            lblAvgRating.Text = "9.25";
+            // 
             // pnMovieFacts
             // 
             pnMovieFacts.AutoSize = true;
@@ -217,7 +258,7 @@
             pnMovieFacts.Controls.Add(lblReleaseDate);
             pnMovieFacts.Location = new Point(314, 186);
             pnMovieFacts.Name = "pnMovieFacts";
-            pnMovieFacts.Size = new Size(276, 30);
+            pnMovieFacts.Size = new Size(361, 30);
             pnMovieFacts.TabIndex = 9;
             // 
             // lblRuntime
@@ -833,6 +874,8 @@
             pnDirector.PerformLayout();
             pnMovieTitle.ResumeLayout(false);
             pnMovieTitle.PerformLayout();
+            pnlRatingInfo.ResumeLayout(false);
+            pnlRatingInfo.PerformLayout();
             pnMovieFacts.ResumeLayout(false);
             pnMovieFacts.PerformLayout();
             pnHeaderInfo.ResumeLayout(false);
@@ -921,5 +964,8 @@
         private Panel pnDirector;
         private Label lblDirectorName;
         private StarRatingControl starRatingControl;
+        private Panel pnlRatingInfo;
+        private Label lblAvgRating;
+        private Label lblNumReviews;
     }
 }

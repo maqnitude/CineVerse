@@ -1,6 +1,7 @@
 ﻿using CineVerse.Core.Interfaces;
 using CineVerse.Data;
 using CineVerse.Data.Entities;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
@@ -77,6 +78,16 @@ namespace CineVerse.Core.Services
             {
                 var movies = await unitOfWork.Movies.GetMoviesByPageAsync(pageNumber, pageSize, "decade", decade);
                 return movies.ToList();
+            }
+        }
+
+        public async Task<double> GetMovieAverageRatingAsync(int movieId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var reviews = await unitOfWork.Reviews.GetReviewsByMovieIdAsync(movieId);
+                double averageRating = reviews.Sum(r => r.Rating) / reviews.Count();
+                return Math.Round(averageRating, 2);
             }
         }
 
@@ -160,6 +171,34 @@ namespace CineVerse.Core.Services
             {
                 var movies = await unitOfWork.Movies.SearchMoviesAsync(searchTerm);
                 return movies.ToList();
+            }
+        }
+
+        public async Task<int> CountWatchedMoviesAsync(string userId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var user = await unitOfWork.Users.GetUserByIdAsync(userId)
+                    ?? throw new Exception("User not found");
+
+                var watchedList = await unitOfWork.Lists.GetListByIdAsync(user.WatchedListId, includeMovies: true)
+                    ?? throw new Exception("Watched list not found");
+                
+                return watchedList.Movies.Count;
+            }
+        }
+
+        public async Task<int> CountLikedMoviesAsync(string userId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var user = await unitOfWork.Users.GetUserByIdAsync(userId)
+                    ?? throw new Exception("User not found");
+
+                var likedList = await unitOfWork.Lists.GetListByIdAsync(user.LikedListId, includeMovies: true)
+                    ?? throw new Exception("Watched list not found");
+                
+                return likedList.Movies.Count;
             }
         }
     }

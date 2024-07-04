@@ -63,7 +63,7 @@
             pnlBrowseTooBar.Location = new Point(0, 0);
             pnlBrowseTooBar.Margin = new Padding(0);
             pnlBrowseTooBar.Name = "pnlBrowseTooBar";
-            pnlBrowseTooBar.Size = new Size(950, 22);
+            pnlBrowseTooBar.Size = new Size(960, 22);
             pnlBrowseTooBar.TabIndex = 0;
             // 
             // menuStripBrowsingTools
@@ -94,7 +94,7 @@
             toolStripMenuItemAll.BackColor = Color.FromArgb(72, 87, 101);
             toolStripMenuItemAll.ForeColor = Color.FromArgb(232, 230, 227);
             toolStripMenuItemAll.Name = "toolStripMenuItemAll";
-            toolStripMenuItemAll.Size = new Size(180, 22);
+            toolStripMenuItemAll.Size = new Size(139, 22);
             toolStripMenuItemAll.Text = "All";
             toolStripMenuItemAll.Click += toolStripMenuItemAll_Click;
             // 
@@ -103,7 +103,7 @@
             toolStripMenuItemUpcoming.BackColor = Color.FromArgb(72, 87, 101);
             toolStripMenuItemUpcoming.ForeColor = Color.FromArgb(232, 230, 227);
             toolStripMenuItemUpcoming.Name = "toolStripMenuItemUpcoming";
-            toolStripMenuItemUpcoming.Size = new Size(180, 22);
+            toolStripMenuItemUpcoming.Size = new Size(139, 22);
             toolStripMenuItemUpcoming.Text = "Upcoming";
             toolStripMenuItemUpcoming.Click += toolStripMenuItemUpcoming_Click;
             // 
@@ -112,7 +112,7 @@
             toolStripMenuItem2020s.BackColor = Color.FromArgb(72, 87, 101);
             toolStripMenuItem2020s.ForeColor = Color.FromArgb(232, 230, 227);
             toolStripMenuItem2020s.Name = "toolStripMenuItem2020s";
-            toolStripMenuItem2020s.Size = new Size(180, 22);
+            toolStripMenuItem2020s.Size = new Size(139, 22);
             toolStripMenuItem2020s.Text = "2020s";
             toolStripMenuItem2020s.Click += toolStripMenuItem2020s_Click;
             // 
@@ -121,7 +121,7 @@
             toolStripMenuItem2010s.BackColor = Color.FromArgb(72, 87, 101);
             toolStripMenuItem2010s.ForeColor = Color.FromArgb(232, 230, 227);
             toolStripMenuItem2010s.Name = "toolStripMenuItem2010s";
-            toolStripMenuItem2010s.Size = new Size(180, 22);
+            toolStripMenuItem2010s.Size = new Size(139, 22);
             toolStripMenuItem2010s.Text = "2010s";
             toolStripMenuItem2010s.Click += toolStripMenuItem2010s_Click;
             // 
@@ -130,7 +130,7 @@
             toolStripMenuItem2000s.BackColor = Color.FromArgb(72, 87, 101);
             toolStripMenuItem2000s.ForeColor = Color.FromArgb(232, 230, 227);
             toolStripMenuItem2000s.Name = "toolStripMenuItem2000s";
-            toolStripMenuItem2000s.Size = new Size(180, 22);
+            toolStripMenuItem2000s.Size = new Size(139, 22);
             toolStripMenuItem2000s.Text = "2000s";
             toolStripMenuItem2000s.Click += toolStripMenuItem2000s_Click;
             // 
@@ -139,7 +139,7 @@
             toolStripMenuItem1990s.BackColor = Color.FromArgb(72, 87, 101);
             toolStripMenuItem1990s.ForeColor = Color.FromArgb(232, 230, 227);
             toolStripMenuItem1990s.Name = "toolStripMenuItem1990s";
-            toolStripMenuItem1990s.Size = new Size(180, 22);
+            toolStripMenuItem1990s.Size = new Size(139, 22);
             toolStripMenuItem1990s.Text = "1990s";
             toolStripMenuItem1990s.Click += toolStripMenuItem1990s_Click;
             // 
@@ -148,7 +148,7 @@
             toolStripMenuItem1980s.BackColor = Color.FromArgb(72, 87, 101);
             toolStripMenuItem1980s.ForeColor = Color.FromArgb(232, 230, 227);
             toolStripMenuItem1980s.Name = "toolStripMenuItem1980s";
-            toolStripMenuItem1980s.Size = new Size(180, 22);
+            toolStripMenuItem1980s.Size = new Size(139, 22);
             toolStripMenuItem1980s.Text = "1980s";
             toolStripMenuItem1980s.Click += toolStripMenuItem1980s_Click;
             // 
@@ -166,7 +166,7 @@
             toolStripMenuItemHighest.BackColor = Color.FromArgb(72, 87, 101);
             toolStripMenuItemHighest.ForeColor = Color.FromArgb(232, 230, 227);
             toolStripMenuItemHighest.Name = "toolStripMenuItemHighest";
-            toolStripMenuItemHighest.Size = new Size(180, 22);
+            toolStripMenuItemHighest.Size = new Size(155, 22);
             toolStripMenuItemHighest.Text = "Highest First";
             toolStripMenuItemHighest.Click += toolStripMenuItemHighest_Click;
             // 
@@ -175,7 +175,7 @@
             toolStripMenuItemLowest.BackColor = Color.FromArgb(72, 87, 101);
             toolStripMenuItemLowest.ForeColor = Color.FromArgb(232, 230, 227);
             toolStripMenuItemLowest.Name = "toolStripMenuItemLowest";
-            toolStripMenuItemLowest.Size = new Size(180, 22);
+            toolStripMenuItemLowest.Size = new Size(155, 22);
             toolStripMenuItemLowest.Text = "Lowest First";
             toolStripMenuItemLowest.Click += toolStripMenuItemLowest_Click;
             // 
@@ -200,7 +200,7 @@
             flpMovieCardsContainer.Margin = new Padding(4);
             flpMovieCardsContainer.Name = "flpMovieCardsContainer";
             flpMovieCardsContainer.Padding = new Padding(4);
-            flpMovieCardsContainer.Size = new Size(950, 806);
+            flpMovieCardsContainer.Size = new Size(960, 806);
             flpMovieCardsContainer.TabIndex = 3;
             // 
             // btnNextPage
@@ -209,13 +209,15 @@
             btnNextPage.BackColor = Color.FromArgb(32, 38, 45);
             btnNextPage.FlatAppearance.BorderSize = 0;
             btnNextPage.FlatStyle = FlatStyle.Flat;
-            btnNextPage.ForeColor = Color.FromArgb(178, 172, 162);
-            btnNextPage.Location = new Point(891, 0);
+            btnNextPage.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnNextPage.ForeColor = Color.FromArgb(198, 192, 182);
+            btnNextPage.Location = new Point(901, 0);
             btnNextPage.Name = "btnNextPage";
             btnNextPage.Size = new Size(56, 30);
             btnNextPage.TabIndex = 5;
             btnNextPage.Text = "Next";
             btnNextPage.UseVisualStyleBackColor = false;
+            btnNextPage.Click += btnNextPage_Click;
             // 
             // btnPrevPage
             // 
@@ -223,13 +225,15 @@
             btnPrevPage.BackColor = Color.FromArgb(32, 38, 45);
             btnPrevPage.FlatAppearance.BorderSize = 0;
             btnPrevPage.FlatStyle = FlatStyle.Flat;
-            btnPrevPage.ForeColor = Color.FromArgb(178, 172, 162);
+            btnPrevPage.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            btnPrevPage.ForeColor = Color.FromArgb(198, 192, 182);
             btnPrevPage.Location = new Point(3, 0);
             btnPrevPage.Name = "btnPrevPage";
             btnPrevPage.Size = new Size(79, 30);
             btnPrevPage.TabIndex = 6;
             btnPrevPage.Text = "Previous";
             btnPrevPage.UseVisualStyleBackColor = false;
+            btnPrevPage.Click += btnPrevPage_Click;
             // 
             // lblPageNumber
             // 
@@ -238,7 +242,7 @@
             lblPageNumber.BackColor = Color.Transparent;
             lblPageNumber.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPageNumber.ForeColor = Color.FromArgb(178, 172, 162);
-            lblPageNumber.Location = new Point(467, 3);
+            lblPageNumber.Location = new Point(471, 3);
             lblPageNumber.Name = "lblPageNumber";
             lblPageNumber.Size = new Size(18, 21);
             lblPageNumber.TabIndex = 7;
@@ -250,9 +254,9 @@
             pnWrapper.Controls.Add(flpMovieCardsContainer);
             pnWrapper.Controls.Add(pnFooter);
             pnWrapper.Controls.Add(pnlBrowseTooBar);
-            pnWrapper.Location = new Point(120, 0);
+            pnWrapper.Location = new Point(117, 0);
             pnWrapper.Name = "pnWrapper";
-            pnWrapper.Size = new Size(950, 858);
+            pnWrapper.Size = new Size(960, 858);
             pnWrapper.TabIndex = 8;
             // 
             // pnFooter
@@ -263,7 +267,7 @@
             pnFooter.Dock = DockStyle.Bottom;
             pnFooter.Location = new Point(0, 828);
             pnFooter.Name = "pnFooter";
-            pnFooter.Size = new Size(950, 30);
+            pnFooter.Size = new Size(960, 30);
             pnFooter.TabIndex = 0;
             // 
             // MoviesScreen

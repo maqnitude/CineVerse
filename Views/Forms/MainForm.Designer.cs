@@ -45,7 +45,7 @@
             cmsUserDropdown = new ContextMenuStrip(components);
             homeToolStripMenuItem = new ToolStripMenuItem();
             profileToolStripMenuItem = new ToolStripMenuItem();
-            moviesToolStripMenuItem = new ToolStripMenuItem();
+            watchedToolStripMenuItem = new ToolStripMenuItem();
             diaryToolStripMenuItem = new ToolStripMenuItem();
             reviewsToolStripMenuItem = new ToolStripMenuItem();
             watchlistToolStripMenuItem = new ToolStripMenuItem();
@@ -231,10 +231,10 @@
             // cmsUserDropdown
             // 
             cmsUserDropdown.BackColor = Color.FromArgb(72, 87, 101);
-            cmsUserDropdown.Items.AddRange(new ToolStripItem[] { homeToolStripMenuItem, profileToolStripMenuItem, moviesToolStripMenuItem, diaryToolStripMenuItem, reviewsToolStripMenuItem, watchlistToolStripMenuItem, listsToolStripMenuItem, likesToolStripMenuItem, tagsToolStripMenuItem, networkToolStripMenuItem, separator, settingsToolStripMenuItem, signOutToolStripMenuItem });
+            cmsUserDropdown.Items.AddRange(new ToolStripItem[] { homeToolStripMenuItem, profileToolStripMenuItem, watchedToolStripMenuItem, diaryToolStripMenuItem, reviewsToolStripMenuItem, watchlistToolStripMenuItem, listsToolStripMenuItem, likesToolStripMenuItem, tagsToolStripMenuItem, networkToolStripMenuItem, separator, settingsToolStripMenuItem, signOutToolStripMenuItem });
             cmsUserDropdown.Name = "cmsUserDropdown";
             cmsUserDropdown.RenderMode = ToolStripRenderMode.System;
-            cmsUserDropdown.Size = new Size(181, 296);
+            cmsUserDropdown.Size = new Size(125, 274);
             cmsUserDropdown.Closed += cmsUserDropdown_Closed;
             // 
             // homeToolStripMenuItem
@@ -255,13 +255,14 @@
             profileToolStripMenuItem.Text = "Profile";
             profileToolStripMenuItem.Click += profileToolStripMenuItem_Click;
             // 
-            // moviesToolStripMenuItem
+            // watchedToolStripMenuItem
             // 
-            moviesToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            moviesToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
-            moviesToolStripMenuItem.Name = "moviesToolStripMenuItem";
-            moviesToolStripMenuItem.Size = new Size(124, 22);
-            moviesToolStripMenuItem.Text = "Movies";
+            watchedToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            watchedToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
+            watchedToolStripMenuItem.Name = "watchedToolStripMenuItem";
+            watchedToolStripMenuItem.Size = new Size(124, 22);
+            watchedToolStripMenuItem.Text = "Watched";
+            watchedToolStripMenuItem.Click += watchedToolStripMenuItem_Click;
             // 
             // diaryToolStripMenuItem
             // 
@@ -286,6 +287,7 @@
             watchlistToolStripMenuItem.Name = "watchlistToolStripMenuItem";
             watchlistToolStripMenuItem.Size = new Size(124, 22);
             watchlistToolStripMenuItem.Text = "Watchlist";
+            watchlistToolStripMenuItem.Click += watchlistToolStripMenuItem_Click;
             // 
             // listsToolStripMenuItem
             // 
@@ -294,6 +296,7 @@
             listsToolStripMenuItem.Name = "listsToolStripMenuItem";
             listsToolStripMenuItem.Size = new Size(124, 22);
             listsToolStripMenuItem.Text = "My Lists";
+            listsToolStripMenuItem.Click += listsToolStripMenuItem_Click;
             // 
             // likesToolStripMenuItem
             // 
@@ -302,6 +305,7 @@
             likesToolStripMenuItem.Name = "likesToolStripMenuItem";
             likesToolStripMenuItem.Size = new Size(124, 22);
             likesToolStripMenuItem.Text = "Likes";
+            likesToolStripMenuItem.Click += likesToolStripMenuItem_Click;
             // 
             // tagsToolStripMenuItem
             // 
@@ -338,7 +342,7 @@
             signOutToolStripMenuItem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             signOutToolStripMenuItem.ForeColor = Color.FromArgb(198, 193, 185);
             signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
-            signOutToolStripMenuItem.Size = new Size(180, 22);
+            signOutToolStripMenuItem.Size = new Size(124, 22);
             signOutToolStripMenuItem.Text = "Sign out";
             signOutToolStripMenuItem.Click += signOutToolStripMenuItem_Click;
             // 
@@ -382,7 +386,7 @@
         private ContextMenuStrip cmsUserDropdown;
         private ToolStripMenuItem homeToolStripMenuItem;
         private ToolStripMenuItem profileToolStripMenuItem;
-        private ToolStripMenuItem moviesToolStripMenuItem;
+        private ToolStripMenuItem watchedToolStripMenuItem;
         private ToolStripMenuItem diaryToolStripMenuItem;
         private ToolStripMenuItem reviewsToolStripMenuItem;
         private ToolStripMenuItem watchlistToolStripMenuItem;

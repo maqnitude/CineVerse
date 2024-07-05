@@ -562,7 +562,7 @@
             lblProfileSection.AutoSize = true;
             lblProfileSection.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblProfileSection.ForeColor = Color.FromArgb(232, 230, 227);
-            lblProfileSection.Location = new Point(17, 7);
+            lblProfileSection.Location = new Point(17, 10);
             lblProfileSection.Name = "lblProfileSection";
             lblProfileSection.Size = new Size(67, 25);
             lblProfileSection.TabIndex = 0;
@@ -594,7 +594,7 @@
             lblAvatarSection.AutoSize = true;
             lblAvatarSection.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblAvatarSection.ForeColor = Color.FromArgb(232, 230, 227);
-            lblAvatarSection.Location = new Point(6, 16);
+            lblAvatarSection.Location = new Point(6, 10);
             lblAvatarSection.Name = "lblAvatarSection";
             lblAvatarSection.Size = new Size(66, 25);
             lblAvatarSection.TabIndex = 10;

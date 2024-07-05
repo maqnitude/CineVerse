@@ -96,6 +96,7 @@ namespace CineVerse.Views.UserControls
                 item.SetMediator(_mediator);
 
                 pnWrapper.Controls.Add(item);
+                item.BringToFront();
             }
 
             pnWrapper.ResumeLayout();

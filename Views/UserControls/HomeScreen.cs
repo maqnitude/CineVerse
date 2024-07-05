@@ -45,7 +45,7 @@ namespace CineVerse.Views.UserControls
                 pnMovies.Controls.Remove(card);
             }
 
-            List<Movie> movies = await MovieService.Instance.GetMoviesAsync(1, 10, sortBy: "rating", sortValue: "highest first");
+            List<Movie> movies = await MovieService.Instance.GetMoviesAsync(1, 5, sortBy: "rating", sortValue: "highest first");
 
             var mainForm = this.FindForm() as MainForm;
             foreach (Movie movie in movies)
@@ -75,7 +75,7 @@ namespace CineVerse.Views.UserControls
             List<Movie> movies = await MovieService.Instance.GetMoviesAsync(1, 100);
 
             Random random = new Random();
-            List<Movie> randomMovies = movies.OrderBy(m => random.Next()).Take(10).ToList();
+            List<Movie> randomMovies = movies.OrderBy(m => random.Next()).Take(5).ToList();
 
             var mainForm = this.FindForm() as MainForm;
             foreach (Movie movie in randomMovies)
@@ -139,7 +139,7 @@ namespace CineVerse.Views.UserControls
             List<List> lists = await ListService.Instance.GetListsAsync(ListType.Public, includeUser: true, includeMovies: true);
 
             Random random = new Random();
-            List<List> randomLists = lists.OrderBy(l => random.Next()).Take(10).ToList();
+            List<List> randomLists = lists.OrderBy(l => random.Next()).Take(5).ToList();
 
             foreach (List list in randomLists)
             {

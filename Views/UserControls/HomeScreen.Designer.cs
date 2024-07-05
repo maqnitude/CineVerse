@@ -87,7 +87,7 @@
             pnWrapper.Controls.Add(lblWelcomeMessage);
             pnWrapper.Location = new Point(238, 0);
             pnWrapper.Name = "pnWrapper";
-            pnWrapper.Size = new Size(950, 1234);
+            pnWrapper.Size = new Size(950, 1761);
             pnWrapper.TabIndex = 1;
             // 
             // pnContents
@@ -100,7 +100,7 @@
             pnContents.Dock = DockStyle.Fill;
             pnContents.Location = new Point(0, 42);
             pnContents.Name = "pnContents";
-            pnContents.Size = new Size(950, 1192);
+            pnContents.Size = new Size(950, 1719);
             pnContents.TabIndex = 1;
             // 
             // pnRow5
@@ -108,9 +108,9 @@
             pnRow5.Controls.Add(pnRow5ColLeft);
             pnRow5.Controls.Add(pnRow5ColRight);
             pnRow5.Dock = DockStyle.Fill;
-            pnRow5.Location = new Point(0, 987);
+            pnRow5.Location = new Point(0, 1591);
             pnRow5.Name = "pnRow5";
-            pnRow5.Size = new Size(950, 205);
+            pnRow5.Size = new Size(950, 128);
             pnRow5.TabIndex = 4;
             // 
             // pnRow5ColLeft
@@ -120,7 +120,7 @@
             pnRow5ColLeft.Dock = DockStyle.Fill;
             pnRow5ColLeft.Location = new Point(0, 0);
             pnRow5ColLeft.Name = "pnRow5ColLeft";
-            pnRow5ColLeft.Size = new Size(355, 205);
+            pnRow5ColLeft.Size = new Size(355, 128);
             pnRow5ColLeft.TabIndex = 1;
             // 
             // flpUserAvatars
@@ -128,7 +128,7 @@
             flpUserAvatars.Dock = DockStyle.Fill;
             flpUserAvatars.Location = new Point(0, 17);
             flpUserAvatars.Name = "flpUserAvatars";
-            flpUserAvatars.Size = new Size(355, 188);
+            flpUserAvatars.Size = new Size(355, 111);
             flpUserAvatars.TabIndex = 2;
             // 
             // lblDiscussionHeading
@@ -150,7 +150,7 @@
             pnRow5ColRight.Dock = DockStyle.Right;
             pnRow5ColRight.Location = new Point(355, 0);
             pnRow5ColRight.Name = "pnRow5ColRight";
-            pnRow5ColRight.Size = new Size(595, 205);
+            pnRow5ColRight.Size = new Size(595, 128);
             pnRow5ColRight.TabIndex = 0;
             // 
             // pnFollowees
@@ -158,7 +158,7 @@
             pnFollowees.Dock = DockStyle.Fill;
             pnFollowees.Location = new Point(0, 17);
             pnFollowees.Name = "pnFollowees";
-            pnFollowees.Size = new Size(595, 188);
+            pnFollowees.Size = new Size(595, 111);
             pnFollowees.TabIndex = 2;
             // 
             // lblFollowingHeading
@@ -178,9 +178,9 @@
             pnRow4.Controls.Add(pnLists);
             pnRow4.Controls.Add(lblPopularListsHeading);
             pnRow4.Dock = DockStyle.Top;
-            pnRow4.Location = new Point(0, 815);
+            pnRow4.Location = new Point(0, 991);
             pnRow4.Name = "pnRow4";
-            pnRow4.Size = new Size(950, 172);
+            pnRow4.Size = new Size(950, 600);
             pnRow4.TabIndex = 3;
             // 
             // pnLists
@@ -188,7 +188,7 @@
             pnLists.Dock = DockStyle.Fill;
             pnLists.Location = new Point(0, 17);
             pnLists.Name = "pnLists";
-            pnLists.Size = new Size(950, 155);
+            pnLists.Size = new Size(950, 583);
             pnLists.TabIndex = 1;
             // 
             // lblPopularListsHeading
@@ -208,7 +208,7 @@
             pnRow3.Controls.Add(pnRow3ColLeft);
             pnRow3.Controls.Add(pnRow3ColRight);
             pnRow3.Dock = DockStyle.Top;
-            pnRow3.Location = new Point(0, 344);
+            pnRow3.Location = new Point(0, 520);
             pnRow3.Name = "pnRow3";
             pnRow3.Size = new Size(950, 471);
             pnRow3.TabIndex = 2;
@@ -278,9 +278,9 @@
             pnRow2.Controls.Add(pnRecommendations);
             pnRow2.Controls.Add(lblRecommendationsHeading);
             pnRow2.Dock = DockStyle.Top;
-            pnRow2.Location = new Point(0, 172);
+            pnRow2.Location = new Point(0, 260);
             pnRow2.Name = "pnRow2";
-            pnRow2.Size = new Size(950, 172);
+            pnRow2.Size = new Size(950, 260);
             pnRow2.TabIndex = 1;
             // 
             // pnRecommendations
@@ -289,7 +289,7 @@
             pnRecommendations.Dock = DockStyle.Fill;
             pnRecommendations.Location = new Point(0, 17);
             pnRecommendations.Name = "pnRecommendations";
-            pnRecommendations.Size = new Size(950, 155);
+            pnRecommendations.Size = new Size(950, 243);
             pnRecommendations.TabIndex = 1;
             // 
             // lblRecommendationsHeading
@@ -311,7 +311,7 @@
             pnRow1.Dock = DockStyle.Top;
             pnRow1.Location = new Point(0, 0);
             pnRow1.Name = "pnRow1";
-            pnRow1.Size = new Size(950, 172);
+            pnRow1.Size = new Size(950, 260);
             pnRow1.TabIndex = 0;
             // 
             // pnMovies
@@ -320,7 +320,7 @@
             pnMovies.Dock = DockStyle.Fill;
             pnMovies.Location = new Point(0, 17);
             pnMovies.Name = "pnMovies";
-            pnMovies.Size = new Size(950, 155);
+            pnMovies.Size = new Size(950, 243);
             pnMovies.TabIndex = 1;
             // 
             // lblTopRatedHeading
@@ -343,7 +343,7 @@
             BackColor = Color.FromArgb(20, 24, 28);
             Controls.Add(pnWrapper);
             Name = "HomeScreen";
-            Size = new Size(1426, 1237);
+            Size = new Size(1426, 1764);
             pnWrapper.ResumeLayout(false);
             pnContents.ResumeLayout(false);
             pnRow5.ResumeLayout(false);

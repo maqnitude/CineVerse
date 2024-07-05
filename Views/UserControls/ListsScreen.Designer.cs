@@ -62,6 +62,7 @@
             // pnListsContainer
             // 
             pnListsContainer.AutoScroll = true;
+            pnListsContainer.BorderStyle = BorderStyle.FixedSingle;
             pnListsContainer.Dock = DockStyle.Fill;
             pnListsContainer.Location = new Point(0, 26);
             pnListsContainer.Name = "pnListsContainer";
@@ -70,6 +71,7 @@
             // 
             // pnFooter
             // 
+            pnFooter.BorderStyle = BorderStyle.FixedSingle;
             pnFooter.Controls.Add(btnAddList);
             pnFooter.Dock = DockStyle.Bottom;
             pnFooter.Location = new Point(0, 671);
@@ -84,9 +86,9 @@
             btnAddList.FlatStyle = FlatStyle.Flat;
             btnAddList.Font = new Font("Segoe UI", 9F);
             btnAddList.ForeColor = Color.FromArgb(232, 230, 227);
-            btnAddList.Location = new Point(869, 7);
+            btnAddList.Location = new Point(865, 4);
             btnAddList.Name = "btnAddList";
-            btnAddList.Size = new Size(75, 23);
+            btnAddList.Size = new Size(80, 28);
             btnAddList.TabIndex = 1;
             btnAddList.Text = "Add list";
             btnAddList.UseVisualStyleBackColor = false;
@@ -146,7 +148,7 @@
             newestFirstToolStripMenuItem.BackColor = Color.FromArgb(32, 38, 45);
             newestFirstToolStripMenuItem.ForeColor = Color.FromArgb(178, 172, 162);
             newestFirstToolStripMenuItem.Name = "newestFirstToolStripMenuItem";
-            newestFirstToolStripMenuItem.Size = new Size(180, 22);
+            newestFirstToolStripMenuItem.Size = new Size(113, 22);
             newestFirstToolStripMenuItem.Text = "Newest";
             newestFirstToolStripMenuItem.Click += newestFirstToolStripMenuItem_Click;
             // 
@@ -155,7 +157,7 @@
             oldestFirstToolStripMenuItem.BackColor = Color.FromArgb(32, 38, 45);
             oldestFirstToolStripMenuItem.ForeColor = Color.FromArgb(178, 172, 162);
             oldestFirstToolStripMenuItem.Name = "oldestFirstToolStripMenuItem";
-            oldestFirstToolStripMenuItem.Size = new Size(180, 22);
+            oldestFirstToolStripMenuItem.Size = new Size(113, 22);
             oldestFirstToolStripMenuItem.Text = "Oldest";
             oldestFirstToolStripMenuItem.Click += oldestFirstToolStripMenuItem_Click;
             // 

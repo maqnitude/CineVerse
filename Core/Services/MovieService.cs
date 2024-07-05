@@ -91,6 +91,36 @@ namespace CineVerse.Core.Services
             }
         }
 
+        public async Task<Dictionary<double, int>> GetRatingFrequenciesAsync(int movieId)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                var reviews = await unitOfWork.Reviews.GetReviewsByMovieIdAsync(movieId);
+                var ratingDistribution = reviews.GroupBy(r => r.Rating).ToDictionary(g => g.Key, g => g.Count());
+
+                var allRatings = new Dictionary<double, int>
+                {
+                    { 0.5, 0 },
+                    { 1.0, 0 },
+                    { 1.5, 0 },
+                    { 2.0, 0 },
+                    { 2.5, 0 },
+                    { 3.0, 0 },
+                    { 3.5, 0 },
+                    { 4.0, 0 },
+                    { 4.5, 0 },
+                    { 5.0, 0 }
+                };
+
+                foreach (var rating in ratingDistribution)
+                {
+                    allRatings[rating.Key] = rating.Value;
+                }
+
+                return allRatings;
+            }
+        }
+
         public async Task AddMovieReviewAsync(string userId, int movieId, double rating, string? content)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))

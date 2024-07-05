@@ -76,6 +76,9 @@
             pnStatusSection = new Panel();
             lblStatus = new Label();
             lblStatusHeader = new Label();
+            pnRatingsSection = new Panel();
+            pnRatingDistribution = new Panel();
+            lblRatingsHeading = new Label();
             pnActions = new Panel();
             pnActionsRow6 = new Panel();
             lblShare = new Label();
@@ -111,6 +114,7 @@
             pnBudgetSection.SuspendLayout();
             pnOriginalLanguageSection.SuspendLayout();
             pnStatusSection.SuspendLayout();
+            pnRatingsSection.SuspendLayout();
             pnActions.SuspendLayout();
             pnActionsRow6.SuspendLayout();
             pnActionsRow5.SuspendLayout();
@@ -388,7 +392,7 @@
             pnColumn1.Dock = DockStyle.Fill;
             pnColumn1.Location = new Point(0, 0);
             pnColumn1.Name = "pnColumn1";
-            pnColumn1.Size = new Size(698, 1137);
+            pnColumn1.Size = new Size(697, 1137);
             pnColumn1.TabIndex = 1;
             // 
             // pnReviewsSection
@@ -398,7 +402,7 @@
             pnReviewsSection.Controls.Add(pnReviewsHeader);
             pnReviewsSection.Location = new Point(27, 538);
             pnReviewsSection.Name = "pnReviewsSection";
-            pnReviewsSection.Size = new Size(636, 531);
+            pnReviewsSection.Size = new Size(635, 531);
             pnReviewsSection.TabIndex = 2;
             // 
             // pnReviews
@@ -407,7 +411,7 @@
             pnReviews.Dock = DockStyle.Fill;
             pnReviews.Location = new Point(0, 35);
             pnReviews.Name = "pnReviews";
-            pnReviews.Size = new Size(636, 496);
+            pnReviews.Size = new Size(635, 496);
             pnReviews.TabIndex = 1;
             // 
             // pnReviewsHeader
@@ -418,7 +422,7 @@
             pnReviewsHeader.Dock = DockStyle.Top;
             pnReviewsHeader.Location = new Point(0, 0);
             pnReviewsHeader.Name = "pnReviewsHeader";
-            pnReviewsHeader.Size = new Size(636, 35);
+            pnReviewsHeader.Size = new Size(635, 35);
             pnReviewsHeader.TabIndex = 0;
             // 
             // lblReviewsHeader
@@ -428,7 +432,7 @@
             lblReviewsHeader.ForeColor = Color.White;
             lblReviewsHeader.Location = new Point(0, 0);
             lblReviewsHeader.Name = "lblReviewsHeader";
-            lblReviewsHeader.Size = new Size(571, 33);
+            lblReviewsHeader.Size = new Size(570, 33);
             lblReviewsHeader.TabIndex = 2;
             lblReviewsHeader.Text = "Reviews";
             // 
@@ -439,7 +443,7 @@
             btnMoreReviews.FlatStyle = FlatStyle.Flat;
             btnMoreReviews.Font = new Font("Segoe UI", 10F);
             btnMoreReviews.ForeColor = Color.White;
-            btnMoreReviews.Location = new Point(571, 0);
+            btnMoreReviews.Location = new Point(570, 0);
             btnMoreReviews.Name = "btnMoreReviews";
             btnMoreReviews.Size = new Size(63, 33);
             btnMoreReviews.TabIndex = 1;
@@ -453,7 +457,7 @@
             pnCrewSection.Controls.Add(lblCrewHeader);
             pnCrewSection.Location = new Point(27, 286);
             pnCrewSection.Name = "pnCrewSection";
-            pnCrewSection.Size = new Size(636, 205);
+            pnCrewSection.Size = new Size(635, 205);
             pnCrewSection.TabIndex = 2;
             // 
             // pnCrew
@@ -462,7 +466,7 @@
             pnCrew.Dock = DockStyle.Fill;
             pnCrew.Location = new Point(0, 24);
             pnCrew.Name = "pnCrew";
-            pnCrew.Size = new Size(636, 181);
+            pnCrew.Size = new Size(635, 181);
             pnCrew.TabIndex = 2;
             // 
             // lblCrewHeader
@@ -473,7 +477,7 @@
             lblCrewHeader.ForeColor = Color.White;
             lblCrewHeader.Location = new Point(0, 0);
             lblCrewHeader.Name = "lblCrewHeader";
-            lblCrewHeader.Size = new Size(636, 24);
+            lblCrewHeader.Size = new Size(635, 24);
             lblCrewHeader.TabIndex = 1;
             lblCrewHeader.Text = "Crew";
             // 
@@ -484,7 +488,7 @@
             pnCastSection.Controls.Add(lblCastHeader);
             pnCastSection.Location = new Point(27, 29);
             pnCastSection.Name = "pnCastSection";
-            pnCastSection.Size = new Size(636, 205);
+            pnCastSection.Size = new Size(635, 205);
             pnCastSection.TabIndex = 2;
             // 
             // pnCast
@@ -493,7 +497,7 @@
             pnCast.Dock = DockStyle.Fill;
             pnCast.Location = new Point(0, 24);
             pnCast.Name = "pnCast";
-            pnCast.Size = new Size(636, 181);
+            pnCast.Size = new Size(635, 181);
             pnCast.TabIndex = 2;
             // 
             // lblCastHeader
@@ -504,7 +508,7 @@
             lblCastHeader.ForeColor = Color.White;
             lblCastHeader.Location = new Point(0, 0);
             lblCastHeader.Name = "lblCastHeader";
-            lblCastHeader.Size = new Size(636, 24);
+            lblCastHeader.Size = new Size(635, 24);
             lblCastHeader.TabIndex = 1;
             lblCastHeader.Text = "Cast";
             // 
@@ -514,11 +518,12 @@
             pnColumn2.Controls.Add(pnBudgetSection);
             pnColumn2.Controls.Add(pnOriginalLanguageSection);
             pnColumn2.Controls.Add(pnStatusSection);
+            pnColumn2.Controls.Add(pnRatingsSection);
             pnColumn2.Controls.Add(pnActions);
             pnColumn2.Dock = DockStyle.Right;
-            pnColumn2.Location = new Point(698, 0);
+            pnColumn2.Location = new Point(697, 0);
             pnColumn2.Name = "pnColumn2";
-            pnColumn2.Size = new Size(252, 1137);
+            pnColumn2.Size = new Size(253, 1137);
             pnColumn2.TabIndex = 0;
             // 
             // pnRevenueSection
@@ -526,10 +531,10 @@
             pnRevenueSection.Controls.Add(lblRevenue);
             pnRevenueSection.Controls.Add(lblRevenueHeader);
             pnRevenueSection.Dock = DockStyle.Top;
-            pnRevenueSection.Location = new Point(0, 585);
+            pnRevenueSection.Location = new Point(0, 812);
             pnRevenueSection.Name = "pnRevenueSection";
             pnRevenueSection.Padding = new Padding(5);
-            pnRevenueSection.Size = new Size(252, 80);
+            pnRevenueSection.Size = new Size(253, 80);
             pnRevenueSection.TabIndex = 2;
             // 
             // lblRevenue
@@ -539,7 +544,7 @@
             lblRevenue.ForeColor = Color.White;
             lblRevenue.Location = new Point(5, 33);
             lblRevenue.Name = "lblRevenue";
-            lblRevenue.Size = new Size(242, 42);
+            lblRevenue.Size = new Size(243, 42);
             lblRevenue.TabIndex = 1;
             lblRevenue.Text = "$28,341,469.00";
             // 
@@ -550,7 +555,7 @@
             lblRevenueHeader.ForeColor = Color.White;
             lblRevenueHeader.Location = new Point(5, 5);
             lblRevenueHeader.Name = "lblRevenueHeader";
-            lblRevenueHeader.Size = new Size(242, 28);
+            lblRevenueHeader.Size = new Size(243, 28);
             lblRevenueHeader.TabIndex = 0;
             lblRevenueHeader.Text = "Revenue";
             // 
@@ -559,10 +564,10 @@
             pnBudgetSection.Controls.Add(lblBudget);
             pnBudgetSection.Controls.Add(lblBudgetHeader);
             pnBudgetSection.Dock = DockStyle.Top;
-            pnBudgetSection.Location = new Point(0, 505);
+            pnBudgetSection.Location = new Point(0, 732);
             pnBudgetSection.Name = "pnBudgetSection";
             pnBudgetSection.Padding = new Padding(5);
-            pnBudgetSection.Size = new Size(252, 80);
+            pnBudgetSection.Size = new Size(253, 80);
             pnBudgetSection.TabIndex = 2;
             // 
             // lblBudget
@@ -572,7 +577,7 @@
             lblBudget.ForeColor = Color.White;
             lblBudget.Location = new Point(5, 33);
             lblBudget.Name = "lblBudget";
-            lblBudget.Size = new Size(242, 42);
+            lblBudget.Size = new Size(243, 42);
             lblBudget.TabIndex = 1;
             lblBudget.Text = "$25,000,000.00";
             // 
@@ -583,7 +588,7 @@
             lblBudgetHeader.ForeColor = Color.White;
             lblBudgetHeader.Location = new Point(5, 5);
             lblBudgetHeader.Name = "lblBudgetHeader";
-            lblBudgetHeader.Size = new Size(242, 28);
+            lblBudgetHeader.Size = new Size(243, 28);
             lblBudgetHeader.TabIndex = 0;
             lblBudgetHeader.Text = "Budget";
             // 
@@ -592,10 +597,10 @@
             pnOriginalLanguageSection.Controls.Add(lblOriginalLanguage);
             pnOriginalLanguageSection.Controls.Add(lblOriginalLanguageHeader);
             pnOriginalLanguageSection.Dock = DockStyle.Top;
-            pnOriginalLanguageSection.Location = new Point(0, 425);
+            pnOriginalLanguageSection.Location = new Point(0, 652);
             pnOriginalLanguageSection.Name = "pnOriginalLanguageSection";
             pnOriginalLanguageSection.Padding = new Padding(5);
-            pnOriginalLanguageSection.Size = new Size(252, 80);
+            pnOriginalLanguageSection.Size = new Size(253, 80);
             pnOriginalLanguageSection.TabIndex = 2;
             // 
             // lblOriginalLanguage
@@ -605,7 +610,7 @@
             lblOriginalLanguage.ForeColor = Color.White;
             lblOriginalLanguage.Location = new Point(5, 33);
             lblOriginalLanguage.Name = "lblOriginalLanguage";
-            lblOriginalLanguage.Size = new Size(242, 42);
+            lblOriginalLanguage.Size = new Size(243, 42);
             lblOriginalLanguage.TabIndex = 1;
             lblOriginalLanguage.Text = "English";
             // 
@@ -616,7 +621,7 @@
             lblOriginalLanguageHeader.ForeColor = Color.White;
             lblOriginalLanguageHeader.Location = new Point(5, 5);
             lblOriginalLanguageHeader.Name = "lblOriginalLanguageHeader";
-            lblOriginalLanguageHeader.Size = new Size(242, 28);
+            lblOriginalLanguageHeader.Size = new Size(243, 28);
             lblOriginalLanguageHeader.TabIndex = 0;
             lblOriginalLanguageHeader.Text = "Original Language";
             // 
@@ -625,10 +630,10 @@
             pnStatusSection.Controls.Add(lblStatus);
             pnStatusSection.Controls.Add(lblStatusHeader);
             pnStatusSection.Dock = DockStyle.Top;
-            pnStatusSection.Location = new Point(0, 345);
+            pnStatusSection.Location = new Point(0, 572);
             pnStatusSection.Name = "pnStatusSection";
             pnStatusSection.Padding = new Padding(5);
-            pnStatusSection.Size = new Size(252, 80);
+            pnStatusSection.Size = new Size(253, 80);
             pnStatusSection.TabIndex = 1;
             // 
             // lblStatus
@@ -638,7 +643,7 @@
             lblStatus.ForeColor = Color.White;
             lblStatus.Location = new Point(5, 33);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(242, 42);
+            lblStatus.Size = new Size(243, 42);
             lblStatus.TabIndex = 1;
             lblStatus.Text = "Released";
             // 
@@ -649,9 +654,39 @@
             lblStatusHeader.ForeColor = Color.White;
             lblStatusHeader.Location = new Point(5, 5);
             lblStatusHeader.Name = "lblStatusHeader";
-            lblStatusHeader.Size = new Size(242, 28);
+            lblStatusHeader.Size = new Size(243, 28);
             lblStatusHeader.TabIndex = 0;
             lblStatusHeader.Text = "Status";
+            // 
+            // pnRatingsSection
+            // 
+            pnRatingsSection.Controls.Add(pnRatingDistribution);
+            pnRatingsSection.Controls.Add(lblRatingsHeading);
+            pnRatingsSection.Dock = DockStyle.Top;
+            pnRatingsSection.Location = new Point(0, 345);
+            pnRatingsSection.Name = "pnRatingsSection";
+            pnRatingsSection.Padding = new Padding(5);
+            pnRatingsSection.Size = new Size(253, 227);
+            pnRatingsSection.TabIndex = 3;
+            // 
+            // pnRatingDistribution
+            // 
+            pnRatingDistribution.Dock = DockStyle.Fill;
+            pnRatingDistribution.Location = new Point(5, 33);
+            pnRatingDistribution.Name = "pnRatingDistribution";
+            pnRatingDistribution.Size = new Size(243, 189);
+            pnRatingDistribution.TabIndex = 1;
+            // 
+            // lblRatingsHeading
+            // 
+            lblRatingsHeading.Dock = DockStyle.Top;
+            lblRatingsHeading.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            lblRatingsHeading.ForeColor = Color.White;
+            lblRatingsHeading.Location = new Point(5, 5);
+            lblRatingsHeading.Name = "lblRatingsHeading";
+            lblRatingsHeading.Size = new Size(243, 28);
+            lblRatingsHeading.TabIndex = 0;
+            lblRatingsHeading.Text = "Ratings";
             // 
             // pnActions
             // 
@@ -666,7 +701,7 @@
             pnActions.Dock = DockStyle.Top;
             pnActions.Location = new Point(0, 0);
             pnActions.Name = "pnActions";
-            pnActions.Size = new Size(252, 345);
+            pnActions.Size = new Size(253, 345);
             pnActions.TabIndex = 0;
             // 
             // pnActionsRow6
@@ -676,7 +711,7 @@
             pnActionsRow6.Dock = DockStyle.Fill;
             pnActionsRow6.Location = new Point(0, 294);
             pnActionsRow6.Name = "pnActionsRow6";
-            pnActionsRow6.Size = new Size(250, 49);
+            pnActionsRow6.Size = new Size(251, 49);
             pnActionsRow6.TabIndex = 5;
             // 
             // lblShare
@@ -686,7 +721,7 @@
             lblShare.ForeColor = Color.FromArgb(178, 172, 162);
             lblShare.Location = new Point(0, 0);
             lblShare.Name = "lblShare";
-            lblShare.Size = new Size(248, 47);
+            lblShare.Size = new Size(249, 47);
             lblShare.TabIndex = 0;
             lblShare.Text = "Share";
             lblShare.TextAlign = ContentAlignment.MiddleCenter;
@@ -698,7 +733,7 @@
             pnActionsRow5.Dock = DockStyle.Top;
             pnActionsRow5.Location = new Point(0, 249);
             pnActionsRow5.Name = "pnActionsRow5";
-            pnActionsRow5.Size = new Size(250, 45);
+            pnActionsRow5.Size = new Size(251, 45);
             pnActionsRow5.TabIndex = 4;
             // 
             // lblAddToLists
@@ -708,7 +743,7 @@
             lblAddToLists.ForeColor = Color.FromArgb(178, 172, 162);
             lblAddToLists.Location = new Point(0, 0);
             lblAddToLists.Name = "lblAddToLists";
-            lblAddToLists.Size = new Size(248, 43);
+            lblAddToLists.Size = new Size(249, 43);
             lblAddToLists.TabIndex = 0;
             lblAddToLists.Text = "Add to lists ...";
             lblAddToLists.TextAlign = ContentAlignment.MiddleCenter;
@@ -721,7 +756,7 @@
             pnActionsRow4.Dock = DockStyle.Top;
             pnActionsRow4.Location = new Point(0, 204);
             pnActionsRow4.Name = "pnActionsRow4";
-            pnActionsRow4.Size = new Size(250, 45);
+            pnActionsRow4.Size = new Size(251, 45);
             pnActionsRow4.TabIndex = 3;
             // 
             // lblReviewOrLog
@@ -731,7 +766,7 @@
             lblReviewOrLog.ForeColor = Color.FromArgb(178, 172, 162);
             lblReviewOrLog.Location = new Point(0, 0);
             lblReviewOrLog.Name = "lblReviewOrLog";
-            lblReviewOrLog.Size = new Size(248, 43);
+            lblReviewOrLog.Size = new Size(249, 43);
             lblReviewOrLog.TabIndex = 0;
             lblReviewOrLog.Text = "Review or log ...";
             lblReviewOrLog.TextAlign = ContentAlignment.MiddleCenter;
@@ -744,7 +779,7 @@
             pnActionsRow3.Dock = DockStyle.Top;
             pnActionsRow3.Location = new Point(0, 159);
             pnActionsRow3.Name = "pnActionsRow3";
-            pnActionsRow3.Size = new Size(250, 45);
+            pnActionsRow3.Size = new Size(251, 45);
             pnActionsRow3.TabIndex = 2;
             // 
             // lblShowActivity
@@ -754,7 +789,7 @@
             lblShowActivity.ForeColor = Color.FromArgb(178, 172, 162);
             lblShowActivity.Location = new Point(0, 0);
             lblShowActivity.Name = "lblShowActivity";
-            lblShowActivity.Size = new Size(248, 43);
+            lblShowActivity.Size = new Size(249, 43);
             lblShowActivity.TabIndex = 0;
             lblShowActivity.Text = "Show your activity";
             lblShowActivity.TextAlign = ContentAlignment.MiddleCenter;
@@ -767,7 +802,7 @@
             pnActionsRow2.Dock = DockStyle.Top;
             pnActionsRow2.Location = new Point(0, 90);
             pnActionsRow2.Name = "pnActionsRow2";
-            pnActionsRow2.Size = new Size(250, 69);
+            pnActionsRow2.Size = new Size(251, 69);
             pnActionsRow2.TabIndex = 1;
             // 
             // starRatingControl
@@ -787,7 +822,7 @@
             lblRate.ForeColor = Color.FromArgb(178, 172, 162);
             lblRate.Location = new Point(0, 0);
             lblRate.Name = "lblRate";
-            lblRate.Size = new Size(248, 23);
+            lblRate.Size = new Size(249, 23);
             lblRate.TabIndex = 0;
             lblRate.Text = "Rate";
             lblRate.TextAlign = ContentAlignment.MiddleCenter;
@@ -801,7 +836,7 @@
             pnActionsRow1.Dock = DockStyle.Top;
             pnActionsRow1.Location = new Point(0, 0);
             pnActionsRow1.Name = "pnActionsRow1";
-            pnActionsRow1.Size = new Size(250, 90);
+            pnActionsRow1.Size = new Size(251, 90);
             pnActionsRow1.TabIndex = 0;
             // 
             // btnWatchlist
@@ -812,7 +847,7 @@
             btnWatchlist.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             btnWatchlist.ForeColor = Color.FromArgb(178, 172, 162);
             btnWatchlist.Image = Properties.Resources.add_big;
-            btnWatchlist.Location = new Point(166, 5);
+            btnWatchlist.Location = new Point(167, 5);
             btnWatchlist.Name = "btnWatchlist";
             btnWatchlist.Size = new Size(75, 80);
             btnWatchlist.TabIndex = 0;
@@ -892,6 +927,7 @@
             pnBudgetSection.ResumeLayout(false);
             pnOriginalLanguageSection.ResumeLayout(false);
             pnStatusSection.ResumeLayout(false);
+            pnRatingsSection.ResumeLayout(false);
             pnActions.ResumeLayout(false);
             pnActionsRow6.ResumeLayout(false);
             pnActionsRow5.ResumeLayout(false);
@@ -967,5 +1003,8 @@
         private Panel pnlRatingInfo;
         private Label lblAvgRating;
         private Label lblNumReviews;
+        private Panel pnRatingsSection;
+        private Label lblRatingsHeading;
+        private Panel pnRatingDistribution;
     }
 }

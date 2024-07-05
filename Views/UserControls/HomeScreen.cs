@@ -102,7 +102,7 @@ namespace CineVerse.Views.UserControls
                 pnReviews.Controls.Remove(item);
             }
 
-            List<Review> reviews = await ReviewService.Instance.GetReviewsAsync(100);
+            List<Review> reviews = await ReviewService.Instance.GetReviewsAsync(100, includeUser: true, includeMovie: true);
 
             Random random = new Random();
             List<Review> randomReviews = reviews.OrderBy(r => random.Next()).Take(10).ToList();

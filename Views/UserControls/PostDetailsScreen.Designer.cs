@@ -28,79 +28,67 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
-            panel2 = new Panel();
-            btnBack = new Button();
+            pnWrapper = new Panel();
             rootCommentItem = new CommentItem();
-            panel1.SuspendLayout();
-            panel2.SuspendLayout();
+            btnBack = new Button();
+            pnWrapper.SuspendLayout();
             SuspendLayout();
             // 
-            // panel1
+            // pnWrapper
             // 
-            panel1.AutoScroll = true;
-            panel1.BackColor = Color.FromArgb(16, 19, 22);
-            panel1.Controls.Add(panel2);
-            panel1.Controls.Add(rootCommentItem);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(986, 737);
-            panel1.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel2.BackColor = Color.FromArgb(16, 19, 22);
-            panel2.Controls.Add(btnBack);
-            panel2.Location = new Point(0, 0);
-            panel2.Margin = new Padding(0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(986, 32);
-            panel2.TabIndex = 1;
-            // 
-            // btnBack
-            // 
-            btnBack.FlatAppearance.BorderSize = 0;
-            btnBack.FlatStyle = FlatStyle.Flat;
-            btnBack.Image = Properties.Resources.back;
-            btnBack.Location = new Point(0, 0);
-            btnBack.Margin = new Padding(0);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(32, 32);
-            btnBack.TabIndex = 8;
-            btnBack.UseVisualStyleBackColor = true;
-            btnBack.Click += btnBack_Click;
+            pnWrapper.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            pnWrapper.AutoScroll = true;
+            pnWrapper.BackColor = Color.Transparent;
+            pnWrapper.Controls.Add(rootCommentItem);
+            pnWrapper.Location = new Point(157, 0);
+            pnWrapper.Name = "pnWrapper";
+            pnWrapper.Padding = new Padding(0, 15, 0, 0);
+            pnWrapper.Size = new Size(950, 737);
+            pnWrapper.TabIndex = 0;
             // 
             // rootCommentItem
             // 
-            rootCommentItem.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             rootCommentItem.AutoSize = true;
             rootCommentItem.BackColor = Color.Transparent;
-            rootCommentItem.Location = new Point(0, 32);
+            rootCommentItem.Dock = DockStyle.Top;
+            rootCommentItem.Location = new Point(0, 15);
             rootCommentItem.Margin = new Padding(0);
             rootCommentItem.Name = "rootCommentItem";
-            rootCommentItem.Size = new Size(986, 214);
+            rootCommentItem.Size = new Size(950, 169);
             rootCommentItem.TabIndex = 0;
+            // 
+            // btnBack
+            // 
+            btnBack.BackColor = Color.Transparent;
+            btnBack.FlatAppearance.BorderSize = 0;
+            btnBack.FlatStyle = FlatStyle.Flat;
+            btnBack.Image = Properties.Resources.back;
+            btnBack.Location = new Point(15, 10);
+            btnBack.Margin = new Padding(0);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(32, 32);
+            btnBack.TabIndex = 9;
+            btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
             // 
             // PostDetailsScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(panel1);
+            BackColor = Color.FromArgb(16, 19, 22);
+            Controls.Add(btnBack);
+            Controls.Add(pnWrapper);
             Name = "PostDetailsScreen";
-            Size = new Size(986, 737);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            panel2.ResumeLayout(false);
+            Size = new Size(1263, 737);
+            pnWrapper.ResumeLayout(false);
+            pnWrapper.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel panel1;
+        private Panel pnWrapper;
         private CommentItem rootCommentItem;
-        private Panel panel2;
         private Button btnBack;
     }
 }

@@ -155,7 +155,7 @@ namespace CineVerse.Views.UserControls
 
                 string avatarFileName = $"{_user.Id}{Path.GetExtension(_tempAvatarPath)}";
                 string avatarFilePath = Path.Combine(avatarDirectory, avatarFileName);
-                
+
                 if (File.Exists(avatarFilePath))
                 {
                     File.Delete(avatarFilePath);

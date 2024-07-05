@@ -15,6 +15,7 @@ using CineVerse.Forms;
 using CineVerse.Views.Forms;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace CineVerse.Views.UserControls
 {
@@ -237,6 +238,70 @@ namespace CineVerse.Views.UserControls
             pnCrew.ResumeLayout();
         }
 
+        private async Task DisplayRatingDistribution(int movieId)
+        {
+            var ratingFrequencies = await MovieService.Instance.GetRatingFrequenciesAsync(movieId);
+
+            if (!ratingFrequencies.Any())
+            {
+                return;
+            }
+            var chart = new Chart
+            {
+                Dock = DockStyle.Fill,
+                BackColor = Color.FromArgb(16, 19, 22),
+            };
+
+            var chartArea = new ChartArea
+            {
+                BackColor = Color.Black,
+                AxisX = {
+                    Interval = 0.5,
+                    LabelStyle = {
+                        ForeColor = Color.White,
+                        Font = new Font("Segoe UI", 10F, FontStyle.Bold)
+                    },
+                    LineColor = Color.White,
+                    MajorGrid = { LineColor = Color.Gray, Enabled = false },
+                    MinorGrid = { LineColor = Color.Gray, Enabled = false } 
+                },
+                AxisY = {
+                    LabelStyle = {
+                        ForeColor = Color.White,
+                        Font = new Font("Segoe UI", 10F, FontStyle.Bold)
+                    },
+                    LineColor = Color.White,
+                    MajorGrid = { LineColor = Color.Gray, Enabled = false },
+                    MinorGrid = { LineColor = Color.Gray, Enabled = false },
+                    Interval = 1,
+                    Minimum = 0
+                }
+            };
+
+            chart.ChartAreas.Add(chartArea);
+
+            var series = new System.Windows.Forms.DataVisualization.Charting.Series
+            {
+                Name = "Ratings",
+                IsValueShownAsLabel = false,
+                ChartType = SeriesChartType.Column,
+                Color = Color.LightGreen,
+                BackSecondaryColor = Color.DarkGreen,
+                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
+                LabelForeColor = Color.White
+            };
+
+            foreach (var rating in ratingFrequencies)
+            {
+                series.Points.AddXY(rating.Key, rating.Value);
+            }
+
+            chart.Series.Add(series);
+
+            pnRatingDistribution.Controls.Clear();
+            pnRatingDistribution.Controls.Add(chart);
+        }
+
         private async Task UpdateActionIcons()
         {
             var user = _mainForm.GetCurrentUser();
@@ -302,6 +367,7 @@ namespace CineVerse.Views.UserControls
             await UpdateActionIcons();
             await UpdateStarRatingControl();
             await UpdateRatingInfo();
+            await DisplayRatingDistribution(_movie.Id);
         }
 
         private async void OnWatchlistMovieAdded(object sender, EventArgs e)

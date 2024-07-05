@@ -17,7 +17,7 @@ namespace CineVerse.Views.Forms
         public NewPostForm()
         {
             InitializeComponent();
-
+            this.StartPosition = FormStartPosition.CenterParent;
             EventManager.Instance.Subscribe<EventArgs>(EventType.PostAdded, OnPostAdded);
         }
 

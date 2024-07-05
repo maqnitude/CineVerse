@@ -28,288 +28,369 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            panel1 = new Panel();
+            lblTitleHeading = new Label();
+            pnTextBox = new Panel();
             txtTitle = new TextBox();
-            label2 = new Label();
+            lblContentHeading = new Label();
             btnSubmit = new Button();
             btnCancel = new Button();
-            panel2 = new Panel();
-            pnlToobar = new Panel();
-            button7 = new Button();
-            button6 = new Button();
-            button5 = new Button();
-            button4 = new Button();
-            button8 = new Button();
-            button9 = new Button();
-            button3 = new Button();
-            btnItalic = new Button();
-            btnBold = new Button();
+            pnContentSection = new Panel();
             pnlContent = new Panel();
             txtContent = new RichTextBox();
-            panel1.SuspendLayout();
-            panel2.SuspendLayout();
-            pnlToobar.SuspendLayout();
+            pnlToobar = new Panel();
+            btnFormattingHelp = new Button();
+            btnPreview = new Button();
+            btnQuote = new Button();
+            btnCode = new Button();
+            btnOrderedList = new Button();
+            btnUnorderedList = new Button();
+            btnLink = new Button();
+            btnItalic = new Button();
+            btnBold = new Button();
+            pnTitleSection = new Panel();
+            lblFormTitle = new Label();
+            pnTextBox.SuspendLayout();
+            pnContentSection.SuspendLayout();
             pnlContent.SuspendLayout();
+            pnlToobar.SuspendLayout();
+            pnTitleSection.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
+            // lblTitleHeading
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label1.Location = new Point(13, 13);
-            label1.Margin = new Padding(4);
-            label1.Name = "label1";
-            label1.Size = new Size(44, 21);
-            label1.TabIndex = 0;
-            label1.Text = "Title";
+            lblTitleHeading.AutoSize = true;
+            lblTitleHeading.Dock = DockStyle.Top;
+            lblTitleHeading.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold);
+            lblTitleHeading.ForeColor = Color.FromArgb(232, 230, 227);
+            lblTitleHeading.Location = new Point(0, 0);
+            lblTitleHeading.Margin = new Padding(4);
+            lblTitleHeading.Name = "lblTitleHeading";
+            lblTitleHeading.Size = new Size(42, 23);
+            lblTitleHeading.TabIndex = 0;
+            lblTitleHeading.Text = "Title";
             // 
-            // panel1
+            // pnTextBox
             // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.Controls.Add(txtTitle);
-            panel1.Location = new Point(13, 42);
-            panel1.Margin = new Padding(4);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1001, 48);
-            panel1.TabIndex = 1;
+            pnTextBox.BackColor = Color.FromArgb(35, 42, 51);
+            pnTextBox.Controls.Add(txtTitle);
+            pnTextBox.Dock = DockStyle.Bottom;
+            pnTextBox.Location = new Point(0, 24);
+            pnTextBox.Margin = new Padding(4);
+            pnTextBox.Name = "pnTextBox";
+            pnTextBox.Size = new Size(812, 42);
+            pnTextBox.TabIndex = 1;
             // 
             // txtTitle
             // 
-            txtTitle.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            txtTitle.Font = new Font("Segoe UI", 12F);
+            txtTitle.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtTitle.BackColor = Color.FromArgb(35, 42, 51);
+            txtTitle.BorderStyle = BorderStyle.None;
+            txtTitle.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtTitle.ForeColor = Color.FromArgb(168, 160, 149);
             txtTitle.Location = new Point(4, 10);
             txtTitle.Margin = new Padding(4, 10, 4, 4);
             txtTitle.Name = "txtTitle";
-            txtTitle.Size = new Size(993, 29);
+            txtTitle.Size = new Size(804, 22);
             txtTitle.TabIndex = 0;
             // 
-            // label2
+            // lblContentHeading
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label2.Location = new Point(13, 98);
-            label2.Margin = new Padding(4);
-            label2.Name = "label2";
-            label2.Size = new Size(71, 21);
-            label2.TabIndex = 0;
-            label2.Text = "Content";
+            lblContentHeading.AutoSize = true;
+            lblContentHeading.Dock = DockStyle.Top;
+            lblContentHeading.Font = new Font("Segoe UI Semibold", 12.25F, FontStyle.Bold);
+            lblContentHeading.ForeColor = Color.FromArgb(232, 230, 227);
+            lblContentHeading.Location = new Point(0, 0);
+            lblContentHeading.Margin = new Padding(4);
+            lblContentHeading.Name = "lblContentHeading";
+            lblContentHeading.Size = new Size(72, 23);
+            lblContentHeading.TabIndex = 0;
+            lblContentHeading.Text = "Content";
             // 
             // btnSubmit
             // 
             btnSubmit.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnSubmit.AutoSize = true;
-            btnSubmit.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnSubmit.Location = new Point(940, 385);
+            btnSubmit.BackColor = Color.FromArgb(0, 138, 22);
+            btnSubmit.FlatAppearance.BorderSize = 0;
+            btnSubmit.FlatStyle = FlatStyle.Flat;
+            btnSubmit.Font = new Font("Segoe UI Black", 10F, FontStyle.Bold);
+            btnSubmit.ForeColor = Color.FromArgb(216, 244, 202);
+            btnSubmit.Location = new Point(759, 408);
             btnSubmit.Name = "btnSubmit";
-            btnSubmit.Size = new Size(75, 31);
+            btnSubmit.Size = new Size(84, 30);
             btnSubmit.TabIndex = 3;
-            btnSubmit.Text = "Submit";
-            btnSubmit.UseVisualStyleBackColor = true;
+            btnSubmit.Text = "SUBMIT";
+            btnSubmit.UseVisualStyleBackColor = false;
             btnSubmit.Click += btnSubmit_Click;
             // 
             // btnCancel
             // 
             btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnCancel.AutoSize = true;
-            btnCancel.Font = new Font("Segoe UI", 12F);
-            btnCancel.Location = new Point(859, 385);
+            btnCancel.BackColor = Color.FromArgb(82, 95, 109);
+            btnCancel.FlatAppearance.BorderSize = 0;
+            btnCancel.FlatStyle = FlatStyle.Flat;
+            btnCancel.Font = new Font("Segoe UI Black", 10F, FontStyle.Bold);
+            btnCancel.ForeColor = Color.FromArgb(184, 201, 215);
+            btnCancel.Location = new Point(669, 408);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(75, 31);
+            btnCancel.Size = new Size(84, 30);
             btnCancel.TabIndex = 3;
-            btnCancel.Text = "Cancel";
-            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Text = "CANCEL";
+            btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
             // 
-            // panel2
+            // pnContentSection
             // 
-            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panel2.Controls.Add(pnlContent);
-            panel2.Controls.Add(pnlToobar);
-            panel2.Location = new Point(13, 127);
-            panel2.Margin = new Padding(4);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1001, 251);
-            panel2.TabIndex = 4;
+            pnContentSection.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnContentSection.Controls.Add(pnlContent);
+            pnContentSection.Controls.Add(pnlToobar);
+            pnContentSection.Controls.Add(lblContentHeading);
+            pnContentSection.Location = new Point(31, 140);
+            pnContentSection.Margin = new Padding(4);
+            pnContentSection.Name = "pnContentSection";
+            pnContentSection.Size = new Size(812, 251);
+            pnContentSection.TabIndex = 4;
+            // 
+            // pnlContent
+            // 
+            pnlContent.Controls.Add(txtContent);
+            pnlContent.Dock = DockStyle.Fill;
+            pnlContent.Location = new Point(0, 59);
+            pnlContent.Name = "pnlContent";
+            pnlContent.Size = new Size(812, 192);
+            pnlContent.TabIndex = 2;
+            // 
+            // txtContent
+            // 
+            txtContent.BackColor = Color.FromArgb(35, 42, 51);
+            txtContent.BorderStyle = BorderStyle.None;
+            txtContent.Dock = DockStyle.Fill;
+            txtContent.Font = new Font("Segoe UI", 10F);
+            txtContent.ForeColor = Color.FromArgb(168, 160, 149);
+            txtContent.Location = new Point(0, 0);
+            txtContent.Name = "txtContent";
+            txtContent.Size = new Size(812, 192);
+            txtContent.TabIndex = 1;
+            txtContent.Text = "";
             // 
             // pnlToobar
             // 
-            pnlToobar.Controls.Add(button7);
-            pnlToobar.Controls.Add(button6);
-            pnlToobar.Controls.Add(button5);
-            pnlToobar.Controls.Add(button4);
-            pnlToobar.Controls.Add(button8);
-            pnlToobar.Controls.Add(button9);
-            pnlToobar.Controls.Add(button3);
+            pnlToobar.BorderStyle = BorderStyle.FixedSingle;
+            pnlToobar.Controls.Add(btnFormattingHelp);
+            pnlToobar.Controls.Add(btnPreview);
+            pnlToobar.Controls.Add(btnQuote);
+            pnlToobar.Controls.Add(btnCode);
+            pnlToobar.Controls.Add(btnOrderedList);
+            pnlToobar.Controls.Add(btnUnorderedList);
+            pnlToobar.Controls.Add(btnLink);
             pnlToobar.Controls.Add(btnItalic);
             pnlToobar.Controls.Add(btnBold);
             pnlToobar.Dock = DockStyle.Top;
-            pnlToobar.Location = new Point(0, 0);
+            pnlToobar.ForeColor = Color.FromArgb(232, 230, 227);
+            pnlToobar.Location = new Point(0, 23);
             pnlToobar.Name = "pnlToobar";
-            pnlToobar.Size = new Size(1001, 48);
+            pnlToobar.Padding = new Padding(2);
+            pnlToobar.Size = new Size(812, 36);
             pnlToobar.TabIndex = 1;
             // 
-            // button7
+            // btnFormattingHelp
             // 
-            button7.Font = new Font("Segoe UI", 9F);
-            button7.Location = new Point(260, 4);
-            button7.Margin = new Padding(0, 4, 4, 4);
-            button7.Name = "button7";
-            button7.Size = new Size(40, 40);
-            button7.TabIndex = 0;
-            button7.Text = "quote";
-            button7.UseVisualStyleBackColor = true;
+            btnFormattingHelp.Dock = DockStyle.Left;
+            btnFormattingHelp.FlatStyle = FlatStyle.Flat;
+            btnFormattingHelp.Font = new Font("Segoe UI", 9F);
+            btnFormattingHelp.ForeColor = Color.FromArgb(232, 230, 227);
+            btnFormattingHelp.Image = Properties.Resources.question;
+            btnFormattingHelp.Location = new Point(366, 2);
+            btnFormattingHelp.Margin = new Padding(4);
+            btnFormattingHelp.Name = "btnFormattingHelp";
+            btnFormattingHelp.Size = new Size(40, 30);
+            btnFormattingHelp.TabIndex = 0;
+            btnFormattingHelp.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // btnPreview
             // 
-            button6.Font = new Font("Segoe UI", 9F);
-            button6.Location = new Point(220, 4);
-            button6.Margin = new Padding(0, 4, 0, 4);
-            button6.Name = "button6";
-            button6.Size = new Size(40, 40);
-            button6.TabIndex = 0;
-            button6.Text = "Code";
-            button6.UseVisualStyleBackColor = true;
+            btnPreview.Dock = DockStyle.Left;
+            btnPreview.FlatStyle = FlatStyle.Flat;
+            btnPreview.Font = new Font("Segoe UI", 9F);
+            btnPreview.ForeColor = Color.FromArgb(232, 230, 227);
+            btnPreview.Image = Properties.Resources.tmdb_eye;
+            btnPreview.Location = new Point(282, 2);
+            btnPreview.Margin = new Padding(4);
+            btnPreview.Name = "btnPreview";
+            btnPreview.Size = new Size(84, 30);
+            btnPreview.TabIndex = 0;
+            btnPreview.Text = "Preview";
+            btnPreview.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnPreview.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // btnQuote
             // 
-            button5.Font = new Font("Segoe UI", 9F);
-            button5.Location = new Point(180, 4);
-            button5.Margin = new Padding(0, 4, 0, 4);
-            button5.Name = "button5";
-            button5.Size = new Size(40, 40);
-            button5.TabIndex = 0;
-            button5.Text = "Bullet";
-            button5.UseVisualStyleBackColor = true;
+            btnQuote.Dock = DockStyle.Left;
+            btnQuote.FlatStyle = FlatStyle.Flat;
+            btnQuote.Font = new Font("Segoe UI", 9F);
+            btnQuote.ForeColor = Color.FromArgb(232, 230, 227);
+            btnQuote.Image = Properties.Resources.message;
+            btnQuote.Location = new Point(242, 2);
+            btnQuote.Margin = new Padding(0, 4, 4, 4);
+            btnQuote.Name = "btnQuote";
+            btnQuote.Size = new Size(40, 30);
+            btnQuote.TabIndex = 0;
+            btnQuote.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnCode
             // 
-            button4.Font = new Font("Segoe UI", 9F);
-            button4.Location = new Point(140, 4);
-            button4.Margin = new Padding(4, 4, 0, 4);
-            button4.Name = "button4";
-            button4.Size = new Size(40, 40);
-            button4.TabIndex = 0;
-            button4.Text = "List";
-            button4.UseVisualStyleBackColor = true;
+            btnCode.Dock = DockStyle.Left;
+            btnCode.FlatStyle = FlatStyle.Flat;
+            btnCode.Font = new Font("Segoe UI", 9F);
+            btnCode.ForeColor = Color.FromArgb(232, 230, 227);
+            btnCode.Image = Properties.Resources.code;
+            btnCode.Location = new Point(202, 2);
+            btnCode.Margin = new Padding(0, 4, 0, 4);
+            btnCode.Name = "btnCode";
+            btnCode.Size = new Size(40, 30);
+            btnCode.TabIndex = 0;
+            btnCode.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // btnOrderedList
             // 
-            button8.Font = new Font("Segoe UI", 9F);
-            button8.Location = new Point(308, 4);
-            button8.Margin = new Padding(4);
-            button8.Name = "button8";
-            button8.Size = new Size(80, 40);
-            button8.TabIndex = 0;
-            button8.Text = "preview";
-            button8.UseVisualStyleBackColor = true;
+            btnOrderedList.Dock = DockStyle.Left;
+            btnOrderedList.FlatStyle = FlatStyle.Flat;
+            btnOrderedList.Font = new Font("Segoe UI", 9F);
+            btnOrderedList.ForeColor = Color.FromArgb(232, 230, 227);
+            btnOrderedList.Image = Properties.Resources.list_numbers;
+            btnOrderedList.Location = new Point(162, 2);
+            btnOrderedList.Margin = new Padding(0, 4, 0, 4);
+            btnOrderedList.Name = "btnOrderedList";
+            btnOrderedList.Size = new Size(40, 30);
+            btnOrderedList.TabIndex = 0;
+            btnOrderedList.UseVisualStyleBackColor = true;
             // 
-            // button9
+            // btnUnorderedList
             // 
-            button9.Font = new Font("Segoe UI", 9F);
-            button9.Location = new Point(396, 4);
-            button9.Margin = new Padding(4);
-            button9.Name = "button9";
-            button9.Size = new Size(40, 40);
-            button9.TabIndex = 0;
-            button9.Text = "?";
-            button9.UseVisualStyleBackColor = true;
+            btnUnorderedList.Dock = DockStyle.Left;
+            btnUnorderedList.FlatStyle = FlatStyle.Flat;
+            btnUnorderedList.Font = new Font("Segoe UI", 9F);
+            btnUnorderedList.ForeColor = Color.FromArgb(232, 230, 227);
+            btnUnorderedList.Image = Properties.Resources.list;
+            btnUnorderedList.Location = new Point(122, 2);
+            btnUnorderedList.Margin = new Padding(4, 4, 0, 4);
+            btnUnorderedList.Name = "btnUnorderedList";
+            btnUnorderedList.Size = new Size(40, 30);
+            btnUnorderedList.TabIndex = 0;
+            btnUnorderedList.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnLink
             // 
-            button3.Font = new Font("Segoe UI", 9F);
-            button3.Location = new Point(92, 4);
-            button3.Margin = new Padding(4);
-            button3.Name = "button3";
-            button3.Size = new Size(40, 40);
-            button3.TabIndex = 0;
-            button3.Text = "Link";
-            button3.UseVisualStyleBackColor = true;
+            btnLink.Dock = DockStyle.Left;
+            btnLink.FlatStyle = FlatStyle.Flat;
+            btnLink.Font = new Font("Segoe UI", 9F);
+            btnLink.ForeColor = Color.FromArgb(232, 230, 227);
+            btnLink.Image = Properties.Resources.link;
+            btnLink.Location = new Point(82, 2);
+            btnLink.Margin = new Padding(4);
+            btnLink.Name = "btnLink";
+            btnLink.Size = new Size(40, 30);
+            btnLink.TabIndex = 0;
+            btnLink.UseVisualStyleBackColor = true;
             // 
             // btnItalic
             // 
-            btnItalic.Font = new Font("Segoe UI", 12F, FontStyle.Bold | FontStyle.Italic);
-            btnItalic.Location = new Point(44, 4);
+            btnItalic.Dock = DockStyle.Left;
+            btnItalic.FlatStyle = FlatStyle.Flat;
+            btnItalic.Font = new Font("Georgia", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            btnItalic.ForeColor = Color.FromArgb(232, 230, 227);
+            btnItalic.Location = new Point(42, 2);
             btnItalic.Margin = new Padding(0, 4, 4, 4);
             btnItalic.Name = "btnItalic";
-            btnItalic.Size = new Size(40, 40);
+            btnItalic.Size = new Size(40, 30);
             btnItalic.TabIndex = 0;
             btnItalic.Text = "I";
             btnItalic.UseVisualStyleBackColor = true;
             // 
             // btnBold
             // 
-            btnBold.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnBold.Location = new Point(4, 4);
+            btnBold.Dock = DockStyle.Left;
+            btnBold.FlatStyle = FlatStyle.Flat;
+            btnBold.Font = new Font("Georgia", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBold.ForeColor = Color.FromArgb(232, 230, 227);
+            btnBold.Location = new Point(2, 2);
             btnBold.Margin = new Padding(4, 4, 0, 4);
             btnBold.Name = "btnBold";
-            btnBold.Size = new Size(40, 40);
+            btnBold.Size = new Size(40, 30);
             btnBold.TabIndex = 0;
             btnBold.Text = "B";
             btnBold.UseVisualStyleBackColor = true;
             // 
-            // pnlContent
+            // pnTitleSection
             // 
-            pnlContent.Controls.Add(txtContent);
-            pnlContent.Dock = DockStyle.Fill;
-            pnlContent.Location = new Point(0, 48);
-            pnlContent.Name = "pnlContent";
-            pnlContent.Size = new Size(1001, 203);
-            pnlContent.TabIndex = 2;
+            pnTitleSection.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pnTitleSection.Controls.Add(lblTitleHeading);
+            pnTitleSection.Controls.Add(pnTextBox);
+            pnTitleSection.Location = new Point(31, 57);
+            pnTitleSection.Name = "pnTitleSection";
+            pnTitleSection.Size = new Size(812, 66);
+            pnTitleSection.TabIndex = 5;
             // 
-            // txtContent
+            // lblFormTitle
             // 
-            txtContent.BorderStyle = BorderStyle.None;
-            txtContent.Dock = DockStyle.Fill;
-            txtContent.Font = new Font("Segoe UI", 12F);
-            txtContent.Location = new Point(0, 0);
-            txtContent.Name = "txtContent";
-            txtContent.Size = new Size(1001, 203);
-            txtContent.TabIndex = 1;
-            txtContent.Text = "";
+            lblFormTitle.Dock = DockStyle.Top;
+            lblFormTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblFormTitle.ForeColor = Color.FromArgb(232, 230, 227);
+            lblFormTitle.Location = new Point(0, 0);
+            lblFormTitle.Name = "lblFormTitle";
+            lblFormTitle.Size = new Size(866, 35);
+            lblFormTitle.TabIndex = 6;
+            lblFormTitle.Text = "New Post";
             // 
             // NewPostForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1027, 428);
-            Controls.Add(panel2);
+            BackColor = Color.FromArgb(41, 54, 68);
+            ClientSize = new Size(866, 450);
+            Controls.Add(lblFormTitle);
+            Controls.Add(pnTitleSection);
+            Controls.Add(pnContentSection);
             Controls.Add(btnCancel);
             Controls.Add(btnSubmit);
-            Controls.Add(panel1);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "NewPostForm";
             Text = "NewPostForm";
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            panel2.ResumeLayout(false);
-            pnlToobar.ResumeLayout(false);
+            pnTextBox.ResumeLayout(false);
+            pnTextBox.PerformLayout();
+            pnContentSection.ResumeLayout(false);
+            pnContentSection.PerformLayout();
             pnlContent.ResumeLayout(false);
+            pnlToobar.ResumeLayout(false);
+            pnTitleSection.ResumeLayout(false);
+            pnTitleSection.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
-        private Panel panel1;
+        private Label lblTitleHeading;
+        private Panel pnTextBox;
         private TextBox txtTitle;
-        private Label label2;
+        private Label lblContentHeading;
         private Button btnSubmit;
         private Button btnCancel;
-        private Panel panel2;
+        private Panel pnContentSection;
         private Panel pnlToobar;
-        private Button button7;
-        private Button button6;
-        private Button button5;
-        private Button button4;
-        private Button button8;
-        private Button button9;
-        private Button button3;
+        private Button btnQuote;
+        private Button btnCode;
+        private Button btnOrderedList;
+        private Button btnUnorderedList;
+        private Button btnPreview;
+        private Button btnFormattingHelp;
+        private Button btnLink;
         private Button btnItalic;
         private Button btnBold;
         private Panel pnlContent;
         private RichTextBox txtContent;
+        private Panel pnTitleSection;
+        private Label lblFormTitle;
     }
 }

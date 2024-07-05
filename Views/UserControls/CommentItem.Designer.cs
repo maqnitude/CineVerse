@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CommentItem));
             pnlHeader = new Panel();
             picUser = new PictureBox();
             pnPostInfo = new Panel();
@@ -37,7 +38,7 @@
             lblBy = new Label();
             lblCreatedAt = new Label();
             pnlBody = new Panel();
-            rtbContent = new RichTextBox();
+            lblContent = new Label();
             pnlToolBar = new Panel();
             btnReply = new Button();
             btnDownvote = new Button();
@@ -55,6 +56,7 @@
             // pnlHeader
             // 
             pnlHeader.BackColor = Color.FromArgb(38, 48, 58);
+            pnlHeader.BorderStyle = BorderStyle.FixedSingle;
             pnlHeader.Controls.Add(picUser);
             pnlHeader.Controls.Add(pnPostInfo);
             pnlHeader.Dock = DockStyle.Top;
@@ -79,7 +81,7 @@
             pnPostInfo.Controls.Add(pnBy);
             pnPostInfo.Location = new Point(75, 6);
             pnPostInfo.Name = "pnPostInfo";
-            pnPostInfo.Size = new Size(718, 56);
+            pnPostInfo.Size = new Size(716, 56);
             pnPostInfo.TabIndex = 1;
             // 
             // lblTitle
@@ -140,25 +142,27 @@
             // 
             // pnlBody
             // 
-            pnlBody.Controls.Add(rtbContent);
+            pnlBody.Controls.Add(lblContent);
             pnlBody.Controls.Add(pnlToolBar);
             pnlBody.Dock = DockStyle.Top;
             pnlBody.Location = new Point(0, 70);
             pnlBody.Name = "pnlBody";
-            pnlBody.Size = new Size(802, 144);
+            pnlBody.Size = new Size(802, 99);
             pnlBody.TabIndex = 1;
             // 
-            // rtbContent
+            // lblContent
             // 
-            rtbContent.BackColor = Color.FromArgb(16, 19, 22);
-            rtbContent.BorderStyle = BorderStyle.None;
-            rtbContent.Dock = DockStyle.Fill;
-            rtbContent.ForeColor = Color.White;
-            rtbContent.Location = new Point(0, 0);
-            rtbContent.Name = "rtbContent";
-            rtbContent.Size = new Size(802, 111);
-            rtbContent.TabIndex = 1;
-            rtbContent.Text = "";
+            lblContent.BackColor = Color.Transparent;
+            lblContent.BorderStyle = BorderStyle.FixedSingle;
+            lblContent.Dock = DockStyle.Fill;
+            lblContent.Font = new Font("Segoe UI", 10F);
+            lblContent.ForeColor = Color.White;
+            lblContent.Location = new Point(0, 0);
+            lblContent.Name = "lblContent";
+            lblContent.Padding = new Padding(7);
+            lblContent.Size = new Size(802, 67);
+            lblContent.TabIndex = 1;
+            lblContent.Text = resources.GetString("lblContent.Text");
             // 
             // pnlToolBar
             // 
@@ -170,9 +174,9 @@
             pnlToolBar.Controls.Add(btnReport);
             pnlToolBar.Controls.Add(btnIgnore);
             pnlToolBar.Dock = DockStyle.Bottom;
-            pnlToolBar.Location = new Point(0, 111);
+            pnlToolBar.Location = new Point(0, 67);
             pnlToolBar.Name = "pnlToolBar";
-            pnlToolBar.Size = new Size(802, 33);
+            pnlToolBar.Size = new Size(802, 32);
             pnlToolBar.TabIndex = 0;
             // 
             // btnReply
@@ -299,7 +303,7 @@
         private Button btnIgnore;
         private Button btnReply;
         private Button btnUpvote;
-        private RichTextBox rtbContent;
         private Button btnDownvote;
+        private Label lblContent;
     }
 }

@@ -24,6 +24,16 @@ namespace CineVerse.Views.UserControls
             _list = list;
 
             SetListData(list);
+            SetupEvents();
+        }
+
+        private void SetupEvents()
+        {
+            this.Click += OnClick;
+            foreach (Control control in this.Controls)
+            {
+                control.Click += OnClick;
+            }
         }
 
         public string GetListId()
@@ -42,7 +52,7 @@ namespace CineVerse.Views.UserControls
             picListType.Image = list.Type == ListType.Private ? Properties.Resources._lock : null;
         }
 
-        private void ListItemBasic_Click(object sender, EventArgs e)
+        private void OnClick(object sender, EventArgs e)
         {
             isChecked = !isChecked;
             this.BackColor = isChecked ? Color.FromArgb(41, 54, 68) : Color.FromArgb(54, 68, 82);

@@ -11,5 +11,6 @@ namespace CineVerse.Core.Interfaces
     {
         Task<Comment> GetCommentByIdAsync(string commentId);
         Task<IEnumerable<Comment>> GetCommentRepliesAsync(string commentId);
+        Task<List<Comment>> GetRecentCommentsAsync(int count);
     }
 }

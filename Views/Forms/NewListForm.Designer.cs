@@ -70,12 +70,12 @@
             txtName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtName.BackColor = Color.FromArgb(35, 42, 51);
             txtName.BorderStyle = BorderStyle.None;
-            txtName.Font = new Font("Segoe UI", 12F);
+            txtName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txtName.ForeColor = Color.FromArgb(168, 160, 149);
             txtName.Location = new Point(13, 81);
             txtName.Margin = new Padding(4, 4, 32, 4);
             txtName.Name = "txtName";
-            txtName.Size = new Size(355, 22);
+            txtName.Size = new Size(365, 22);
             txtName.TabIndex = 3;
             // 
             // textBox2
@@ -88,7 +88,7 @@
             textBox2.Location = new Point(13, 145);
             textBox2.Margin = new Padding(4, 4, 32, 4);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(355, 22);
+            textBox2.Size = new Size(365, 22);
             textBox2.TabIndex = 5;
             // 
             // label3
@@ -114,7 +114,7 @@
             comboListType.Location = new Point(13, 211);
             comboListType.Margin = new Padding(4, 4, 32, 4);
             comboListType.Name = "comboListType";
-            comboListType.Size = new Size(355, 29);
+            comboListType.Size = new Size(365, 29);
             comboListType.TabIndex = 6;
             // 
             // label4
@@ -147,11 +147,12 @@
             txtDescription.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtDescription.BackColor = Color.FromArgb(35, 42, 51);
             txtDescription.BorderStyle = BorderStyle.None;
+            txtDescription.Font = new Font("Segoe UI", 10F);
             txtDescription.ForeColor = Color.FromArgb(168, 160, 149);
-            txtDescription.Location = new Point(411, 81);
+            txtDescription.Location = new Point(400, 81);
             txtDescription.Margin = new Padding(32, 4, 4, 4);
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(361, 196);
+            txtDescription.Size = new Size(372, 196);
             txtDescription.TabIndex = 8;
             txtDescription.Text = "";
             // 
@@ -160,7 +161,7 @@
             label5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label5.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.FromArgb(232, 230, 227);
-            label5.Location = new Point(411, 53);
+            label5.Location = new Point(400, 52);
             label5.Margin = new Padding(4);
             label5.Name = "label5";
             label5.Size = new Size(100, 27);

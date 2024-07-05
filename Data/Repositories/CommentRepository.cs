@@ -28,5 +28,15 @@ namespace CineVerse.Data.Repositories
                 .Where(r => r.ParentCommentId != null)
                 .ToListAsync();
         }
+
+        public async Task<List<Comment>> GetRecentCommentsAsync(int count)
+        {
+            return await _context.Comments
+                .Include(c => c.User)
+                .Include(c => c.Post)
+                .OrderByDescending(c => c.CreatedAt)
+                .Take(count)
+                .ToListAsync();
+        }
     }
 }

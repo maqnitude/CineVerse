@@ -33,10 +33,10 @@
             pnContents = new Panel();
             pnRow5 = new Panel();
             pnRow5ColLeft = new Panel();
-            flpUserAvatars = new FlowLayoutPanel();
+            pnDiscussion = new Panel();
             lblDiscussionHeading = new Label();
             pnRow5ColRight = new Panel();
-            pnFollowees = new Panel();
+            flpUserAvatars = new FlowLayoutPanel();
             lblFollowingHeading = new Label();
             pnRow4 = new Panel();
             pnLists = new Panel();
@@ -87,7 +87,7 @@
             pnWrapper.Controls.Add(lblWelcomeMessage);
             pnWrapper.Location = new Point(238, 0);
             pnWrapper.Name = "pnWrapper";
-            pnWrapper.Size = new Size(950, 1761);
+            pnWrapper.Size = new Size(950, 1797);
             pnWrapper.TabIndex = 1;
             // 
             // pnContents
@@ -100,7 +100,7 @@
             pnContents.Dock = DockStyle.Fill;
             pnContents.Location = new Point(0, 42);
             pnContents.Name = "pnContents";
-            pnContents.Size = new Size(950, 1719);
+            pnContents.Size = new Size(950, 1755);
             pnContents.TabIndex = 1;
             // 
             // pnRow5
@@ -108,68 +108,72 @@
             pnRow5.Controls.Add(pnRow5ColLeft);
             pnRow5.Controls.Add(pnRow5ColRight);
             pnRow5.Dock = DockStyle.Fill;
-            pnRow5.Location = new Point(0, 1591);
+            pnRow5.Location = new Point(0, 1626);
             pnRow5.Name = "pnRow5";
-            pnRow5.Size = new Size(950, 128);
+            pnRow5.Size = new Size(950, 129);
             pnRow5.TabIndex = 4;
             // 
             // pnRow5ColLeft
             // 
-            pnRow5ColLeft.Controls.Add(flpUserAvatars);
+            pnRow5ColLeft.Controls.Add(pnDiscussion);
             pnRow5ColLeft.Controls.Add(lblDiscussionHeading);
             pnRow5ColLeft.Dock = DockStyle.Fill;
             pnRow5ColLeft.Location = new Point(0, 0);
             pnRow5ColLeft.Name = "pnRow5ColLeft";
-            pnRow5ColLeft.Size = new Size(355, 128);
+            pnRow5ColLeft.Size = new Size(355, 129);
             pnRow5ColLeft.TabIndex = 1;
             // 
-            // flpUserAvatars
+            // pnDiscussion
             // 
-            flpUserAvatars.Dock = DockStyle.Fill;
-            flpUserAvatars.Location = new Point(0, 17);
-            flpUserAvatars.Name = "flpUserAvatars";
-            flpUserAvatars.Size = new Size(355, 111);
-            flpUserAvatars.TabIndex = 2;
+            pnDiscussion.AutoScroll = true;
+            pnDiscussion.BorderStyle = BorderStyle.FixedSingle;
+            pnDiscussion.Dock = DockStyle.Fill;
+            pnDiscussion.Location = new Point(0, 17);
+            pnDiscussion.Name = "pnDiscussion";
+            pnDiscussion.Size = new Size(355, 112);
+            pnDiscussion.TabIndex = 2;
             // 
             // lblDiscussionHeading
             // 
             lblDiscussionHeading.AutoSize = true;
             lblDiscussionHeading.Dock = DockStyle.Top;
-            lblDiscussionHeading.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDiscussionHeading.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             lblDiscussionHeading.ForeColor = Color.FromArgb(178, 172, 162);
             lblDiscussionHeading.Location = new Point(0, 0);
             lblDiscussionHeading.Name = "lblDiscussionHeading";
-            lblDiscussionHeading.Size = new Size(83, 17);
+            lblDiscussionHeading.Size = new Size(84, 17);
             lblDiscussionHeading.TabIndex = 1;
             lblDiscussionHeading.Text = "DISCUSSION";
             // 
             // pnRow5ColRight
             // 
-            pnRow5ColRight.Controls.Add(pnFollowees);
+            pnRow5ColRight.Controls.Add(flpUserAvatars);
             pnRow5ColRight.Controls.Add(lblFollowingHeading);
             pnRow5ColRight.Dock = DockStyle.Right;
             pnRow5ColRight.Location = new Point(355, 0);
             pnRow5ColRight.Name = "pnRow5ColRight";
-            pnRow5ColRight.Size = new Size(595, 128);
+            pnRow5ColRight.Size = new Size(595, 129);
             pnRow5ColRight.TabIndex = 0;
             // 
-            // pnFollowees
+            // flpUserAvatars
             // 
-            pnFollowees.Dock = DockStyle.Fill;
-            pnFollowees.Location = new Point(0, 17);
-            pnFollowees.Name = "pnFollowees";
-            pnFollowees.Size = new Size(595, 111);
-            pnFollowees.TabIndex = 2;
+            flpUserAvatars.AutoScroll = true;
+            flpUserAvatars.BorderStyle = BorderStyle.FixedSingle;
+            flpUserAvatars.Dock = DockStyle.Fill;
+            flpUserAvatars.Location = new Point(0, 17);
+            flpUserAvatars.Name = "flpUserAvatars";
+            flpUserAvatars.Size = new Size(595, 112);
+            flpUserAvatars.TabIndex = 2;
             // 
             // lblFollowingHeading
             // 
             lblFollowingHeading.AutoSize = true;
             lblFollowingHeading.Dock = DockStyle.Top;
-            lblFollowingHeading.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblFollowingHeading.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             lblFollowingHeading.ForeColor = Color.FromArgb(178, 172, 162);
             lblFollowingHeading.Location = new Point(0, 0);
             lblFollowingHeading.Name = "lblFollowingHeading";
-            lblFollowingHeading.Size = new Size(83, 17);
+            lblFollowingHeading.Size = new Size(85, 17);
             lblFollowingHeading.TabIndex = 1;
             lblFollowingHeading.Text = "FOLLOWING";
             // 
@@ -178,13 +182,15 @@
             pnRow4.Controls.Add(pnLists);
             pnRow4.Controls.Add(lblPopularListsHeading);
             pnRow4.Dock = DockStyle.Top;
-            pnRow4.Location = new Point(0, 991);
+            pnRow4.Location = new Point(0, 1026);
             pnRow4.Name = "pnRow4";
             pnRow4.Size = new Size(950, 600);
             pnRow4.TabIndex = 3;
             // 
             // pnLists
             // 
+            pnLists.AutoScroll = true;
+            pnLists.BorderStyle = BorderStyle.FixedSingle;
             pnLists.Dock = DockStyle.Fill;
             pnLists.Location = new Point(0, 17);
             pnLists.Name = "pnLists";
@@ -195,11 +201,11 @@
             // 
             lblPopularListsHeading.AutoSize = true;
             lblPopularListsHeading.Dock = DockStyle.Top;
-            lblPopularListsHeading.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPopularListsHeading.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             lblPopularListsHeading.ForeColor = Color.FromArgb(178, 172, 162);
             lblPopularListsHeading.Location = new Point(0, 0);
             lblPopularListsHeading.Name = "lblPopularListsHeading";
-            lblPopularListsHeading.Size = new Size(101, 17);
+            lblPopularListsHeading.Size = new Size(104, 17);
             lblPopularListsHeading.TabIndex = 0;
             lblPopularListsHeading.Text = "POPULAR LISTS";
             // 
@@ -210,7 +216,7 @@
             pnRow3.Dock = DockStyle.Top;
             pnRow3.Location = new Point(0, 520);
             pnRow3.Name = "pnRow3";
-            pnRow3.Size = new Size(950, 471);
+            pnRow3.Size = new Size(950, 506);
             pnRow3.TabIndex = 2;
             // 
             // pnRow3ColLeft
@@ -220,26 +226,28 @@
             pnRow3ColLeft.Dock = DockStyle.Fill;
             pnRow3ColLeft.Location = new Point(0, 0);
             pnRow3ColLeft.Name = "pnRow3ColLeft";
-            pnRow3ColLeft.Size = new Size(643, 471);
+            pnRow3ColLeft.Size = new Size(643, 506);
             pnRow3ColLeft.TabIndex = 1;
             // 
             // pnReviews
             // 
+            pnReviews.AutoScroll = true;
+            pnReviews.BorderStyle = BorderStyle.FixedSingle;
             pnReviews.Dock = DockStyle.Fill;
             pnReviews.Location = new Point(0, 17);
             pnReviews.Name = "pnReviews";
-            pnReviews.Size = new Size(643, 454);
+            pnReviews.Size = new Size(643, 489);
             pnReviews.TabIndex = 1;
             // 
             // lblTopReviewsHeading
             // 
             lblTopReviewsHeading.AutoSize = true;
             lblTopReviewsHeading.Dock = DockStyle.Top;
-            lblTopReviewsHeading.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            lblTopReviewsHeading.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             lblTopReviewsHeading.ForeColor = Color.FromArgb(178, 172, 162);
             lblTopReviewsHeading.Location = new Point(0, 0);
             lblTopReviewsHeading.Name = "lblTopReviewsHeading";
-            lblTopReviewsHeading.Size = new Size(90, 17);
+            lblTopReviewsHeading.Size = new Size(93, 17);
             lblTopReviewsHeading.TabIndex = 0;
             lblTopReviewsHeading.Text = "TOP REVIEWS";
             // 
@@ -250,28 +258,30 @@
             pnRow3ColRight.Dock = DockStyle.Right;
             pnRow3ColRight.Location = new Point(643, 0);
             pnRow3ColRight.Name = "pnRow3ColRight";
-            pnRow3ColRight.Size = new Size(307, 471);
+            pnRow3ColRight.Size = new Size(307, 506);
             pnRow3ColRight.TabIndex = 0;
             // 
             // pnActivities
             // 
+            pnActivities.AutoScroll = true;
+            pnActivities.BorderStyle = BorderStyle.FixedSingle;
             pnActivities.Dock = DockStyle.Fill;
             pnActivities.Location = new Point(0, 17);
             pnActivities.Name = "pnActivities";
-            pnActivities.Size = new Size(307, 454);
+            pnActivities.Size = new Size(307, 489);
             pnActivities.TabIndex = 2;
             // 
             // lblActivitiesHeading
             // 
             lblActivitiesHeading.AutoSize = true;
             lblActivitiesHeading.Dock = DockStyle.Top;
-            lblActivitiesHeading.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            lblActivitiesHeading.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             lblActivitiesHeading.ForeColor = Color.FromArgb(178, 172, 162);
             lblActivitiesHeading.Location = new Point(0, 0);
             lblActivitiesHeading.Name = "lblActivitiesHeading";
-            lblActivitiesHeading.Size = new Size(132, 17);
+            lblActivitiesHeading.Size = new Size(76, 17);
             lblActivitiesHeading.TabIndex = 1;
-            lblActivitiesHeading.Text = "FRIENDS' ACTIVITIES";
+            lblActivitiesHeading.Text = "ACTIVITIES";
             // 
             // pnRow2
             // 
@@ -286,6 +296,7 @@
             // pnRecommendations
             // 
             pnRecommendations.AutoScroll = true;
+            pnRecommendations.BorderStyle = BorderStyle.FixedSingle;
             pnRecommendations.Dock = DockStyle.Fill;
             pnRecommendations.Location = new Point(0, 17);
             pnRecommendations.Name = "pnRecommendations";
@@ -296,11 +307,11 @@
             // 
             lblRecommendationsHeading.AutoSize = true;
             lblRecommendationsHeading.Dock = DockStyle.Top;
-            lblRecommendationsHeading.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblRecommendationsHeading.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
             lblRecommendationsHeading.ForeColor = Color.FromArgb(178, 172, 162);
             lblRecommendationsHeading.Location = new Point(0, 0);
             lblRecommendationsHeading.Name = "lblRecommendationsHeading";
-            lblRecommendationsHeading.Size = new Size(182, 17);
+            lblRecommendationsHeading.Size = new Size(185, 17);
             lblRecommendationsHeading.TabIndex = 0;
             lblRecommendationsHeading.Text = "MOVIE RECOMMENDATIONS";
             // 
@@ -317,6 +328,7 @@
             // pnMovies
             // 
             pnMovies.AutoScroll = true;
+            pnMovies.BorderStyle = BorderStyle.FixedSingle;
             pnMovies.Dock = DockStyle.Fill;
             pnMovies.Location = new Point(0, 17);
             pnMovies.Name = "pnMovies";
@@ -327,11 +339,11 @@
             // 
             lblTopRatedHeading.AutoSize = true;
             lblTopRatedHeading.Dock = DockStyle.Top;
-            lblTopRatedHeading.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTopRatedHeading.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTopRatedHeading.ForeColor = Color.FromArgb(178, 172, 162);
             lblTopRatedHeading.Location = new Point(0, 0);
             lblTopRatedHeading.Name = "lblTopRatedHeading";
-            lblTopRatedHeading.Size = new Size(127, 17);
+            lblTopRatedHeading.Size = new Size(132, 17);
             lblTopRatedHeading.TabIndex = 0;
             lblTopRatedHeading.Text = "TOP RATED MOVIES";
             // 
@@ -343,7 +355,7 @@
             BackColor = Color.FromArgb(20, 24, 28);
             Controls.Add(pnWrapper);
             Name = "HomeScreen";
-            Size = new Size(1426, 1764);
+            Size = new Size(1426, 1811);
             pnWrapper.ResumeLayout(false);
             pnContents.ResumeLayout(false);
             pnRow5.ResumeLayout(false);
@@ -391,7 +403,7 @@
         private Panel pnRow5ColLeft;
         private FlowLayoutPanel flpUserAvatars;
         private Label lblDiscussionHeading;
-        private Panel pnFollowees;
+        private Panel pnDiscussion;
         private Label lblFollowingHeading;
     }
 }

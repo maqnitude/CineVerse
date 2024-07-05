@@ -290,7 +290,7 @@ namespace CineVerse.Forms
             ResetNavItemColors();
             lblListsTab.ForeColor = Color.FromArgb(0, 157, 26);
             _selectedTab = lblListsTab;
-            _navigationService.NavigateToScreen("listsScreen");
+            _navigationService.NavigateToScreen("listsScreen", false);
 
             await _listsScreen.LoadListsAsync();
         }

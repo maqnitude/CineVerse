@@ -34,6 +34,8 @@ namespace CineVerse.Views.UserControls
             await LoadMovieRecommendations();
             await LoadTopReviews();
             await LoadPopularLists();
+            await LoadRecentCommentsAsync();
+            await LoadUserAvatars();
         }
 
         private async Task LoadTopRatedMovies()
@@ -45,7 +47,7 @@ namespace CineVerse.Views.UserControls
                 pnMovies.Controls.Remove(card);
             }
 
-            List<Movie> movies = await MovieService.Instance.GetMoviesAsync(1, 5, sortBy: "rating", sortValue: "highest first");
+            List<Movie> movies = await MovieService.Instance.GetMoviesAsync(1, 7, sortBy: "rating", sortValue: "highest first");
 
             var mainForm = this.FindForm() as MainForm;
             foreach (Movie movie in movies)
@@ -75,7 +77,7 @@ namespace CineVerse.Views.UserControls
             List<Movie> movies = await MovieService.Instance.GetMoviesAsync(1, 100);
 
             Random random = new Random();
-            List<Movie> randomMovies = movies.OrderBy(m => random.Next()).Take(5).ToList();
+            List<Movie> randomMovies = movies.OrderBy(m => random.Next()).Take(7).ToList();
 
             var mainForm = this.FindForm() as MainForm;
             foreach (Movie movie in randomMovies)
@@ -97,7 +99,7 @@ namespace CineVerse.Views.UserControls
         {
             pnReviews.SuspendLayout();
 
-            foreach (var item in pnReviews.Controls.OfType<ReviewItem>().ToList())
+            foreach (var item in pnReviews.Controls.OfType<ActivityItemReview>().ToList())
             {
                 pnReviews.Controls.Remove(item);
             }
@@ -115,7 +117,7 @@ namespace CineVerse.Views.UserControls
                     continue;
                 }
 
-                ReviewItem item = new(review)
+                ActivityItemReview item = new(review)
                 {
                     Dock = DockStyle.Top,
                 };
@@ -153,16 +155,70 @@ namespace CineVerse.Views.UserControls
                     Dock = DockStyle.Top,
                 };
                 item.SetMediator(_mediator);
-
                 pnLists.Controls.Add(item);
+                item.BringToFront();
             }
 
             pnLists.ResumeLayout();
         }
 
+        private async Task LoadUserAvatars()
+        {
+            flpUserAvatars.SuspendLayout();
+
+            foreach (var avatar in flpUserAvatars.Controls.OfType<CircularUserAvatar>().ToList())
+            {
+                flpUserAvatars.Controls.Remove(avatar);
+            }
+
+            List<User> followees = await UserService.Instance.GetFolloweesByIdAsync(_user.Id);
+
+            foreach (User followee in followees) 
+            {
+                CircularUserAvatar avatar = new CircularUserAvatar(followee);
+                flpUserAvatars.Controls.Add(avatar);
+            }
+
+            flpUserAvatars.ResumeLayout();
+        }
+
+        private async Task LoadRecentCommentsAsync()
+        {
+            pnActivities.SuspendLayout();
+
+            foreach (var item in pnActivities.Controls.OfType<ActivityItemBasic>().ToList())
+            {
+                pnActivities.Controls.Remove(item);
+            }
+
+            List<Comment> comments = await CommentService.Instance.GetRecentCommentsAsync(5);
+
+            foreach (Comment comment in comments)
+            {
+                ActivityItemBasic item = new(comment)
+                {
+                    Dock = DockStyle.Top,
+                };
+                pnActivities.Controls.Add(item);
+                item.BringToFront();
+            }
+
+            pnActivities.ResumeLayout();
+        }
+
         private async Task LoadDiscussions()
         {
             // Load random posts
+            Label message = new Label
+            {
+                Text = "Please navigate to Discussion tab.",
+                Dock = DockStyle.Fill,
+                ForeColor = Color.White,
+                BackColor = Color.Transparent,
+                AutoSize = true,
+                Font = new Font("Segoe UI", 10),
+            };
+            pnDiscussion.Controls.Add(message);
         }
     }
 }

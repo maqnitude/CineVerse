@@ -33,6 +33,7 @@ namespace CineVerse.Views.UserControls
             picUser.SizeMode = PictureBoxSizeMode.StretchImage;
             picMoviePoster.Image?.Dispose();
             picMoviePoster.Image = new Bitmap(_review.Movie.PosterPath);
+            picMoviePoster.SizeMode = PictureBoxSizeMode.StretchImage;
         }
     }
 }

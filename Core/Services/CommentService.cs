@@ -31,6 +31,14 @@ namespace CineVerse.Core.Services
 
         }
 
+        public async Task<List<Comment>> GetRecentCommentsAsync(int count)
+        {
+            using (var unitOfWork = new UnitOfWork(new AppDbContext()))
+            {
+                return await unitOfWork.Comments.GetRecentCommentsAsync(count);
+            }
+        }
+
         public async Task<List<Comment>> GetCommentRepliesAsync(string commentId)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))

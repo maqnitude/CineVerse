@@ -347,7 +347,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(16, 19, 22);
+            BackColor = Color.FromArgb(41, 54, 68);
             ClientSize = new Size(866, 450);
             Controls.Add(lblFormTitle);
             Controls.Add(pnTitleSection);

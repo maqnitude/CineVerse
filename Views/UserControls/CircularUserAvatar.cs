@@ -26,6 +26,7 @@ namespace CineVerse.Views.UserControls
         {
             _user = user;
 
+            lblUsername.Text = user.Username;
             picAvatar.Image?.Dispose();
             picAvatar.Image = (user.AvatarPath != null) ? new Bitmap(user.AvatarPath) : Properties.Resources.default_avatar_transparent;
             picAvatar.SizeMode = PictureBoxSizeMode.StretchImage;

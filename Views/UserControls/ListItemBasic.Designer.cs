@@ -105,7 +105,6 @@
             Controls.Add(lblNumMovies);
             Name = "ListItemBasic";
             Size = new Size(331, 37);
-            Click += ListItemBasic_Click;
             ((System.ComponentModel.ISupportInitialize)picCheck).EndInit();
             ((System.ComponentModel.ISupportInitialize)picListType).EndInit();
             pnListInfo.ResumeLayout(false);

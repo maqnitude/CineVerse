@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
+            pnWrapper = new Panel();
             rootCommentItem = new CommentItem();
             btnBack = new Button();
-            panel1.SuspendLayout();
+            pnWrapper.SuspendLayout();
             SuspendLayout();
             // 
-            // panel1
+            // pnWrapper
             // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-            panel1.AutoScroll = true;
-            panel1.BackColor = Color.Transparent;
-            panel1.Controls.Add(rootCommentItem);
-            panel1.Location = new Point(157, 0);
-            panel1.Name = "panel1";
-            panel1.Padding = new Padding(0, 15, 0, 0);
-            panel1.Size = new Size(950, 737);
-            panel1.TabIndex = 0;
+            pnWrapper.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            pnWrapper.AutoScroll = true;
+            pnWrapper.BackColor = Color.Transparent;
+            pnWrapper.Controls.Add(rootCommentItem);
+            pnWrapper.Location = new Point(157, 0);
+            pnWrapper.Name = "pnWrapper";
+            pnWrapper.Padding = new Padding(0, 15, 0, 0);
+            pnWrapper.Size = new Size(950, 737);
+            pnWrapper.TabIndex = 0;
             // 
             // rootCommentItem
             // 
@@ -69,6 +69,7 @@
             btnBack.Size = new Size(32, 32);
             btnBack.TabIndex = 9;
             btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
             // 
             // PostDetailsScreen
             // 
@@ -76,17 +77,17 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(16, 19, 22);
             Controls.Add(btnBack);
-            Controls.Add(panel1);
+            Controls.Add(pnWrapper);
             Name = "PostDetailsScreen";
             Size = new Size(1263, 737);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            pnWrapper.ResumeLayout(false);
+            pnWrapper.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel panel1;
+        private Panel pnWrapper;
         private CommentItem rootCommentItem;
         private Button btnBack;
     }

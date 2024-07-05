@@ -148,9 +148,9 @@ namespace CineVerse.Views.UserControls
         {
             var navService = _mainForm.GetNavService();
             var postDetailsScreen = new PostDetailsScreen();
-            await postDetailsScreen.Initialize(_mainForm, _post);
-
             navService.NavigateToScreen(postDetailsScreen, false);
+
+            await postDetailsScreen.Initialize(_mainForm, _post);
         }
 
         private async void OnCommentReplyAdded(object sender, EventArgs e)

@@ -200,7 +200,6 @@ namespace CineVerse.Forms
 
             await _homeScreen.LoadContents();
             await _usersScreen.LoadUsersAsync();
-
         }
 
         private void OnUserSettingsChanged(object? sender, EventArgs e)
@@ -217,10 +216,7 @@ namespace CineVerse.Forms
 
         private async void OnListMovieAdding(object sender, ListMovieEventArgs e)
         {
-            //MessageBox.Show($"Adding movie with id({e.MovieId}) to {e.ListIds.Count} lists");
             await ListService.Instance.AddMovieToListsAsync(e.ListIds, e.MovieId);
-
-            //EventManager.Instance.Publish(EventType.ListMovieAdded, this, EventArgs.Empty);
         }
 
         private async void OnReviewAdding(object sender, ReviewEventArgs e)
@@ -290,7 +286,7 @@ namespace CineVerse.Forms
             ResetNavItemColors();
             lblListsTab.ForeColor = Color.FromArgb(0, 157, 26);
             _selectedTab = lblListsTab;
-            _navigationService.NavigateToScreen("listsScreen", false);
+            _navigationService.NavigateToScreen("listsScreen");
 
             await _listsScreen.LoadListsAsync();
         }

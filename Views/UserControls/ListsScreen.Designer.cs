@@ -53,20 +53,21 @@
             pnWrapper.Controls.Add(pnListsContainer);
             pnWrapper.Controls.Add(pnFooter);
             pnWrapper.Controls.Add(pnHeader);
-            pnWrapper.Location = new Point(170, 1);
+            pnWrapper.Location = new Point(121, 1);
             pnWrapper.Margin = new Padding(128, 64, 128, 64);
             pnWrapper.Name = "pnWrapper";
-            pnWrapper.Size = new Size(950, 708);
+            pnWrapper.Size = new Size(950, 858);
             pnWrapper.TabIndex = 0;
             // 
             // pnListsContainer
             // 
             pnListsContainer.AutoScroll = true;
+            pnListsContainer.AutoSize = true;
             pnListsContainer.BorderStyle = BorderStyle.FixedSingle;
             pnListsContainer.Dock = DockStyle.Fill;
             pnListsContainer.Location = new Point(0, 26);
             pnListsContainer.Name = "pnListsContainer";
-            pnListsContainer.Size = new Size(950, 645);
+            pnListsContainer.Size = new Size(950, 794);
             pnListsContainer.TabIndex = 4;
             // 
             // pnFooter
@@ -74,9 +75,9 @@
             pnFooter.BorderStyle = BorderStyle.FixedSingle;
             pnFooter.Controls.Add(btnAddList);
             pnFooter.Dock = DockStyle.Bottom;
-            pnFooter.Location = new Point(0, 671);
+            pnFooter.Location = new Point(0, 820);
             pnFooter.Name = "pnFooter";
-            pnFooter.Size = new Size(950, 37);
+            pnFooter.Size = new Size(950, 38);
             pnFooter.TabIndex = 3;
             // 
             // btnAddList
@@ -187,12 +188,13 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Transparent;
+            BackColor = Color.FromArgb(16, 19, 22);
             BorderStyle = BorderStyle.FixedSingle;
             Controls.Add(pnWrapper);
             Name = "ListsScreen";
-            Size = new Size(1291, 708);
+            Size = new Size(1193, 858);
             pnWrapper.ResumeLayout(false);
+            pnWrapper.PerformLayout();
             pnFooter.ResumeLayout(false);
             pnHeader.ResumeLayout(false);
             pnHeader.PerformLayout();

@@ -15,8 +15,6 @@ using CineVerse.Forms;
 using CineVerse.Views.Forms;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System.Drawing.Drawing2D;
-using LiveCharts.WinForms;
-using LiveCharts.Wpf;
 using System.Windows.Forms.DataVisualization.Charting;
 
 namespace CineVerse.Views.UserControls

@@ -36,6 +36,7 @@ namespace CineVerse.Views.UserControls
             await LoadPopularLists();
             await LoadRecentCommentsAsync();
             await LoadUserAvatars();
+            LoadDiscussions();
         }
 
         private async Task LoadTopRatedMovies()
@@ -206,7 +207,7 @@ namespace CineVerse.Views.UserControls
             pnActivities.ResumeLayout();
         }
 
-        private async Task LoadDiscussions()
+        private void LoadDiscussions()
         {
             // Load random posts
             Label message = new Label

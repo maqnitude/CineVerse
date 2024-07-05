@@ -29,11 +29,11 @@ namespace CineVerse.Core.Services
 
         }
 
-        public async Task<List<Review>> GetReviewsAsync(int max = 100)
+        public async Task<List<Review>> GetReviewsAsync(int max = 100, bool includeUser = true, bool includeMovie = true)
         {
             using (var unitOfWork = new UnitOfWork(new AppDbContext()))
             {
-                var reviews = await unitOfWork.Reviews.GetReviewsAsync(max);
+                var reviews = await unitOfWork.Reviews.GetReviewsAsync(max, includeUser, includeMovie);
                 return reviews.ToList();
             }
         }

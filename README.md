@@ -1,7 +1,7 @@
 # Overview
-**CineVerse** is a social network service for movies. The main motivation behind this application is that each specific country or region has a different, unique pop-culture, which implies that the entertainment preferences are different for each country or region. especially movies and TV series. Unlike [IMDb](https://www.imdb.com/) or [TMDB](https://www.themoviedb.org/), whose audience are usually international, CineVerse would instead focus on an audience from a specific country, i.e., our home country Vietnam.
+**CineVerse** is a concept application for a social network service for movies, inspired by Letterboxd.
 
-This repo is a _concept application_ built using WinForms (.NET 8). As for the movies data, we used the [TMDB API](https://developer.themoviedb.org/docs/getting-started) to collect 100 movies, along with cast and crew data for each movie. We also used the Entity Framework Core ORM and PostgreSQL database for the backend.
+This project was developed using WinForms (.NET 8) as part of a course on C# and the .NET framework. We used the [TMDB API](https://developer.themoviedb.org/docs/getting-started) to collect 100 movies, along with cast and crew data for each movie. We also used the Entity Framework Core ORM and PostgreSQL database for the backend.
 
 The collected data can be found at this [link]() (nothing yet), place `data` inside the `Data` directory and run
 ```
@@ -11,6 +11,7 @@ dotnet ef database update
 to seed the local database.
 
 ## Features
+_TODO: Insert some screenshots and make this section a table instead_
 - Users
   - Authentication (sign in, sign up, reset password via verification code sent through email)
   - Profile customization (change info, display favorite movies, etc.)
@@ -23,8 +24,6 @@ to seed the local database.
   - Create post
   - Reply to post and and other comments
   - Upvote or downvote a post or comment
-
-And more...
 
 ## Technical details
 - N-tier architecture

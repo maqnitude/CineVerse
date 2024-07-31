@@ -3,7 +3,7 @@
 
 This project was developed using WinForms (.NET 8) as part of a course on C# and the .NET framework. We used the [TMDB API](https://developer.themoviedb.org/docs/getting-started) to collect 100 movies, along with cast and crew data for each movie. We also used the Entity Framework Core ORM and PostgreSQL database for the backend.
 
-The collected data can be found at this [link]() (nothing yet), place `data` inside the `Data` directory and run
+The collected data can be found at this [link](https://drive.google.com/drive/folders/19ptk6u8Fkh3JoDMG8RSo96aOujAK-5Jj?usp=sharing), place `data` inside the `Data` directory and run
 ```
 dotnet ef migrations add InitialCreate
 dotnet ef database update

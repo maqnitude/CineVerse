@@ -32,7 +32,7 @@ This project was developed using WinForms (.NET 8). We used the [TMDB API](https
 - Design patterns
   - Singleton (e.g., each of the services are implemented as a singleton)
   - Publisher/subscriber (our `EventManger` singleton manages all of the custom events and their handlers in the application)
-  - Unit of work and repositories (these will ensure the data consistency when updating the database)
+  - Unit of work and repositories
 
 ## Run this project
 
